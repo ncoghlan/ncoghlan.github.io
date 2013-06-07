@@ -5,153 +5,263 @@
     xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
-  <loc>http://www.boredomandlaziness.org</loc>
-  <lastmod>2013-06-01</lastmod>
+  <loc>http://www.curiousefficiency.org</loc>
+  <lastmod>2013-06-07</lastmod>
   <priority>0.5000</priority>
  </url>
  <url>
-  <loc>http://www.boredomandlaziness.org/2004/</loc>
-  <lastmod>2013-06-01</lastmod>
+  <loc>http://www.curiousefficiency.org/2004/</loc>
+  <lastmod>2013-06-07</lastmod>
   <priority>0.5000</priority>
  </url>
  <url>
-  <loc>http://www.boredomandlaziness.org/2004/index.html</loc>
-  <lastmod>2013-06-01</lastmod>
+  <loc>http://www.curiousefficiency.org/2004/index.html</loc>
+  <lastmod>2013-06-07</lastmod>
   <priority>0.5000</priority>
  </url>
  <url>
-  <loc>http://www.boredomandlaziness.org/2005/</loc>
-  <lastmod>2013-06-01</lastmod>
+  <loc>http://www.curiousefficiency.org/2005/</loc>
+  <lastmod>2013-06-07</lastmod>
   <priority>0.5000</priority>
  </url>
  <url>
-  <loc>http://www.boredomandlaziness.org/2005/index.html</loc>
-  <lastmod>2013-06-01</lastmod>
+  <loc>http://www.curiousefficiency.org/2005/index.html</loc>
+  <lastmod>2013-06-07</lastmod>
   <priority>0.5000</priority>
  </url>
  <url>
-  <loc>http://www.boredomandlaziness.org/2006/</loc>
-  <lastmod>2013-06-01</lastmod>
+  <loc>http://www.curiousefficiency.org/2006/</loc>
+  <lastmod>2013-06-07</lastmod>
   <priority>0.5000</priority>
  </url>
  <url>
-  <loc>http://www.boredomandlaziness.org/2006/index.html</loc>
-  <lastmod>2013-06-01</lastmod>
+  <loc>http://www.curiousefficiency.org/2006/index.html</loc>
+  <lastmod>2013-06-07</lastmod>
   <priority>0.5000</priority>
  </url>
  <url>
-  <loc>http://www.boredomandlaziness.org/2007/</loc>
-  <lastmod>2013-06-01</lastmod>
+  <loc>http://www.curiousefficiency.org/2007/</loc>
+  <lastmod>2013-06-07</lastmod>
   <priority>0.5000</priority>
  </url>
  <url>
-  <loc>http://www.boredomandlaziness.org/2007/index.html</loc>
-  <lastmod>2013-06-01</lastmod>
+  <loc>http://www.curiousefficiency.org/2007/index.html</loc>
+  <lastmod>2013-06-07</lastmod>
   <priority>0.5000</priority>
  </url>
  <url>
-  <loc>http://www.boredomandlaziness.org/2010/</loc>
-  <lastmod>2013-06-01</lastmod>
+  <loc>http://www.curiousefficiency.org/2010/</loc>
+  <lastmod>2013-06-07</lastmod>
   <priority>0.5000</priority>
  </url>
  <url>
-  <loc>http://www.boredomandlaziness.org/2010/index.html</loc>
-  <lastmod>2013-06-01</lastmod>
+  <loc>http://www.curiousefficiency.org/2010/index.html</loc>
+  <lastmod>2013-06-07</lastmod>
   <priority>0.5000</priority>
  </url>
  <url>
-  <loc>http://www.boredomandlaziness.org/2011/</loc>
-  <lastmod>2013-06-01</lastmod>
+  <loc>http://www.curiousefficiency.org/2011/</loc>
+  <lastmod>2013-06-07</lastmod>
   <priority>0.5000</priority>
  </url>
  <url>
-  <loc>http://www.boredomandlaziness.org/2011/index.html</loc>
-  <lastmod>2013-06-01</lastmod>
+  <loc>http://www.curiousefficiency.org/2011/index.html</loc>
+  <lastmod>2013-06-07</lastmod>
   <priority>0.5000</priority>
  </url>
  <url>
-  <loc>http://www.boredomandlaziness.org/2012/</loc>
-  <lastmod>2013-06-01</lastmod>
+  <loc>http://www.curiousefficiency.org/2012/</loc>
+  <lastmod>2013-06-07</lastmod>
   <priority>0.5000</priority>
  </url>
  <url>
-  <loc>http://www.boredomandlaziness.org/2012/index.html</loc>
-  <lastmod>2013-06-01</lastmod>
+  <loc>http://www.curiousefficiency.org/2012/index.html</loc>
+  <lastmod>2013-06-07</lastmod>
   <priority>0.5000</priority>
  </url>
  <url>
-  <loc>http://www.boredomandlaziness.org/2013/</loc>
-  <lastmod>2013-06-01</lastmod>
+  <loc>http://www.curiousefficiency.org/2013/</loc>
+  <lastmod>2013-06-07</lastmod>
   <priority>0.5000</priority>
  </url>
  <url>
-  <loc>http://www.boredomandlaziness.org/2013/index.html</loc>
-  <lastmod>2013-06-01</lastmod>
+  <loc>http://www.curiousefficiency.org/2013/index.html</loc>
+  <lastmod>2013-06-07</lastmod>
   <priority>0.5000</priority>
  </url>
  <url>
-  <loc>http://www.boredomandlaziness.org/archive.html</loc>
-  <lastmod>2013-06-01</lastmod>
+  <loc>http://www.curiousefficiency.org/archive.html</loc>
+  <lastmod>2013-06-07</lastmod>
   <priority>0.5000</priority>
  </url>
  <url>
-  <loc>http://www.boredomandlaziness.org/assets/</loc>
-  <lastmod>2013-06-01</lastmod>
+  <loc>http://www.curiousefficiency.org/assets/</loc>
+  <lastmod>2013-06-07</lastmod>
   <priority>0.5000</priority>
  </url>
  <url>
-  <loc>http://www.boredomandlaziness.org/assets/css/</loc>
-  <lastmod>2013-06-01</lastmod>
+  <loc>http://www.curiousefficiency.org/assets/css/</loc>
+  <lastmod>2013-06-07</lastmod>
   <priority>0.5000</priority>
  </url>
  <url>
-  <loc>http://www.boredomandlaziness.org/assets/css/images/</loc>
-  <lastmod>2013-06-01</lastmod>
+  <loc>http://www.curiousefficiency.org/assets/css/images/</loc>
+  <lastmod>2013-06-07</lastmod>
   <priority>0.5000</priority>
  </url>
  <url>
-  <loc>http://www.boredomandlaziness.org/assets/css/images/ie6/</loc>
-  <lastmod>2013-06-01</lastmod>
+  <loc>http://www.curiousefficiency.org/assets/css/images/ie6/</loc>
+  <lastmod>2013-06-07</lastmod>
   <priority>0.5000</priority>
  </url>
  <url>
-  <loc>http://www.boredomandlaziness.org/assets/img/</loc>
-  <lastmod>2013-06-01</lastmod>
+  <loc>http://www.curiousefficiency.org/assets/images/</loc>
+  <lastmod>2013-06-07</lastmod>
   <priority>0.5000</priority>
  </url>
  <url>
-  <loc>http://www.boredomandlaziness.org/assets/js/</loc>
-  <lastmod>2013-06-01</lastmod>
+  <loc>http://www.curiousefficiency.org/assets/img/</loc>
+  <lastmod>2013-06-07</lastmod>
   <priority>0.5000</priority>
  </url>
  <url>
-  <loc>http://www.boredomandlaziness.org/categories/</loc>
-  <lastmod>2013-06-01</lastmod>
+  <loc>http://www.curiousefficiency.org/assets/js/</loc>
+  <lastmod>2013-06-07</lastmod>
   <priority>0.5000</priority>
  </url>
  <url>
-  <loc>http://www.boredomandlaziness.org/categories/index.html</loc>
-  <lastmod>2013-06-01</lastmod>
+  <loc>http://www.curiousefficiency.org/assets/reveal/</loc>
+  <lastmod>2013-06-07</lastmod>
   <priority>0.5000</priority>
  </url>
  <url>
-  <loc>http://www.boredomandlaziness.org/galleries/</loc>
-  <lastmod>2013-06-01</lastmod>
+  <loc>http://www.curiousefficiency.org/assets/reveal/css/</loc>
+  <lastmod>2013-06-07</lastmod>
   <priority>0.5000</priority>
  </url>
  <url>
-  <loc>http://www.boredomandlaziness.org/galleries/index.html</loc>
-  <lastmod>2013-06-01</lastmod>
+  <loc>http://www.curiousefficiency.org/assets/reveal/css/print/</loc>
+  <lastmod>2013-06-07</lastmod>
   <priority>0.5000</priority>
  </url>
  <url>
-  <loc>http://www.boredomandlaziness.org/listings/</loc>
-  <lastmod>2013-06-01</lastmod>
+  <loc>http://www.curiousefficiency.org/assets/reveal/css/theme/</loc>
+  <lastmod>2013-06-07</lastmod>
   <priority>0.5000</priority>
  </url>
  <url>
-  <loc>http://www.boredomandlaziness.org/listings/index.html</loc>
-  <lastmod>2013-06-01</lastmod>
+  <loc>http://www.curiousefficiency.org/assets/reveal/css/theme/source/</loc>
+  <lastmod>2013-06-07</lastmod>
+  <priority>0.5000</priority>
+ </url>
+ <url>
+  <loc>http://www.curiousefficiency.org/assets/reveal/css/theme/template/</loc>
+  <lastmod>2013-06-07</lastmod>
+  <priority>0.5000</priority>
+ </url>
+ <url>
+  <loc>http://www.curiousefficiency.org/assets/reveal/js/</loc>
+  <lastmod>2013-06-07</lastmod>
+  <priority>0.5000</priority>
+ </url>
+ <url>
+  <loc>http://www.curiousefficiency.org/assets/reveal/lib/</loc>
+  <lastmod>2013-06-07</lastmod>
+  <priority>0.5000</priority>
+ </url>
+ <url>
+  <loc>http://www.curiousefficiency.org/assets/reveal/lib/css/</loc>
+  <lastmod>2013-06-07</lastmod>
+  <priority>0.5000</priority>
+ </url>
+ <url>
+  <loc>http://www.curiousefficiency.org/assets/reveal/lib/font/</loc>
+  <lastmod>2013-06-07</lastmod>
+  <priority>0.5000</priority>
+ </url>
+ <url>
+  <loc>http://www.curiousefficiency.org/assets/reveal/lib/js/</loc>
+  <lastmod>2013-06-07</lastmod>
+  <priority>0.5000</priority>
+ </url>
+ <url>
+  <loc>http://www.curiousefficiency.org/assets/reveal/plugin/</loc>
+  <lastmod>2013-06-07</lastmod>
+  <priority>0.5000</priority>
+ </url>
+ <url>
+  <loc>http://www.curiousefficiency.org/assets/reveal/plugin/highlight/</loc>
+  <lastmod>2013-06-07</lastmod>
+  <priority>0.5000</priority>
+ </url>
+ <url>
+  <loc>http://www.curiousefficiency.org/assets/reveal/plugin/markdown/</loc>
+  <lastmod>2013-06-07</lastmod>
+  <priority>0.5000</priority>
+ </url>
+ <url>
+  <loc>http://www.curiousefficiency.org/assets/reveal/plugin/notes-server/</loc>
+  <lastmod>2013-06-07</lastmod>
+  <priority>0.5000</priority>
+ </url>
+ <url>
+  <loc>http://www.curiousefficiency.org/assets/reveal/plugin/notes/</loc>
+  <lastmod>2013-06-07</lastmod>
+  <priority>0.5000</priority>
+ </url>
+ <url>
+  <loc>http://www.curiousefficiency.org/assets/reveal/plugin/postmessage/</loc>
+  <lastmod>2013-06-07</lastmod>
+  <priority>0.5000</priority>
+ </url>
+ <url>
+  <loc>http://www.curiousefficiency.org/assets/reveal/plugin/print-pdf/</loc>
+  <lastmod>2013-06-07</lastmod>
+  <priority>0.5000</priority>
+ </url>
+ <url>
+  <loc>http://www.curiousefficiency.org/assets/reveal/plugin/remotes/</loc>
+  <lastmod>2013-06-07</lastmod>
+  <priority>0.5000</priority>
+ </url>
+ <url>
+  <loc>http://www.curiousefficiency.org/assets/reveal/plugin/zoom-js/</loc>
+  <lastmod>2013-06-07</lastmod>
+  <priority>0.5000</priority>
+ </url>
+ <url>
+  <loc>http://www.curiousefficiency.org/categories/</loc>
+  <lastmod>2013-06-07</lastmod>
+  <priority>0.5000</priority>
+ </url>
+ <url>
+  <loc>http://www.curiousefficiency.org/categories/index.html</loc>
+  <lastmod>2013-06-07</lastmod>
+  <priority>0.5000</priority>
+ </url>
+ <url>
+  <loc>http://www.curiousefficiency.org/galleries/</loc>
+  <lastmod>2013-06-07</lastmod>
+  <priority>0.5000</priority>
+ </url>
+ <url>
+  <loc>http://www.curiousefficiency.org/galleries/index.html</loc>
+  <lastmod>2013-06-07</lastmod>
+  <priority>0.5000</priority>
+ </url>
+ <url>
+  <loc>http://www.curiousefficiency.org/listings/</loc>
+  <lastmod>2013-06-07</lastmod>
+  <priority>0.5000</priority>
+ </url>
+ <url>
+  <loc>http://www.curiousefficiency.org/listings/index.html</loc>
+  <lastmod>2013-06-07</lastmod>
+  <priority>0.5000</priority>
+ </url>
+ <url>
+  <loc>http://www.curiousefficiency.org/posts/</loc>
+  <lastmod>2013-06-07</lastmod>
   <priority>0.5000</priority>
  </url>
 </urlset>
