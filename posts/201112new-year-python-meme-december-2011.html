@@ -1,0 +1,148 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="author" content="Nick Coghlan">
+    <title>New Year Python Meme - December 2011 | Boredom &amp; Laziness</title>
+    
+            <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+            <link href="../assets/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css">
+        <link href="../assets/css/rst.css" rel="stylesheet" type="text/css">
+        <link href="../assets/css/code.css" rel="stylesheet" type="text/css">
+        <link href="../assets/css/colorbox.css" rel="stylesheet" type="text/css">
+        <link href="../assets/css/theme.css" rel="stylesheet" type="text/css">
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+            <link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
+
+    
+
+
+
+    
+</head>
+<body>
+<!-- Menubar -->
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+
+            <a class="brand" href="../">
+            Boredom &amp; Laziness
+            </a>
+            <!-- Everything you want hidden at 940px or less, place within here -->
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    
+            <li><a href="../archive.html">Archives</a>
+            </li><li><a href="../categories/index.html">Tags</a>
+            </li><li><a href="../rss.xml">RSS</a>
+
+                </li></ul>
+                <ul class="nav pull-right">
+                
+                
+                
+    <li>
+    <a href="#" id="sourcelink">Source</a>
+    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of Menubar -->
+<div class="container-fluid" id="container-fluid">
+    <!--Body content-->
+    <div class="row-fluid">
+    <div class="span2"></div>
+    <div class="span8">
+    
+    <div class="postbox">
+    
+    <h1>New Year Python Meme - December 2011</h1>
+
+    <hr>
+    <small>
+        Posted: <time class="published" datetime="2011-12-22T13:15:00">2011-12-22 13:15</time>
+        
+
+        
+          |  More posts about
+            <a class="tag" href="../categories/python.html"><span class="badge badge-info">python</span></a>
+
+    </small>
+    <hr>
+    <div class="entry-body"><div><div class="item-body"><div>I'm normally a curmudgeon about this kind of thing, but I enjoyed reading some of the other posts in this series <a href="http://tarekziade.wordpress.com/2011/12/20/new-years-python-meme-2/" target="_blank">Tarek</a> kicked off, so I decided to make my own contribution.<br><br><b>1. What's the coolest Python application, framework or library you have discovered in 2011?</b> <br>The move to Red Hat marked my entry into the world of web development (previously I'd merely been in interested observer of that world, rather than a participant). By far my favourite discovery since making that change is <a href="http://django-rest-framework.org/">django-rest-framework</a> - with that, I can use my web browser to browse early iterations of my server's REST API directly, without needing to write custom clients to process the JSON data from APIs that are still in a state of flux.<br><br>As a service, <a href="http://readthedocs.org/">ReadTheDocs</a> has been an absolute revelation - between that, code hosting &amp; issue management sites like BitBucket and GitHub and of course PyPI itself, it's now possible for an open source project to have a quite respectable web presence without the developers needing to understand anything more than Sphinx, source control and the project they're working on.<br><br><b>2. What new programming technique did you learn in 2011?</b> <br>REST would be the big one. I'd had some general exposure to the concept in the past, but there's no substitute for sitting down and building it into a product when it comes to understanding a programming or API design technique.<br><br><b>3. What's the name of the open source project you contributed the most in 2011? What did you do?</b> <br>CPython, by far - kibbitzing on python-dev and python-ideas (and import-sig too these days), writing and reviewing several different PEPs, documentation updates, code reviews and patch applications, as well as working on my own things (including the still-in-progress integration work for the 'yield from' expression that's coming in 3.3).<br><br>I also recently started up 4 separate open source projects - 3 PyPI modules to hopefully address deficiencies I see in the current standard library offerings, plus the upstream open source project for my current development efforts at Red Hat:<br><ul><li><a href="http://contextlib2.readthedocs.org/">contextlib2</a> (ContextStack has some potential as a new building block)</li><li><a href="http://walkdir.readthedocs.org/">WalkDir</a> (the idea here is to be the "itertools for os.walk()")</li><li><a href="http://shell-command.readthedocs.org/">Shell Command</a> (let Python handle control flow, the shell actual commands)</li><li><a href="https://fedorahosted.org/pulpdist/">PulpDist</a> (Bringing a semblance of order to small-scale rsync mirror networks)</li></ul><br><b>4. What was the Python blog or website you read the most in 2011?</b>  <br><a href="http://planet.python.org/" target="_blank">Planet Python</a>.<br><br><b>5. What are the three top things you want to learn in 2012?</b> <br>From a work point of view, getting my RHCSA (Red Hat Certified System Administrator) is at the top of the list. Coming up to speed on AMQP (Advanced Message Queuing Protocol) is a close second. Finally, I want to fill in more of the gaps in my very sketchy knowledge of web UI development (i.e. HTML/CSS/Javascript).<br><br><b>6. What are the top software, app or lib you wish someone would write in 2012?</b> <br>I want to see the <a href="http://readthedocs.org/docs/ncoghlan_devs-python-notes/en/latest/pep_ideas/preview_namespace.html">__preview__ namespace</a> (in particular, the regex module) make it into Python 3.3. But that requires a volunteer to step up and write the PEP, write the code and generally champion the idea (if we have to wait for me to do it, there's no way it will happen before 3.4).<br><br>Want to do your own list? here's how: <br><ol><li>copy-paste the questions and answer to them in your blog</li><li>tweet it with the <a href="https://twitter.com/#%21/search/%232012pythonmeme" target="_blank">#2012pythonmeme</a> hashtag</li></ol></div></div></div></div>
+    
+    <ul class="pager">
+        <li class="previous">
+            <a href="201112help-improve-python-33-standard-library.html">← Previous post</a>
+        </li>
+        <li class="next">
+            <a href="201201using-sopa-protests-to-highlight.html">Next post →</a>
+        </li>
+    </ul>
+
+        
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        var disqus_shortname ="nikolademo";
+            var disqus_url="http://www.boredomandlaziness.org/posts/201112new-year-python-meme-december-2011.html";
+        var disqus_title="New Year Python Meme - December 2011";
+        var disqus_identifier="cache/posts/201112new-year-python-meme-december-2011.html";
+        var disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    
+
+    </div>
+
+    </div>
+    </div>
+    <!--End of body content-->
+</div>
+<div class="footerbox">
+    Contents © 2013 <a href="mailto:noreply@blogger.com">Nick Coghlan</a> - Powered by <a href="http://nikola.ralsina.com.ar">Nikola</a>
+</div>
+
+    <!-- Social buttons -->
+    <div id="addthisbox" class="addthis_toolbox addthis_peekaboo_style addthis_default_style addthis_label_style addthis_32x32_style">
+    <a class="addthis_button_more">Share</a>
+    <ul><li><a class="addthis_button_facebook"></a>
+    </li><li><a class="addthis_button_google_plusone_share"></a>
+    </li><li><a class="addthis_button_linkedin"></a>
+    </li><li><a class="addthis_button_twitter"></a>
+    </li></ul>
+    </div>
+    <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4f7088a56bb93798"></script>
+    <!-- End of social buttons -->
+
+
+            <script src="../assets/js/jquery-1.7.2.min.js" type="text/javascript"></script>
+            <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="../assets/js/jquery.colorbox-min.js" type="text/javascript"></script>
+
+
+    <script type="text/javascript">jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"80%",maxHeight:"80%",scalePhotos:true});</script>
+</body>
+</html>

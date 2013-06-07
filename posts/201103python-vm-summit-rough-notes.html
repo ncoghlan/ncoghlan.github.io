@@ -1,0 +1,148 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="author" content="Nick Coghlan">
+    <title>Python VM Summit - Rough Notes | Boredom &amp; Laziness</title>
+    
+            <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+            <link href="../assets/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css">
+        <link href="../assets/css/rst.css" rel="stylesheet" type="text/css">
+        <link href="../assets/css/code.css" rel="stylesheet" type="text/css">
+        <link href="../assets/css/colorbox.css" rel="stylesheet" type="text/css">
+        <link href="../assets/css/theme.css" rel="stylesheet" type="text/css">
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+            <link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
+
+    
+
+
+
+    
+</head>
+<body>
+<!-- Menubar -->
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+
+            <a class="brand" href="../">
+            Boredom &amp; Laziness
+            </a>
+            <!-- Everything you want hidden at 940px or less, place within here -->
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    
+            <li><a href="../archive.html">Archives</a>
+            </li><li><a href="../categories/index.html">Tags</a>
+            </li><li><a href="../rss.xml">RSS</a>
+
+                </li></ul>
+                <ul class="nav pull-right">
+                
+                
+                
+    <li>
+    <a href="#" id="sourcelink">Source</a>
+    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of Menubar -->
+<div class="container-fluid" id="container-fluid">
+    <!--Body content-->
+    <div class="row-fluid">
+    <div class="span2"></div>
+    <div class="span8">
+    
+    <div class="postbox">
+    
+    <h1>Python VM Summit - Rough Notes</h1>
+
+    <hr>
+    <small>
+        Posted: <time class="published" datetime="2011-03-10T01:28:00">2011-03-10 01:28</time>
+        
+
+        
+          |  More posts about
+            <a class="tag" href="../categories/python.html"><span class="badge badge-info">python</span></a>
+
+    </small>
+    <hr>
+    <p>In parallel with the the 2 days of tutorials at Pycon, there are a couple of day long meetings for invited folks active in the evolution of the language itself. Today was the VM summit, which focuses on the major Python interpreter implementations (CPython, PyPy, Jython, IronPython), the current status of each, and where things are likely to head in the near- and long-term. (The Thursday session focuses more on the evolution of the language itself, as well as of the wider ecosystem).<br><br>CPython and PyPy both had multiple devs at the summit, IronPython and Jython devs were also there (although IronPython got to share their's with CPython). We also has some Parrot VM folks there, as well as one of the Mozilla Javascript devs - a bunch of issues with VM development for dynamic languages apply across languages, despite differences in the surface syntax.<br><br>The notes below are probably too cryptic to make sense out of context, bit will hopefully give the gist of what was discussed. These notes are my interpretation of what was said, and may or may not reflect what people actually meant. Names omitted to protect the guilty (and because I didn't write them down)<br><br>Commit rights for other VM core devs<br>  - good idea<br>  - did some of this last Pycon US<br>  - will look into adding more this week<br><br>Splitting out the standard library and test suite (again)<br>  - duplication of effort between CPython/IronPython/Jython/PyPy<br>  - shared commit rights intended to make it easier near term to use CPython as master, allowing bugs to be fixed "upstream"<br>  - hg transition should make sharing easier<br>  - main CPython release will stay "batteries included"<br>  - open to the idea of providng "CPython minimal" and "standard library" downloads (but much work to be done in defining a minimum set)<br>  - longer term, may want to separate pure-Python stdlib development from "C skills required" hacking on the CPython interpreter core and C accelerated implementation modules for the stdlib<br><br>Speed benchmarking<br>  - speed.pypy.org (very cool!)<br>  - benchmarks originally chosen by Unladen Swallow team<br>  - PSF may talk to OSU OSL about setting up speed.python.org<br>  - benchmark multiple versions of CPython, as well as Jython and IronPython<br>  - currently benchmarks are 2.x specific, may be a while before 3.x can be compared fully<br>  - may be GSoC projects in:<br>      - improving backend infrastructure to handle more interpreters<br>      - porting benchmarks to Python 3<br>  - can highlight key performance differences between the implementations (e.g slowspitfire vs spitfire-cstringio)<br><br>Python.org download pages<br>  - should start recommending alternative interpreters more prominently<br>  - PyPy likely to be faster for pure Python on major platforms<br>  - IronPython/Jython/CPython still best at integration with their respective environments (Java libraries, .NET linraries, C extensions)<br><br>Cool hacks<br>  - Maciel: pypy JIT viewer<br>  - Dave Malcolm: CPython HEAP viewer in GDB 7<br>  <br>Parrot VM (and JIT for dynamic languages)<br>  - target VM for dynamic languages (primarily Perl 6 and Tcl at the moment)<br>  - loadable operations, loadable object types  <br>  - dynamic ops were original speed target, now moving towards dynamic types instead<br>  - exploring reducing number of core ops to make JIT more practical<br>  - looking into taking advantage of LLVM<br>  - Unladen Swallow blazed this trail, so LLVM has better dynamic language support<br>  - PyPy has tried and failed to use LLVM as an effective backend<br>  - some issues may have been fixed due to Unladen Swallow's efforts, but others still exist (e.g. problems with tail recursion)<br>  - SpiderMonkey similarly struggles with JIT and dynamic patching issues<br>  - GNU Lightning and LiveJIT projects noted, but nobody really familiar with them  <br>  - any future Python-on-Parrot efforts likely to focus on using PyPy frontend with Parrot as a backend<br>  - proof-of-concept written (for a thesis?) that used .NET as a backend target for PyPy<br>  - original Python-on-Parrot ran into problems due to semantic mismatches between Perl 6 and Python - reached the limits of the degree of difference the Perl 6 toolchain was willing to tolerate)<br>  <br>Role of the PSF<br>  - supports Python the Language, not just CPython the Reference Interpreter<br>  - could use additional feedback on how to better fulfill that role<br>  - getting the "boring stuff" done?<br>  - project-based grants, not blanket personal funding<br>  - project proposals requiring more funds than the PSF can provide are still valuable, as PSF can help facilitate co-sponsorships (however, still a novel concept - only been done once so far).<br><br>2.7 to 3.2<br>  - PyPy just reaching feature parity with 2.7<br>  - PyPy now becoming far more interesting for production usage<br>  - treat PyPy Python 3 dialect like a major Python library (e.g. sponsored by PSF)<br><br>CPython warnings for reliance on implementation details<br>  - ResourceWarning was a nice addition (detects reliance on refcounting for resource cleanup<br>  - non-string keys in class namespaces would be another good candidate for a warning<br>  - clarifying finalisation-at-shutdown semantics would be nice (but fixing those semantics in CPython first would help with that)</p>
+    
+    <ul class="pager">
+        <li class="previous">
+            <a href="201103what-is-python-script.html">← Previous post</a>
+        </li>
+        <li class="next">
+            <a href="201103python-vm-summit-somewhat-coherent.html">Next post →</a>
+        </li>
+    </ul>
+
+        
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        var disqus_shortname ="nikolademo";
+            var disqus_url="http://www.boredomandlaziness.org/posts/201103python-vm-summit-rough-notes.html";
+        var disqus_title="Python VM Summit - Rough Notes";
+        var disqus_identifier="cache/posts/201103python-vm-summit-rough-notes.html";
+        var disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    
+
+    </div>
+
+    </div>
+    </div>
+    <!--End of body content-->
+</div>
+<div class="footerbox">
+    Contents © 2013 <a href="mailto:noreply@blogger.com">Nick Coghlan</a> - Powered by <a href="http://nikola.ralsina.com.ar">Nikola</a>
+</div>
+
+    <!-- Social buttons -->
+    <div id="addthisbox" class="addthis_toolbox addthis_peekaboo_style addthis_default_style addthis_label_style addthis_32x32_style">
+    <a class="addthis_button_more">Share</a>
+    <ul><li><a class="addthis_button_facebook"></a>
+    </li><li><a class="addthis_button_google_plusone_share"></a>
+    </li><li><a class="addthis_button_linkedin"></a>
+    </li><li><a class="addthis_button_twitter"></a>
+    </li></ul>
+    </div>
+    <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4f7088a56bb93798"></script>
+    <!-- End of social buttons -->
+
+
+            <script src="../assets/js/jquery-1.7.2.min.js" type="text/javascript"></script>
+            <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="../assets/js/jquery.colorbox-min.js" type="text/javascript"></script>
+
+
+    <script type="text/javascript">jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"80%",maxHeight:"80%",scalePhotos:true});</script>
+</body>
+</html>
