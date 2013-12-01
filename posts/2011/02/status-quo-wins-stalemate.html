@@ -1,0 +1,154 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta charset="utf-8">
+    <meta name="author" content="Nick Coghlan">
+    <title>Status quo wins a stalemate | Curious Efficiency</title>
+    
+            <link href="../../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+            <link href="../../../assets/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css">
+        <link href="../../../assets/css/rst.css" rel="stylesheet" type="text/css">
+        <link href="../../../assets/css/code.css" rel="stylesheet" type="text/css">
+        <link href="../../../assets/css/colorbox.css" rel="stylesheet" type="text/css">
+        <link href="../../../assets/css/theme.css" rel="stylesheet" type="text/css">
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+            <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../rss.xml">
+
+    
+
+
+
+    
+</head>
+<body>
+<!-- Menubar -->
+<div class="navbar navbar-fixed-top" id="navbar">
+    <div class="navbar-inner">
+        <div class="container">
+
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+
+            <a class="brand" href="../../../">
+            Curious Efficiency
+            </a>
+            <!-- Everything you want hidden at 940px or less, place within here -->
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    
+                <li><a href="../../../archive.html">Archives</a>
+                </li><li><a href="../../../categories/index.html">Tags</a>
+                </li><li><a href="../../../rss.xml">RSS</a>
+
+                </li></ul>
+                <ul class="nav pull-right">
+                
+                
+                    <li>
+			<a href="#" id="sourcelink">Source</a>
+		</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of Menubar -->
+<div class="container-fluid" id="container-fluid">
+    <!--Body content-->
+    <div class="row-fluid">
+    <div class="span2"></div>
+    <div class="span8">
+    
+    <div class="postbox">
+    <div class="h-entry" itemscope="itemscope" itemtype="http://schema.org/Article">
+    
+    <h1 class="p-name" itemprop="headline name">Status quo wins a stalemate</h1>
+
+    <hr>
+    <small>
+        Posted: <time class="published dt-published" datetime="2011-02-27T15:07:00" itemprop="datePublished">2011-02-27 15:07</time>
+        
+
+		
+          |  More posts about
+        <span itemprop="keywords">
+            <a class="tag p-category" href="../../../categories/python.html"><span class="badge badge-info">python</span></a>
+        </span>
+
+          |  
+		
+    </small>
+    <hr>
+    <div class="e-content" itemprop="articleBody text">
+    <p>Sometimes language design arguments can reach a point of stalemate. The status quo is only arguably flawed, and there are also perceived flaws in any or all of the proposed alternatives. An appropriate shared design principle can help identify when this point has been reached, and let the discussion die a natural death rather than endlessly rehashing the same points without anyone changing their opinion.<br><br>Every time we (python-dev) change anything significant, no matter how positive the end result, it can create a lot of churn in the community. Books need to be rewritten, other implementations modified, advice, recipes and examples updated, questions clarified as to which version they relate to, and version compatibility issues need to be monitored closely for projects that need to cope with older execution environments.<br><br>So, before any significant changes are made, we want to be fairly certain that the gain in clarity for future Python programs is worth the inevitable near term costs as the update ripples across the Python ecosystem. Sometimes newcomers have some interesting ideas, but still fail to clear this hurdle. The simple "it's not worth the hassle" response they're likely to receive may then come across as stodgy developers rejecting an outsider's ideas without adequate consideration.<br><br>This was something that came up fairly often during the Python 3000 mailing list discussions, to the point where I posted a message explaining why the principle of <a href="http://mail.python.org/pipermail/python-3000/2006-May/001936.html">"Status quo wins a stalemate"</a> is a very practical way to avoid meaningless churn in the language design and to cut short design discussions that obviously aren't going anywhere productive.<br><br>Python 3000 was already going to have a lot of major changes (most notably, finally improving the non-ASCII text handling story, in a way that means most Python 3 libraries and applications will be more likely to get it right). We needed to ride close herd on the design discussions to try to make sure that gratuitous changes with insufficient long term benefits were avoided.<br><br>So, lambda eventually stayed and map() and filter() were retained as builtins, while the attractive nuisance that is reduce() was merely banished to the functools module rather than getting dropped entirely as was originally proposed. PEP 348 was rejected to be replaced by the far less ambitious PEP 352. str.format() was still added, but as a complement to the legacy percent formatting mechanism rather than as a wholesale replacement.<br><br>Untold numbers of ideas on the mailing lists and the tracker were dropped with "too much pain for not enough benefit" as the rationale. More recently, PEP 3003 was instituted to enforce a moratorium on core language changes for Python 3.2 in order to give the rest of the community more time to catch up to Python 2.7 and the 3.x series, even though we knew it meant delaying good ideas like the improved generator refactoring capabilities provided by PEP 380.<br><br>The fact that Python 3 migration support tools like 2to3, 3to2 and the six module work as well as they do is probably due to this principle of language design as much as it is to any other factor (not to take anything away from the fine work that has gone into implementing them, of course!).</p>
+    </div>
+    </div>
+    
+    <ul class="pager">
+        <li class="previous">
+            <a href="posting-code-and-syntax-highlighting.html" rel="prev">← Previous post</a>
+        </li>
+        <li class="next">
+            <a href="../03/what-is-python-script.html" rel="next">Next post →</a>
+        </li>
+    </ul>
+
+        
+        
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        var disqus_shortname ="boredomandlaziness";
+            var disqus_url="http://www.curiousefficiency.org/posts/2011/02/status-quo-wins-stalemate.html";
+        var disqus_title="Status quo wins a stalemate";
+        var disqus_identifier="cache/posts/2011/02/status-quo-wins-stalemate.html";
+        var disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+    
+
+    </div>
+
+    </div>
+    </div>
+    <!--End of body content-->
+</div>
+<div class="footerbox">
+    Contents © 2013 <a href="mailto:ncoghlan@gmail.com">Nick Coghlan</a> - <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, republish as you wish. - Powered by <a href="http://nikola.ralsina.com.ar">Nikola</a>
+</div>
+
+            <script src="../../../assets/js/jquery-1.10.2.min.js" type="text/javascript"></script>
+            <script src="../../../assets/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="../../../assets/js/jquery.colorbox-min.js" type="text/javascript"></script>
+
+
+	False
+
+    <script type="text/javascript">jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});
+    $(window).on('hashchange', function(){
+        if (location.hash && $(location.hash)[0]) {
+            $('body').animate({scrollTop: $(location.hash).offset().top - $('#navbar').outerHeight(true)*1.2 }, 1);
+        }
+    });
+    $(document).ready(function(){$(window).trigger('hashchange')});
+    </script>
+    
+    
+</body>
+</html>

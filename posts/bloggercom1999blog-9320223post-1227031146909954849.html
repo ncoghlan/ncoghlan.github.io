@@ -3,7 +3,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <meta charset="utf-8">
-    <meta name="description" content="">
     <meta name="author" content="Nick Coghlan">
     <title>Create an SRPM on Fedora with py2pack | Curious Efficiency</title>
     
@@ -26,7 +25,7 @@
 </head>
 <body>
 <!-- Menubar -->
-<div class="navbar navbar-fixed-top">
+<div class="navbar navbar-fixed-top" id="navbar">
     <div class="navbar-inner">
         <div class="container">
 
@@ -44,19 +43,17 @@
             <div class="nav-collapse collapse">
                 <ul class="nav">
                     
-            <li><a href="../archive.html">Archives</a>
-            </li><li><a href="../categories/index.html">Tags</a>
-            </li><li><a href="../rss.xml">RSS</a>
+                <li><a href="../archive.html">Archives</a>
+                </li><li><a href="../categories/index.html">Tags</a>
+                </li><li><a href="../rss.xml">RSS</a>
 
                 </li></ul>
                 <ul class="nav pull-right">
                 
                 
-                
-    <li>
-    <a href="#" id="sourcelink">Source</a>
-    </li>
-
+                    <li>
+			<a href="#" id="sourcelink">Source</a>
+		</li>
                 </ul>
             </div>
         </div>
@@ -70,23 +67,30 @@
     <div class="span8">
     
     <div class="postbox">
+    <div class="h-entry" itemscope="itemscope" itemtype="http://schema.org/Article">
     
-    <h1>Create an SRPM on Fedora with py2pack</h1>
+    <h1 class="p-name" itemprop="headline name">Create an SRPM on Fedora with py2pack</h1>
 
     <hr>
     <small>
-        Posted: <time class="published" datetime="2012-01-13T08:17:00">2012-01-13 08:17</time>
+        Posted: <time class="published dt-published" datetime="2012-01-13T08:17:00" itemprop="datePublished">2012-01-13 08:17</time>
         
 
-        
+		
 
+          |  
+		
     </small>
     <hr>
+    <div class="e-content" itemprop="articleBody text">
     <p>Basic framework (this guide assumes you're using the dir setup created by rpmdev-setuptree)<br>https://fedoraproject.org/wiki/How_to_create_an_RPM_package<br><br>(There's an open Bugzilla ticket for adding python-mock to the main Fedora repos, but I need it now and it's a nice simple running example)<br><br>py2pack is going to do a bunch of the work for us, so let's start there:<br><br>    sudo yum install python-py2pack<br><br>Then in ~/rpmbuild/SOURCES:<br>    py2pack fetch mock<br><br>Then in ~/rpmbuild/SPECS:<br>    py2pack generate mock -t fedora.spec -f python-mock.spec<br>    rpmbuild -bs python-mock.spec # Use -bb if you want a binary RPM as well<br><br>The generated specfile likely won't be perfect (e.g. no dependencies on custom packages), so you may want to edit it before building the SRPM (or RPM). Running rpmlint over it and updating accordingly before building may also be a good idea<br></p>
+    </div>
+    </div>
     
     <ul class="pager">
     </ul>
 
+        
         
         <div id="disqus_thread"></div>
         <script type="text/javascript">
@@ -104,6 +108,8 @@
         })();
     </script>
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
 
     
 
@@ -117,13 +123,22 @@
     Contents © 2013 <a href="mailto:ncoghlan@gmail.com">Nick Coghlan</a> - <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, republish as you wish. - Powered by <a href="http://nikola.ralsina.com.ar">Nikola</a>
 </div>
 
-
-
-            <script src="../assets/js/jquery-1.7.2.min.js" type="text/javascript"></script>
+            <script src="../assets/js/jquery-1.10.2.min.js" type="text/javascript"></script>
             <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="../assets/js/jquery.colorbox-min.js" type="text/javascript"></script>
 
 
-    <script type="text/javascript">jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"80%",maxHeight:"80%",scalePhotos:true});</script>
+	
+
+    <script type="text/javascript">jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});
+    $(window).on('hashchange', function(){
+        if (location.hash && $(location.hash)[0]) {
+            $('body').animate({scrollTop: $(location.hash).offset().top - $('#navbar').outerHeight(true)*1.2 }, 1);
+        }
+    });
+    $(document).ready(function(){$(window).trigger('hashchange')});
+    </script>
+    
+    
 </body>
 </html>

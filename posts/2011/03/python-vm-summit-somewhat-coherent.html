@@ -1,0 +1,155 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta charset="utf-8">
+    <meta name="author" content="Nick Coghlan">
+    <title>Python VM Summit - Somewhat Coherent Thoughts | Curious Efficiency</title>
+    
+            <link href="../../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+            <link href="../../../assets/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css">
+        <link href="../../../assets/css/rst.css" rel="stylesheet" type="text/css">
+        <link href="../../../assets/css/code.css" rel="stylesheet" type="text/css">
+        <link href="../../../assets/css/colorbox.css" rel="stylesheet" type="text/css">
+        <link href="../../../assets/css/theme.css" rel="stylesheet" type="text/css">
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+            <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../rss.xml">
+
+    
+
+
+
+    
+</head>
+<body>
+<!-- Menubar -->
+<div class="navbar navbar-fixed-top" id="navbar">
+    <div class="navbar-inner">
+        <div class="container">
+
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+
+            <a class="brand" href="../../../">
+            Curious Efficiency
+            </a>
+            <!-- Everything you want hidden at 940px or less, place within here -->
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    
+                <li><a href="../../../archive.html">Archives</a>
+                </li><li><a href="../../../categories/index.html">Tags</a>
+                </li><li><a href="../../../rss.xml">RSS</a>
+
+                </li></ul>
+                <ul class="nav pull-right">
+                
+                
+                    <li>
+			<a href="#" id="sourcelink">Source</a>
+		</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of Menubar -->
+<div class="container-fluid" id="container-fluid">
+    <!--Body content-->
+    <div class="row-fluid">
+    <div class="span2"></div>
+    <div class="span8">
+    
+    <div class="postbox">
+    <div class="h-entry" itemscope="itemscope" itemtype="http://schema.org/Article">
+    
+    <h1 class="p-name" itemprop="headline name">Python VM Summit - Somewhat Coherent Thoughts</h1>
+
+    <hr>
+    <small>
+        Posted: <time class="published dt-published" datetime="2011-03-10T12:38:00" itemprop="datePublished">2011-03-10 12:38</time>
+        
+
+		
+          |  More posts about
+        <span itemprop="keywords">
+            <a class="tag p-category" href="../../../categories/python.html"><span class="badge badge-info">python</span></a>
+        </span>
+
+          |  
+		
+    </small>
+    <hr>
+    <div class="e-content" itemprop="articleBody text">
+    <p>Yay, sleep :)<br><br>Last night I just dumped my relatively <a href="../../../2011/03/python-vm-summit-rough-notes.html">raw notes</a> into a post. This review is more about distilling what was discussed over the day into a few key themes.<br><br><b>Speed Good</b><br><br>One major point was to do with "How do we make Python fast?". Dave Mandelin (Mozilla Javascript dev) was asking how open CPython was to people tinkering with JIT and other technologies to try and speed up execution, and it was acknowledged that python-dev's reaction to such proposals is rarely more than lukewarm. A large part of that resistance comes from the fact that CPython is generally portable to many more architectures than the real speed hacks (which are generally x86 + x86-64 + ARM at best, and sometimes not even all 3 of those). Unladen Swallow also lost a lot of steam, as so much of their effort was going into tasks not directly related to "make CPython faster" (e.g. fixing LLVM upstream bugs, getting benchmarks working on new versions).<br><br>Instead, we tend to push people more towards PyPy if they're really interested in that kind of thing. Armin decided years ago (when switching his efforts from psyco to PyPy) that "we can't get there from here", and it's hard to argue with him, especially given the recent results from the benchmarks executed by speed.pypy.org.<br><br>There was definitely interest in expanding the speed.pypy.org effort to cover more versions of more interpeters. We don't actually have any solid data in CPython regarding the performance differences between 2.x and 3.x (aside from an expectation that 3.x is slower for many workloads due to the loss of optimised 32 bit integers, additional encoding/decoding overhead when working with ASCII text, the new IO stack, etc). We aren't even sure of the performance changes within the 2.x series.<br><br>That last is the most amenable to resolution in the near term - the benchmarks run by speed.pypy.org are all 2.x applications, so the creation of a speed.python.org for the 2.x series could use the benchmarks as is. Covering 3.x as well would probably be possible with a subset of the benchmarks, but others would require a major porting effort (especially the ones that depend on twisted).<br><br>Champions and specific points of contact for this idea aren't particularly obvious at this stage. Jesse is definitely a fan of the idea, but has plenty on his plate already, so it isn't clear how that will work out from a time point of view. There'll likely need to be some self-organisation from folks that are both interested in the project and aren't already devoting their Python-relates energies to something else.<br><br><b>The Python Software Foundation, not the CPython Software Foundation</b><br><br>The second major key point was the PSF (as represented by Jesse Noller from the board, and several other PSF members, including me, from multiple VMs) wanting to do more to support and promote implementations other than CPython. We are definitely at the point where all 4 big implementations are an excellent choice depending on the target environment:<br><br></p><ul><li>CPython: the venerable granddaddy, compatible with the most C extensions and target environments, most amenable to "stripping" (i.e. cutting it down to a minimal core), likely the easiest sell in a corporate environment (due to age and historically closest ties to the PSF)</li><li>Jython: the obvious choice when using Python as a glue language for Java components, or as a scripting language embedded in a Java environment</li><li>IronPython: ditto for .NET components and applications</li><li>PyPy: now at the point where deployments on standard server and desktop environments should seriously consider it as an alternative to CPython. It's not really appropriate for embedded environments, but when sufficient resources are available to let it shine, it <i>will</i> run most workloads significantly faster than CPython. It even has some support for C extensions, although big ticket items like full
+NumPy support are still a work in progress. However, if you're talking something like a Django-based web app, then "CPython or PyPy" is now becoming a question that should be asked.</li></ul><br>It didn't actually come up yesterday, but Stackless probably deserves a prominent mention as well, given the benefits that folks such as CCP are able to glean from the microthreading architecture.<br><br>Currently, however, python.org is still very much the CPython website. It will require a lot of work it to get to a place where the other implementations are given appropriate recognition. It also isn't clear whether or not the existing pydotorg membership will go along with a plan to modernise the website design to something that employs more modern web technologies, and better provides information on the various Python implementation and the PSF. While the current site is better than what preceded it, a lot of pydotorg members are still gun shy due to the issues in managing that last transition (even the recent migration of the development process docs over to a developer-mainted system on docs.python.org encountered some resistance). However, when the broader Python community includes some of the best web developers on the planet, we can and <i>should</i> do better. (A personal suggestion that I didn't think of until this morning: perhaps a way forward on this would be to first build a new site as "beta.python.org", without making a firm commitment to switch until after the results are available for all to see. It's a pretty common way for organisations to experiment with major site revamps, after all, and would also give the pydotorg folks a chance to see what they think of the back-end architecture)<br><br><b>Standardising the Standard Library</b><br><br>Finally, with the hg transition now essentially done, efforts to better consolidate development effort on the standard library (especially the pure Python sections) and the associated documentation will start to gather steam again. As a preliminary step, commit rights (now more accurately called "push rights") to the main CPython repository are again being offered to maintainers from the other major interpreter implementations so they can push fixes upstream, rather than needing to maintain them as deltas in their own repositories and/or submit patches via the CPython tracker.
+    </div>
+    </div>
+    
+    <ul class="pager">
+        <li class="previous">
+            <a href="python-vm-summit-rough-notes.html" rel="prev">← Previous post</a>
+        </li>
+        <li class="next">
+            <a href="python-language-summit-rough-notes.html" rel="next">Next post →</a>
+        </li>
+    </ul>
+
+        
+        
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        var disqus_shortname ="boredomandlaziness";
+            var disqus_url="http://www.curiousefficiency.org/posts/2011/03/python-vm-summit-somewhat-coherent.html";
+        var disqus_title="Python VM Summit - Somewhat Coherent Thoughts";
+        var disqus_identifier="cache/posts/2011/03/python-vm-summit-somewhat-coherent.html";
+        var disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+    
+
+    </div>
+
+    </div>
+    </div>
+    <!--End of body content-->
+</div>
+<div class="footerbox">
+    Contents © 2013 <a href="mailto:ncoghlan@gmail.com">Nick Coghlan</a> - <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, republish as you wish. - Powered by <a href="http://nikola.ralsina.com.ar">Nikola</a>
+</div>
+
+            <script src="../../../assets/js/jquery-1.10.2.min.js" type="text/javascript"></script>
+            <script src="../../../assets/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="../../../assets/js/jquery.colorbox-min.js" type="text/javascript"></script>
+
+
+	False
+
+    <script type="text/javascript">jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});
+    $(window).on('hashchange', function(){
+        if (location.hash && $(location.hash)[0]) {
+            $('body').animate({scrollTop: $(location.hash).offset().top - $('#navbar').outerHeight(true)*1.2 }, 1);
+        }
+    });
+    $(document).ready(function(){$(window).trigger('hashchange')});
+    </script>
+    
+    
+</body>
+</html>

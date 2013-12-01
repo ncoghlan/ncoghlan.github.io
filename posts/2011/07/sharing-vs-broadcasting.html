@@ -1,0 +1,154 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta charset="utf-8">
+    <meta name="author" content="Nick Coghlan">
+    <title>Sharing vs broadcasting | Curious Efficiency</title>
+    
+            <link href="../../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+            <link href="../../../assets/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css">
+        <link href="../../../assets/css/rst.css" rel="stylesheet" type="text/css">
+        <link href="../../../assets/css/code.css" rel="stylesheet" type="text/css">
+        <link href="../../../assets/css/colorbox.css" rel="stylesheet" type="text/css">
+        <link href="../../../assets/css/theme.css" rel="stylesheet" type="text/css">
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+            <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../rss.xml">
+
+    
+
+
+
+    
+</head>
+<body>
+<!-- Menubar -->
+<div class="navbar navbar-fixed-top" id="navbar">
+    <div class="navbar-inner">
+        <div class="container">
+
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+
+            <a class="brand" href="../../../">
+            Curious Efficiency
+            </a>
+            <!-- Everything you want hidden at 940px or less, place within here -->
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    
+                <li><a href="../../../archive.html">Archives</a>
+                </li><li><a href="../../../categories/index.html">Tags</a>
+                </li><li><a href="../../../rss.xml">RSS</a>
+
+                </li></ul>
+                <ul class="nav pull-right">
+                
+                
+                    <li>
+			<a href="#" id="sourcelink">Source</a>
+		</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of Menubar -->
+<div class="container-fluid" id="container-fluid">
+    <!--Body content-->
+    <div class="row-fluid">
+    <div class="span2"></div>
+    <div class="span8">
+    
+    <div class="postbox">
+    <div class="h-entry" itemscope="itemscope" itemtype="http://schema.org/Article">
+    
+    <h1 class="p-name" itemprop="headline name">Sharing vs broadcasting</h1>
+
+    <hr>
+    <small>
+        Posted: <time class="published dt-published" datetime="2011-07-16T17:04:00" itemprop="datePublished">2011-07-16 17:04</time>
+        
+
+		
+          |  More posts about
+        <span itemprop="keywords">
+            <a class="tag p-category" href="../../../categories/metablogging.html"><span class="badge badge-info">metablogging</span></a>
+        </span>
+
+          |  
+		
+    </small>
+    <hr>
+    <div class="e-content" itemprop="articleBody text">
+    <p>Even since I started playing with Google+ and its Circle mechanic, I've been trying to figure out why I don't like it. I thought it sounded great when I heard about it, but as soon as I started using it... meh :P<br><br>I still haven't quite figured it out (although I mostly think it's the neither-chicken-nor-fowl aspect, along with it adding back ~500 useless "suggestions" from random Python mailing list contacts that I had already purged once), but it's certainly helped me see the way I communicate online in a different light.<br><br>For a long time, my only real online presence was regular postings to Python mailing lists, commenting on various sites and the very occasional post here on B&amp;L.<br><br>After enough of my friends joined, Facebook was added to the mix, but I do everything I can to keep that locked down so only acquaintances can see most things I post there.<br><br>After going to PyconAU last year, and in the leadup to PyCon US earlier this year, I started up my @ncoghlan_dev account on Twitter, got the "python" category tag on here added to Planet Python, and started to develop a bit more of an online public presence.<br><br>Here on the blog, I can, and do, tag each post according to areas of interest. As far as I know, the 'python' tag is the only one with any significant readership (due to the aggregation via Planet Python), but people could subscribe to the philosophy or metablogging tags if they really wanted to.<br><br>When it comes to sharing information about myself, there's really only a few levels based on how much I trust the people involved: Friends&amp;Family, Acquaintances, General Public pretty much covers it. Currently I handle that via a locked down FB for Friends, Family &amp; Acquaintances (with a "Limited Access" list for people that I exclude from some things, like tagged photos) and completely public material on Twitter and Blogger.<br><br>The public stuff is mostly Python related, since that's my main online presence, but I'm fairly open about political and philosophical matters as well. FB, by contrast, rarely sees any mention of Python at all (and I'm often a little more restrained on the political and philosophical front).<br><br>Where I think Circles goes wrong is that it conflates <i>Access Control</i> with <i>Topic Tagging</i>. When I publish Python stuff, I'm quite happy for it to be public. However, I'd also be happy to tag it with "python", just as I do here on the blog, to make it easier for my friends to decide which of my updates they want to see.<br><br>This is classic Publish/Subscribe architecture thinking. When Publishing, I normally want to be able to decide who *can* access stuff. That is limited by closeness, but typically unrelated to the topic. Having, tagging as a service to my subscribers, I am quite happy to do. When Subscribing, I want to be able to filter by topic.<br><br>If I publish something to, say, my Pythonistas circle, than that does more than I want. Yes, it publishes it to them, but it also locks out everybody else. The ways I know people and the degree to which I trust them do not align well with the topics I like to talk about. I've already seen quite a few cases where the reshared versions of public statuses I have received have been limited access.<br><br>The more I think about it, the more I think I'm going to stick with my current policy of using it as a public micro-blog and pretty much ignore the fact that the Circles page exists.</p>
+    </div>
+    </div>
+    
+    <ul class="pager">
+        <li class="previous">
+            <a href="effective-communication-brain-hacking.html" rel="prev">← Previous post</a>
+        </li>
+        <li class="next">
+            <a href="../08/of-python-and-road-maps-or-lack-thereof.html" rel="next">Next post →</a>
+        </li>
+    </ul>
+
+        
+        
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        var disqus_shortname ="boredomandlaziness";
+            var disqus_url="http://www.curiousefficiency.org/posts/2011/07/sharing-vs-broadcasting.html";
+        var disqus_title="Sharing vs broadcasting";
+        var disqus_identifier="cache/posts/2011/07/sharing-vs-broadcasting.html";
+        var disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+    
+
+    </div>
+
+    </div>
+    </div>
+    <!--End of body content-->
+</div>
+<div class="footerbox">
+    Contents © 2013 <a href="mailto:ncoghlan@gmail.com">Nick Coghlan</a> - <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, republish as you wish. - Powered by <a href="http://nikola.ralsina.com.ar">Nikola</a>
+</div>
+
+            <script src="../../../assets/js/jquery-1.10.2.min.js" type="text/javascript"></script>
+            <script src="../../../assets/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="../../../assets/js/jquery.colorbox-min.js" type="text/javascript"></script>
+
+
+	False
+
+    <script type="text/javascript">jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});
+    $(window).on('hashchange', function(){
+        if (location.hash && $(location.hash)[0]) {
+            $('body').animate({scrollTop: $(location.hash).offset().top - $('#navbar').outerHeight(true)*1.2 }, 1);
+        }
+    });
+    $(document).ready(function(){$(window).trigger('hashchange')});
+    </script>
+    
+    
+</body>
+</html>

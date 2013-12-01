@@ -1,0 +1,150 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta charset="utf-8">
+    <meta name="author" content="Nick Coghlan">
+    <title>contextlib2 0.4: Now with ExitStack! | Curious Efficiency</title>
+    
+            <link href="../../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+            <link href="../../../assets/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css">
+        <link href="../../../assets/css/rst.css" rel="stylesheet" type="text/css">
+        <link href="../../../assets/css/code.css" rel="stylesheet" type="text/css">
+        <link href="../../../assets/css/colorbox.css" rel="stylesheet" type="text/css">
+        <link href="../../../assets/css/theme.css" rel="stylesheet" type="text/css">
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+            <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../rss.xml">
+
+    
+
+
+
+    
+</head>
+<body>
+<!-- Menubar -->
+<div class="navbar navbar-fixed-top" id="navbar">
+    <div class="navbar-inner">
+        <div class="container">
+
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+
+            <a class="brand" href="../../../">
+            Curious Efficiency
+            </a>
+            <!-- Everything you want hidden at 940px or less, place within here -->
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    
+                <li><a href="../../../archive.html">Archives</a>
+                </li><li><a href="../../../categories/index.html">Tags</a>
+                </li><li><a href="../../../rss.xml">RSS</a>
+
+                </li></ul>
+                <ul class="nav pull-right">
+                
+                
+                    <li>
+			<a href="#" id="sourcelink">Source</a>
+		</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of Menubar -->
+<div class="container-fluid" id="container-fluid">
+    <!--Body content-->
+    <div class="row-fluid">
+    <div class="span2"></div>
+    <div class="span8">
+    
+    <div class="postbox">
+    <div class="h-entry" itemscope="itemscope" itemtype="http://schema.org/Article">
+    
+    <h1 class="p-name" itemprop="headline name">contextlib2 0.4: Now with ExitStack!</h1>
+
+    <hr>
+    <small>
+        Posted: <time class="published dt-published" datetime="2012-05-05T15:06:00" itemprop="datePublished">2012-05-05 15:06</time>
+        
+
+		
+
+          |  
+		
+    </small>
+    <hr>
+    <div class="e-content" itemprop="articleBody text">
+    <p>Inspired by Michael Foord's efforts with <span>unittest2</span>, <a href="http://contextlib2.readthedocs.org/">contextlib2</a> is a PyPI package where I am working on some new additions to the standard library's <span>contextlib</span> module for Python 3.3.<br><br>The most interesting of those is a replacement for the ill-fated <a href="http://docs.python.org/library/contextlib#contextlib.nested">contextlib.nested</a> API.<br><br>If you use Python 3.2 today, you'll find that the <span>contextlib.nested</span> API doesn't even exist any more. The reason it was deprecated and removed is because it didn't play well with context managers that acquired their resources in <span>__init__</span> rather than <span>__enter__</span> (such as Python's own file objects and many other resources where using a with statement for management is an optional convenience rather than being mandatory).<br><br>The simplest example where the old API caused problems was opening a list of files and then using <span>contextlib.nested</span> to close them all when the operation was complete - if opening any later file threw an exception (e.g. due to a permissions error or a bad file name), then all of the earlier files would remain open until the garbage collector got around to cleaning them up. Not a huge problem on CPython with its refcounting based GC, but a far cry from the deterministic resource cleanup that context managers are supposed to offer.<br><br>Since the deprecation and removal of <span>contextlib.nested</span>, there have been assorted replacement proposals of varying levels of sophistication posted to the Python ideas mailing list. The new <a href="http://contextlib2.readthedocs.org/en/latest/index.html#contextlib2.ExitStack">ExitStack</a> API in this release is my own latest effort, and the first that I've liked well enough to seriously consider as a candidate for inclusion in the standard library module.<br><br>The idea behind providing the <span>ExitStack</span> API is for the standard library to focus specifically on handling the one particularly tricky part of dealing with context managers programmatically: unwinding the context stack correctly, ensuring that exceptions are processed exactly as if any context managers involved had been used in an appropriate series of nested with statements.<br><br>A couple of convenience methods are included (one that enters a context manager in addition to pushing the exit method on to the stack, as well as a simple callback registration method inspired by <span>unittest.TestCase.addCleanup</span>), but the features of the API are otherwise fairly minimal.<br><br>This low level dynamic API can then be used by developers to create their own higher level convenience APIs, as suggested in some of the <a href="http://contextlib2.readthedocs.org/en/latest/index.html#replacing-any-use-of-try-finally-and-flag-variables">examples</a> in the documentation.<br><br>A few specific design notes:<br></p><ul><li>The name <span>ExitStack</span> came about because the object is literally a stack of exit method references (or callback wrappers that behave like exit methods). Earlier variants were <span>ContextStack</span> (too narrow, since you can use the stack for standalone callbacks) and <span>CallbackStack</span> (too broad, since the stored callbacks specifically have the signature of exit methods)</li><li>The <span>push()</span> method accepts exit methods directly, since those are what actually gets stored on the stack. Ducktyping to also accept objects with an <span>__exit__()</span> method is convenient without being confusing (I hope).</li><li>The <span>enter_context()</span> method uses the longer name because the shorter version is too easy to confuse with the stack's own <span>__enter__()</span> method.</li></ul>If you have any questions about the <span>ExitStack</span> design, this is the place to ask. If you find any bugs or other defects, head over to the <a href="https://bitbucket.org/ncoghlan/contextlib2/issues?status=new&amp;status=open">issue tracker</a>.<br>
+    </div>
+    </div>
+    
+    <ul class="pager">
+        <li class="previous">
+            <a href="../01/walkdir-03-released-for-more-python.html" rel="prev">← Previous post</a>
+        </li>
+        <li class="next">
+            <a href="embarrassment-of-riches.html" rel="next">Next post →</a>
+        </li>
+    </ul>
+
+        
+        
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        var disqus_shortname ="boredomandlaziness";
+            var disqus_url="http://www.curiousefficiency.org/posts/2012/05/contextlib2-04-now-with-exitstack.html";
+        var disqus_title="contextlib2 0.4: Now with ExitStack!";
+        var disqus_identifier="cache/posts/2012/05/contextlib2-04-now-with-exitstack.html";
+        var disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+    
+
+    </div>
+
+    </div>
+    </div>
+    <!--End of body content-->
+</div>
+<div class="footerbox">
+    Contents © 2013 <a href="mailto:ncoghlan@gmail.com">Nick Coghlan</a> - <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, republish as you wish. - Powered by <a href="http://nikola.ralsina.com.ar">Nikola</a>
+</div>
+
+            <script src="../../../assets/js/jquery-1.10.2.min.js" type="text/javascript"></script>
+            <script src="../../../assets/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="../../../assets/js/jquery.colorbox-min.js" type="text/javascript"></script>
+
+
+	False
+
+    <script type="text/javascript">jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});
+    $(window).on('hashchange', function(){
+        if (location.hash && $(location.hash)[0]) {
+            $('body').animate({scrollTop: $(location.hash).offset().top - $('#navbar').outerHeight(true)*1.2 }, 1);
+        }
+    });
+    $(document).ready(function(){$(window).trigger('hashchange')});
+    </script>
+    
+    
+</body>
+</html>

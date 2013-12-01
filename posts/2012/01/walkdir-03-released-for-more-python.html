@@ -1,0 +1,154 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta charset="utf-8">
+    <meta name="author" content="Nick Coghlan">
+    <title>WalkDir 0.3 released (for more Python versions, thanks to Shining Panda!) | Curious Efficiency</title>
+    
+            <link href="../../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+            <link href="../../../assets/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css">
+        <link href="../../../assets/css/rst.css" rel="stylesheet" type="text/css">
+        <link href="../../../assets/css/code.css" rel="stylesheet" type="text/css">
+        <link href="../../../assets/css/colorbox.css" rel="stylesheet" type="text/css">
+        <link href="../../../assets/css/theme.css" rel="stylesheet" type="text/css">
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+            <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../rss.xml">
+
+    
+
+
+
+    
+</head>
+<body>
+<!-- Menubar -->
+<div class="navbar navbar-fixed-top" id="navbar">
+    <div class="navbar-inner">
+        <div class="container">
+
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+
+            <a class="brand" href="../../../">
+            Curious Efficiency
+            </a>
+            <!-- Everything you want hidden at 940px or less, place within here -->
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    
+                <li><a href="../../../archive.html">Archives</a>
+                </li><li><a href="../../../categories/index.html">Tags</a>
+                </li><li><a href="../../../rss.xml">RSS</a>
+
+                </li></ul>
+                <ul class="nav pull-right">
+                
+                
+                    <li>
+			<a href="#" id="sourcelink">Source</a>
+		</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of Menubar -->
+<div class="container-fluid" id="container-fluid">
+    <!--Body content-->
+    <div class="row-fluid">
+    <div class="span2"></div>
+    <div class="span8">
+    
+    <div class="postbox">
+    <div class="h-entry" itemscope="itemscope" itemtype="http://schema.org/Article">
+    
+    <h1 class="p-name" itemprop="headline name">WalkDir 0.3 released (for more Python versions, thanks to Shining Panda!)</h1>
+
+    <hr>
+    <small>
+        Posted: <time class="published dt-published" datetime="2012-01-31T12:44:00" itemprop="datePublished">2012-01-31 12:44</time>
+        
+
+		
+          |  More posts about
+        <span itemprop="keywords">
+            <a class="tag p-category" href="../../../categories/python.html"><span class="badge badge-info">python</span></a>
+        </span>
+
+          |  
+		
+    </small>
+    <hr>
+    <div class="e-content" itemprop="articleBody text">
+    <a href="http://walkdir.readthedocs.org/">WalkDir</a> is my Python support library that aims to make it as easy to work with filtered directory listings as it is to walk over entire directory trees with os.walk().<br><br>The module's design tries to take full advantage of Python's iterator model - most of its functionality is provided by pipelined iterators that accept os.walk() style iterables and expose the same interface themselves. <br><br>The only major functional change in version 0.3 is that these pipelined iterators now make sure they pass along the objects produced by the underlying iterators, and only use indexing operations to access the individual fields. Previously they would use tuple unpacking to access the directory details, which restricted the supported types to those with exactly 3 fields and also had the side effect of replacing the underlying objects with ordinary 3-tuples.<br><br>I changed this mainly due to a new OS interface that is likely to be coming in Python 3.3: an <a href="http://bugs.python.org/issue13734">os.walk() variant</a> that produces a 4-tuple rather than a 3-tuple. The 4th value will be a file descriptor for the directory making it easier (in conjunction with new <a href="http://docs.python.org/dev/whatsnew/3.3.html#os">file descriptor based APIs</a> in the 3.3 os module) to write filesystem modification code that is robust against <a href="http://bugs.python.org/issue4489">symlink attacks</a>. By passing the underlying objects through unmodified, WalkDir is now compatible with this API - all the path based filtering will still work, but the file descriptor values will also be passed along correctly.<br><br>For those that haven't seen any of my previous comments on WalkDir, the other parts of the API are just there for convenience - one factory  function that constructs pipelines for you, and 3 terminal iterators  that flatten out the os.walk() style triples into a simple series of  paths (all paths, just the visited directories or just the file paths).<br><br>The other notable change in 0.3 is the list of officially supported versions. Previously, the module was only known to work on 2.7 and 3.2+ (since they're the versions I have on my home development machine). However, thanks to a free open source account provided by the folks at <a href="https://jenkins.shiningpanda.com/ncoghlan-devs-projects/job/WalkDir/">Shining Panda</a>, WalkDir 0.3 is known to work on Python 2.6, 2.7 and 3.1+ (I even test it on PyPy and Stackless, just because I can). After pushing a broken package to PyPI for 0.2, I even have a <a href="https://jenkins.shiningpanda.com/ncoghlan-devs-projects/job/WalkDirInstaller/">sanity check</a> I can run that ensures the module can be downloaded with pip and then imported on all the supported versions.<br><br>
+    </div>
+    </div>
+    
+    <ul class="pager">
+        <li class="previous">
+            <a href="using-sopa-protests-to-highlight.html" rel="prev">← Previous post</a>
+        </li>
+        <li class="next">
+            <a href="../05/contextlib2-04-now-with-exitstack.html" rel="next">Next post →</a>
+        </li>
+    </ul>
+
+        
+        
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        var disqus_shortname ="boredomandlaziness";
+            var disqus_url="http://www.curiousefficiency.org/posts/2012/01/walkdir-03-released-for-more-python.html";
+        var disqus_title="WalkDir 0.3 released (for more Python versions, thanks to Shining Panda!)";
+        var disqus_identifier="cache/posts/2012/01/walkdir-03-released-for-more-python.html";
+        var disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+    
+
+    </div>
+
+    </div>
+    </div>
+    <!--End of body content-->
+</div>
+<div class="footerbox">
+    Contents © 2013 <a href="mailto:ncoghlan@gmail.com">Nick Coghlan</a> - <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, republish as you wish. - Powered by <a href="http://nikola.ralsina.com.ar">Nikola</a>
+</div>
+
+            <script src="../../../assets/js/jquery-1.10.2.min.js" type="text/javascript"></script>
+            <script src="../../../assets/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="../../../assets/js/jquery.colorbox-min.js" type="text/javascript"></script>
+
+
+	False
+
+    <script type="text/javascript">jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});
+    $(window).on('hashchange', function(){
+        if (location.hash && $(location.hash)[0]) {
+            $('body').animate({scrollTop: $(location.hash).offset().top - $('#navbar').outerHeight(true)*1.2 }, 1);
+        }
+    });
+    $(document).ready(function(){$(window).trigger('hashchange')});
+    </script>
+    
+    
+</body>
+</html>

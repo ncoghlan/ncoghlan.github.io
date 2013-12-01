@@ -28,7 +28,7 @@ creature indeed :)
 </head>
 <body>
 <!-- Menubar -->
-<div class="navbar navbar-fixed-top">
+<div class="navbar navbar-fixed-top" id="navbar">
     <div class="navbar-inner">
         <div class="container">
 
@@ -46,15 +46,15 @@ creature indeed :)
             <div class="nav-collapse collapse">
                 <ul class="nav">
                     
-            <li><a href="archive.html">Archives</a>
-            </li><li><a href="categories/index.html">Tags</a>
-            </li><li><a href="rss.xml">RSS</a>
+                <li><a href="archive.html">Archives</a>
+                </li><li><a href="categories/index.html">Tags</a>
+                </li><li><a href="rss.xml">RSS</a>
 
                 </li></ul>
                 <ul class="nav pull-right">
                 
                 
-                 
+                    <li>
                 </ul>
             </div>
         </div>
@@ -67,82 +67,104 @@ creature indeed :)
     <div class="span2"></div>
     <div class="span8">
     
-        <div class="postbox">
-        <h1><a href="posts/200412google-footprint.html">Google Footprint</a>
+        <div class="postbox h-entry">
+        <h1 class="p-name"><a href="posts/2012/05/contextlib2-04-now-with-exitstack.html" class="u-url">contextlib2 0.4: Now with ExitStack!</a>
         <small>  
-             Posted: <time class="published" datetime="2004-12-22T11:14:00">2004-12-22 11:14</time>
+             Posted: <time class="published dt-published" datetime="2012-05-05T15:06:00">2012-05-05 15:06</time>
         </small></h1>
         <hr>
-        <p>OK, so here's the thing. In the real world, most Australians talking about 'Nick Coghlan' are going to be talking about the guy on Secret Life of Us. If not him, then the surfer from somewhere down south. If we went to Canada, well, there's a diplomat by that name, so at least a few people would know who he is, or would have seen an article or two about him.<br><br>Enter the world of Google, though, and an awful lot of it is about me. On the first two pages of a search for "Nick Coghlan", there's just one entry halfway down the second page for the Canadian guy. The other two don't show up until the third page. The results are skewed massively in my favour because of the public mailing list web archives that Google indexes - and every one of my messages to those lists includes my name.<br><br>You can really see the effect of this by searching for "Nicholas Coghlan" instead. I disappear from the results, and the TV actor and the Canadian diplomat take control of the show. I don't show up until page 4, on an old announcement from UQ. As you might guess from that, I don't use my full first name very often.<br><br>Another interesting search is "nick coghlan -python -cygwin -software". The results are then quite similar to the "nicholas coghlan" results.<br><br>Anyway, I guess my only real observation is that, when searching just for names, Google gives extremely high weight to participation in public online communities. Obvious, one might say, but it's an interesting limitation when looking for information on more famous people that happen to share a name with someone like me.</p>
+        <div class="e-content">
+        <p>Inspired by Michael Foord's efforts with <span>unittest2</span>, <a href="http://contextlib2.readthedocs.org/">contextlib2</a> is a PyPI package where I am working on some new additions to the standard library's <span>contextlib</span> module for Python 3.3.<br><br>The most interesting of those is a replacement for the ill-fated <a href="http://docs.python.org/library/contextlib#contextlib.nested">contextlib.nested</a> API.<br><br>If you use Python 3.2 today, you'll find that the <span>contextlib.nested</span> API doesn't even exist any more. The reason it was deprecated and removed is because it didn't play well with context managers that acquired their resources in <span>__init__</span> rather than <span>__enter__</span> (such as Python's own file objects and many other resources where using a with statement for management is an optional convenience rather than being mandatory).<br><br>The simplest example where the old API caused problems was opening a list of files and then using <span>contextlib.nested</span> to close them all when the operation was complete - if opening any later file threw an exception (e.g. due to a permissions error or a bad file name), then all of the earlier files would remain open until the garbage collector got around to cleaning them up. Not a huge problem on CPython with its refcounting based GC, but a far cry from the deterministic resource cleanup that context managers are supposed to offer.<br><br>Since the deprecation and removal of <span>contextlib.nested</span>, there have been assorted replacement proposals of varying levels of sophistication posted to the Python ideas mailing list. The new <a href="http://contextlib2.readthedocs.org/en/latest/index.html#contextlib2.ExitStack">ExitStack</a> API in this release is my own latest effort, and the first that I've liked well enough to seriously consider as a candidate for inclusion in the standard library module.<br><br>The idea behind providing the <span>ExitStack</span> API is for the standard library to focus specifically on handling the one particularly tricky part of dealing with context managers programmatically: unwinding the context stack correctly, ensuring that exceptions are processed exactly as if any context managers involved had been used in an appropriate series of nested with statements.<br><br>A couple of convenience methods are included (one that enters a context manager in addition to pushing the exit method on to the stack, as well as a simple callback registration method inspired by <span>unittest.TestCase.addCleanup</span>), but the features of the API are otherwise fairly minimal.<br><br>This low level dynamic API can then be used by developers to create their own higher level convenience APIs, as suggested in some of the <a href="http://contextlib2.readthedocs.org/en/latest/index.html#replacing-any-use-of-try-finally-and-flag-variables">examples</a> in the documentation.<br><br>A few specific design notes:<br></p><ul><li>The name <span>ExitStack</span> came about because the object is literally a stack of exit method references (or callback wrappers that behave like exit methods). Earlier variants were <span>ContextStack</span> (too narrow, since you can use the stack for standalone callbacks) and <span>CallbackStack</span> (too broad, since the stored callbacks specifically have the signature of exit methods)</li><li>The <span>push()</span> method accepts exit methods directly, since those are what actually gets stored on the stack. Ducktyping to also accept objects with an <span>__exit__()</span> method is convenient without being confusing (I hope).</li><li>The <span>enter_context()</span> method uses the longer name because the shorter version is too easy to confuse with the stack's own <span>__enter__()</span> method.</li></ul>If you have any questions about the <span>ExitStack</span> design, this is the place to ask. If you find any bugs or other defects, head over to the <a href="https://bitbucket.org/ncoghlan/contextlib2/issues?status=new&amp;status=open">issue tracker</a>.<br>
+        </div>
             
+        
     <p>
-        <a href="posts/200412google-footprint.html#disqus_thread" data-disqus-identifier="cache/posts/200412google-footprint.html">Comments</a>
+        <a href="posts/2012/05/contextlib2-04-now-with-exitstack.html#disqus_thread" data-disqus-identifier="cache/posts/2012/05/contextlib2-04-now-with-exitstack.html">Comments</a>
+
 
         </p></div>
-        <div class="postbox">
-        <h1><a href="posts/200412brain-dead-software-1-yast-online.html">Brain Dead Software #1: Yast Online Update</a>
+        <div class="postbox h-entry">
+        <h1 class="p-name"><a href="posts/2012/01/walkdir-03-released-for-more-python.html" class="u-url">WalkDir 0.3 released (for more Python versions, thanks to Shining Panda!)</a>
         <small>  
-             Posted: <time class="published" datetime="2004-12-06T09:50:00">2004-12-06 09:50</time>
+             Posted: <time class="published dt-published" datetime="2012-01-31T12:44:00">2012-01-31 12:44</time>
         </small></h1>
         <hr>
-        <p>Suppose a new employee came to work for you. They're asked to collect 20 items from the company warehouse. You come back at the end of the day to find they have retrieved only one of the items. When queried, they say, "Well, the warheouse didn't have the second item on the list, so I came back to see what you wanted to do about it." "OK, fine, where are the other 18 items, then?" "Oh, I didn't try to get those. I needed to ask you about the second item, so I came back here." You'd be justifiably pissed off, and they'd probably be well on their way to getting fired.<br><br>Yast Online Update is that employee. If it encounters a problem with any of the packages you ask it to install, it sits there with a freaking dialog box on the screen doing absolutely <b>nothing</b> until you come back and tell it, "Look, just get on with the rest of the downloads already".<br><br>To be fair, this problem isn't specific to YOU - YOU just happens to be the most recent example I've encountered. When a computer program is given a list of tasks to do, and encounters a problem with one of them, it should look at the list and continue on with as many of the remaining tasks as it can. At the end, it can present a report detailing any problems encountered, and asking what is to be done about each of them. With Brain Dead Software like YOU, I can't just leave it to run overnight - chances are it will only do useful work for a short while before some glitch causes it to twiddle its thumbs for the rest of the night, waiting for me to wake up and reassure it that everything is fine.<br><br>Anyway, that's Brain Dead Software - programs that do things that would get a human fired. I'm sure there'll be more entries in this category.</p>
+        <div class="e-content">
+        <a href="http://walkdir.readthedocs.org/">WalkDir</a> is my Python support library that aims to make it as easy to work with filtered directory listings as it is to walk over entire directory trees with os.walk().<br><br>The module's design tries to take full advantage of Python's iterator model - most of its functionality is provided by pipelined iterators that accept os.walk() style iterables and expose the same interface themselves. <br><br>The only major functional change in version 0.3 is that these pipelined iterators now make sure they pass along the objects produced by the underlying iterators, and only use indexing operations to access the individual fields. Previously they would use tuple unpacking to access the directory details, which restricted the supported types to those with exactly 3 fields and also had the side effect of replacing the underlying objects with ordinary 3-tuples.<br><br>I changed this mainly due to a new OS interface that is likely to be coming in Python 3.3: an <a href="http://bugs.python.org/issue13734">os.walk() variant</a> that produces a 4-tuple rather than a 3-tuple. The 4th value will be a file descriptor for the directory making it easier (in conjunction with new <a href="http://docs.python.org/dev/whatsnew/3.3.html#os">file descriptor based APIs</a> in the 3.3 os module) to write filesystem modification code that is robust against <a href="http://bugs.python.org/issue4489">symlink attacks</a>. By passing the underlying objects through unmodified, WalkDir is now compatible with this API - all the path based filtering will still work, but the file descriptor values will also be passed along correctly.<br><br>For those that haven't seen any of my previous comments on WalkDir, the other parts of the API are just there for convenience - one factory  function that constructs pipelines for you, and 3 terminal iterators  that flatten out the os.walk() style triples into a simple series of  paths (all paths, just the visited directories or just the file paths).<br><br>The other notable change in 0.3 is the list of officially supported versions. Previously, the module was only known to work on 2.7 and 3.2+ (since they're the versions I have on my home development machine). However, thanks to a free open source account provided by the folks at <a href="https://jenkins.shiningpanda.com/ncoghlan-devs-projects/job/WalkDir/">Shining Panda</a>, WalkDir 0.3 is known to work on Python 2.6, 2.7 and 3.1+ (I even test it on PyPy and Stackless, just because I can). After pushing a broken package to PyPI for 0.2, I even have a <a href="https://jenkins.shiningpanda.com/ncoghlan-devs-projects/job/WalkDirInstaller/">sanity check</a> I can run that ensures the module can be downloaded with pip and then imported on all the supported versions.<br><br>
+        </div>
             
+        
     <p>
-        <a href="posts/200412brain-dead-software-1-yast-online.html#disqus_thread" data-disqus-identifier="cache/posts/200412brain-dead-software-1-yast-online.html">Comments</a>
+        <a href="posts/2012/01/walkdir-03-released-for-more-python.html#disqus_thread" data-disqus-identifier="cache/posts/2012/01/walkdir-03-released-for-more-python.html">Comments</a>
+
 
         </p></div>
-        <div class="postbox">
-        <h1><a href="posts/200411mt-st-helens.html">Mt St Helens</a>
+        <div class="postbox h-entry">
+        <h1 class="p-name"><a href="posts/2012/01/using-sopa-protests-to-highlight.html" class="u-url">Using the SOPA protests to highlight related problems in Australia</a>
         <small>  
-             Posted: <time class="published" datetime="2004-11-26T14:47:00">2004-11-26 14:47</time>
+             Posted: <time class="published dt-published" datetime="2012-01-18T09:47:00">2012-01-18 09:47</time>
         </small></h1>
         <hr>
-        <p>When I was in the US, one of the most impressive things I saw was the area around Mt St Helens. It was one of those things that made me glad my digital camera makes it so easy to take panoramic shots (click the panoramics to see slightly larger versions. If you want actual prints of any photos I post, let me know, since the originals have much better resolution than the versions I post).<br><br>The river valley downstream from the mountain:<br><a href="http://boredomandlaziness.skystorm.net/images/123-376_381_ST.jpg" target="_top"><img alt="" border="0" height="63" src="http://members.iinet.net.au/~ncoghlan/boredomandlaziness/images/123-376_381_ST.jpg" width="357"></a><br><br>The view from the interpretative centre:<br><a href="http://boredomandlaziness.skystorm.net/images/123-384_389_ST.jpg" target="_top"><img alt="" border="0" height="61" src="http://members.iinet.net.au/~ncoghlan/boredomandlaziness/images/123-384_389_ST.jpg" width="361"></a><br><br>Heading around the back of the ridge:<br><a href="http://boredomandlaziness.skystorm.net/images/123-392_398_ST.jpg" target="_top"><img alt="" border="0" height="49" src="http://members.iinet.net.au/~ncoghlan/boredomandlaziness/images/123-392_398_ST.jpg" width="387"></a><br><br>Looking back towards the next ridge:<br><a href="http://boredomandlaziness.skystorm.net/images/124-401_408_ST.jpg" target="_top"><img alt="" border="0" height="61" src="http://members.iinet.net.au/~ncoghlan/boredomandlaziness/images/124-401_408_ST.jpg" width="429"></a><br><br>And here we have Leung making an appearance (Leung is the mascot I took with me on my trip. He's a little big to make a great photo mascot, so there are long stretches of photos where he doesn't appear). Anyway, the real point of this photo is the effect of the lateral blast from the eruption. Most of the grey stuff on the ridgeline is actually dead trees that were knocked over by the blast. You can see a bunch of trunks still standing where they were sheltered by the ridgeline.<br><a href="http://boredomandlaziness.skystorm.net/images/124-414_IMG.jpg" target="_top"><img alt="" border="0" height="300" src="http://members.iinet.net.au/~ncoghlan/boredomandlaziness/images/124-414_IMG.jpg" width="400"></a></p>
+        <div class="e-content">
+        <p>I  figure this is the easiest place to publish the message I just sent to  Larissa Waters, the Greens Senator that is one of Queensland's  representatives in the Federal Senate. I also wrote to Yvette D'ath (our  local MHR) a few days ago, but I didn't keep a copy of that one. Will  this achieve anything? Probably not, but hey, at least I tried (and if  none of their constituents ever write to them about it, our reps are  quite entitled to assume we're all OK with them selling out the county  to legacy US media interests): <br></p><blockquote class="tr_bq"><i>Senator Waters,<br><br>With  today being the day Wikipedia and a wide range of other sites have  either gone dark or taken other action to protest draconian internet  censorship legislation making its way through the US Congress, it seems  an opportune time to highlight our own government's ongoing concerning  behaviour on that front.<br><br>Of particular concern is their <a href="http://delimiter.com.au/2012/01/17/govt-censors-secret-anti-piracy-meeting-notes/">continuing refusal</a> to release details of a secretive meeting between government  representatives and representatives of the same organisations that are  behind the draconian US bills currently being protested. The government  even <a href="http://delimiter.com.au/2011/12/23/secret-piracy-talks-govt-banned-consumer-groups/">deliberately excluded</a> representatives of a number of community interest organisations that sought to attend these discussions.<br><br>These  legacy media companies (aka horse drawn carriage manufacturers) are  flailing around wildly as the rise of free and open digital  communications networks (aka automobiles) threatens the cherished  gatekeeper role they have enjoyed for the past few decades as media  distributors. They have failed to adapt, and are increasingly being  bypassed as artists, writers, musicians, comedians and other media  creators find ways to use the power of the internet to connect more  directly with their fans. These direct connections are great for both  artists and fans, but place the intermediaries like YouTube, Apple  iTunes, Amazon, BandCamp, Flickr, etc, in the role of service providers  to the artists and fans rather than gatekeepers to widespread  distribution. Unfortunately, instead of going gracefully into that good  night, these organisations are investing inordinate sums of money  worldwide in lobbying for legislation that would make the permissive,  open practices of most of these new service providers a recipe for  prohibitively high legal liabilities, effectively making those practices  unsustainable and thus breaking the internet as we know it today.<br><br>Australia  already markedly shifted many intellectual monopoly policies to favour  the interests of US copyright holders at the expense of Australian  citizens when we signed the US-FTA some time ago. We have also  participated in the secretive process of drafting the  Anti-Counterfeiting Trade Agreement, which spends far more time  considering digital copyright infringement than it does actual  counterfeiting. The current negotiations over membership in the  Trans-Pacific Partnership agreement raise legitimate fears that  Australia's intellectual monopoly policy will be shifted even further  towards the draconian position of the United State Trade Representative,  even as those policies are being protested strongly within the US  itself.<br><br>In line with your <a href="http://greens.org.au/policies/human-rights-democracy/community-participation-in-government">published policy</a> on community participation in government, do the Greens plan to  publicly question the government over their apparent willingness to  place the interest of large US companies ahead of those of individual  Australian citizens?<br><br>Regards,<br>Nick.</i></blockquote><br>
+        </div>
             
+        
     <p>
-        <a href="posts/200411mt-st-helens.html#disqus_thread" data-disqus-identifier="cache/posts/200411mt-st-helens.html">Comments</a>
+        <a href="posts/2012/01/using-sopa-protests-to-highlight.html#disqus_thread" data-disqus-identifier="cache/posts/2012/01/using-sopa-protests-to-highlight.html">Comments</a>
+
 
         </p></div>
-        <div class="postbox">
-        <h1><a href="posts/200411python-quirk.html">Python Quirk</a>
+        <div class="postbox h-entry">
+        <h1 class="p-name"><a href="posts/2011/12/new-year-python-meme-december-2011.html" class="u-url">New Year Python Meme - December 2011</a>
         <small>  
-             Posted: <time class="published" datetime="2004-11-26T14:32:00">2004-11-26 14:32</time>
+             Posted: <time class="published dt-published" datetime="2011-12-22T13:15:00">2011-12-22 13:15</time>
         </small></h1>
         <hr>
-        <p>Python's a very nice language to program in, but it does have a few quirks. Normally, if you put multiple strings in your code, Python will automatically combine them into a single string.<br><br>However, it *doesn't* do this if your string literals are positioned in the "docstring" location for a class or function. If they are then only the first string will be used as the docstring - the remainder will be ignored.<br><br><b>Update:</b> A quick discussion on python-dev showed that the behaviour was fairly easily explained. The string literal concatenation magic only works inside a single expression (e.g. an assignment statement). Two string literals on separate lines look like two distinct statements to the interpreter. Escaping the newline after the first literal causes the string concatenation behaviour to be applied.</p>
+        <div class="e-content">
+        <div class="entry-body"><div><div class="item-body"><div>I'm normally a curmudgeon about this kind of thing, but I enjoyed reading some of the other posts in this series <a href="http://tarekziade.wordpress.com/2011/12/20/new-years-python-meme-2/" target="_blank">Tarek</a> kicked off, so I decided to make my own contribution.<br><br><b>1. What's the coolest Python application, framework or library you have discovered in 2011?</b> <br>The move to Red Hat marked my entry into the world of web development (previously I'd merely been in interested observer of that world, rather than a participant). By far my favourite discovery since making that change is <a href="http://django-rest-framework.org/">django-rest-framework</a> - with that, I can use my web browser to browse early iterations of my server's REST API directly, without needing to write custom clients to process the JSON data from APIs that are still in a state of flux.<br><br>As a service, <a href="http://readthedocs.org/">ReadTheDocs</a> has been an absolute revelation - between that, code hosting &amp; issue management sites like BitBucket and GitHub and of course PyPI itself, it's now possible for an open source project to have a quite respectable web presence without the developers needing to understand anything more than Sphinx, source control and the project they're working on.<br><br><b>2. What new programming technique did you learn in 2011?</b> <br>REST would be the big one. I'd had some general exposure to the concept in the past, but there's no substitute for sitting down and building it into a product when it comes to understanding a programming or API design technique.<br><br><b>3. What's the name of the open source project you contributed the most in 2011? What did you do?</b> <br>CPython, by far - kibbitzing on python-dev and python-ideas (and import-sig too these days), writing and reviewing several different PEPs, documentation updates, code reviews and patch applications, as well as working on my own things (including the still-in-progress integration work for the 'yield from' expression that's coming in 3.3).<br><br>I also recently started up 4 separate open source projects - 3 PyPI modules to hopefully address deficiencies I see in the current standard library offerings, plus the upstream open source project for my current development efforts at Red Hat:<br><ul><li><a href="http://contextlib2.readthedocs.org/">contextlib2</a> (ContextStack has some potential as a new building block)</li><li><a href="http://walkdir.readthedocs.org/">WalkDir</a> (the idea here is to be the "itertools for os.walk()")</li><li><a href="http://shell-command.readthedocs.org/">Shell Command</a> (let Python handle control flow, the shell actual commands)</li><li><a href="https://fedorahosted.org/pulpdist/">PulpDist</a> (Bringing a semblance of order to small-scale rsync mirror networks)</li></ul><br><b>4. What was the Python blog or website you read the most in 2011?</b>  <br><a href="http://planet.python.org/" target="_blank">Planet Python</a>.<br><br><b>5. What are the three top things you want to learn in 2012?</b> <br>From a work point of view, getting my RHCSA (Red Hat Certified System Administrator) is at the top of the list. Coming up to speed on AMQP (Advanced Message Queuing Protocol) is a close second. Finally, I want to fill in more of the gaps in my very sketchy knowledge of web UI development (i.e. HTML/CSS/Javascript).<br><br><b>6. What are the top software, app or lib you wish someone would write in 2012?</b> <br>I want to see the <a href="http://readthedocs.org/docs/ncoghlan_devs-python-notes/en/latest/pep_ideas/preview_namespace.html">__preview__ namespace</a> (in particular, the regex module) make it into Python 3.3. But that requires a volunteer to step up and write the PEP, write the code and generally champion the idea (if we have to wait for me to do it, there's no way it will happen before 3.4).<br><br>Want to do your own list? here's how: <br><ol><li>copy-paste the questions and answer to them in your blog</li><li>tweet it with the <a href="https://twitter.com/#%21/search/%232012pythonmeme" target="_blank">#2012pythonmeme</a> hashtag</li></ol></div></div></div></div>
+        </div>
             
+        
     <p>
-        <a href="posts/200411python-quirk.html#disqus_thread" data-disqus-identifier="cache/posts/200411python-quirk.html">Comments</a>
+        <a href="posts/2011/12/new-year-python-meme-december-2011.html#disqus_thread" data-disqus-identifier="cache/posts/2011/12/new-year-python-meme-december-2011.html">Comments</a>
+
 
         </p></div>
-        <div class="postbox">
-        <h1><a href="posts/200411firing-it-up.html">Firing it up</a>
+        <div class="postbox h-entry">
+        <h1 class="p-name"><a href="posts/2011/12/help-improve-python-33-standard-library.html" class="u-url">Help improve the Python 3.3 Standard Library...</a>
         <small>  
-             Posted: <time class="published" datetime="2004-11-25T12:03:00">2004-11-25 12:03</time>
+             Posted: <time class="published dt-published" datetime="2011-12-16T13:40:00">2011-12-16 13:40</time>
         </small></h1>
         <hr>
-        <p>So, I occasionally post stuff over at <a href="http://www.talkinboutstuff.net" target="_top">Talkinboutstuff</a>. However, that's mostly for random crap I expect the rest of the guys to find interesting/annoying/whatever.
-<br>
-<br>So, I created this extra blog for myself - somewhere to pontificate about things I <i>don't</i> expect them to find interesting, like software and Python and open source and what have you. And, anything of interest to them can be cross-linked quite happily :)
-<br>
-<br>Maybe I'll even get around to attaching this thing to a real domain name!</p>
+        <div class="e-content">
+        <p>... and hopefully help yourself with current programming projects, too.<br><br>Some recent programming activities left me underwhelmed by a few of the standard library's included batteries. This has already led to a significant revamp of the <a href="http://docs.python.org/library/subprocess">subprocess module documentation</a> to steer new users away from the Popen Swiss army knife (unless they really need it) and to explain the commonly needed parameters more clearly. It still needs work (the notes and warnings are far too repetitive), but it at least introduces things in the right order now (high level convenience API that most people want first, lower level Popen API that some people need second).<br><br>However, for 3.3 I'd like to improve things even more in at least three areas: invocation of the system shell for administration tasks, better tools for traversing filesystem directories and programmatic management of deterministic resource cleanup (i.e. not relying on the garbage collector).<br><br>Accordingly, I have 3 projects up on PyPI (with docs on ReadTheDocs and source control and issue tracking on BitBucket):<br></p><ul><li><a href="http://walkdir.readthedocs.org/">WalkDir</a>: os.walk() style iterators with file and directory filtering (both inclusion and exclusion), depth limiting and symlink loop detection, as well as convenience iterators to flatten os.walk() style iterators into a series of paths (either all walked paths, just the directories or just the files). I currently plan to make (at least some of) these part of the shutil module, but exactly <i>what</i> gets added will be based on the feedback I receive on this module and its API design.</li><li><a href="http://shell-command.readthedocs.org/">Shell Command</a>: Convenience APIs that combine subprocess invocation with string interpolation. Interpolated strings are escaped with shlex.quote() by default, with a custom conversion specifier ("!u", for unquoted) used to invoke the standard interpolation process. It also features an experimental API where I'm tinkering with the use of select.select() on subprocess pipes (I'm not sure it achieves a lot over simple blocking IO in its current form, though). The current plan for this API is that it will be added directly to the subprocess module (well, the stable and sensible parts will be, anyway - I still have my doubts about the select.select() experiment)</li><li><a href="http://contextlib2.readthedocs.org/">contextlib2</a>: This module basically exists to let me publish and gather feedback on ContextStack, a proposed addition to contextlib for 3.3 that should make it easier to manage deterministic resource cleanup programmatically (i.e. without coupling it as directly to code layout as simple with statements do).</li></ul><br>Feedback on any and all of these is appreciated, either here or on the respective issue trackers. It isn't a foregone conclusion that any of these APIs will be added at all, so examples of real world use cases would definitely be helpful.
+        </div>
             
+        
     <p>
-        <a href="posts/200411firing-it-up.html#disqus_thread" data-disqus-identifier="cache/posts/200411firing-it-up.html">Comments</a>
+        <a href="posts/2011/12/help-improve-python-33-standard-library.html#disqus_thread" data-disqus-identifier="cache/posts/2011/12/help-improve-python-33-standard-library.html">Comments</a>
+
 
         </p></div>
     
 <div>
 <ul class="pager">
     <li class="previous">
-        <a href="index-5.html">← Newer posts</a>
-</li></ul>
+        <a href="index.html" rel="prev">← Newer posts</a>
+    </li>
+    <li class="next">
+        <a href="index-5.html" rel="next">Older posts →</a>
+    </li>
+</ul>
 </div>
 
     
+        
        <script type="text/javascript">var disqus_shortname="boredomandlaziness";(function(){var a=document.createElement("script");a.async=true;a.type="text/javascript";a.src="http://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("HEAD")[0]||document.getElementsByTagName("BODY")[0]).appendChild(a)}());</script>
 
-    
+
+	
 
 
     </div>
@@ -153,13 +175,22 @@ creature indeed :)
     Contents © 2013 <a href="mailto:ncoghlan@gmail.com">Nick Coghlan</a> - <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, republish as you wish. - Powered by <a href="http://nikola.ralsina.com.ar">Nikola</a>
 </div>
 
-
-
-            <script src="assets/js/jquery-1.7.2.min.js" type="text/javascript"></script>
+            <script src="assets/js/jquery-1.10.2.min.js" type="text/javascript"></script>
             <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="assets/js/jquery.colorbox-min.js" type="text/javascript"></script>
 
 
-    <script type="text/javascript">jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"80%",maxHeight:"80%",scalePhotos:true});</script>
+	False
+
+    <script type="text/javascript">jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});
+    $(window).on('hashchange', function(){
+        if (location.hash && $(location.hash)[0]) {
+            $('body').animate({scrollTop: $(location.hash).offset().top - $('#navbar').outerHeight(true)*1.2 }, 1);
+        }
+    });
+    $(document).ready(function(){$(window).trigger('hashchange')});
+    </script>
+    
+    
 </body>
 </html>

@@ -43,8 +43,10 @@ td.label {
 .caption {
     /* Issue 292 */
     text-align: center;
+    padding-top: 1em;
 }
 
+div.figure > img,
 div.figure > a > img {
     /* Issue 292 */
     display: block;
@@ -66,7 +68,7 @@ blockquote p, blockquote {
 
 ul.bricks > li {
     display: inline;
-    background-color: gray;
+    background-color: lightblue;
     padding: 8px;
     border-radius: 5px;
     line-height: 3;
@@ -74,7 +76,12 @@ ul.bricks > li {
     margin: 3px;
 }
 
-h1, h2, h3, h4, h5, h6, h7 {
-    margin-top: -40px;
-    padding-top: 40px;
+ul.breadcrumb > li:before {
+    content: " / ";
+}
+
+pre, pre code {
+    white-space: pre;
+    word-wrap: normal;
+    overflow: auto;
 }
