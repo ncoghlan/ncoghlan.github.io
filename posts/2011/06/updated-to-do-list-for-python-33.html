@@ -1,30 +1,47 @@
-<!DOCTYPE html><html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+    <head>
     <meta charset="utf-8">
-    <meta name="author" content="Nick Coghlan">
+    <meta name="viewport" content="width=device-width">
     <title>Updated to do list for Python 3.3 | Curious Efficiency</title>
+
     
-            <link href="../../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-            <link href="../../../assets/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css">
-        <link href="../../../assets/css/rst.css" rel="stylesheet" type="text/css">
-        <link href="../../../assets/css/code.css" rel="stylesheet" type="text/css">
-        <link href="../../../assets/css/colorbox.css" rel="stylesheet" type="text/css">
-        <link href="../../../assets/css/theme.css" rel="stylesheet" type="text/css">
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
-    <![endif]-->
+            <link href="../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+
+    
             <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../rss.xml">
 
-    
+      <link rel="canonical" href="http://www.curiousefficiency.org/posts/2011/06/updated-to-do-list-for-python-33.html">
 
 
 
     
+        <!--[if lt IE 9]><script src="/assets/js/html5.js"></script><![endif]-->
+
+    
+
+
+    
+
+    <meta name="author" content="Nick Coghlan">
+    
+        <meta name="og:title" content="Updated to do list for Python 3.3">
+        <meta name="og:url" content="http://www.curiousefficiency.org/posts/2011/06/updated-to-do-list-for-python-33.html">
+            <meta name="og:description" content="I wrote a to-do list for 3.3 back in January. It's already obsolete, so inspired by Brett's recent update I have a new list of my own:Finish PEP 394 (The &quot;python&quot; command on *nix platforms)This is the">
+        <meta name="og:site_name" content="Curious Efficiency">
+        <meta name="og:type" content="article">
+
+    
+
+    
+
+
+
 </head>
 <body>
+
 <!-- Menubar -->
+
 <div class="navbar navbar-fixed-top" id="navbar">
     <div class="navbar-inner">
         <div class="container">
@@ -36,26 +53,42 @@
             <span class="icon-bar"></span>
         </a>
 
-            <a class="brand" href="../../../">
-            Curious Efficiency
+            <a class="brand" href="http://www.curiousefficiency.org/">
+
+                <span id="blog-title">Curious Efficiency</span>
             </a>
             <!-- Everything you want hidden at 940px or less, place within here -->
             <div class="nav-collapse collapse">
                 <ul class="nav">
                     
-                <li><a href="../../../pages/about.html">About</a>
-                </li><li><a href="../../../archive.html">Archives</a>
-                </li><li><a href="../../../categories/index.html">Tags</a>
-                </li><li><a href="../../../rss.xml">RSS</a>
-                </li><li><a href="http://python-notes.curiousefficiency.org">Python Notes</a>
+                <li>
+<a href="../../../pages/about.html">About</a>
+                </li>
+<li>
+<a href="../../../archive.html">Archives</a>
+                </li>
+<li>
+<a href="../../../categories/index.html">Tags</a>
+                </li>
+<li>
+<a href="../../../rss.xml">RSS</a>
+                </li>
+<li>
+<a href="http://python-notes.curiousefficiency.org">Python Notes</a>
 
-                </li></ul>
+                    
+                </li>
+</ul>
                 <ul class="nav pull-right">
                 
                 
                     <li>
-			<a href="#" id="sourcelink">Source</a>
-		</li>
+    </li>
+<li>
+    <a href="#" id="sourcelink">Source</a>
+    </li>
+
+                
                 </ul>
             </div>
         </div>
@@ -68,64 +101,86 @@
     <div class="span2"></div>
     <div class="span8">
     
-    <div class="postbox">
-    <div class="h-entry" itemscope="itemscope" itemtype="http://schema.org/Article">
     
-    <h1 class="p-name" itemprop="headline name">Updated to do list for Python 3.3</h1>
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article">
+    
+    <header>
+        
+    <h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">Updated to do list for Python 3.3</a></h1>
 
-    <hr>
-    <small>
-        Posted: <time class="published dt-published" datetime="2011-06-29T05:27:00" itemprop="datePublished">2011-06-29 05:27</time>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">Nick Coghlan</span></p>
+            <p class="dateline"><a href="#" rel="bookmark"><time class="published dt-published" datetime="2011-06-29T05:27:00+00:00" itemprop="datePublished" title="Publication date">2011-06-29 05:27</time></a></p>
+                <p class="commentline">
+        
+    <a href="updated-to-do-list-for-python-33.html#disqus_thread" data-disqus-identifier="cache/posts/2011/06/updated-to-do-list-for-python-33.html">Comments</a>
+
+
+            
+        </p>
+<p class="sourceline"><a href="#" id="sourcelink">Source</a></p>
+
+        </div>
         
 
-		
-          |  More posts about
-        <span itemprop="keywords">
-            <a class="tag p-category" href="../../../categories/python.html"><span class="badge badge-info">python</span></a>
-        </span>
+    </header>
 
-          |  
-		
-    </small>
-    <hr>
-    <div class="e-content" itemprop="articleBody text">
-    <p>I wrote a <a href="../../../2011/01/some-goals-for-python-33.html">to-do list</a> for 3.3 back in January. It's already obsolete, so inspired by Brett's <a href="http://sayspy.blogspot.com/2011/06/my-personal-plans-for-python-33.html">recent update</a> I have a new list of my own:<br><br></p><h3>Finish PEP 394 (The "python" command on *nix platforms)</h3>This is the PEP clarifying that the current collective recommendation from python-dev to Linux distributions (et al) is to stick with Python 2.x as the system python for the moment. It also involves adding a python2 symlink to the next release of 2.7 so that we follow our own advice.<br><br><h3>PEP 3118 buffer API and memoryview fixes</h3>On <a href="http://bugs.python.org/issue10181">issue #10181</a> I've been doing the software architect thing in devising a way to address the flaws in the design of memoryview objects. Absent further contributions I may resort to coding it myself, otherwise I'll at least review whatever patches are put forward.<br><br><h3>PEP 380 (yield from expressions)</h3>Guido gave his approval to PEP 380 recently. This is almost ready to go in, but <a href="http://bugs.python.org/issue11682">some work</a> needs to be done on incorporating the tests neatly into the regression test suite.<br><br><h3>Import engine</h3>Import engine is a GSoC project I am mentoring that consolidates the scattered state for the import system into methods and attributes on a single object. While the "real" import system state will remain in the current locations for compatibility reasons, the import engine API will provide a more coherent interface to the whole mechanism. It will also allow creation of more limited engine instances for targeted imports (e.g. from plugin directories) that won't be confused by name conflicts with other libraries.<br><br>I'm hopeful Greg will get as far as writing the PEP itself before the end of the summer, otherwise that will become a follow-up activity.<br><br><h3>CPython compiler enhancements</h3>Eugene Toder put together a <a href="http://bugs.python.org/issue11549">nice patch</a> that refactors the CPython compiler to include an AST optimisation step as well as cleaning up several 2.x holdovers in the AST. Getting the AST compiler ready for Python 2.5 is one of the first things I ever hacked on as a core developer and it's still one of my main interest areas.<br><br><h3>PEP 395 (module aliasing)</h3>After starting to work with Django and discovering it commits the sin of putting a package subdirectory on sys.path, I have even more motivation to provide a module aliasing mechanism that doesn't run the risk of accidentally getting multiple copies of the same module loaded in a process. That kind of thing should only happen when you do it on purpose.<br><br>I need to review my proposal in PEP 395 to make sure it also covers the Django use case (and modify the proposal if it doesn't).<br><br><h3>Core mentoring</h3>There are still some coverage patches from the Pycon US sprints to be reviewed and committed, along with a couple from the core mentoring mailing list. I'm also likely to be leading the CPython sprints following PyconAU, so there'll be some more patches to review and commit as a result of that.<br><br><h3>importlib bootstrapping</h3>While the migration to importlib is definitely Brett's project, it's also one I keep a close eye on in case he wants any reviews or feedback on elements of the design.<br><br><h3>PEP process tinkering</h3>I'd still like to clean up PEP 0 by adding the "Consensus" state to PEP 1. However, it has dropped below the above items on the to-do list.<br><br><h3>With statement tinkering</h3>Screwing up @contextmanager for 3.2 gives me even more motivation to want implicit context managers and Alex Gaynor tells me he has a use case for a context manager that can skip the with statement body. As with the PEP process tinkering, these are still on the "yes, please" list, but I'm unlikely to get a chance to work on them any time soon.<br><br><h3>Other miscellaneous features</h3>Resurrecting the post-import hooks PEP would be nice and I'd also like to add some of the ABC registration viewing and monitoring features proposed on the issue tracker.<br><br>So, how long until 3.3 again? :)
+    <div class="e-content entry-content" itemprop="articleBody text">
+    <p>I wrote a <a href="../../../2011/01/some-goals-for-python-33.html">to-do list</a> for 3.3 back in January. It's already obsolete, so inspired by Brett's <a href="http://sayspy.blogspot.com/2011/06/my-personal-plans-for-python-33.html">recent update</a> I have a new list of my own:<br><br></p>
+<h3>Finish PEP 394 (The "python" command on *nix platforms)</h3>This is the PEP clarifying that the current collective recommendation from python-dev to Linux distributions (et al) is to stick with Python 2.x as the system python for the moment. It also involves adding a python2 symlink to the next release of 2.7 so that we follow our own advice.<br><br><h3>PEP 3118 buffer API and memoryview fixes</h3>On <a href="http://bugs.python.org/issue10181">issue #10181</a> I've been doing the software architect thing in devising a way to address the flaws in the design of memoryview objects. Absent further contributions I may resort to coding it myself, otherwise I'll at least review whatever patches are put forward.<br><br><h3>PEP 380 (yield from expressions)</h3>Guido gave his approval to PEP 380 recently. This is almost ready to go in, but <a href="http://bugs.python.org/issue11682">some work</a> needs to be done on incorporating the tests neatly into the regression test suite.<br><br><h3>Import engine</h3>Import engine is a GSoC project I am mentoring that consolidates the scattered state for the import system into methods and attributes on a single object. While the "real" import system state will remain in the current locations for compatibility reasons, the import engine API will provide a more coherent interface to the whole mechanism. It will also allow creation of more limited engine instances for targeted imports (e.g. from plugin directories) that won't be confused by name conflicts with other libraries.<br><br>I'm hopeful Greg will get as far as writing the PEP itself before the end of the summer, otherwise that will become a follow-up activity.<br><br><h3>CPython compiler enhancements</h3>Eugene Toder put together a <a href="http://bugs.python.org/issue11549">nice patch</a> that refactors the CPython compiler to include an AST optimisation step as well as cleaning up several 2.x holdovers in the AST. Getting the AST compiler ready for Python 2.5 is one of the first things I ever hacked on as a core developer and it's still one of my main interest areas.<br><br><h3>PEP 395 (module aliasing)</h3>After starting to work with Django and discovering it commits the sin of putting a package subdirectory on sys.path, I have even more motivation to provide a module aliasing mechanism that doesn't run the risk of accidentally getting multiple copies of the same module loaded in a process. That kind of thing should only happen when you do it on purpose.<br><br>I need to review my proposal in PEP 395 to make sure it also covers the Django use case (and modify the proposal if it doesn't).<br><br><h3>Core mentoring</h3>There are still some coverage patches from the Pycon US sprints to be reviewed and committed, along with a couple from the core mentoring mailing list. I'm also likely to be leading the CPython sprints following PyconAU, so there'll be some more patches to review and commit as a result of that.<br><br><h3>importlib bootstrapping</h3>While the migration to importlib is definitely Brett's project, it's also one I keep a close eye on in case he wants any reviews or feedback on elements of the design.<br><br><h3>PEP process tinkering</h3>I'd still like to clean up PEP 0 by adding the "Consensus" state to PEP 1. However, it has dropped below the above items on the to-do list.<br><br><h3>With statement tinkering</h3>Screwing up @contextmanager for 3.2 gives me even more motivation to want implicit context managers and Alex Gaynor tells me he has a use case for a context manager that can skip the with statement body. As with the PEP process tinkering, these are still on the "yes, please" list, but I'm unlikely to get a chance to work on them any time soon.<br><br><h3>Other miscellaneous features</h3>Resurrecting the post-import hooks PEP would be nice and I'd also like to add some of the ABC registration viewing and monitoring features proposed on the issue tracker.<br><br>So, how long until 3.3 again? :)
     </div>
-    </div>
+    <aside class="postpromonav">
+    <nav>
     
-    <ul class="pager">
-        <li class="previous">
-            <a href="switching-to-android.html" rel="prev">← Previous post</a>
-        </li>
-        <li class="next">
-            <a href="../07/sure-its-surprising-but-whats.html" rel="next">Next post →</a>
-        </li>
-    </ul>
+        <ul itemprop="keywords" class="tags">
+           <li><a class="tag p-category" href="../../../categories/python.html" rel="tag">python</a></li>
+        </ul>
 
+    
+        <ul class="pager">
+            <li class="previous">
+                <a href="switching-to-android.html" rel="prev" title="Switching to Android">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../07/sure-its-surprising-but-whats.html" rel="next" title="Sure it's surprising, but what's the alternative?">Next post</a>
+            </li>
+        </ul>
+
+    </nav>
+    </aside>
+        <section class="comments">
+        <h2>Comments</h2>
         
         
         <div id="disqus_thread"></div>
-        <script type="text/javascript">
-        var disqus_shortname ="boredomandlaziness";
-            var disqus_url="http://www.curiousefficiency.org/posts/2011/06/updated-to-do-list-for-python-33.html";
-        var disqus_title="Updated to do list for Python 3.3";
-        var disqus_identifier="cache/posts/2011/06/updated-to-do-list-for-python-33.html";
-        var disqus_config = function () {
+        <script>
+        var disqus_shortname ="boredomandlaziness",
+            disqus_url="http://www.curiousefficiency.org/posts/2011/06/updated-to-do-list-for-python-33.html",
+        disqus_title="Updated to do list for Python 3.3",
+        disqus_identifier="cache/posts/2011/06/updated-to-do-list-for-python-33.html",
+        disqus_config = function () {
             this.language = "en";
         };
         (function() {
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
         })();
     </script>
-    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    <a href="http://disqus.com" class="dsq-brlink">Comments powered by <span class="logo-disqus">Disqus</span></a>
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="//disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
+        </section>
     
 
-    </div>
+</article>
+
+        
+       <script>var disqus_shortname="boredomandlaziness";(function(){var a=document.createElement("script");a.async=true;a.src="//"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+
+
 
     </div>
     </div>
@@ -133,24 +188,15 @@
 </div>
 <div class="footerbox">
     Contents © 2014 <a href="mailto:ncoghlan@gmail.com">Nick Coghlan</a> - <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, republish as you wish. - Powered by <a href="http://nikola.ralsina.com.ar">Nikola</a>
+    
 </div>
 
-            <script src="../../../assets/js/jquery-1.10.2.min.js" type="text/javascript"></script>
-            <script src="../../../assets/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="../../../assets/js/jquery.colorbox-min.js" type="text/javascript"></script>
+            <script src="../../../assets/js/all-nocdn.js"></script>
+    False
 
-
-	False
-
-    <script type="text/javascript">jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});
-    $(window).on('hashchange', function(){
-        if (location.hash && $(location.hash)[0]) {
-            $('body').animate({scrollTop: $(location.hash).offset().top - $('#navbar').outerHeight(true)*1.2 }, 1);
-        }
-    });
-    $(document).ready(function(){$(window).trigger('hashchange')});
-    </script>
+    <script>jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
     
-    
+
+
 </body>
 </html>

@@ -1,30 +1,47 @@
-<!DOCTYPE html><html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+    <head>
     <meta charset="utf-8">
-    <meta name="author" content="Nick Coghlan">
+    <meta name="viewport" content="width=device-width">
     <title>Python Language Summit - Highlights | Curious Efficiency</title>
+
     
-            <link href="../../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-            <link href="../../../assets/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css">
-        <link href="../../../assets/css/rst.css" rel="stylesheet" type="text/css">
-        <link href="../../../assets/css/code.css" rel="stylesheet" type="text/css">
-        <link href="../../../assets/css/colorbox.css" rel="stylesheet" type="text/css">
-        <link href="../../../assets/css/theme.css" rel="stylesheet" type="text/css">
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
-    <![endif]-->
+            <link href="../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+
+    
             <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../rss.xml">
 
-    
+      <link rel="canonical" href="http://www.curiousefficiency.org/posts/2011/03/python-language-summit-highlights.html">
 
 
 
     
+        <!--[if lt IE 9]><script src="/assets/js/html5.js"></script><![endif]-->
+
+    
+
+
+    
+
+    <meta name="author" content="Nick Coghlan">
+    
+        <meta name="og:title" content="Python Language Summit - Highlights">
+        <meta name="og:url" content="http://www.curiousefficiency.org/posts/2011/03/python-language-summit-highlights.html">
+            <meta name="og:description" content="The language summit covered a fair bit more ground than the VM summit did, so this post only covers the topics that I personally found particularly interesting. My rough notes at least mention everyth">
+        <meta name="og:site_name" content="Curious Efficiency">
+        <meta name="og:type" content="article">
+
+    
+
+    
+
+
+
 </head>
 <body>
+
 <!-- Menubar -->
+
 <div class="navbar navbar-fixed-top" id="navbar">
     <div class="navbar-inner">
         <div class="container">
@@ -36,26 +53,42 @@
             <span class="icon-bar"></span>
         </a>
 
-            <a class="brand" href="../../../">
-            Curious Efficiency
+            <a class="brand" href="http://www.curiousefficiency.org/">
+
+                <span id="blog-title">Curious Efficiency</span>
             </a>
             <!-- Everything you want hidden at 940px or less, place within here -->
             <div class="nav-collapse collapse">
                 <ul class="nav">
                     
-                <li><a href="../../../pages/about.html">About</a>
-                </li><li><a href="../../../archive.html">Archives</a>
-                </li><li><a href="../../../categories/index.html">Tags</a>
-                </li><li><a href="../../../rss.xml">RSS</a>
-                </li><li><a href="http://python-notes.curiousefficiency.org">Python Notes</a>
+                <li>
+<a href="../../../pages/about.html">About</a>
+                </li>
+<li>
+<a href="../../../archive.html">Archives</a>
+                </li>
+<li>
+<a href="../../../categories/index.html">Tags</a>
+                </li>
+<li>
+<a href="../../../rss.xml">RSS</a>
+                </li>
+<li>
+<a href="http://python-notes.curiousefficiency.org">Python Notes</a>
 
-                </li></ul>
+                    
+                </li>
+</ul>
                 <ul class="nav pull-right">
                 
                 
                     <li>
-			<a href="#" id="sourcelink">Source</a>
-		</li>
+    </li>
+<li>
+    <a href="#" id="sourcelink">Source</a>
+    </li>
+
+                
                 </ul>
             </div>
         </div>
@@ -68,64 +101,85 @@
     <div class="span2"></div>
     <div class="span8">
     
-    <div class="postbox">
-    <div class="h-entry" itemscope="itemscope" itemtype="http://schema.org/Article">
     
-    <h1 class="p-name" itemprop="headline name">Python Language Summit - Highlights</h1>
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article">
+    
+    <header>
+        
+    <h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">Python Language Summit - Highlights</a></h1>
 
-    <hr>
-    <small>
-        Posted: <time class="published dt-published" datetime="2011-03-11T12:39:00" itemprop="datePublished">2011-03-11 12:39</time>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">Nick Coghlan</span></p>
+            <p class="dateline"><a href="#" rel="bookmark"><time class="published dt-published" datetime="2011-03-11T12:39:00+00:00" itemprop="datePublished" title="Publication date">2011-03-11 12:39</time></a></p>
+                <p class="commentline">
+        
+    <a href="python-language-summit-highlights.html#disqus_thread" data-disqus-identifier="cache/posts/2011/03/python-language-summit-highlights.html">Comments</a>
+
+
+            
+        </p>
+<p class="sourceline"><a href="#" id="sourcelink">Source</a></p>
+
+        </div>
         
 
-		
-          |  More posts about
-        <span itemprop="keywords">
-            <a class="tag p-category" href="../../../categories/python.html"><span class="badge badge-info">python</span></a>
-        </span>
+    </header>
 
-          |  
-		
-    </small>
-    <hr>
-    <div class="e-content" itemprop="articleBody text">
+    <div class="e-content entry-content" itemprop="articleBody text">
     <p>The language summit covered a fair bit more ground than the VM summit did, so this post only covers the topics that I personally found particularly interesting. My <a href="../../../2011/03/python-language-summit-rough-notes.html">rough notes</a> at least mention everything that was discussed.<br><br><b>Moar Speed</b><br>The question of speed, optimisations and benchmarking came up again. A lot of this was just retreading the ground from the <a href="../../../2011/03/python-vm-summit-somewhat-coherent.html">VM summit</a> with a wider audience. One thing that did become clearer is that the near-term points of contact for the speed.python.org concept are Maciej Fijałkowski from the PyPy team for the technical issues and Jesse Noller on the PSF side for the hosting/organisational issues (although I expect Jesse would welcome offers of assistance if anyone else, particularly existing PSF members, wanted to step up and help coordinate things).<br><br><b>Communicating the collective opinions of python-dev</b><br>Where are we going, what are we doing? The main communications channels for python-dev have historically been PEPs (including release PEPs), the What's New document for each release and of course the mailing list itself. The python-dev summaries project has been tried a couple of times, but generally burned out the people involved.<br><br>Doug Hellman (PSF communications officer) would like to try a setup where there is an official python-dev technical blog where major discussions and decisions (including the outcomes of PEPs) can be presented in easier to swallow chunks, giving the gist of significant decisions and discussions, with references back to the source PEPs and mailing list threads.<br><br>It's an interesting idea, but, as Guido pointed out, will likely require *new* people to step forward to do it that are interested in the idea of helping to provide a window into the goings-on of python-dev (hopefully the more interesting parts, where we aren't just arguing about the colour of the current bikeshed du jour). From a personal point of view, I know I've only just really started using *this* blog to talk about my own perspective on Pythonic stuff. Something that may be practical is for the python.org technical blog to highlight blog posts where existing core devs are talking about new and upcoming stuff on their personal blogs.<br><br>Doug Hellman is the point of contact for anyone interested in following up on this.<br><br><b>Policy on use of accelerator modules</b><br>There are a few unwritten policies regarding the use of implementation-specific accelerator modules to speed up parts of the standard library (such as "always test both versions", "the accelerated version should be API compatible with the Python version", "the interpreter should still work if the accelerated version is missing").<br><br>Brett Cannon has volunteered to write these down in an official policy PEP. While CPython is likely the main offender here, it will be suggested that other implmentations follow the same policy for their own accelerator modules. Patches to bring CPython more inline with this policy, include providing pure Python alternative of existing C-only modules, are definitely of interest.<br><br><b>Compatibility warnings</b><br>With the rise in significance of alternate implementations, some grey areas in the language definition (such as the reliance on refcounting semantics, abuse of the ability to store non-string keys in CPython namespaces, storing objects that implement the descriptor protocol in classes without considering the consequences) are potential sources for confusion when they break on other versions (or potentially even in future versions of CPython.<br><br>ResourceWarning was added a while back to cover the refcounting issue, and uncovered a few bugs in CPython and its test suite. The proposal is to add CompatibilityWarning as a peer exception to ResourceWarning and use it for cases where people are relying on CPython implementation accidents that aren't officially supported by the language definition.<br><br>Nobody has stepped forward to write the PEP for this as yet, but it may make an interesting sprint topic (I know at least Brett and I are around for the sprints, and there should be a few other CPython core devs kicking around).<br><br><b>Better exception info</b><br>ImportWarning will likely acquire a "module" attribute during the sprints (this is an easy one, since it will just reference the module's name). There are other expections that could probably do with having the repr() of critical bits of information stored separately on the exception object (e.g. KeyError, ValueError, IndexError) for easy programmatic access.<br><br>Using repr() helps avoid issues with reference cycles keeping things along longer than intended. However, the API for creating such enhanced exceptions would still need to be worked out, as well as how best to deal with cases where third party code has only populated the exception message without filling in the specific details. Technically, even ImportError isn't immune to that concern, as raising it is sometimes the responsibility of third party PEP 302 importers and loaders.</p>
     </div>
-    </div>
+    <aside class="postpromonav">
+    <nav>
     
-    <ul class="pager">
-        <li class="previous">
-            <a href="python-language-summit-rough-notes.html" rel="prev">← Previous post</a>
-        </li>
-        <li class="next">
-            <a href="thoughts-and-impressions-following.html" rel="next">Next post →</a>
-        </li>
-    </ul>
+        <ul itemprop="keywords" class="tags">
+           <li><a class="tag p-category" href="../../../categories/python.html" rel="tag">python</a></li>
+        </ul>
 
+    
+        <ul class="pager">
+            <li class="previous">
+                <a href="python-language-summit-rough-notes.html" rel="prev" title="Python Language Summit - Rough Notes">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="thoughts-and-impressions-following.html" rel="next" title="Thoughts and Impressions following PyCon 2011">Next post</a>
+            </li>
+        </ul>
+
+    </nav>
+    </aside>
+        <section class="comments">
+        <h2>Comments</h2>
         
         
         <div id="disqus_thread"></div>
-        <script type="text/javascript">
-        var disqus_shortname ="boredomandlaziness";
-            var disqus_url="http://www.curiousefficiency.org/posts/2011/03/python-language-summit-highlights.html";
-        var disqus_title="Python Language Summit - Highlights";
-        var disqus_identifier="cache/posts/2011/03/python-language-summit-highlights.html";
-        var disqus_config = function () {
+        <script>
+        var disqus_shortname ="boredomandlaziness",
+            disqus_url="http://www.curiousefficiency.org/posts/2011/03/python-language-summit-highlights.html",
+        disqus_title="Python Language Summit - Highlights",
+        disqus_identifier="cache/posts/2011/03/python-language-summit-highlights.html",
+        disqus_config = function () {
             this.language = "en";
         };
         (function() {
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
         })();
     </script>
-    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    <a href="http://disqus.com" class="dsq-brlink">Comments powered by <span class="logo-disqus">Disqus</span></a>
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="//disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
+        </section>
     
 
-    </div>
+</article>
+
+        
+       <script>var disqus_shortname="boredomandlaziness";(function(){var a=document.createElement("script");a.async=true;a.src="//"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+
+
 
     </div>
     </div>
@@ -133,24 +187,15 @@
 </div>
 <div class="footerbox">
     Contents © 2014 <a href="mailto:ncoghlan@gmail.com">Nick Coghlan</a> - <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, republish as you wish. - Powered by <a href="http://nikola.ralsina.com.ar">Nikola</a>
+    
 </div>
 
-            <script src="../../../assets/js/jquery-1.10.2.min.js" type="text/javascript"></script>
-            <script src="../../../assets/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="../../../assets/js/jquery.colorbox-min.js" type="text/javascript"></script>
+            <script src="../../../assets/js/all-nocdn.js"></script>
+    False
 
-
-	False
-
-    <script type="text/javascript">jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});
-    $(window).on('hashchange', function(){
-        if (location.hash && $(location.hash)[0]) {
-            $('body').animate({scrollTop: $(location.hash).offset().top - $('#navbar').outerHeight(true)*1.2 }, 1);
-        }
-    });
-    $(document).ready(function(){$(window).trigger('hashchange')});
-    </script>
+    <script>jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
     
-    
+
+
 </body>
 </html>

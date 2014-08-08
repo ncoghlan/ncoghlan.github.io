@@ -1,30 +1,47 @@
-<!DOCTYPE html><html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+    <head>
     <meta charset="utf-8">
-    <meta name="author" content="Nick Coghlan">
+    <meta name="viewport" content="width=device-width">
     <title>Spinning up the pulpdist project | Curious Efficiency</title>
+
     
-            <link href="../../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-            <link href="../../../assets/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css">
-        <link href="../../../assets/css/rst.css" rel="stylesheet" type="text/css">
-        <link href="../../../assets/css/code.css" rel="stylesheet" type="text/css">
-        <link href="../../../assets/css/colorbox.css" rel="stylesheet" type="text/css">
-        <link href="../../../assets/css/theme.css" rel="stylesheet" type="text/css">
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
-    <![endif]-->
+            <link href="../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+
+    
             <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../rss.xml">
 
-    
+      <link rel="canonical" href="http://www.curiousefficiency.org/posts/2011/09/spinning-up-pulpdist-project.html">
 
 
 
     
+        <!--[if lt IE 9]><script src="/assets/js/html5.js"></script><![endif]-->
+
+    
+
+
+    
+
+    <meta name="author" content="Nick Coghlan">
+    
+        <meta name="og:title" content="Spinning up the pulpdist project">
+        <meta name="og:url" content="http://www.curiousefficiency.org/posts/2011/09/spinning-up-pulpdist-project.html">
+            <meta name="og:description" content="One novel aspect of the pulpdist project is that it is starting with an almost completely blank slate from a technology point of view (aside from the decision to use Pulp as the main component of the ">
+        <meta name="og:site_name" content="Curious Efficiency">
+        <meta name="og:type" content="article">
+
+    
+
+    
+
+
+
 </head>
 <body>
+
 <!-- Menubar -->
+
 <div class="navbar navbar-fixed-top" id="navbar">
     <div class="navbar-inner">
         <div class="container">
@@ -36,26 +53,42 @@
             <span class="icon-bar"></span>
         </a>
 
-            <a class="brand" href="../../../">
-            Curious Efficiency
+            <a class="brand" href="http://www.curiousefficiency.org/">
+
+                <span id="blog-title">Curious Efficiency</span>
             </a>
             <!-- Everything you want hidden at 940px or less, place within here -->
             <div class="nav-collapse collapse">
                 <ul class="nav">
                     
-                <li><a href="../../../pages/about.html">About</a>
-                </li><li><a href="../../../archive.html">Archives</a>
-                </li><li><a href="../../../categories/index.html">Tags</a>
-                </li><li><a href="../../../rss.xml">RSS</a>
-                </li><li><a href="http://python-notes.curiousefficiency.org">Python Notes</a>
+                <li>
+<a href="../../../pages/about.html">About</a>
+                </li>
+<li>
+<a href="../../../archive.html">Archives</a>
+                </li>
+<li>
+<a href="../../../categories/index.html">Tags</a>
+                </li>
+<li>
+<a href="../../../rss.xml">RSS</a>
+                </li>
+<li>
+<a href="http://python-notes.curiousefficiency.org">Python Notes</a>
 
-                </li></ul>
+                    
+                </li>
+</ul>
                 <ul class="nav pull-right">
                 
                 
                     <li>
-			<a href="#" id="sourcelink">Source</a>
-		</li>
+    </li>
+<li>
+    <a href="#" id="sourcelink">Source</a>
+    </li>
+
+                
                 </ul>
             </div>
         </div>
@@ -68,65 +101,91 @@
     <div class="span2"></div>
     <div class="span8">
     
-    <div class="postbox">
-    <div class="h-entry" itemscope="itemscope" itemtype="http://schema.org/Article">
     
-    <h1 class="p-name" itemprop="headline name">Spinning up the pulpdist project</h1>
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article">
+    
+    <header>
+        
+    <h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">Spinning up the pulpdist project</a></h1>
 
-    <hr>
-    <small>
-        Posted: <time class="published dt-published" datetime="2011-09-27T16:23:00" itemprop="datePublished">2011-09-27 16:23</time>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">Nick Coghlan</span></p>
+            <p class="dateline"><a href="#" rel="bookmark"><time class="published dt-published" datetime="2011-09-27T16:23:00+00:00" itemprop="datePublished" title="Publication date">2011-09-27 16:23</time></a></p>
+                <p class="commentline">
+        
+    <a href="spinning-up-pulpdist-project.html#disqus_thread" data-disqus-identifier="cache/posts/2011/09/spinning-up-pulpdist-project.html">Comments</a>
+
+
+            
+        </p>
+<p class="sourceline"><a href="#" id="sourcelink">Source</a></p>
+
+        </div>
         
 
-		
-          |  More posts about
-        <span itemprop="keywords">
-            <a class="tag p-category" href="../../../categories/python.html"><span class="badge badge-info">python</span></a>
-            <a class="tag p-category" href="../../../categories/pulpdist.html"><span class="badge badge-info">pulpdist</span></a>
-        </span>
+    </header>
 
-          |  
-		
-    </small>
-    <hr>
-    <div class="e-content" itemprop="articleBody text">
-    <p>One novel aspect of the <a href="../../../2011/09/mirror-all-things.html">pulpdist project</a> is that it is starting with an almost completely blank slate from a technology point of view (aside from the decision to use Pulp as the main component of the mirroring network). Red Hat does have development standards for internal projects, of course (especially in the messaging space), but they're fairly flexible, leaving the individual tool development teams with a lot of options. If something ships with Fedora and/or RHEL, or is available under licensing terms that would be acceptable for inclusion in Fedora (and subsequently RHEL), then it's fair game.<br><br>This post focuses on the design of the management server. I'll write up a separate post looking at the currently planned design for the Pulp data transfer plugins. <br><br></p><h2>Source Control</h2>Unsurprisingly, Red Hat's internal processes are heavily influenced by Linux kernel processes. Accordingly, the source control tool of choice for new projects is Git. While I have a slight preference for Mercurial (due mainly to familiarity), I'm happy enough with any DVCS, so Git it is.<br><br><h2>Primary Development Language</h2><a href="http://www.python.org/">Python</a>, of course. You don't hire a CPython core developer to get them to work on a Ruby or Perl project (although the current system I'm replacing was written in Perl). As a web application, there will naturally be some Javascript and CSS involved as well.<br><br><h2>Web Framework</h2>The main management application for pulpdist is going to be a full-scale web application. User profiles and authentication, database storage, communication with other web services, provision of a REST API, integration with the engineering tools messaging bus. Basically, micro-frameworks need not apply.<br><br>While I expect Pyramid/Pylons would also have been able to do the job, I decided to go with Django 1.3. This was heavily influenced by social factors: I know a lot of Django devs that I can bug for advice, but the same is not true for Pyramid. The complexity of the whole Pyramid/Pylons/TurboGears setup is also not appealing - while veteran web developers may find the "you decide" approach a selling point, Django's batteries included approach makes it far simpler to get started quickly, and decide as I go along which pieces I should keep, discard or replace.<br><br>I've heard some experienced Django developers muttering complaints about the class based views design in 1.3, but as someone coming in that is an experienced Python developer, but a relatively noobish web developer, the CBV approach seems eminently sensible, while the old function based approach looks repetitive and insane. Object oriented programming was invented for a reason!<br><br>I'll admit that my perception may be biased by knowing exactly how to make multiple inheritance work the way I want it to, though :)<br><br><h2>Web Server</h2>The management server doesn't actually have that much work to do, so the basic Apache+mod_wsgi configuration will serve as an adequate starting point (any heavy lifting will be done by the individual Pulp instances, and the main data traffic on those doesn't run through their web service). WSGI provides the flexibility to revisit this later if needed.<br><br>I've also punted on any web caching questions for now - the management server is low traffic and once the access to the Pulp sites is pushed out to a backend service, it should be fast enough at least for the early iterations. <br><br><h2>Authentication &amp; Authorisation</h2>The actual user authentication task will be handed off to Apache and all management application access will be restricted to Kerberos authenticated users over SSL. Django's own permissions systems will be used to handle authorisation restrictions. (The experimental prototype will use Basic Auth instead, since it is the Apache/Django integration the prototype needs to cover, not the Apache configuration for SSL and Kerberos authentication)<br><br>Integration with Pulp's user access controls is via OAuth, but the design for configuration of user permissions in the Pulp servers is still TBD.<br><br><h2>Database and ORM</h2>Again, the management server isn't doing the heavy lifting in this application. The Pulp instances use MongoDB, but for the management server I currently plan to use the standard Django ORM backed by PostgreSQL. For the prototype instance, the database is actually just an SQLite3 file. I'm not quite sold on this one as yet - it's tempting to start playing with SQLAlchemy, since I've already had to hack around some of the limitations in the native ORM in order to <a href="http://djangosnippets.org/snippets/2489/">store encrypted fields</a>. OTOH, I already have a ton of things to do on this project, so messing with this is a long way down the priority list.<br><br>Schema and data maintenance is handled using <a href="http://south.aeracode.org/">South</a>.<br><br><h2>HTML Templating</h2>The standard Django templating engine should be sufficient for my needs. As with the ORM, it's tempting to look into upgrading it to something like Jinja2, but once again 'good enough' is likely to be the deciding factor.<br><br>For data table display, I'm using <a href="http://pypi.python.org/pypi/django-tables2">Django Tables 2</a> and form display will use <a href="http://pypi.python.org/pypi/django-uni-form">Django Uni-Form</a>.<br><br><h2>REST API</h2>The REST API for the service is currently there primarily as a development aid - it lets me publish the full data model to the web as soon as it stabilises (and even while its still in flux), even if the UI for end users hasn't been fully defined. This is particularly useful for the metadata coming back from the Pulp server, since it doesn't need much post-processing to be included as raw data in the management server's own REST API. The JSON interface will also allow much of the backend processing to be fully exercised by the test suite without worrying about web UI details.<br><br>The design of the REST API was heavily influenced by this <a href="http://readthedocs.org/docs/restful-api-design/en/latest/">Lessons Learned</a> piece from the RHEV-M developers. The <a href="http://django-rest-framework.org/">Django Rest Framework</a> means I can just define the data I want to display as a list or dictionary and the framework takes care of formatting it nicely, including rendering URLs as hyperlinks. <br><br><h2>AMQP Messaging</h2>I haven't actually started on this aspect in any significant way, but the two main contenders I've identified are <a href="http://www.silassewell.com/blog/tag/python-qpid/">python-qpid</a> (which is what Pulp uses) and <a href="http://ask.github.com/django-celery/">django-celery</a> (which would also give me an internal task queue engine, which the management server is going to need - the prototype just does everything in the Django process, which is OK for experimentation on the LAN, but clearly inadequate long term when talking to multiple sites distributed around the planet). At this early stage, I expect the internal task management aspect is going to tip the decision in favour of the latter.<br><br><h2>Testing Regime<br></h2>As the foundation for the automated testing, I'm going with <a href="http://devel.almad.net/docs/django-sane-testing/">Django Sane Testing</a> (mainly based on the example of other internal Django projects). Michael Foord's <a href="http://pypi.python.org/pypi/mock">mock module</a> lets me run at least some of the tests without relying on an external Pulp instance (fortunately, the namespace conflict with Fedora's RPM building utility '<a href="https://fedoraproject.org/wiki/Projects/Mock">mock</a>' was recently resolved with the latter's support library being renamed to 'mockbuild').<br><br>Continuous integration is an open question at this point. Pulp uses Jenkins for CI and I'm inclined to follow their lead. The other main possibility is to use <a href="https://fedorahosted.org/beaker/">Beaker</a>, Red Hat's internal test system originally set up for kernel testing (one key attraction Beaker offers is the ability to set up multi-server multi-site testing in a test recipe so I can run tests over the internal WAN).<br><br><h2>Packaging<br></h2><a href="https://github.com/dgoodwin/tito">Tito</a> is a tool for generating SRPMs and RPMs directly from a Git repository. For my own packages, this is the approach I'm using (with handcrafted spec files). For some strange reason, the sysadmins around here like it when internal devs provide things as pre-packaged RPMs for deployment :)<br><br>Packaging of upstream PyPI dependencies that aren't available as Fedora or RHEL packages is still a work in progress. I experimented with Tito and git submodules (which doesn't work) and git subtrees (which does work, but is seriously ugly). My next attempt is likely to be based on <a href="http://pypi.python.org/pypi/py2pack">py2pack</a>, so we'll see how that goes (I actually discovered that project by searching for 'cpanspec pypi' after hearing some of the Perl folks here extolling the virtues of cpanspec for easily packaging CPAN modules as RPMs).<br><br>I also need to switch to using <a href="http://pypi.python.org/pypi/virtualenv">virtualenv</a> to get a clearer distinction between Fedora packages I added via yum install and stuff I picked up directly from PyPI with <a href="http://pypi.python.org/pypi/pip">pip</a>.<br><br><br>
+    <div class="e-content entry-content" itemprop="articleBody text">
+    <p>One novel aspect of the <a href="../../../2011/09/mirror-all-things.html">pulpdist project</a> is that it is starting with an almost completely blank slate from a technology point of view (aside from the decision to use Pulp as the main component of the mirroring network). Red Hat does have development standards for internal projects, of course (especially in the messaging space), but they're fairly flexible, leaving the individual tool development teams with a lot of options. If something ships with Fedora and/or RHEL, or is available under licensing terms that would be acceptable for inclusion in Fedora (and subsequently RHEL), then it's fair game.<br><br>This post focuses on the design of the management server. I'll write up a separate post looking at the currently planned design for the Pulp data transfer plugins. <br><br></p>
+<h2>Source Control</h2>Unsurprisingly, Red Hat's internal processes are heavily influenced by Linux kernel processes. Accordingly, the source control tool of choice for new projects is Git. While I have a slight preference for Mercurial (due mainly to familiarity), I'm happy enough with any DVCS, so Git it is.<br><br><h2>Primary Development Language</h2>
+<a href="http://www.python.org/">Python</a>, of course. You don't hire a CPython core developer to get them to work on a Ruby or Perl project (although the current system I'm replacing was written in Perl). As a web application, there will naturally be some Javascript and CSS involved as well.<br><br><h2>Web Framework</h2>The main management application for pulpdist is going to be a full-scale web application. User profiles and authentication, database storage, communication with other web services, provision of a REST API, integration with the engineering tools messaging bus. Basically, micro-frameworks need not apply.<br><br>While I expect Pyramid/Pylons would also have been able to do the job, I decided to go with Django 1.3. This was heavily influenced by social factors: I know a lot of Django devs that I can bug for advice, but the same is not true for Pyramid. The complexity of the whole Pyramid/Pylons/TurboGears setup is also not appealing - while veteran web developers may find the "you decide" approach a selling point, Django's batteries included approach makes it far simpler to get started quickly, and decide as I go along which pieces I should keep, discard or replace.<br><br>I've heard some experienced Django developers muttering complaints about the class based views design in 1.3, but as someone coming in that is an experienced Python developer, but a relatively noobish web developer, the CBV approach seems eminently sensible, while the old function based approach looks repetitive and insane. Object oriented programming was invented for a reason!<br><br>I'll admit that my perception may be biased by knowing exactly how to make multiple inheritance work the way I want it to, though :)<br><br><h2>Web Server</h2>The management server doesn't actually have that much work to do, so the basic Apache+mod_wsgi configuration will serve as an adequate starting point (any heavy lifting will be done by the individual Pulp instances, and the main data traffic on those doesn't run through their web service). WSGI provides the flexibility to revisit this later if needed.<br><br>I've also punted on any web caching questions for now - the management server is low traffic and once the access to the Pulp sites is pushed out to a backend service, it should be fast enough at least for the early iterations. <br><br><h2>Authentication &amp; Authorisation</h2>The actual user authentication task will be handed off to Apache and all management application access will be restricted to Kerberos authenticated users over SSL. Django's own permissions systems will be used to handle authorisation restrictions. (The experimental prototype will use Basic Auth instead, since it is the Apache/Django integration the prototype needs to cover, not the Apache configuration for SSL and Kerberos authentication)<br><br>Integration with Pulp's user access controls is via OAuth, but the design for configuration of user permissions in the Pulp servers is still TBD.<br><br><h2>Database and ORM</h2>Again, the management server isn't doing the heavy lifting in this application. The Pulp instances use MongoDB, but for the management server I currently plan to use the standard Django ORM backed by PostgreSQL. For the prototype instance, the database is actually just an SQLite3 file. I'm not quite sold on this one as yet - it's tempting to start playing with SQLAlchemy, since I've already had to hack around some of the limitations in the native ORM in order to <a href="http://djangosnippets.org/snippets/2489/">store encrypted fields</a>. OTOH, I already have a ton of things to do on this project, so messing with this is a long way down the priority list.<br><br>Schema and data maintenance is handled using <a href="http://south.aeracode.org/">South</a>.<br><br><h2>HTML Templating</h2>The standard Django templating engine should be sufficient for my needs. As with the ORM, it's tempting to look into upgrading it to something like Jinja2, but once again 'good enough' is likely to be the deciding factor.<br><br>For data table display, I'm using <a href="http://pypi.python.org/pypi/django-tables2">Django Tables 2</a> and form display will use <a href="http://pypi.python.org/pypi/django-uni-form">Django Uni-Form</a>.<br><br><h2>REST API</h2>The REST API for the service is currently there primarily as a development aid - it lets me publish the full data model to the web as soon as it stabilises (and even while its still in flux), even if the UI for end users hasn't been fully defined. This is particularly useful for the metadata coming back from the Pulp server, since it doesn't need much post-processing to be included as raw data in the management server's own REST API. The JSON interface will also allow much of the backend processing to be fully exercised by the test suite without worrying about web UI details.<br><br>The design of the REST API was heavily influenced by this <a href="http://readthedocs.org/docs/restful-api-design/en/latest/">Lessons Learned</a> piece from the RHEV-M developers. The <a href="http://django-rest-framework.org/">Django Rest Framework</a> means I can just define the data I want to display as a list or dictionary and the framework takes care of formatting it nicely, including rendering URLs as hyperlinks. <br><br><h2>AMQP Messaging</h2>I haven't actually started on this aspect in any significant way, but the two main contenders I've identified are <a href="http://www.silassewell.com/blog/tag/python-qpid/">python-qpid</a> (which is what Pulp uses) and <a href="http://ask.github.com/django-celery/">django-celery</a> (which would also give me an internal task queue engine, which the management server is going to need - the prototype just does everything in the Django process, which is OK for experimentation on the LAN, but clearly inadequate long term when talking to multiple sites distributed around the planet). At this early stage, I expect the internal task management aspect is going to tip the decision in favour of the latter.<br><br><h2>Testing Regime<br>
+</h2>As the foundation for the automated testing, I'm going with <a href="http://devel.almad.net/docs/django-sane-testing/">Django Sane Testing</a> (mainly based on the example of other internal Django projects). Michael Foord's <a href="http://pypi.python.org/pypi/mock">mock module</a> lets me run at least some of the tests without relying on an external Pulp instance (fortunately, the namespace conflict with Fedora's RPM building utility '<a href="https://fedoraproject.org/wiki/Projects/Mock">mock</a>' was recently resolved with the latter's support library being renamed to 'mockbuild').<br><br>Continuous integration is an open question at this point. Pulp uses Jenkins for CI and I'm inclined to follow their lead. The other main possibility is to use <a href="https://fedorahosted.org/beaker/">Beaker</a>, Red Hat's internal test system originally set up for kernel testing (one key attraction Beaker offers is the ability to set up multi-server multi-site testing in a test recipe so I can run tests over the internal WAN).<br><br><h2>Packaging<br>
+</h2>
+<a href="https://github.com/dgoodwin/tito">Tito</a> is a tool for generating SRPMs and RPMs directly from a Git repository. For my own packages, this is the approach I'm using (with handcrafted spec files). For some strange reason, the sysadmins around here like it when internal devs provide things as pre-packaged RPMs for deployment :)<br><br>Packaging of upstream PyPI dependencies that aren't available as Fedora or RHEL packages is still a work in progress. I experimented with Tito and git submodules (which doesn't work) and git subtrees (which does work, but is seriously ugly). My next attempt is likely to be based on <a href="http://pypi.python.org/pypi/py2pack">py2pack</a>, so we'll see how that goes (I actually discovered that project by searching for 'cpanspec pypi' after hearing some of the Perl folks here extolling the virtues of cpanspec for easily packaging CPAN modules as RPMs).<br><br>I also need to switch to using <a href="http://pypi.python.org/pypi/virtualenv">virtualenv</a> to get a clearer distinction between Fedora packages I added via yum install and stuff I picked up directly from PyPI with <a href="http://pypi.python.org/pypi/pip">pip</a>.<br><br><br>
     </div>
-    </div>
+    <aside class="postpromonav">
+    <nav>
     
-    <ul class="pager">
-        <li class="previous">
-            <a href="mirror-all-things.html" rel="prev">← Previous post</a>
-        </li>
-        <li class="next">
-            <a href="../10/correcting-ignorance-learning-bit-about.html" rel="next">Next post →</a>
-        </li>
-    </ul>
+        <ul itemprop="keywords" class="tags">
+           <li><a class="tag p-category" href="../../../categories/pulpdist.html" rel="tag">pulpdist</a></li>
+           <li><a class="tag p-category" href="../../../categories/python.html" rel="tag">python</a></li>
+        </ul>
 
+    
+        <ul class="pager">
+            <li class="previous">
+                <a href="mirror-all-things.html" rel="prev" title="Mirror All The Things!">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../10/correcting-ignorance-learning-bit-about.html" rel="next" title="Correcting ignorance: learning a bit about Ruby blocks">Next post</a>
+            </li>
+        </ul>
+
+    </nav>
+    </aside>
+        <section class="comments">
+        <h2>Comments</h2>
         
         
         <div id="disqus_thread"></div>
-        <script type="text/javascript">
-        var disqus_shortname ="boredomandlaziness";
-            var disqus_url="http://www.curiousefficiency.org/posts/2011/09/spinning-up-pulpdist-project.html";
-        var disqus_title="Spinning up the pulpdist project";
-        var disqus_identifier="cache/posts/2011/09/spinning-up-pulpdist-project.html";
-        var disqus_config = function () {
+        <script>
+        var disqus_shortname ="boredomandlaziness",
+            disqus_url="http://www.curiousefficiency.org/posts/2011/09/spinning-up-pulpdist-project.html",
+        disqus_title="Spinning up the pulpdist project",
+        disqus_identifier="cache/posts/2011/09/spinning-up-pulpdist-project.html",
+        disqus_config = function () {
             this.language = "en";
         };
         (function() {
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
         })();
     </script>
-    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    <a href="http://disqus.com" class="dsq-brlink">Comments powered by <span class="logo-disqus">Disqus</span></a>
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="//disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
+        </section>
     
 
-    </div>
+</article>
+
+        
+       <script>var disqus_shortname="boredomandlaziness";(function(){var a=document.createElement("script");a.async=true;a.src="//"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+
+
 
     </div>
     </div>
@@ -134,24 +193,15 @@
 </div>
 <div class="footerbox">
     Contents © 2014 <a href="mailto:ncoghlan@gmail.com">Nick Coghlan</a> - <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, republish as you wish. - Powered by <a href="http://nikola.ralsina.com.ar">Nikola</a>
+    
 </div>
 
-            <script src="../../../assets/js/jquery-1.10.2.min.js" type="text/javascript"></script>
-            <script src="../../../assets/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="../../../assets/js/jquery.colorbox-min.js" type="text/javascript"></script>
+            <script src="../../../assets/js/all-nocdn.js"></script>
+    False
 
-
-	False
-
-    <script type="text/javascript">jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});
-    $(window).on('hashchange', function(){
-        if (location.hash && $(location.hash)[0]) {
-            $('body').animate({scrollTop: $(location.hash).offset().top - $('#navbar').outerHeight(true)*1.2 }, 1);
-        }
-    });
-    $(document).ready(function(){$(window).trigger('hashchange')});
-    </script>
+    <script>jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
     
-    
+
+
 </body>
 </html>

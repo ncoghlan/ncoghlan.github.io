@@ -1,30 +1,47 @@
-<!DOCTYPE html><html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+    <head>
     <meta charset="utf-8">
-    <meta name="author" content="Nick Coghlan">
+    <meta name="viewport" content="width=device-width">
     <title>Brain Dead Software #1: Yast Online Update | Curious Efficiency</title>
+
     
-            <link href="../../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-            <link href="../../../assets/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css">
-        <link href="../../../assets/css/rst.css" rel="stylesheet" type="text/css">
-        <link href="../../../assets/css/code.css" rel="stylesheet" type="text/css">
-        <link href="../../../assets/css/colorbox.css" rel="stylesheet" type="text/css">
-        <link href="../../../assets/css/theme.css" rel="stylesheet" type="text/css">
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
-    <![endif]-->
+            <link href="../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+
+    
             <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../rss.xml">
 
-    
+      <link rel="canonical" href="http://www.curiousefficiency.org/posts/2004/12/brain-dead-software-1-yast-online.html">
 
 
 
     
+        <!--[if lt IE 9]><script src="/assets/js/html5.js"></script><![endif]-->
+
+    
+
+
+    
+
+    <meta name="author" content="Nick Coghlan">
+    
+        <meta name="og:title" content="Brain Dead Software #1: Yast Online Update">
+        <meta name="og:url" content="http://www.curiousefficiency.org/posts/2004/12/brain-dead-software-1-yast-online.html">
+            <meta name="og:description" content="Suppose a new employee came to work for you. They're asked to collect 20 items from the company warehouse. You come back at the end of the day to find they have retrieved only one of the items. When q">
+        <meta name="og:site_name" content="Curious Efficiency">
+        <meta name="og:type" content="article">
+
+    
+
+    
+
+
+
 </head>
 <body>
+
 <!-- Menubar -->
+
 <div class="navbar navbar-fixed-top" id="navbar">
     <div class="navbar-inner">
         <div class="container">
@@ -36,26 +53,42 @@
             <span class="icon-bar"></span>
         </a>
 
-            <a class="brand" href="../../../">
-            Curious Efficiency
+            <a class="brand" href="http://www.curiousefficiency.org/">
+
+                <span id="blog-title">Curious Efficiency</span>
             </a>
             <!-- Everything you want hidden at 940px or less, place within here -->
             <div class="nav-collapse collapse">
                 <ul class="nav">
                     
-                <li><a href="../../../pages/about.html">About</a>
-                </li><li><a href="../../../archive.html">Archives</a>
-                </li><li><a href="../../../categories/index.html">Tags</a>
-                </li><li><a href="../../../rss.xml">RSS</a>
-                </li><li><a href="http://python-notes.curiousefficiency.org">Python Notes</a>
+                <li>
+<a href="../../../pages/about.html">About</a>
+                </li>
+<li>
+<a href="../../../archive.html">Archives</a>
+                </li>
+<li>
+<a href="../../../categories/index.html">Tags</a>
+                </li>
+<li>
+<a href="../../../rss.xml">RSS</a>
+                </li>
+<li>
+<a href="http://python-notes.curiousefficiency.org">Python Notes</a>
 
-                </li></ul>
+                    
+                </li>
+</ul>
                 <ul class="nav pull-right">
                 
                 
                     <li>
-			<a href="#" id="sourcelink">Source</a>
-		</li>
+    </li>
+<li>
+    <a href="#" id="sourcelink">Source</a>
+    </li>
+
+                
                 </ul>
             </div>
         </div>
@@ -68,60 +101,82 @@
     <div class="span2"></div>
     <div class="span8">
     
-    <div class="postbox">
-    <div class="h-entry" itemscope="itemscope" itemtype="http://schema.org/Article">
     
-    <h1 class="p-name" itemprop="headline name">Brain Dead Software #1: Yast Online Update</h1>
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article">
+    
+    <header>
+        
+    <h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">Brain Dead Software #1: Yast Online Update</a></h1>
 
-    <hr>
-    <small>
-        Posted: <time class="published dt-published" datetime="2004-12-06T09:50:00" itemprop="datePublished">2004-12-06 09:50</time>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">Nick Coghlan</span></p>
+            <p class="dateline"><a href="#" rel="bookmark"><time class="published dt-published" datetime="2004-12-06T09:50:00+00:00" itemprop="datePublished" title="Publication date">2004-12-06 09:50</time></a></p>
+                <p class="commentline">
+        
+    <a href="brain-dead-software-1-yast-online.html#disqus_thread" data-disqus-identifier="cache/posts/2004/12/brain-dead-software-1-yast-online.html">Comments</a>
+
+
+            
+        </p>
+<p class="sourceline"><a href="#" id="sourcelink">Source</a></p>
+
+        </div>
         
 
-		
+    </header>
 
-          |  
-		
-    </small>
-    <hr>
-    <div class="e-content" itemprop="articleBody text">
+    <div class="e-content entry-content" itemprop="articleBody text">
     <p>Suppose a new employee came to work for you. They're asked to collect 20 items from the company warehouse. You come back at the end of the day to find they have retrieved only one of the items. When queried, they say, "Well, the warheouse didn't have the second item on the list, so I came back to see what you wanted to do about it." "OK, fine, where are the other 18 items, then?" "Oh, I didn't try to get those. I needed to ask you about the second item, so I came back here." You'd be justifiably pissed off, and they'd probably be well on their way to getting fired.<br><br>Yast Online Update is that employee. If it encounters a problem with any of the packages you ask it to install, it sits there with a freaking dialog box on the screen doing absolutely <b>nothing</b> until you come back and tell it, "Look, just get on with the rest of the downloads already".<br><br>To be fair, this problem isn't specific to YOU - YOU just happens to be the most recent example I've encountered. When a computer program is given a list of tasks to do, and encounters a problem with one of them, it should look at the list and continue on with as many of the remaining tasks as it can. At the end, it can present a report detailing any problems encountered, and asking what is to be done about each of them. With Brain Dead Software like YOU, I can't just leave it to run overnight - chances are it will only do useful work for a short while before some glitch causes it to twiddle its thumbs for the rest of the night, waiting for me to wake up and reassure it that everything is fine.<br><br>Anyway, that's Brain Dead Software - programs that do things that would get a human fired. I'm sure there'll be more entries in this category.</p>
     </div>
-    </div>
+    <aside class="postpromonav">
+    <nav>
     
-    <ul class="pager">
-        <li class="previous">
-            <a href="../11/mt-st-helens.html" rel="prev">← Previous post</a>
-        </li>
-        <li class="next">
-            <a href="google-footprint.html" rel="next">Next post →</a>
-        </li>
-    </ul>
 
+    
+        <ul class="pager">
+            <li class="previous">
+                <a href="../11/mt-st-helens.html" rel="prev" title="Mt St Helens">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="google-footprint.html" rel="next" title="Google Footprint">Next post</a>
+            </li>
+        </ul>
+
+    </nav>
+    </aside>
+        <section class="comments">
+        <h2>Comments</h2>
         
         
         <div id="disqus_thread"></div>
-        <script type="text/javascript">
-        var disqus_shortname ="boredomandlaziness";
-            var disqus_url="http://www.curiousefficiency.org/posts/2004/12/brain-dead-software-1-yast-online.html";
-        var disqus_title="Brain Dead Software #1: Yast Online Update";
-        var disqus_identifier="cache/posts/2004/12/brain-dead-software-1-yast-online.html";
-        var disqus_config = function () {
+        <script>
+        var disqus_shortname ="boredomandlaziness",
+            disqus_url="http://www.curiousefficiency.org/posts/2004/12/brain-dead-software-1-yast-online.html",
+        disqus_title="Brain Dead Software #1: Yast Online Update",
+        disqus_identifier="cache/posts/2004/12/brain-dead-software-1-yast-online.html",
+        disqus_config = function () {
             this.language = "en";
         };
         (function() {
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
         })();
     </script>
-    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    <a href="http://disqus.com" class="dsq-brlink">Comments powered by <span class="logo-disqus">Disqus</span></a>
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="//disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
+        </section>
     
 
-    </div>
+</article>
+
+        
+       <script>var disqus_shortname="boredomandlaziness";(function(){var a=document.createElement("script");a.async=true;a.src="//"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+
+
 
     </div>
     </div>
@@ -129,24 +184,15 @@
 </div>
 <div class="footerbox">
     Contents © 2014 <a href="mailto:ncoghlan@gmail.com">Nick Coghlan</a> - <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, republish as you wish. - Powered by <a href="http://nikola.ralsina.com.ar">Nikola</a>
+    
 </div>
 
-            <script src="../../../assets/js/jquery-1.10.2.min.js" type="text/javascript"></script>
-            <script src="../../../assets/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="../../../assets/js/jquery.colorbox-min.js" type="text/javascript"></script>
+            <script src="../../../assets/js/all-nocdn.js"></script>
+    False
 
-
-	False
-
-    <script type="text/javascript">jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});
-    $(window).on('hashchange', function(){
-        if (location.hash && $(location.hash)[0]) {
-            $('body').animate({scrollTop: $(location.hash).offset().top - $('#navbar').outerHeight(true)*1.2 }, 1);
-        }
-    });
-    $(document).ready(function(){$(window).trigger('hashchange')});
-    </script>
+    <script>jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
     
-    
+
+
 </body>
 </html>

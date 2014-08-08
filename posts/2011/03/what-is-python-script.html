@@ -1,30 +1,47 @@
-<!DOCTYPE html><html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+    <head>
     <meta charset="utf-8">
-    <meta name="author" content="Nick Coghlan">
+    <meta name="viewport" content="width=device-width">
     <title>What is a Python script? | Curious Efficiency</title>
+
     
-            <link href="../../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-            <link href="../../../assets/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css">
-        <link href="../../../assets/css/rst.css" rel="stylesheet" type="text/css">
-        <link href="../../../assets/css/code.css" rel="stylesheet" type="text/css">
-        <link href="../../../assets/css/colorbox.css" rel="stylesheet" type="text/css">
-        <link href="../../../assets/css/theme.css" rel="stylesheet" type="text/css">
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
-    <![endif]-->
+            <link href="../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+
+    
             <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../rss.xml">
 
-    
+      <link rel="canonical" href="http://www.curiousefficiency.org/posts/2011/03/what-is-python-script.html">
 
 
 
     
+        <!--[if lt IE 9]><script src="/assets/js/html5.js"></script><![endif]-->
+
+    
+
+
+    
+
+    <meta name="author" content="Nick Coghlan">
+    
+        <meta name="og:title" content="What is a Python script?">
+        <meta name="og:url" content="http://www.curiousefficiency.org/posts/2011/03/what-is-python-script.html">
+            <meta name="og:description" content="This is an adaptation of a lightning talk I gave at PyconAU 2010, after realising a lot of the people there had no idea about the way CPython's concept of what could be executed had expanded over the ">
+        <meta name="og:site_name" content="Curious Efficiency">
+        <meta name="og:type" content="article">
+
+    
+
+    
+
+
+
 </head>
 <body>
+
 <!-- Menubar -->
+
 <div class="navbar navbar-fixed-top" id="navbar">
     <div class="navbar-inner">
         <div class="container">
@@ -36,26 +53,42 @@
             <span class="icon-bar"></span>
         </a>
 
-            <a class="brand" href="../../../">
-            Curious Efficiency
+            <a class="brand" href="http://www.curiousefficiency.org/">
+
+                <span id="blog-title">Curious Efficiency</span>
             </a>
             <!-- Everything you want hidden at 940px or less, place within here -->
             <div class="nav-collapse collapse">
                 <ul class="nav">
                     
-                <li><a href="../../../pages/about.html">About</a>
-                </li><li><a href="../../../archive.html">Archives</a>
-                </li><li><a href="../../../categories/index.html">Tags</a>
-                </li><li><a href="../../../rss.xml">RSS</a>
-                </li><li><a href="http://python-notes.curiousefficiency.org">Python Notes</a>
+                <li>
+<a href="../../../pages/about.html">About</a>
+                </li>
+<li>
+<a href="../../../archive.html">Archives</a>
+                </li>
+<li>
+<a href="../../../categories/index.html">Tags</a>
+                </li>
+<li>
+<a href="../../../rss.xml">RSS</a>
+                </li>
+<li>
+<a href="http://python-notes.curiousefficiency.org">Python Notes</a>
 
-                </li></ul>
+                    
+                </li>
+</ul>
                 <ul class="nav pull-right">
                 
                 
                     <li>
-			<a href="#" id="sourcelink">Source</a>
-		</li>
+    </li>
+<li>
+    <a href="#" id="sourcelink">Source</a>
+    </li>
+
+                
                 </ul>
             </div>
         </div>
@@ -68,64 +101,85 @@
     <div class="span2"></div>
     <div class="span8">
     
-    <div class="postbox">
-    <div class="h-entry" itemscope="itemscope" itemtype="http://schema.org/Article">
     
-    <h1 class="p-name" itemprop="headline name">What is a Python script?</h1>
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article">
+    
+    <header>
+        
+    <h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">What is a Python script?</a></h1>
 
-    <hr>
-    <small>
-        Posted: <time class="published dt-published" datetime="2011-03-06T14:19:00" itemprop="datePublished">2011-03-06 14:19</time>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">Nick Coghlan</span></p>
+            <p class="dateline"><a href="#" rel="bookmark"><time class="published dt-published" datetime="2011-03-06T14:19:00+00:00" itemprop="datePublished" title="Publication date">2011-03-06 14:19</time></a></p>
+                <p class="commentline">
+        
+    <a href="what-is-python-script.html#disqus_thread" data-disqus-identifier="cache/posts/2011/03/what-is-python-script.html">Comments</a>
+
+
+            
+        </p>
+<p class="sourceline"><a href="#" id="sourcelink">Source</a></p>
+
+        </div>
         
 
-		
-          |  More posts about
-        <span itemprop="keywords">
-            <a class="tag p-category" href="../../../categories/python.html"><span class="badge badge-info">python</span></a>
-        </span>
+    </header>
 
-          |  
-		
-    </small>
-    <hr>
-    <div class="e-content" itemprop="articleBody text">
+    <div class="e-content entry-content" itemprop="articleBody text">
     <p>This is an adaptation of a <a href="http://pyvideo.org/video/471/pyconau-2010--lightning-talks---saturday">lightning talk</a> I gave at PyconAU 2010, after realising a lot of the people there had no idea about the way CPython's concept of what could be executed had expanded over the years since version 2.4 was released. As of Python 2.7, there are actually 4 things that the reference interpreter will accept as a main module.<br><br><b>Ordinary scripts:</b> the classic main module identified by filesystem path, available for as long as Python has been around. Can be executed without naming the interpreter through the use of file associations (Windows) or shebang lines (pretty much everywhere else).<br><br><b>Module name:</b> By using the <span>-m</span> switch, a user can tell the interpreter to locate the main module based on its position in the module hierarchy rather than by its location on the filesystem. This has been supported for top level modules since Python 2.4, and for all modules since Python 2.5 (via PEP 338). Correctly handles explicit relative imports since Python 2.6 (via PEP 366 and the <span>__package__</span> attribute). The classic example of this usage is the practice of invoking <span>"python -m timeit 'snippet'"</span> when discussing the relative performance of various Python expressions and statements.<br><br><b>Valid sys.path entry:</b> If a valid sys.path entry (e.g. the name of a directory or a zipfile) is passed as the script argument, CPython will automatically insert that location at the beginning of <span>sys.path</span>, then use the module name execution mechanism to look for a <span>__main__</span> module with the updated <span>sys.path</span>. Supported since Python 2.6, this system allows quick and easy bundling of a script with its dependencies for internal distribution within a company or organisation (external distribution should still use proper packaging and installer development practices). When using zipfiles, you can even add a shebang line to the zip header or use a file association for a custom extension like <span>.pyz</span> and the interpreter will still process the file correctly.<br><br><b>Package name: </b>If a package name is passed as the value for the <span>-m</span> switch, the Python interpreter will reinterpret the command as referring to a <span>__main__</span> submodule within that package. This version of the feature was added in Python 2.7, after some users objected to the removal in Python 2.6 of the original (broken) code that incorrectly allowed a package's <span>__init__.py</span> to be executed as the main module. Starting in Python 3.2, CPython's own test suite supports this feature, allowing it to be executed as <span>"python -m test"</span>.<br><br>The above functionality is exposed via the <span>runpy</span> module, as <span>runpy.run_module() </span>and <span>runpy.run_path()</span>.<br><br>If anyone ever sees me (metaphorically) jumping up and down about making sure things get mentioned in the What's New document for a new Python version, this is why. Python 2.6 was released in October 2008, but we didn't get the note about the zipfile and directory execution trick into the What's New until February 2010. It is described in the documentation, but really, who reads the command line documentation, or is likely to be casually browsing the <span>runpy</span> docs? This post turning up on Planet Python will probably do more to get the word out about the functionality than anything we've done before now :)</p>
     </div>
-    </div>
+    <aside class="postpromonav">
+    <nav>
     
-    <ul class="pager">
-        <li class="previous">
-            <a href="../02/status-quo-wins-stalemate.html" rel="prev">← Previous post</a>
-        </li>
-        <li class="next">
-            <a href="python-vm-summit-rough-notes.html" rel="next">Next post →</a>
-        </li>
-    </ul>
+        <ul itemprop="keywords" class="tags">
+           <li><a class="tag p-category" href="../../../categories/python.html" rel="tag">python</a></li>
+        </ul>
 
+    
+        <ul class="pager">
+            <li class="previous">
+                <a href="../02/status-quo-wins-stalemate.html" rel="prev" title="Status quo wins a stalemate">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="python-vm-summit-rough-notes.html" rel="next" title="Python VM Summit - Rough Notes">Next post</a>
+            </li>
+        </ul>
+
+    </nav>
+    </aside>
+        <section class="comments">
+        <h2>Comments</h2>
         
         
         <div id="disqus_thread"></div>
-        <script type="text/javascript">
-        var disqus_shortname ="boredomandlaziness";
-            var disqus_url="http://www.curiousefficiency.org/posts/2011/03/what-is-python-script.html";
-        var disqus_title="What is a Python script?";
-        var disqus_identifier="cache/posts/2011/03/what-is-python-script.html";
-        var disqus_config = function () {
+        <script>
+        var disqus_shortname ="boredomandlaziness",
+            disqus_url="http://www.curiousefficiency.org/posts/2011/03/what-is-python-script.html",
+        disqus_title="What is a Python script?",
+        disqus_identifier="cache/posts/2011/03/what-is-python-script.html",
+        disqus_config = function () {
             this.language = "en";
         };
         (function() {
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
         })();
     </script>
-    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    <a href="http://disqus.com" class="dsq-brlink">Comments powered by <span class="logo-disqus">Disqus</span></a>
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="//disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
+        </section>
     
 
-    </div>
+</article>
+
+        
+       <script>var disqus_shortname="boredomandlaziness";(function(){var a=document.createElement("script");a.async=true;a.src="//"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+
+
 
     </div>
     </div>
@@ -133,24 +187,15 @@
 </div>
 <div class="footerbox">
     Contents © 2014 <a href="mailto:ncoghlan@gmail.com">Nick Coghlan</a> - <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, republish as you wish. - Powered by <a href="http://nikola.ralsina.com.ar">Nikola</a>
+    
 </div>
 
-            <script src="../../../assets/js/jquery-1.10.2.min.js" type="text/javascript"></script>
-            <script src="../../../assets/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="../../../assets/js/jquery.colorbox-min.js" type="text/javascript"></script>
+            <script src="../../../assets/js/all-nocdn.js"></script>
+    False
 
-
-	False
-
-    <script type="text/javascript">jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});
-    $(window).on('hashchange', function(){
-        if (location.hash && $(location.hash)[0]) {
-            $('body').animate({scrollTop: $(location.hash).offset().top - $('#navbar').outerHeight(true)*1.2 }, 1);
-        }
-    });
-    $(document).ready(function(){$(window).trigger('hashchange')});
-    </script>
+    <script>jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
     
-    
+
+
 </body>
 </html>
