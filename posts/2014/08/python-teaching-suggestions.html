@@ -187,7 +187,9 @@ Hello world!
 <p>Rather than doing this, the Software Carpentry material that was used at the
 bootcamp I attended used the legacy Python 2 only <code>print</code> syntax extensively,
 causing examples that otherwise would have worked fine in either version to
-fail for students that happened to be running Python 3.</p>
+fail for students that happened to be running Python 3. Adopting the shared
+syntax for printing values could be enough to make the course largely
+version independent.</p>
 <h2>Distinguishing between returning and printing values</h2>
 <p>One problem noted both at the bootcamp and by presenters at PyCon Australia
 was the challenge of teaching students the difference between printing and
@@ -224,7 +226,7 @@ helps explain the difference between printing output for display to the user
 and returning values for further processing:</p>
 <pre class="code literal-block"><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">new_displayhook</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
 <span class="o">...</span>     <span class="k">if</span> <span class="n">obj</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-<span class="o">...</span>         <span class="k">print</span><span class="p">(</span><span class="s">"-&gt; {}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
+<span class="o">...</span>         <span class="k">print</span><span class="p">(</span><span class="s">"-&gt; {!r}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
 <span class="o">...</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">sys</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">sys</span><span class="o">.</span><span class="n">displayhook</span> <span class="o">=</span> <span class="n">new_displayhook</span>
@@ -238,6 +240,39 @@ and returning values for further processing:</p>
 <p>Understanding the difference between printing and returning is essential to
 learning to use functions effectively, and tweaking the display of results
 this way may help make the difference more obvious.</p>
+<h2>Addendum: IPython (including IPython Notebook)</h2>
+<p>The initial examples above focused on the standard CPython runtime, include
+the default interactive interpreter. The IPython interactive interpreter,
+including the IPython Notebook, has a couple of interesting differences in
+behaviour that are relevant to the above comments.</p>
+<p>Firstly, it <em>does</em> display return values and printed values differently,
+prefacing <em>results</em> with an output reference number:</p>
+<pre class="code literal-block"><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="k">print</span> <span class="mi">10</span>
+<span class="mi">10</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="mi">10</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="mi">10</span>
+</pre>
+
+
+<p>Secondly, it has an optional "autocall" feature that allows a user to tell
+IPython to automatically add the missing parentheses to a function call if
+the user leaves them out:</p>
+<pre class="code literal-block"><span class="nv">$ </span>ipython3 --autocall<span class="o">=</span>1 -c <span class="s2">"print 10"</span>
+-&gt; print<span class="o">(</span>10<span class="o">)</span>
+10
+</pre>
+
+
+<p>This is a general purpose feature that allows users to make their IPython
+sessions behave more like languages that don't have first class functions
+(most notably, IPython's autocall feature closely resembles MATLAB's
+"command syntax" notation for calling functions).</p>
+<p>It also has the side effect that users that use IPython, have autocall
+enabled, and don't use any of the more esoteric quirks of the Python 2
+<code>print</code> statement (like stream redirection or suppressing the trailing
+newline) may not even notice that <code>print</code> became an ordinary builtin in
+Python 3.</p>
     </div>
     <aside class="postpromonav">
     <nav>

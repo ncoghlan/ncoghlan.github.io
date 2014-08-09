@@ -3,7 +3,7 @@
 much of our economic activity is devoted to preventing boredom in the idle
 time created by increases in efficiency. To be human is to be a strange
 creature indeed :)
-</description><language>en</language><lastBuildDate>Fri, 08 Aug 2014 23:36:21 GMT</lastBuildDate><generator>http://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Some Suggestions for Teaching Python</title><link>http://www.curiousefficiency.org/posts/2014/08/python-teaching-suggestions.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;p&gt;I recently had the chance to attend a Software Carpentry bootcamp at the
+</description><language>en</language><lastBuildDate>Sat, 09 Aug 2014 14:42:42 GMT</lastBuildDate><generator>http://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Some Suggestions for Teaching Python</title><link>http://www.curiousefficiency.org/posts/2014/08/python-teaching-suggestions.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;p&gt;I recently had the chance to attend a Software Carpentry bootcamp at the
 University of Queensland (as a teaching assistant), as well as seeing a
 presentation from one of UQ's tutors at PyCon Australia 2014.&lt;/p&gt;
 &lt;p&gt;While many of the issues they encountered were inherent in the complexity
@@ -62,7 +62,9 @@ Hello world!
 &lt;p&gt;Rather than doing this, the Software Carpentry material that was used at the
 bootcamp I attended used the legacy Python 2 only &lt;code&gt;print&lt;/code&gt; syntax extensively,
 causing examples that otherwise would have worked fine in either version to
-fail for students that happened to be running Python 3.&lt;/p&gt;
+fail for students that happened to be running Python 3. Adopting the shared
+syntax for printing values could be enough to make the course largely
+version independent.&lt;/p&gt;
 &lt;h2&gt;Distinguishing between returning and printing values&lt;/h2&gt;
 &lt;p&gt;One problem noted both at the bootcamp and by presenters at PyCon Australia
 was the challenge of teaching students the difference between printing and
@@ -99,7 +101,7 @@ helps explain the difference between printing output for display to the user
 and returning values for further processing:&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;new_displayhook&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
 &lt;span class="o"&gt;...&lt;/span&gt;     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;obj&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="o"&gt;...&lt;/span&gt;         &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"-&amp;gt; {}"&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="o"&gt;...&lt;/span&gt;         &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"-&amp;gt; {!r}"&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;span class="o"&gt;...&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;displayhook&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;new_displayhook&lt;/span&gt;
@@ -112,7 +114,40 @@ and returning values for further processing:&lt;/p&gt;
 
 &lt;p&gt;Understanding the difference between printing and returning is essential to
 learning to use functions effectively, and tweaking the display of results
-this way may help make the difference more obvious.&lt;/p&gt;</description><category>python</category><guid>http://www.curiousefficiency.org/posts/2014/08/python-teaching-suggestions.html</guid><pubDate>Fri, 08 Aug 2014 12:55:26 GMT</pubDate></item><item><title>On Wielding Power</title><link>http://www.curiousefficiency.org/posts/2014/03/on-wielding-power.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;p&gt;&lt;em&gt;Making the usually implied disclaimer completely explicit on this one:
+this way may help make the difference more obvious.&lt;/p&gt;
+&lt;h2&gt;Addendum: IPython (including IPython Notebook)&lt;/h2&gt;
+&lt;p&gt;The initial examples above focused on the standard CPython runtime, include
+the default interactive interpreter. The IPython interactive interpreter,
+including the IPython Notebook, has a couple of interesting differences in
+behaviour that are relevant to the above comments.&lt;/p&gt;
+&lt;p&gt;Firstly, it &lt;em&gt;does&lt;/em&gt; display return values and printed values differently,
+prefacing &lt;em&gt;results&lt;/em&gt; with an output reference number:&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span class="n"&gt;In&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt; &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;
+&lt;span class="mi"&gt;10&lt;/span&gt;
+
+&lt;span class="n"&gt;In&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;
+&lt;span class="n"&gt;Out&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;
+&lt;/pre&gt;
+
+
+&lt;p&gt;Secondly, it has an optional "autocall" feature that allows a user to tell
+IPython to automatically add the missing parentheses to a function call if
+the user leaves them out:&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;ipython3 --autocall&lt;span class="o"&gt;=&lt;/span&gt;1 -c &lt;span class="s2"&gt;"print 10"&lt;/span&gt;
+-&amp;gt; print&lt;span class="o"&gt;(&lt;/span&gt;10&lt;span class="o"&gt;)&lt;/span&gt;
+10
+&lt;/pre&gt;
+
+
+&lt;p&gt;This is a general purpose feature that allows users to make their IPython
+sessions behave more like languages that don't have first class functions
+(most notably, IPython's autocall feature closely resembles MATLAB's
+"command syntax" notation for calling functions).&lt;/p&gt;
+&lt;p&gt;It also has the side effect that users that use IPython, have autocall
+enabled, and don't use any of the more esoteric quirks of the Python 2
+&lt;code&gt;print&lt;/code&gt; statement (like stream redirection or suppressing the trailing
+newline) may not even notice that &lt;code&gt;print&lt;/code&gt; became an ordinary builtin in
+Python 3.&lt;/p&gt;</description><category>python</category><guid>http://www.curiousefficiency.org/posts/2014/08/python-teaching-suggestions.html</guid><pubDate>Fri, 08 Aug 2014 12:55:26 GMT</pubDate></item><item><title>On Wielding Power</title><link>http://www.curiousefficiency.org/posts/2014/03/on-wielding-power.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;p&gt;&lt;em&gt;Making the usually implied disclaimer completely explicit on this one:
 the views expressed in this article are my own, and do not necessarily
 reflect the position of any organisations of which I am a member.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Power is an interesting thing, and something that, as a society at large
