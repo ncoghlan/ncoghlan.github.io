@@ -13,7 +13,7 @@ up once more during the plenary Q&A session with Linus Torvalds, Andrew Tridgell
 Bdale Garbee and Rusty Russell.
 
 I was there for that session, and found that Linus's response appeared to
-betray a fundamental misunderstanding of both the motives of many of the folks
+betray a fundamental misunderstanding of the motives of many of the folks
 pushing for increased diversity in the open source community, as well as a
 lack of awareness of the terrible situations that can arise when leaders in a
 community regularly demonstrate abusive behaviour without suffering any
@@ -29,7 +29,7 @@ it is important for me to state explicitly that I consider Linus's level of
 ignorance around appropriate standards of community conduct to be unacceptable
 in an open source community leader in 2015.
 
-Linus's "defence" of his abusive behaviour is that he's "not nice", and
+Linus's defence of his abusive behaviour is that he's "not nice", and
 "doesn't care about you". He does care deeply about his project, though,
 and claims to be motivated primarily by wanting that to continue to be
 successful.
@@ -44,9 +44,9 @@ an open source community would be fundamentally different in that regard. The
 transition to a new leadership structure might be a little messy, but the
 community would almost certainly figure it out.
 
-Howver, there's still scope for Linus to influence *how fast* Linux grows,
-and on that front his words and actions suggest that he considers being
-careless in his speech, without regard for the collateral damage
+However, there's still a lot of scope for Linus to influence *how fast* Linux
+grows, and on that front his words and actions suggest that he considers
+being careless in his speech, without regard for the collateral damage
 his verbal broadsides may be doing to his cause, more important than
 having the most positive impact he is capable of having on the future growth
 of the Linux kernel development project and the open source community at
@@ -76,11 +76,11 @@ Instead, what I do care about, passionately, is *helping the best ideas win*
 The best ideas anyone is willing to share with me, period. And I won't hear
 those ideas unless I help create environments where all participants are
 willing to speak up, not just those that are prepared to accept a blistering
-verbal barrage from a powerful authority figure as a consequence of attempting
-to participate. Those are upsetting enough when they come from random
-strangers on the internet, when they come from someone with enormous influence
-not only over you and your future career, but also your entire industry, they
-can be devastating.
+verbal barrage from a powerful authority figure as a possible consequence of
+attempting to participate. Those are upsetting enough when they come from
+random strangers on the internet, when they come from someone with enormous
+influence not only over you and your future career, but also your entire
+industry, they can be devastating.
 
 The second order consequences
 =============================
@@ -123,9 +123,9 @@ We're not done yet, though, as this culture of abuse then combines with
 elitism based on previously acquired knowledge to make it normal to *abuse
 newcomers for still being in the process of learning*. I find it hard to
 conceive of a more effective approach to keeping people from adopting
-something you're giving away for free than publicly abusing them for not
-magically already knowing how to use it when they've never even heard of it
-before.
+something you're giving away for free than tolerating a community that
+publicly abuses people for not magically already knowing how to use
+technology that they may have never even heard of before.
 
 As a result of this perspective, the only time I'll endeavour to eject anyone
 from a community where I have significant influence is when they're actively
@@ -135,14 +135,13 @@ the overall collaborative effort. I count myself incredibly fortunate to
 have only had to do this a few times in my life so far, but it's something
 I believe in strongly enough for it to have been the basis for once deciding
 to resign from a position paying a six-figure salary at a company I otherwise
-loved working for (to that company's credit, the abusive leader was let go
+loved working for. To that company's credit, the abusive leader was let go
 not long afterwards, but the whole secretive corporate system is rigged such
 that these toxic "leaders" can usually quickly find new positions elsewhere
 and hence new subordinates to make miserable - the fact that I'm not willing
-to name names here for fear of the professional consequences is one of the
-examples of how the system is rigged against reporting repeated abusive
-behaviour in such a way that it has real long term consequences for the
-folks perpetrating it).
+to name names here for fear of the professional consequences is just one more
+example of how the system is largely set up to protect abusive leaders rather
+than holding them to account for the impact their actions have on others.
 
 Ideas and code are still fair game
 ==================================
@@ -207,7 +206,7 @@ know are terrible - they're fun to prepare, fun to give, and it's quite
 entertaining seeing the horrified reactions when people realise I'm not
 kidding when I say all software is terrible and computers don't actually
 work, they just fake it fairly well through an ongoing series of horrible
-hacks built atop other horrible hacks. I'm not surprised the internet
+hacks built atop other horrible hacks. I'm not surprised the Internet
 breaks sometimes - given the decades of accumulated legacy hardware and
 software we're building on and working around, it's thoroughly astonishing
 that anything technology related ever works at all)
@@ -261,8 +260,8 @@ of starting your own.
 Personal enjoyment is only one reason for participating in open source though,
 and professional obligations or personal needs may bring us into contact with
 project leaders and contributors that currently consider personal abuse to be
-an acceptable way of interacting with their peers. If leaving isn't a viable
-option, then what can we do?
+an acceptable way of interacting with their peers in a collaborative context.
+If leaving isn't a viable option, then what can we do?
 
 Firstly, the options I suggest above for community leaders are actually good
 options for *any* participants in the open source community that view the
@@ -276,7 +275,7 @@ management topics, feel free to ask the following questions (or variations
 on these themes):
 
 * Are we as community leaders aware of the impact current and historical
-  structural inequality has on the demographics of our community?
+  structural inequalities have on the demographics of our community?
 * What have we done recently as individuals to improve our understanding of
   these issues and their consequences?
 * What have we done recently as community leaders to attempt to counter the
@@ -298,3 +297,5 @@ the quality of our thinking. Assuming we have attained meritocracy (aka "the
 most effective collaborative environment possible") is sheer foolishness,
 when a wide array of systemic biases remain in place that work to reduce the
 depth, breadth, and hence quality, of our collective thinking.
+
+*Update 22 Jan, 2015: Minor typo and grammar fixes*
