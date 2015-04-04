@@ -83,7 +83,7 @@ creature indeed :)
     </div>
 </div>
 <!-- End of Menubar -->
-<div class="container-fluid" id="content">
+<div class="container-fluid" id="content" role="main">
     <!--Body content-->
     <div class="row-fluid">
     <div class="span2"></div>
@@ -96,22 +96,22 @@ creature indeed :)
     </header>
     <ul class="postlist">
         <li>
-<a href="../posts/2010/12/joining-modern-era-of-blogging.html" class="listtitle">Joining the modern era of blogging</a> <time class="listdate" datetime="2010-12-12T13:29:00+00:00" title="Publication date">2010-12-12 13:29</time>
+<a href="../posts/2010/12/joining-modern-era-of-blogging.html" class="listtitle">Joining the modern era of blogging</a> <time class="listdate" datetime="2010-12-12T13:29:00+00:00" title="2010-12-12 13:29">2010-12-12 13:29</time>
 </li>
         <li>
-<a href="../posts/2010/12/musings-on-lotr-movie-adaptations.html" class="listtitle">Musings on the LotR movie adaptations</a> <time class="listdate" datetime="2010-12-12T10:54:00+00:00" title="Publication date">2010-12-12 10:54</time>
+<a href="../posts/2010/12/musings-on-lotr-movie-adaptations.html" class="listtitle">Musings on the LotR movie adaptations</a> <time class="listdate" datetime="2010-12-12T10:54:00+00:00" title="2010-12-12 10:54">2010-12-12 10:54</time>
 </li>
         <li>
-<a href="../posts/2010/12/ethos.html" class="listtitle">An Ethos</a> <time class="listdate" datetime="2010-12-12T07:19:00+00:00" title="Publication date">2010-12-12 07:19</time>
+<a href="../posts/2010/12/ethos.html" class="listtitle">An Ethos</a> <time class="listdate" datetime="2010-12-12T07:19:00+00:00" title="2010-12-12 07:19">2010-12-12 07:19</time>
 </li>
         <li>
-<a href="../posts/2010/01/status-quo-wins-stalemate.html" class="listtitle">Status quo wins a stalemate</a> <time class="listdate" datetime="2010-01-29T12:05:00+00:00" title="Publication date">2010-01-29 12:05</time>
+<a href="../posts/2010/01/status-quo-wins-stalemate.html" class="listtitle">Status quo wins a stalemate</a> <time class="listdate" datetime="2010-01-29T12:05:00+00:00" title="2010-01-29 12:05">2010-01-29 12:05</time>
 </li>
         <li>
-<a href="../posts/2010/01/justifying-python-language-changes.html" class="listtitle">Justifying Python language changes</a> <time class="listdate" datetime="2010-01-29T11:59:00+00:00" title="Publication date">2010-01-29 11:59</time>
+<a href="../posts/2010/01/justifying-python-language-changes.html" class="listtitle">Justifying Python language changes</a> <time class="listdate" datetime="2010-01-29T11:59:00+00:00" title="2010-01-29 11:59">2010-01-29 11:59</time>
 </li>
         <li>
-<a href="../posts/2010/01/kubuntu-dev-packages-to-build-python.html" class="listtitle">Kubuntu dev packages to build Python</a> <time class="listdate" datetime="2010-01-17T12:46:00+00:00" title="Publication date">2010-01-17 12:46</time>
+<a href="../posts/2010/01/kubuntu-dev-packages-to-build-python.html" class="listtitle">Kubuntu dev packages to build Python</a> <time class="listdate" datetime="2010-01-17T12:46:00+00:00" title="2010-01-17 12:46">2010-01-17 12:46</time>
 </li>
     </ul>
 </article>
@@ -126,9 +126,15 @@ creature indeed :)
 </div>
 
             <script src="../assets/js/all-nocdn.js"></script>
-    False
+    
 
-    <script>jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
+    <script>$('a.image-reference:not(.islink)').colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
+    <!-- fancy dates -->
+    <script>
+    moment.locale("");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script>
+    <!-- end fancy dates -->
     
 
 

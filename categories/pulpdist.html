@@ -2,7 +2,6 @@
 <html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
     <head>
     <meta charset="utf-8">
-    <meta name="description" content="Posts about pulpdist">
     <meta name="viewport" content="width=device-width">
     <title>Posts about pulpdist | Curious Efficiency</title>
 
@@ -82,7 +81,7 @@
     </div>
 </div>
 <!-- End of Menubar -->
-<div class="container-fluid" id="content">
+<div class="container-fluid" id="content" role="main">
     <!--Body content-->
     <div class="row-fluid">
     <div class="span2"></div>
@@ -98,10 +97,10 @@
     </header>
     <ul class="postlist">
         <li>
-<a href="../posts/2011/09/spinning-up-pulpdist-project.html" class="listtitle">Spinning up the pulpdist project</a> <time class="listdate" datetime="2011-09-27T16:23:00+00:00" title="Publication date">2011-09-27 16:23</time>
+<a href="../posts/2011/09/spinning-up-pulpdist-project.html" class="listtitle">Spinning up the pulpdist project</a> <time class="listdate" datetime="2011-09-27T16:23:00+00:00" title="2011-09-27 16:23">2011-09-27 16:23</time>
 </li>
         <li>
-<a href="../posts/2011/09/mirror-all-things.html" class="listtitle">Mirror All The Things!</a> <time class="listdate" datetime="2011-09-09T02:54:00+00:00" title="Publication date">2011-09-09 02:54</time>
+<a href="../posts/2011/09/mirror-all-things.html" class="listtitle">Mirror All The Things!</a> <time class="listdate" datetime="2011-09-09T02:54:00+00:00" title="2011-09-09 02:54">2011-09-09 02:54</time>
 </li>
     </ul>
 </article>
@@ -116,9 +115,15 @@
 </div>
 
             <script src="../assets/js/all-nocdn.js"></script>
-    False
+    
 
-    <script>jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
+    <script>$('a.image-reference:not(.islink)').colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
+    <!-- fancy dates -->
+    <script>
+    moment.locale("");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script>
+    <!-- end fancy dates -->
     
 
 

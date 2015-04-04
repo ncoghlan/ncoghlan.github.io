@@ -2,7 +2,6 @@
 <html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
     <head>
     <meta charset="utf-8">
-    <meta name="description" content="Posts about intarwebs">
     <meta name="viewport" content="width=device-width">
     <title>Posts about intarwebs | Curious Efficiency</title>
 
@@ -82,7 +81,7 @@
     </div>
 </div>
 <!-- End of Menubar -->
-<div class="container-fluid" id="content">
+<div class="container-fluid" id="content" role="main">
     <!--Body content-->
     <div class="row-fluid">
     <div class="span2"></div>
@@ -98,19 +97,19 @@
     </header>
     <ul class="postlist">
         <li>
-<a href="../posts/2012/05/embarrassment-of-riches.html" class="listtitle">An embarrassment of riches</a> <time class="listdate" datetime="2012-05-22T14:55:00+00:00" title="Publication date">2012-05-22 14:55</time>
+<a href="../posts/2012/05/embarrassment-of-riches.html" class="listtitle">An embarrassment of riches</a> <time class="listdate" datetime="2012-05-22T14:55:00+00:00" title="2012-05-22 14:55">2012-05-22 14:55</time>
 </li>
         <li>
-<a href="../posts/2012/01/using-sopa-protests-to-highlight.html" class="listtitle">Using the SOPA protests to highlight related problems in Australia</a> <time class="listdate" datetime="2012-01-18T09:47:00+00:00" title="Publication date">2012-01-18 09:47</time>
+<a href="../posts/2012/01/using-sopa-protests-to-highlight.html" class="listtitle">Using the SOPA protests to highlight related problems in Australia</a> <time class="listdate" datetime="2012-01-18T09:47:00+00:00" title="2012-01-18 09:47">2012-01-18 09:47</time>
 </li>
         <li>
-<a href="../posts/2006/04/ego-surfing.html" class="listtitle">Ego Surfing</a> <time class="listdate" datetime="2006-04-07T15:49:00+00:00" title="Publication date">2006-04-07 15:49</time>
+<a href="../posts/2006/04/ego-surfing.html" class="listtitle">Ego Surfing</a> <time class="listdate" datetime="2006-04-07T15:49:00+00:00" title="2006-04-07 15:49">2006-04-07 15:49</time>
 </li>
         <li>
-<a href="../posts/2005/04/self-defeating-advertisements.html" class="listtitle">Self-defeating Advertisements</a> <time class="listdate" datetime="2005-04-22T17:15:00+00:00" title="Publication date">2005-04-22 17:15</time>
+<a href="../posts/2005/04/self-defeating-advertisements.html" class="listtitle">Self-defeating Advertisements</a> <time class="listdate" datetime="2005-04-22T17:15:00+00:00" title="2005-04-22 17:15">2005-04-22 17:15</time>
 </li>
         <li>
-<a href="../posts/2004/12/google-footprint.html" class="listtitle">Google Footprint</a> <time class="listdate" datetime="2004-12-22T11:14:00+00:00" title="Publication date">2004-12-22 11:14</time>
+<a href="../posts/2004/12/google-footprint.html" class="listtitle">Google Footprint</a> <time class="listdate" datetime="2004-12-22T11:14:00+00:00" title="2004-12-22 11:14">2004-12-22 11:14</time>
 </li>
     </ul>
 </article>
@@ -125,9 +124,15 @@
 </div>
 
             <script src="../assets/js/all-nocdn.js"></script>
-    False
+    
 
-    <script>jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
+    <script>$('a.image-reference:not(.islink)').colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
+    <!-- fancy dates -->
+    <script>
+    moment.locale("");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script>
+    <!-- end fancy dates -->
     
 
 

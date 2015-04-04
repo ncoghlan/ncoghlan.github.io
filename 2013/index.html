@@ -83,7 +83,7 @@ creature indeed :)
     </div>
 </div>
 <!-- End of Menubar -->
-<div class="container-fluid" id="content">
+<div class="container-fluid" id="content" role="main">
     <!--Body content-->
     <div class="row-fluid">
     <div class="span2"></div>
@@ -96,13 +96,13 @@ creature indeed :)
     </header>
     <ul class="postlist">
         <li>
-<a href="../posts/2013/03/change-future-one-small-slice-of-pycon.html" class="listtitle">Change the Future - one small slice of PyCon US 2013</a> <time class="listdate" datetime="2013-03-22T01:38:00+00:00" title="Publication date">2013-03-22 01:38</time>
+<a href="../posts/2013/03/change-future-one-small-slice-of-pycon.html" class="listtitle">Change the Future - one small slice of PyCon US 2013</a> <time class="listdate" datetime="2013-03-22T01:38:00+00:00" title="2013-03-22 01:38">2013-03-22 01:38</time>
 </li>
         <li>
-<a href="../posts/2013/03/python-language-summit-pycon-us-2013.html" class="listtitle">Python Language Summit - PyCon US 2013</a> <time class="listdate" datetime="2013-03-14T14:28:00+00:00" title="Publication date">2013-03-14 14:28</time>
+<a href="../posts/2013/03/python-language-summit-pycon-us-2013.html" class="listtitle">Python Language Summit - PyCon US 2013</a> <time class="listdate" datetime="2013-03-14T14:28:00+00:00" title="2013-03-14 14:28">2013-03-14 14:28</time>
 </li>
         <li>
-<a href="../posts/2013/02/a-sliding-scale-of-freedom.html" class="listtitle">A Sliding Scale of Freedom</a> <time class="listdate" datetime="2013-02-26T14:45:00+00:00" title="Publication date">2013-02-26 14:45</time>
+<a href="../posts/2013/02/a-sliding-scale-of-freedom.html" class="listtitle">A Sliding Scale of Freedom</a> <time class="listdate" datetime="2013-02-26T14:45:00+00:00" title="2013-02-26 14:45">2013-02-26 14:45</time>
 </li>
     </ul>
 </article>
@@ -117,9 +117,15 @@ creature indeed :)
 </div>
 
             <script src="../assets/js/all-nocdn.js"></script>
-    False
+    
 
-    <script>jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
+    <script>$('a.image-reference:not(.islink)').colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
+    <!-- fancy dates -->
+    <script>
+    moment.locale("");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script>
+    <!-- end fancy dates -->
     
 
 

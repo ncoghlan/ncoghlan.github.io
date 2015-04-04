@@ -2,7 +2,6 @@
 <html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
     <head>
     <meta charset="utf-8">
-    <meta name="description" content="Posts about tech">
     <meta name="viewport" content="width=device-width">
     <title>Posts about tech | Curious Efficiency</title>
 
@@ -82,7 +81,7 @@
     </div>
 </div>
 <!-- End of Menubar -->
-<div class="container-fluid" id="content">
+<div class="container-fluid" id="content" role="main">
     <!--Body content-->
     <div class="row-fluid">
     <div class="span2"></div>
@@ -98,25 +97,25 @@
     </header>
     <ul class="postlist">
         <li>
-<a href="../posts/2015/01/abuse-is-not-ok.html" class="listtitle">Abusing Contributors is not OK</a> <time class="listdate" datetime="2015-01-22T05:57:26+00:00" title="Publication date">2015-01-22 05:57</time>
+<a href="../posts/2015/01/abuse-is-not-ok.html" class="listtitle">Abusing Contributors is not OK</a> <time class="listdate" datetime="2015-01-22T05:57:26+00:00" title="2015-01-22 05:57">2015-01-22 05:57</time>
 </li>
         <li>
-<a href="../posts/2015/01/dtca-public-consultation.html" class="listtitle">DTCA Public Consultation - Brisbane</a> <time class="listdate" datetime="2015-01-20T12:41:51+00:00" title="Publication date">2015-01-20 12:41</time>
+<a href="../posts/2015/01/dtca-public-consultation.html" class="listtitle">DTCA Public Consultation - Brisbane</a> <time class="listdate" datetime="2015-01-20T12:41:51+00:00" title="2015-01-20 12:41">2015-01-20 12:41</time>
 </li>
         <li>
-<a href="../posts/2013/03/python-language-summit-pycon-us-2013.html" class="listtitle">Python Language Summit - PyCon US 2013</a> <time class="listdate" datetime="2013-03-14T14:28:00+00:00" title="Publication date">2013-03-14 14:28</time>
+<a href="../posts/2013/03/python-language-summit-pycon-us-2013.html" class="listtitle">Python Language Summit - PyCon US 2013</a> <time class="listdate" datetime="2013-03-14T14:28:00+00:00" title="2013-03-14 14:28">2013-03-14 14:28</time>
 </li>
         <li>
-<a href="../posts/2012/07/volunteer-supported-free-threaded-cross.html" class="listtitle">Volunteer developed free-threaded cross platform virtual machines?</a> <time class="listdate" datetime="2012-07-11T02:58:00+00:00" title="Publication date">2012-07-11 02:58</time>
+<a href="../posts/2012/07/volunteer-supported-free-threaded-cross.html" class="listtitle">Volunteer developed free-threaded cross platform virtual machines?</a> <time class="listdate" datetime="2012-07-11T02:58:00+00:00" title="2012-07-11 02:58">2012-07-11 02:58</time>
 </li>
         <li>
-<a href="../posts/2012/05/embarrassment-of-riches.html" class="listtitle">An embarrassment of riches</a> <time class="listdate" datetime="2012-05-22T14:55:00+00:00" title="Publication date">2012-05-22 14:55</time>
+<a href="../posts/2012/05/embarrassment-of-riches.html" class="listtitle">An embarrassment of riches</a> <time class="listdate" datetime="2012-05-22T14:55:00+00:00" title="2012-05-22 14:55">2012-05-22 14:55</time>
 </li>
         <li>
-<a href="../posts/2012/01/using-sopa-protests-to-highlight.html" class="listtitle">Using the SOPA protests to highlight related problems in Australia</a> <time class="listdate" datetime="2012-01-18T09:47:00+00:00" title="Publication date">2012-01-18 09:47</time>
+<a href="../posts/2012/01/using-sopa-protests-to-highlight.html" class="listtitle">Using the SOPA protests to highlight related problems in Australia</a> <time class="listdate" datetime="2012-01-18T09:47:00+00:00" title="2012-01-18 09:47">2012-01-18 09:47</time>
 </li>
         <li>
-<a href="../posts/2011/06/switching-to-android.html" class="listtitle">Switching to Android</a> <time class="listdate" datetime="2011-06-15T14:33:00+00:00" title="Publication date">2011-06-15 14:33</time>
+<a href="../posts/2011/06/switching-to-android.html" class="listtitle">Switching to Android</a> <time class="listdate" datetime="2011-06-15T14:33:00+00:00" title="2011-06-15 14:33">2011-06-15 14:33</time>
 </li>
     </ul>
 </article>
@@ -131,9 +130,15 @@
 </div>
 
             <script src="../assets/js/all-nocdn.js"></script>
-    False
+    
 
-    <script>jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
+    <script>$('a.image-reference:not(.islink)').colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
+    <!-- fancy dates -->
+    <script>
+    moment.locale("");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script>
+    <!-- end fancy dates -->
     
 
 

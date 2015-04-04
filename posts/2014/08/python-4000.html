@@ -28,13 +28,15 @@
         <link rel="prev" href="python-teaching-suggestions.html" title="Some Suggestions for Teaching Python" type="text/html">
         <link rel="next" href="multilingual-programming.html" title="The transition to multilingual programming" type="text/html">
     
-    <meta name="og:title" content="Why Python 4.0 won't be like Python 3.0">
-    <meta name="og:url" content="http://www.curiousefficiency.org/posts/2014/08/python-4000.html">
-    <meta name="og:description" content="Newcomers to python-ideas occasionally make reference to the idea of
+    <meta property="og:site_name" content="Curious Efficiency">
+    <meta property="og:title" content="Why Python 4.0 won't be like Python 3.0">
+    <meta property="og:url" content="http://www.curiousefficiency.org/posts/2014/08/python-4000.html">
+    <meta property="og:description" content="Newcomers to python-ideas occasionally make reference to the idea of
 &quot;Python 4000&quot; when proposing backwards incompatible changes that don't
 offer a clear migration path from currently legal Python 3 c">
-    <meta name="og:site_name" content="Curious Efficiency">
-    <meta name="og:type" content="article">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2014-08-17T05:30:55+00:00">
+           <meta property="article:tag" content="python">
 
     
 
@@ -101,7 +103,7 @@ offer a clear migration path from currently legal Python 3 c">
     </div>
 </div>
 <!-- End of Menubar -->
-<div class="container-fluid" id="content">
+<div class="container-fluid" id="content" role="main">
     <!--Body content-->
     <div class="row-fluid">
     <div class="span2"></div>
@@ -116,7 +118,7 @@ offer a clear migration path from currently legal Python 3 c">
 
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn">Nick Coghlan</span></p>
-            <p class="dateline"><a href="#" rel="bookmark"><time class="published dt-published" datetime="2014-08-17T05:30:55+00:00" itemprop="datePublished" title="Publication date">2014-08-17 05:30</time></a></p>
+            <p class="dateline"><a href="#" rel="bookmark"><time class="published dt-published" datetime="2014-08-17T05:30:55+00:00" itemprop="datePublished" title="2014-08-17 05:30">2014-08-17 05:30</time></a></p>
                 <p class="commentline">
         
     <a href="python-4000.html#disqus_thread" data-disqus-identifier="cache/posts/2014/08/python-4000.html">Comments</a>
@@ -328,9 +330,15 @@ team.</p>
 </div>
 
             <script src="../../../assets/js/all-nocdn.js"></script>
-    False
+    
 
-    <script>jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
+    <script>$('a.image-reference:not(.islink)').colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
+    <!-- fancy dates -->
+    <script>
+    moment.locale("");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script>
+    <!-- end fancy dates -->
     
 
 

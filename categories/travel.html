@@ -2,7 +2,6 @@
 <html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
     <head>
     <meta charset="utf-8">
-    <meta name="description" content="Posts about travel">
     <meta name="viewport" content="width=device-width">
     <title>Posts about travel | Curious Efficiency</title>
 
@@ -82,7 +81,7 @@
     </div>
 </div>
 <!-- End of Menubar -->
-<div class="container-fluid" id="content">
+<div class="container-fluid" id="content" role="main">
     <!--Body content-->
     <div class="row-fluid">
     <div class="span2"></div>
@@ -98,16 +97,16 @@
     </header>
     <ul class="postlist">
         <li>
-<a href="../posts/2012/11/pycon-india-2012.html" class="listtitle">PyCon India 2012</a> <time class="listdate" datetime="2012-11-21T06:34:00+00:00" title="Publication date">2012-11-21 06:34</time>
+<a href="../posts/2012/11/pycon-india-2012.html" class="listtitle">PyCon India 2012</a> <time class="listdate" datetime="2012-11-21T06:34:00+00:00" title="2012-11-21 06:34">2012-11-21 06:34</time>
 </li>
         <li>
-<a href="../posts/2005/07/lance-hannah.html" class="listtitle">Lance &amp; Hannah</a> <time class="listdate" datetime="2005-07-20T13:04:00+00:00" title="Publication date">2005-07-20 13:04</time>
+<a href="../posts/2005/07/lance-hannah.html" class="listtitle">Lance &amp; Hannah</a> <time class="listdate" datetime="2005-07-20T13:04:00+00:00" title="2005-07-20 13:04">2005-07-20 13:04</time>
 </li>
         <li>
-<a href="../posts/2005/07/grand-column.html" class="listtitle">Grand Column</a> <time class="listdate" datetime="2005-07-20T12:18:00+00:00" title="Publication date">2005-07-20 12:18</time>
+<a href="../posts/2005/07/grand-column.html" class="listtitle">Grand Column</a> <time class="listdate" datetime="2005-07-20T12:18:00+00:00" title="2005-07-20 12:18">2005-07-20 12:18</time>
 </li>
         <li>
-<a href="../posts/2004/11/mt-st-helens.html" class="listtitle">Mt St Helens</a> <time class="listdate" datetime="2004-11-26T14:47:00+00:00" title="Publication date">2004-11-26 14:47</time>
+<a href="../posts/2004/11/mt-st-helens.html" class="listtitle">Mt St Helens</a> <time class="listdate" datetime="2004-11-26T14:47:00+00:00" title="2004-11-26 14:47">2004-11-26 14:47</time>
 </li>
     </ul>
 </article>
@@ -122,9 +121,15 @@
 </div>
 
             <script src="../assets/js/all-nocdn.js"></script>
-    False
+    
 
-    <script>jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
+    <script>$('a.image-reference:not(.islink)').colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
+    <!-- fancy dates -->
+    <script>
+    moment.locale("");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script>
+    <!-- end fancy dates -->
     
 
 
