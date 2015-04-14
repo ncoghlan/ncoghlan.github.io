@@ -3,7 +3,7 @@
 much of our economic activity is devoted to preventing boredom in the idle
 time created by increases in efficiency. To be human is to be a strange
 creature indeed :)
-</description><atom:link href="http://www.curiousefficiency.org/rss.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Sat, 04 Apr 2015 12:10:14 GMT</lastBuildDate><generator>http://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Stop Supporting Python 2.6 (For Free)</title><link>http://www.curiousefficiency.org/posts/2015/04/stop-supporting-python26.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;p&gt;(Note: I'm speaking with my "CPython core developer" hat on in this article,
+</description><atom:link href="http://www.curiousefficiency.org/rss.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Tue, 14 Apr 2015 12:03:45 GMT</lastBuildDate><generator>http://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Stop Supporting Python 2.6 (For Free)</title><link>http://www.curiousefficiency.org/posts/2015/04/stop-supporting-python26.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;p&gt;(Note: I'm speaking with my "CPython core developer" hat on in this article,
 rather than my "Red Hat employee" one, although it's the latter role that
 gave me broad visibility into the Fedora/RHEL/CentOS Python ecosystem)&lt;/p&gt;
 &lt;p&gt;Alex Gaynor recently raised some
