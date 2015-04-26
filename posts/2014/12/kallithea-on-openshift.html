@@ -226,7 +226,7 @@ upgrade handling correctly yet)</p>
 <a href="https://www.openshift.com/app/account/new">skip that step</a>, and just
 create a new app under my existing account. However, I didn't have the command
 line tools installed, so that was the first step in creating my own instance:</p>
-<pre class="code literal-block">sudo yum install /usr/bin/rhc
+<pre class="code literal-block"><span class="n">sudo</span> <span class="n">yum</span> <span class="n">install</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">rhc</span>
 </pre>
 
 
@@ -238,7 +238,7 @@ I could have looked that up myself in the
 Online account, generate a local login token for this machine, and upload
 my public SSH key to OpenShift Online. That process involved working through
 the interactive prompts in:</p>
-<pre class="code literal-block">rhc setup
+<pre class="code literal-block"><span class="n">rhc</span> <span class="n">setup</span>
 </pre>
 
 
@@ -249,7 +249,7 @@ so I created a separate "app_repos" subdirectory in my development directory
 specifically so I could call my OpenShift app "kallithea" without conflicting
 with my local clone of the main kallithea repo.</p>
 <p>As described in the quickstart README, the app creation command is:</p>
-<pre class="code literal-block">rhc app create kallithea diy-0.1 postgresql-9.2
+<pre class="code literal-block"><span class="n">rhc</span> <span class="n">app</span> <span class="n">create</span> <span class="n">kallithea</span> <span class="n">diy</span><span class="o">-</span><span class="mf">0.1</span> <span class="n">postgresql</span><span class="o">-</span><span class="mf">9.2</span>
 </pre>
 
 
@@ -263,17 +263,17 @@ failed. Fortunately, as the troubleshooting notice suggested, a subsequent
 <p>OpenShift provides a default app skeleton automatically, but I actually
 want to get rid of that and replace it with the contents of the quickstart
 repo:</p>
-<pre class="code literal-block">rm -R diy .openshift misc README.md
-git add .
-git commit -m "Remove template files"
-git remote add quickstart -m master https://github.com/ncoghlan/openshift-kallithea.git
-git pull -s recursive -X theirs quickstart master
+<pre class="code literal-block"><span class="n">rm</span> <span class="o">-</span><span class="n">R</span> <span class="n">diy</span> <span class="p">.</span><span class="n">openshift</span> <span class="n">misc</span> <span class="n">README</span><span class="p">.</span><span class="n">md</span>
+<span class="n">git</span> <span class="n">add</span> <span class="p">.</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s">"Remove template files"</span>
+<span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">quickstart</span> <span class="o">-</span><span class="n">m</span> <span class="n">master</span> <span class="n">https</span><span class="o">:</span><span class="c1">//github.com/ncoghlan/openshift-kallithea.git</span>
+<span class="n">git</span> <span class="n">pull</span> <span class="o">-</span><span class="n">s</span> <span class="n">recursive</span> <span class="o">-</span><span class="n">X</span> <span class="n">theirs</span> <span class="n">quickstart</span> <span class="n">master</span>
 </pre>
 
 
 <p>The default merge commit message that popped up was fine, so I just accepted
 that and moved on to the most interesting step:</p>
-<pre class="code literal-block">git push
+<pre class="code literal-block"><span class="n">git</span> <span class="n">push</span>
 </pre>
 
 
@@ -376,7 +376,7 @@ for folks working on Kallithea.</p>
             <script src="../../../assets/js/all-nocdn.js"></script>
     
 
-    <script>$('a.image-reference:not(.islink)').colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
+    <script>jQuery("a.image-reference,!.islink").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
     <!-- fancy dates -->
     <script>
     moment.locale("");

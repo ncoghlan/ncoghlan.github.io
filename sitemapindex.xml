@@ -6,82 +6,70 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <sitemap>
   <loc>http://www.curiousefficiency.org/categories/docker.xml</loc>
-  <lastmod>2015-04-03</lastmod>
+  <lastmod>2015-04-25</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://www.curiousefficiency.org/categories/fedora.xml</loc>
+  <lastmod>2015-04-26</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://www.curiousefficiency.org/categories/fiction.xml</loc>
-  <lastmod>2015-04-03</lastmod>
+  <lastmod>2015-04-25</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://www.curiousefficiency.org/categories/intarwebs.xml</loc>
-  <lastmod>2015-04-03</lastmod>
+  <lastmod>2015-04-25</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://www.curiousefficiency.org/categories/kallithea.xml</loc>
-  <lastmod>2015-04-03</lastmod>
+  <lastmod>2015-04-25</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://www.curiousefficiency.org/categories/kubuntu.xml</loc>
-  <lastmod>2015-04-03</lastmod>
+  <lastmod>2015-04-25</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://www.curiousefficiency.org/categories/metablogging.xml</loc>
-  <lastmod>2015-04-03</lastmod>
+  <lastmod>2015-04-25</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://www.curiousefficiency.org/categories/openshift.xml</loc>
-  <lastmod>2015-04-03</lastmod>
- </sitemap>
- <sitemap>
-  <loc>http://www.curiousefficiency.org/categories/philosophy-draft.xml</loc>
-  <lastmod>2014-03-31</lastmod>
- </sitemap>
- <sitemap>
-  <loc>http://www.curiousefficiency.org/categories/philosophy-politics-python-science.xml</loc>
-  <lastmod>2014-09-23</lastmod>
+  <lastmod>2015-04-25</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://www.curiousefficiency.org/categories/philosophy.xml</loc>
-  <lastmod>2015-04-03</lastmod>
+  <lastmod>2015-04-25</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://www.curiousefficiency.org/categories/politics.xml</loc>
-  <lastmod>2015-04-03</lastmod>
+  <lastmod>2015-04-25</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://www.curiousefficiency.org/categories/pulpdist.xml</loc>
-  <lastmod>2015-04-03</lastmod>
- </sitemap>
- <sitemap>
-  <loc>http://www.curiousefficiency.org/categories/python-kallithea-docker-openshift.xml</loc>
-  <lastmod>2014-12-11</lastmod>
+  <lastmod>2015-04-25</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://www.curiousefficiency.org/categories/python.xml</loc>
-  <lastmod>2015-04-04</lastmod>
+  <lastmod>2015-04-25</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://www.curiousefficiency.org/categories/science.xml</loc>
-  <lastmod>2015-04-03</lastmod>
+  <lastmod>2015-04-25</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://www.curiousefficiency.org/categories/tech.xml</loc>
-  <lastmod>2015-04-03</lastmod>
+  <lastmod>2015-04-25</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://www.curiousefficiency.org/categories/travel.xml</loc>
-  <lastmod>2015-04-03</lastmod>
- </sitemap>
- <sitemap>
-  <loc>http://www.curiousefficiency.org/galleries/rss.xml</loc>
-  <lastmod>2015-04-03</lastmod>
+  <lastmod>2015-04-25</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://www.curiousefficiency.org/rss.xml</loc>
-  <lastmod>2015-04-14</lastmod>
+  <lastmod>2015-04-26</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://www.curiousefficiency.org/sitemap.xml</loc>
-  <lastmod>2015-04-14</lastmod>
+  <lastmod>2015-04-26</lastmod>
  </sitemap>
 </sitemapindex>
