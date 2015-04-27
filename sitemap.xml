@@ -302,11 +302,15 @@
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/2015/index.html</loc>
-  <lastmod>2015-04-26</lastmod>
+  <lastmod>2015-04-27</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/archive.html</loc>
   <lastmod>2015-04-25</lastmod>
+ </url>
+ <url>
+  <loc>http://www.curiousefficiency.org/categories/cat_python.html</loc>
+  <lastmod>2015-04-27</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/categories/docker.html</loc>
@@ -322,7 +326,7 @@
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/categories/index.html</loc>
-  <lastmod>2015-04-26</lastmod>
+  <lastmod>2015-04-27</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/categories/intarwebs.html</loc>
@@ -398,11 +402,11 @@
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/index-7.html</loc>
-  <lastmod>2015-04-26</lastmod>
+  <lastmod>2015-04-27</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/index.html</loc>
-  <lastmod>2015-04-26</lastmod>
+  <lastmod>2015-04-27</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/pages/about.html</loc>
@@ -962,7 +966,11 @@
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2015/04/fedora-encrypted-volumes.html</loc>
-  <lastmod>2015-04-26</lastmod>
+  <lastmod>2015-04-27</lastmod>
+ </url>
+ <url>
+  <loc>http://www.curiousefficiency.org/posts/2015/04/pycon-australia-education-miniconf.html</loc>
+  <lastmod>2015-04-27</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2015/04/stop-supporting-python26.html</loc>
