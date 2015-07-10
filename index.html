@@ -94,6 +94,194 @@ creature indeed :)
 <div class="postindex">
     <article class="h-entry post-text">
     <header>
+        <h1 class="p-name entry-title"><a href="posts/2015/07/asyncio-background-calls.html" class="u-url">Background tasks in Python 3.5</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">Nick Coghlan</span></p>
+            <p class="dateline"><a href="posts/2015/07/asyncio-background-calls.html" rel="bookmark"><time class="published dt-published" datetime="2015-07-10T08:17:53+00:00" title="2015-07-10 08:17">2015-07-10 08:17</time></a></p>
+                <p class="commentline">
+        
+    <a href="posts/2015/07/asyncio-background-calls.html#disqus_thread" data-disqus-identifier="cache/posts/2015/07/asyncio_background_tasks.html">Comments</a>
+
+
+        </p>
+</div>
+    </header>
+    <div class="e-content entry-content">
+    <div>
+<p>One of the recurring questions with asyncio is "How do I execute one or two
+operations asynchronously in an otherwise synchronous application?"</p>
+<p>Say, for example, I have the following code:</p>
+<pre class="code literal-block"><span class="o">&gt;&gt;&gt;</span> <span class="k">import</span> <span class="nx">itertools</span><span class="p">,</span> <span class="nb">time</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nx">def</span> <span class="nx">ticker</span><span class="p">():</span>
+<span class="nx">...</span>     <span class="nb">for</span> <span class="n">i</span> <span class="k">in</span> <span class="nx">itertools.count</span><span class="p">():</span>
+<span class="nx">...</span>         <span class="nx">print</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+<span class="nx">...</span>         <span class="nx">time.sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="nx">...</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nx">ticker</span><span class="p">()</span>
+<span class="mi">0</span>
+<span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+<span class="p">^</span><span class="nx">CTraceback</span> <span class="p">(</span><span class="nx">most</span> <span class="nx">recent</span> <span class="nb">call</span> <span class="nb">last</span><span class="p">):</span>
+ <span class="nb">File</span> <span class="s2">"&lt;stdin&gt;"</span><span class="p">,</span> <span class="nb">line</span> <span class="mi">1</span><span class="p">,</span> <span class="k">in</span> <span class="o">&lt;</span><span class="nx">module</span><span class="o">&gt;</span>
+ <span class="nb">File</span> <span class="s2">"&lt;stdin&gt;"</span><span class="p">,</span> <span class="nb">line</span> <span class="mi">4</span><span class="p">,</span> <span class="k">in</span> <span class="nx">ticker</span>
+<span class="nx">KeyboardInterrupt</span>
+</pre>
+
+
+<p>With the native coroutine syntax coming in Python 3.5, I can change that
+synchronous code into event-driven asynchronous code easily enough:</p>
+<pre class="code literal-block"><span class="n">async</span> <span class="n">def</span> <span class="n">ticker</span><span class="p">()</span><span class="o">:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="n">in</span> <span class="n">itertools</span><span class="p">.</span><span class="n">count</span><span class="p">()</span><span class="o">:</span>
+        <span class="n">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">await</span> <span class="n">asyncio</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre>
+
+
+<p>But how do I kick that ticker off as a background task? What's the Python
+REPL's equivalent of appending <code>&amp;</code> to a shell command?</p>
+<p>It turns out it looks something like this:</p>
+<pre class="code literal-block"><span class="n">import</span> <span class="n">asyncio</span>
+<span class="n">def</span> <span class="n">run_in_background</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="n">None</span><span class="p">)</span><span class="o">:</span>
+    <span class="s">"""Schedules target as a background task</span>
+
+    <span class="n">Returns</span> <span class="n">the</span> <span class="n">scheduled</span> <span class="n">task</span><span class="p">.</span>
+
+    <span class="n">If</span> <span class="n">target</span> <span class="n">is</span> <span class="n">a</span> <span class="n">future</span> <span class="n">or</span> <span class="n">coroutine</span><span class="p">,</span> <span class="n">equivalent</span> <span class="n">to</span> <span class="n">asyncio</span><span class="p">.</span><span class="n">ensure_future</span>
+    <span class="n">If</span> <span class="n">target</span> <span class="n">is</span> <span class="n">a</span> <span class="n">callable</span><span class="p">,</span> <span class="n">it</span> <span class="n">is</span> <span class="n">scheduled</span> <span class="n">in</span> <span class="n">the</span> <span class="k">default</span> <span class="n">executor</span>
+    <span class="s">"""</span>
+    <span class="k">if</span> <span class="n">loop</span> <span class="n">is</span> <span class="n">None</span><span class="o">:</span>
+        <span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="p">.</span><span class="n">get_event_loop</span><span class="p">()</span>
+    <span class="nl">try:</span>
+        <span class="k">return</span> <span class="n">asyncio</span><span class="p">.</span><span class="n">ensure_future</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="n">loop</span><span class="p">)</span>
+    <span class="n">except</span> <span class="n">TypeError</span><span class="o">:</span>
+        <span class="n">pass</span>
+    <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">target</span><span class="p">)</span><span class="o">:</span>
+        <span class="k">return</span> <span class="n">loop</span><span class="p">.</span><span class="n">run_in_executor</span><span class="p">(</span><span class="n">None</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+    <span class="n">raise</span> <span class="n">TypeError</span><span class="p">(</span><span class="s">"background task must be future, coroutine or "</span>
+                    <span class="s">"callable, not {!r}"</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">type</span><span class="p">(</span><span class="n">target</span><span class="p">)))</span>
+</pre>
+
+
+<p>So now I can do:</p>
+<pre class="code literal-block"><span class="o">&gt;&gt;&gt;</span> <span class="nx">async</span> <span class="nx">def</span> <span class="nx">ticker</span><span class="p">():</span>
+<span class="nx">...</span>     <span class="nb">for</span> <span class="n">i</span> <span class="k">in</span> <span class="nx">itertools.count</span><span class="p">():</span>
+<span class="nx">...</span>         <span class="nx">print</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+<span class="nx">...</span>         <span class="nx">await</span> <span class="nx">asyncio.sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="nx">...</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">ticker1</span> <span class="o">=</span> <span class="nx">run_in_background</span><span class="p">(</span><span class="nx">ticker</span><span class="p">())</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nx">ticker1</span>
+<span class="o">&lt;</span><span class="nx">Task</span> <span class="nx">pending</span> <span class="n">coro</span><span class="o">=&lt;</span><span class="nx">ticker</span><span class="p">()</span> <span class="nb">running</span> <span class="nx">at</span> <span class="o">&lt;</span><span class="nb">stdin</span><span class="o">&gt;</span><span class="p">:</span><span class="mi">1</span><span class="o">&gt;&gt;</span>
+</pre>
+
+
+<p>But how do I run that for a while? The event loop won't run unless the current
+thread starts it running and either stops when a particular event occurs, or
+when explicitly stopped. Another helper function covers that:</p>
+<pre class="code literal-block"><span class="n">def</span> <span class="n">run_in_foreground</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="n">None</span><span class="p">)</span><span class="o">:</span>
+    <span class="s">"""Runs event loop in current thread until the given task completes</span>
+
+    <span class="n">Returns</span> <span class="n">the</span> <span class="n">result</span> <span class="n">of</span> <span class="n">the</span> <span class="n">task</span><span class="p">.</span>
+    <span class="n">For</span> <span class="n">more</span> <span class="n">complex</span> <span class="n">conditions</span><span class="p">,</span> <span class="n">combine</span> <span class="n">with</span> <span class="n">asyncio</span><span class="p">.</span><span class="n">wait</span><span class="p">()</span>
+    <span class="n">To</span> <span class="n">include</span> <span class="n">a</span> <span class="n">timeout</span><span class="p">,</span> <span class="n">combine</span> <span class="n">with</span> <span class="n">asyncio</span><span class="p">.</span><span class="n">wait_for</span><span class="p">()</span>
+    <span class="s">"""</span>
+    <span class="k">if</span> <span class="n">loop</span> <span class="n">is</span> <span class="n">None</span><span class="o">:</span>
+        <span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="p">.</span><span class="n">get_event_loop</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">loop</span><span class="p">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="n">asyncio</span><span class="p">.</span><span class="n">ensure_future</span><span class="p">(</span><span class="n">task</span><span class="p">))</span>
+</pre>
+
+
+<p>And then I can do:</p>
+<pre class="code literal-block"><span class="o">&gt;&gt;&gt;</span> <span class="n">run_in_foreground</span><span class="p">(</span><span class="n">asyncio</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="mi">0</span>
+<span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+<span class="mi">4</span>
+</pre>
+
+
+<p>Here we can see the background task running while we wait for the foreground
+task to complete. And if I do it again with a different timeout:</p>
+<pre class="code literal-block"><span class="o">&gt;&gt;&gt;</span> <span class="n">run_in_foreground</span><span class="p">(</span><span class="n">asyncio</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="mi">5</span>
+<span class="mi">6</span>
+<span class="mi">7</span>
+</pre>
+
+
+<p>We see that the background task picked up again right where it left off
+the first time.</p>
+<p>We can also single step the event loop with a zero second sleep (the ticks
+reflect the fact there was more than a second delay between running each
+command):</p>
+<pre class="code literal-block"><span class="o">&gt;&gt;&gt;</span> <span class="n">run_in_foreground</span><span class="p">(</span><span class="n">asyncio</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<span class="mi">8</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">run_in_foreground</span><span class="p">(</span><span class="n">asyncio</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<span class="mi">9</span>
+</pre>
+
+
+<p>And start a second ticker to run concurrently with the first one:</p>
+<pre class="code literal-block"><span class="o">&gt;&gt;&gt;</span> <span class="n">ticker2</span> <span class="o">=</span> <span class="nx">run_in_background</span><span class="p">(</span><span class="nx">ticker</span><span class="p">())</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nx">ticker2</span>
+<span class="o">&lt;</span><span class="nx">Task</span> <span class="nx">pending</span> <span class="n">coro</span><span class="o">=&lt;</span><span class="nx">ticker</span><span class="p">()</span> <span class="nb">running</span> <span class="nx">at</span> <span class="o">&lt;</span><span class="nb">stdin</span><span class="o">&gt;</span><span class="p">:</span><span class="mi">1</span><span class="o">&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nx">run_in_foreground</span><span class="p">(</span><span class="nx">asyncio.sleep</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<span class="mi">0</span>
+<span class="mi">10</span>
+</pre>
+
+
+<p>The asynchronous tickers will happily hang around in the background, ready to
+resume operation whenever I give them the opportunity. If I decide I want to
+stop one of them, I can cancel the corresponding task:</p>
+<pre class="code literal-block"><span class="o">&gt;&gt;&gt;</span> <span class="n">ticker1</span><span class="p">.</span><span class="n">cancel</span><span class="p">()</span>
+<span class="n">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">run_in_foreground</span><span class="p">(</span><span class="n">asyncio</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">ticker2</span><span class="p">.</span><span class="n">cancel</span><span class="p">()</span>
+<span class="n">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">run_in_foreground</span><span class="p">(</span><span class="n">asyncio</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+</pre>
+
+
+<p>But what about our original <em>synchronous</em> ticker? Can I run that as a
+background task? It turns out I can, as that's the reason for the special
+handling of callables in <code>run_in_background</code>. However, I haven't figured out
+how to reliably cancel a task created through <code>run_in_executor</code> so we'll make
+sure this variant of the synchronous version stops on its own:</p>
+<pre class="code literal-block"><span class="n">import</span> <span class="n">itertools</span><span class="p">,</span> <span class="n">time</span>
+<span class="n">def</span> <span class="n">ticker_sync</span><span class="p">(</span><span class="n">stop</span><span class="p">)</span><span class="o">:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="n">in</span> <span class="n">range</span><span class="p">(</span><span class="n">stop</span><span class="p">)</span><span class="o">:</span>
+        <span class="n">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">print</span><span class="p">(</span><span class="s">"Finishing"</span><span class="p">)</span>
+</pre>
+
+
+<p>The key difference between scheduling a callable and a coroutine, is that the
+callable will start executing immediately in another thread, rather than
+waiting for the current thread to run the event loop:</p>
+<pre class="code literal-block"><span class="o">&gt;&gt;&gt;</span> <span class="n">threaded_ticker</span> <span class="o">=</span> <span class="n">run_in_background</span><span class="p">(</span><span class="n">lambda</span><span class="o">:</span> <span class="n">ticker_sync</span><span class="p">(</span><span class="mi">5</span><span class="p">));</span> <span class="n">print</span><span class="p">(</span><span class="s">"Starts immediately!"</span><span class="p">)</span>
+<span class="mi">0</span>
+<span class="n">Starts</span> <span class="n">immediately</span><span class="o">!</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+<span class="mi">4</span>
+<span class="n">Finishing</span>
+</pre>
+
+
+<p>That's both a strength (as you can run multiple blocking IO operations in
+parallel), but also a significant weakness - one of the benefits of explicit
+coroutines is their predictability, as you know <em>none</em> of them will start
+doing anything until you start running the event loop.</p>
+</div>
+    </div>
+    </article>
+    <article class="h-entry post-text">
+    <header>
         <h1 class="p-name entry-title"><a href="posts/2015/04/pycon-australia-education-miniconf.html" class="u-url">Inaugural PyCon Australia Education Miniconf</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn">Nick Coghlan</span></p>
@@ -1560,170 +1748,6 @@ future language evolution within the normal change management processes, and
 any proposal that can't be handled that way will just get rejected as
 imposing an unacceptably high cost on the community and the core development
 team.</p>
-</div>
-    </div>
-    </article>
-    <article class="h-entry post-text">
-    <header>
-        <h1 class="p-name entry-title"><a href="posts/2014/08/python-teaching-suggestions.html" class="u-url">Some Suggestions for Teaching Python</a></h1>
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">Nick Coghlan</span></p>
-            <p class="dateline"><a href="posts/2014/08/python-teaching-suggestions.html" rel="bookmark"><time class="published dt-published" datetime="2014-08-08T12:55:26+00:00" title="2014-08-08 12:55">2014-08-08 12:55</time></a></p>
-                <p class="commentline">
-        
-    <a href="posts/2014/08/python-teaching-suggestions.html#disqus_thread" data-disqus-identifier="cache/posts/2014/08/python-teaching-suggestions.html">Comments</a>
-
-
-        </p>
-</div>
-    </header>
-    <div class="e-content entry-content">
-    <div>
-<p>I recently had the chance to attend a Software Carpentry bootcamp at the
-University of Queensland (as a teaching assistant), as well as seeing a
-presentation from one of UQ's tutors at PyCon Australia 2014.</p>
-<p>While many of the issues they encountered were inherent in the complexity
-of teaching programming, a few seemed like things that could be avoided.</p>
-<h2>Getting floating point results from integer division</h2>
-<p>In Python 2, integer division copies C in truncating the answer by default:</p>
-<pre class="code literal-block">    <span class="nv">$ </span>python -c <span class="s2">"print(3/4)"</span>
-    0
-</pre>
-
-
-<p>Promoting to floating point requires type coercion, a command line flag
-or a future import:</p>
-<pre class="code literal-block">    <span class="nv">$ </span>python -c <span class="s2">"print(float(3)/4)"</span>
-    0.75
-    <span class="nv">$ </span>python -Qnew -c <span class="s2">"print(3/4)"</span>
-    0.75
-    <span class="nv">$ </span>python -c <span class="s2">"from __future__ import division; print(3/4)"</span>
-    0.75
-</pre>
-
-
-<p>Python 3 just does the right thing by default, so one way to avoid the
-problem entirely is to teach Python 3 instead of Python 2:</p>
-<pre class="code literal-block">    <span class="nv">$ </span>python3 -c <span class="s2">"print(3/4)"</span>
-    0.75
-</pre>
-
-
-<p>(In both Python 2 and 3, the <code>//</code> floor division operator explicitly
-requests truncating division when it is desired)</p>
-<h2>Common Python 2/3 syntax for printing values</h2>
-<p>I've been using Python 2 and 3 in parallel for more than 8 years now (while
-Python 3.0 was released in 2008, the project started in earnest a couple
-of years earlier than that, while Python 2.5 was still in development).</p>
-<p>One essential trick I have learned in order to make regularly switching back
-and forth feasible is to limit myself to the common print syntax that works
-the same in both versions: passing a single argument surrounded by
-parentheses.</p>
-<pre class="code literal-block"><span class="nv">$ </span>python -c <span class="s1">'print("Hello world!")'</span>
-Hello world!
-<span class="nv">$ </span>python3 -c <span class="s1">'print("Hello world!")'</span>
-Hello world!
-</pre>
-
-
-<p>If I need to pass multiple arguments, I'll use string formatting, rather
-than the implicit concatenation feature.</p>
-<pre class="code literal-block"><span class="nv">$ </span>python -c <span class="s1">'print("{} {}{}".format("Hello", "world", "!"))'</span>
-Hello world!
-<span class="nv">$ </span>python3 -c <span class="s1">'print("{} {}{}".format("Hello", "world", "!"))'</span>
-Hello world!
-</pre>
-
-
-<p>Rather than doing this, the Software Carpentry material that was used at the
-bootcamp I attended used the legacy Python 2 only <code>print</code> syntax extensively,
-causing examples that otherwise would have worked fine in either version to
-fail for students that happened to be running Python 3. Adopting the shared
-syntax for printing values could be enough to make the course largely
-version independent.</p>
-<h2>Distinguishing between returning and printing values</h2>
-<p>One problem noted both at the bootcamp and by presenters at PyCon Australia
-was the challenge of teaching students the difference between printing and
-returning values. The problem is the "Print" part of the Read-Eval-Print-Loop
-provided by Python's interactive interpreter:</p>
-<pre class="code literal-block"><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">print_arg</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-<span class="o">...</span>     <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="o">...</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">return_arg</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-<span class="o">...</span>     <span class="k">return</span> <span class="n">x</span>
-<span class="o">...</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">print_arg</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="mi">10</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">return_arg</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="mi">10</span>
-</pre>
-
-
-<p>There's no obvious difference in output at the interactive prompt, especially
-for types like numbers where the results of <code>str</code> and <code>repr</code> are the same.
-Even when they're different, those differences may not be obvious to a
-student:</p>
-<pre class="code literal-block"><span class="o">&gt;&gt;&gt;</span> <span class="n">print_arg</span><span class="p">(</span><span class="s">"Hello world"</span><span class="p">)</span>
-<span class="n">Hello</span> <span class="n">world</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">return_arg</span><span class="p">(</span><span class="s">"Hello world"</span><span class="p">)</span>
-<span class="s">'Hello world'</span>
-</pre>
-
-
-<p>While I don't have a definitive answer for this one, an experiment that seems
-worth trying to me is to teach students how to replace <code>sys.displayhook</code>. In
-particular, I suggest demonstrating the following change, and seeing if it
-helps explain the difference between printing output for display to the user
-and returning values for further processing:</p>
-<pre class="code literal-block"><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">new_displayhook</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
-<span class="o">...</span>     <span class="k">if</span> <span class="n">obj</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-<span class="o">...</span>         <span class="k">print</span><span class="p">(</span><span class="s">"-&gt; {!r}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
-<span class="o">...</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">sys</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">sys</span><span class="o">.</span><span class="n">displayhook</span> <span class="o">=</span> <span class="n">new_displayhook</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">print_arg</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="mi">10</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">return_arg</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="o">-&gt;</span> <span class="mi">10</span>
-</pre>
-
-
-<p>Understanding the difference between printing and returning is essential to
-learning to use functions effectively, and tweaking the display of results
-this way may help make the difference more obvious.</p>
-<h2>Addendum: IPython (including IPython Notebook)</h2>
-<p>The initial examples above focused on the standard CPython runtime, include
-the default interactive interpreter. The IPython interactive interpreter,
-including the IPython Notebook, has a couple of interesting differences in
-behaviour that are relevant to the above comments.</p>
-<p>Firstly, it <em>does</em> display return values and printed values differently,
-prefacing <em>results</em> with an output reference number:</p>
-<pre class="code literal-block"><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="k">print</span> <span class="mi">10</span>
-<span class="mi">10</span>
-
-<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="mi">10</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="mi">10</span>
-</pre>
-
-
-<p>Secondly, it has an optional "autocall" feature that allows a user to tell
-IPython to automatically add the missing parentheses to a function call if
-the user leaves them out:</p>
-<pre class="code literal-block"><span class="nv">$ </span>ipython3 --autocall<span class="o">=</span>1 -c <span class="s2">"print 10"</span>
--&gt; print<span class="o">(</span>10<span class="o">)</span>
-10
-</pre>
-
-
-<p>This is a general purpose feature that allows users to make their IPython
-sessions behave more like languages that don't have first class functions
-(most notably, IPython's autocall feature closely resembles MATLAB's
-"command syntax" notation for calling functions).</p>
-<p>It also has the side effect that users that use IPython, have autocall
-enabled, and don't use any of the more esoteric quirks of the Python 2
-<code>print</code> statement (like stream redirection or suppressing the trailing
-newline) may not even notice that <code>print</code> became an ordinary builtin in
-Python 3.</p>
 </div>
     </div>
     </article>

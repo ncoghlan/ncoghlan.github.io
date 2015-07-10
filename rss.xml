@@ -1,9 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0"><channel><title>Curious Efficiency</title><link>http://www.curiousefficiency.org</link><description>Efficiency (a virtue) is the child of laziness and greed (both vices), while
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Curious Efficiency</title><link>http://www.curiousefficiency.org</link><description>Efficiency (a virtue) is the child of laziness and greed (both vices), while
 much of our economic activity is devoted to preventing boredom in the idle
 time created by increases in efficiency. To be human is to be a strange
 creature indeed :)
-</description><atom:link type="application/rss+xml" href="http://www.curiousefficiency.org/rss.xml" rel="self"></atom:link><language>en</language><lastBuildDate>Mon, 27 Apr 2015 22:22:51 GMT</lastBuildDate><generator>http://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Inaugural PyCon Australia Education Miniconf</title><link>http://www.curiousefficiency.org/posts/2015/04/pycon-australia-education-miniconf.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;p&gt;PyCon Australia launched its &lt;a href="http://2015.pycon-au.org/cfp"&gt;Call for Papers&lt;/a&gt; just over a month ago, and it closes in a little over a week on Friday the 8th of May.&lt;/p&gt;
+</description><atom:link href="http://www.curiousefficiency.org/rss.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Fri, 10 Jul 2015 20:21:30 GMT</lastBuildDate><generator>http://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Background tasks in Python 3.5</title><link>http://www.curiousefficiency.org/posts/2015/07/asyncio-background-calls.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;p&gt;One of the recurring questions with asyncio is "How do I execute one or two
+operations asynchronously in an otherwise synchronous application?"&lt;/p&gt;
+&lt;p&gt;Say, for example, I have the following code:&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;import&lt;/span&gt; &lt;span class="nx"&gt;itertools&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;time&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;def&lt;/span&gt; &lt;span class="nx"&gt;ticker&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+&lt;span class="nx"&gt;...&lt;/span&gt;     &lt;span class="nb"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="nx"&gt;itertools.count&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+&lt;span class="nx"&gt;...&lt;/span&gt;         &lt;span class="nx"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nx"&gt;...&lt;/span&gt;         &lt;span class="nx"&gt;time.sleep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nx"&gt;...&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;ticker&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="mi"&gt;3&lt;/span&gt;
+&lt;span class="p"&gt;^&lt;/span&gt;&lt;span class="nx"&gt;CTraceback&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;most&lt;/span&gt; &lt;span class="nx"&gt;recent&lt;/span&gt; &lt;span class="nb"&gt;call&lt;/span&gt; &lt;span class="nb"&gt;last&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+ &lt;span class="nb"&gt;File&lt;/span&gt; &lt;span class="s2"&gt;"&amp;lt;stdin&amp;gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;line&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;module&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+ &lt;span class="nb"&gt;File&lt;/span&gt; &lt;span class="s2"&gt;"&amp;lt;stdin&amp;gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;line&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="nx"&gt;ticker&lt;/span&gt;
+&lt;span class="nx"&gt;KeyboardInterrupt&lt;/span&gt;
+&lt;/pre&gt;
+
+
+&lt;p&gt;With the native coroutine syntax coming in Python 3.5, I can change that
+synchronous code into event-driven asynchronous code easily enough:&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span class="n"&gt;async&lt;/span&gt; &lt;span class="n"&gt;def&lt;/span&gt; &lt;span class="n"&gt;ticker&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;itertools&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;await&lt;/span&gt; &lt;span class="n"&gt;asyncio&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sleep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;
+
+
+&lt;p&gt;But how do I kick that ticker off as a background task? What's the Python
+REPL's equivalent of appending &lt;code&gt;&amp;amp;&lt;/code&gt; to a shell command?&lt;/p&gt;
+&lt;p&gt;It turns out it looks something like this:&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span class="n"&gt;import&lt;/span&gt; &lt;span class="n"&gt;asyncio&lt;/span&gt;
+&lt;span class="n"&gt;def&lt;/span&gt; &lt;span class="n"&gt;run_in_background&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;loop&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;None&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+    &lt;span class="s"&gt;"""Schedules target as a background task&lt;/span&gt;
+
+    &lt;span class="n"&gt;Returns&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;scheduled&lt;/span&gt; &lt;span class="n"&gt;task&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+    &lt;span class="n"&gt;If&lt;/span&gt; &lt;span class="n"&gt;target&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;future&lt;/span&gt; &lt;span class="n"&gt;or&lt;/span&gt; &lt;span class="n"&gt;coroutine&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;equivalent&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;asyncio&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ensure_future&lt;/span&gt;
+    &lt;span class="n"&gt;If&lt;/span&gt; &lt;span class="n"&gt;target&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;callable&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;it&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;scheduled&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="k"&gt;default&lt;/span&gt; &lt;span class="n"&gt;executor&lt;/span&gt;
+    &lt;span class="s"&gt;"""&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;loop&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;None&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;loop&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;asyncio&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_event_loop&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="nl"&gt;try:&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;asyncio&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ensure_future&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;loop&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;loop&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;except&lt;/span&gt; &lt;span class="n"&gt;TypeError&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;pass&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;callable&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;loop&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run_in_executor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;raise&lt;/span&gt; &lt;span class="n"&gt;TypeError&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"background task must be future, coroutine or "&lt;/span&gt;
+                    &lt;span class="s"&gt;"callable, not {!r}"&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;type&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;/pre&gt;
+
+
+&lt;p&gt;So now I can do:&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;async&lt;/span&gt; &lt;span class="nx"&gt;def&lt;/span&gt; &lt;span class="nx"&gt;ticker&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+&lt;span class="nx"&gt;...&lt;/span&gt;     &lt;span class="nb"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="nx"&gt;itertools.count&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+&lt;span class="nx"&gt;...&lt;/span&gt;         &lt;span class="nx"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nx"&gt;...&lt;/span&gt;         &lt;span class="nx"&gt;await&lt;/span&gt; &lt;span class="nx"&gt;asyncio.sleep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nx"&gt;...&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;ticker1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;run_in_background&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;ticker&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;ticker1&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;Task&lt;/span&gt; &lt;span class="nx"&gt;pending&lt;/span&gt; &lt;span class="n"&gt;coro&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;ticker&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="nb"&gt;running&lt;/span&gt; &lt;span class="nx"&gt;at&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nb"&gt;stdin&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;
+
+
+&lt;p&gt;But how do I run that for a while? The event loop won't run unless the current
+thread starts it running and either stops when a particular event occurs, or
+when explicitly stopped. Another helper function covers that:&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span class="n"&gt;def&lt;/span&gt; &lt;span class="n"&gt;run_in_foreground&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;task&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;loop&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;None&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+    &lt;span class="s"&gt;"""Runs event loop in current thread until the given task completes&lt;/span&gt;
+
+    &lt;span class="n"&gt;Returns&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;task&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+    &lt;span class="n"&gt;For&lt;/span&gt; &lt;span class="n"&gt;more&lt;/span&gt; &lt;span class="n"&gt;complex&lt;/span&gt; &lt;span class="n"&gt;conditions&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;combine&lt;/span&gt; &lt;span class="n"&gt;with&lt;/span&gt; &lt;span class="n"&gt;asyncio&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;wait&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="n"&gt;To&lt;/span&gt; &lt;span class="n"&gt;include&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;timeout&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;combine&lt;/span&gt; &lt;span class="n"&gt;with&lt;/span&gt; &lt;span class="n"&gt;asyncio&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;wait_for&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="s"&gt;"""&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;loop&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;None&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;loop&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;asyncio&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_event_loop&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;loop&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run_until_complete&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;asyncio&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ensure_future&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;task&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;
+
+
+&lt;p&gt;And then I can do:&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;run_in_foreground&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;asyncio&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sleep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="mi"&gt;3&lt;/span&gt;
+&lt;span class="mi"&gt;4&lt;/span&gt;
+&lt;/pre&gt;
+
+
+&lt;p&gt;Here we can see the background task running while we wait for the foreground
+task to complete. And if I do it again with a different timeout:&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;run_in_foreground&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;asyncio&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sleep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="mi"&gt;5&lt;/span&gt;
+&lt;span class="mi"&gt;6&lt;/span&gt;
+&lt;span class="mi"&gt;7&lt;/span&gt;
+&lt;/pre&gt;
+
+
+&lt;p&gt;We see that the background task picked up again right where it left off
+the first time.&lt;/p&gt;
+&lt;p&gt;We can also single step the event loop with a zero second sleep (the ticks
+reflect the fact there was more than a second delay between running each
+command):&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;run_in_foreground&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;asyncio&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sleep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="mi"&gt;8&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;run_in_foreground&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;asyncio&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sleep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="mi"&gt;9&lt;/span&gt;
+&lt;/pre&gt;
+
+
+&lt;p&gt;And start a second ticker to run concurrently with the first one:&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;ticker2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;run_in_background&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;ticker&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;ticker2&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;Task&lt;/span&gt; &lt;span class="nx"&gt;pending&lt;/span&gt; &lt;span class="n"&gt;coro&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;ticker&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="nb"&gt;running&lt;/span&gt; &lt;span class="nx"&gt;at&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nb"&gt;stdin&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;run_in_foreground&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;asyncio.sleep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="mi"&gt;10&lt;/span&gt;
+&lt;/pre&gt;
+
+
+&lt;p&gt;The asynchronous tickers will happily hang around in the background, ready to
+resume operation whenever I give them the opportunity. If I decide I want to
+stop one of them, I can cancel the corresponding task:&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;ticker1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cancel&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;True&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;run_in_foreground&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;asyncio&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sleep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;ticker2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cancel&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;True&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;run_in_foreground&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;asyncio&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sleep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;
+
+
+&lt;p&gt;But what about our original &lt;em&gt;synchronous&lt;/em&gt; ticker? Can I run that as a
+background task? It turns out I can, as that's the reason for the special
+handling of callables in &lt;code&gt;run_in_background&lt;/code&gt;. However, I haven't figured out
+how to reliably cancel a task created through &lt;code&gt;run_in_executor&lt;/code&gt; so we'll make
+sure this variant of the synchronous version stops on its own:&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span class="n"&gt;import&lt;/span&gt; &lt;span class="n"&gt;itertools&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;
+&lt;span class="n"&gt;def&lt;/span&gt; &lt;span class="n"&gt;ticker_sync&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;stop&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;stop&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sleep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Finishing"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;
+
+
+&lt;p&gt;The key difference between scheduling a callable and a coroutine, is that the
+callable will start executing immediately in another thread, rather than
+waiting for the current thread to run the event loop:&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;threaded_ticker&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;run_in_background&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lambda&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;ticker_sync&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt; &lt;span class="n"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Starts immediately!"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="n"&gt;Starts&lt;/span&gt; &lt;span class="n"&gt;immediately&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="mi"&gt;3&lt;/span&gt;
+&lt;span class="mi"&gt;4&lt;/span&gt;
+&lt;span class="n"&gt;Finishing&lt;/span&gt;
+&lt;/pre&gt;
+
+
+&lt;p&gt;That's both a strength (as you can run multiple blocking IO operations in
+parallel), but also a significant weakness - one of the benefits of explicit
+coroutines is their predictability, as you know &lt;em&gt;none&lt;/em&gt; of them will start
+doing anything until you start running the event loop.&lt;/p&gt;&lt;/div&gt;</description><category>python</category><guid>http://www.curiousefficiency.org/posts/2015/07/asyncio-background-calls.html</guid><pubDate>Fri, 10 Jul 2015 08:17:53 GMT</pubDate></item><item><title>Inaugural PyCon Australia Education Miniconf</title><link>http://www.curiousefficiency.org/posts/2015/04/pycon-australia-education-miniconf.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;p&gt;PyCon Australia launched its &lt;a href="http://2015.pycon-au.org/cfp"&gt;Call for Papers&lt;/a&gt; just over a month ago, and it closes in a little over a week on Friday the 8th of May.&lt;/p&gt;
 &lt;p&gt;A new addition to PyCon Australia this year, and one I'm particularly excited about co-organising following Dr James Curran's &lt;a href="https://www.youtube.com/watch?v=iVv7fCwVbp4&amp;amp;list=PLs4CJRBY5F1JQV44fKjRwjnh3CSTyJvOH&amp;amp;index=2"&gt;"Python for Every Child in Australia"&lt;/a&gt; keynote last year, is the inaugural Python in Education miniconf as a 4th specialist track on the Friday of the conference, before we move into the main program over the weekend.&lt;/p&gt;
 &lt;p&gt;From the CFP announcement: &lt;em&gt;"The Python in Education Miniconf aims to bring together community workshop organisers, professional Python instructors and professional educators across primary, secondary and tertiary levels to share their experiences and requirements, and identify areas of potential collaboration with each other and also with the broader Python community."&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;If that sounds like you, then I'd love to invite you to head over to the conference website and make your submission to the &lt;a href="http://2015.pycon-au.org/cfp"&gt;Call for Papers&lt;/a&gt;!&lt;/p&gt;
@@ -1293,148 +1461,4 @@ parallel support period. Instead, I expect we'll be able to accommodate any
 future language evolution within the normal change management processes, and
 any proposal that can't be handled that way will just get rejected as
 imposing an unacceptably high cost on the community and the core development
-team.&lt;/p&gt;&lt;/div&gt;</description><category>python</category><guid>http://www.curiousefficiency.org/posts/2014/08/python-4000.html</guid><pubDate>Sun, 17 Aug 2014 05:30:55 GMT</pubDate></item><item><title>Some Suggestions for Teaching Python</title><link>http://www.curiousefficiency.org/posts/2014/08/python-teaching-suggestions.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;p&gt;I recently had the chance to attend a Software Carpentry bootcamp at the
-University of Queensland (as a teaching assistant), as well as seeing a
-presentation from one of UQ's tutors at PyCon Australia 2014.&lt;/p&gt;
-&lt;p&gt;While many of the issues they encountered were inherent in the complexity
-of teaching programming, a few seemed like things that could be avoided.&lt;/p&gt;
-&lt;h2&gt;Getting floating point results from integer division&lt;/h2&gt;
-&lt;p&gt;In Python 2, integer division copies C in truncating the answer by default:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;    &lt;span class="nv"&gt;$ &lt;/span&gt;python -c &lt;span class="s2"&gt;"print(3/4)"&lt;/span&gt;
-    0
-&lt;/pre&gt;
-
-
-&lt;p&gt;Promoting to floating point requires type coercion, a command line flag
-or a future import:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;    &lt;span class="nv"&gt;$ &lt;/span&gt;python -c &lt;span class="s2"&gt;"print(float(3)/4)"&lt;/span&gt;
-    0.75
-    &lt;span class="nv"&gt;$ &lt;/span&gt;python -Qnew -c &lt;span class="s2"&gt;"print(3/4)"&lt;/span&gt;
-    0.75
-    &lt;span class="nv"&gt;$ &lt;/span&gt;python -c &lt;span class="s2"&gt;"from __future__ import division; print(3/4)"&lt;/span&gt;
-    0.75
-&lt;/pre&gt;
-
-
-&lt;p&gt;Python 3 just does the right thing by default, so one way to avoid the
-problem entirely is to teach Python 3 instead of Python 2:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;    &lt;span class="nv"&gt;$ &lt;/span&gt;python3 -c &lt;span class="s2"&gt;"print(3/4)"&lt;/span&gt;
-    0.75
-&lt;/pre&gt;
-
-
-&lt;p&gt;(In both Python 2 and 3, the &lt;code&gt;//&lt;/code&gt; floor division operator explicitly
-requests truncating division when it is desired)&lt;/p&gt;
-&lt;h2&gt;Common Python 2/3 syntax for printing values&lt;/h2&gt;
-&lt;p&gt;I've been using Python 2 and 3 in parallel for more than 8 years now (while
-Python 3.0 was released in 2008, the project started in earnest a couple
-of years earlier than that, while Python 2.5 was still in development).&lt;/p&gt;
-&lt;p&gt;One essential trick I have learned in order to make regularly switching back
-and forth feasible is to limit myself to the common print syntax that works
-the same in both versions: passing a single argument surrounded by
-parentheses.&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;python -c &lt;span class="s1"&gt;'print("Hello world!")'&lt;/span&gt;
-Hello world!
-&lt;span class="nv"&gt;$ &lt;/span&gt;python3 -c &lt;span class="s1"&gt;'print("Hello world!")'&lt;/span&gt;
-Hello world!
-&lt;/pre&gt;
-
-
-&lt;p&gt;If I need to pass multiple arguments, I'll use string formatting, rather
-than the implicit concatenation feature.&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;python -c &lt;span class="s1"&gt;'print("{} {}{}".format("Hello", "world", "!"))'&lt;/span&gt;
-Hello world!
-&lt;span class="nv"&gt;$ &lt;/span&gt;python3 -c &lt;span class="s1"&gt;'print("{} {}{}".format("Hello", "world", "!"))'&lt;/span&gt;
-Hello world!
-&lt;/pre&gt;
-
-
-&lt;p&gt;Rather than doing this, the Software Carpentry material that was used at the
-bootcamp I attended used the legacy Python 2 only &lt;code&gt;print&lt;/code&gt; syntax extensively,
-causing examples that otherwise would have worked fine in either version to
-fail for students that happened to be running Python 3. Adopting the shared
-syntax for printing values could be enough to make the course largely
-version independent.&lt;/p&gt;
-&lt;h2&gt;Distinguishing between returning and printing values&lt;/h2&gt;
-&lt;p&gt;One problem noted both at the bootcamp and by presenters at PyCon Australia
-was the challenge of teaching students the difference between printing and
-returning values. The problem is the "Print" part of the Read-Eval-Print-Loop
-provided by Python's interactive interpreter:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;print_arg&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;span class="o"&gt;...&lt;/span&gt;     &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;...&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;return_arg&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;span class="o"&gt;...&lt;/span&gt;     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;
-&lt;span class="o"&gt;...&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;print_arg&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="mi"&gt;10&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;return_arg&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="mi"&gt;10&lt;/span&gt;
-&lt;/pre&gt;
-
-
-&lt;p&gt;There's no obvious difference in output at the interactive prompt, especially
-for types like numbers where the results of &lt;code&gt;str&lt;/code&gt; and &lt;code&gt;repr&lt;/code&gt; are the same.
-Even when they're different, those differences may not be obvious to a
-student:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;print_arg&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Hello world"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;Hello&lt;/span&gt; &lt;span class="n"&gt;world&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;return_arg&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Hello world"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="s"&gt;'Hello world'&lt;/span&gt;
-&lt;/pre&gt;
-
-
-&lt;p&gt;While I don't have a definitive answer for this one, an experiment that seems
-worth trying to me is to teach students how to replace &lt;code&gt;sys.displayhook&lt;/code&gt;. In
-particular, I suggest demonstrating the following change, and seeing if it
-helps explain the difference between printing output for display to the user
-and returning values for further processing:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;new_displayhook&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;span class="o"&gt;...&lt;/span&gt;     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;obj&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="o"&gt;...&lt;/span&gt;         &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"-&amp;gt; {!r}"&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="o"&gt;...&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;displayhook&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;new_displayhook&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;print_arg&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="mi"&gt;10&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;return_arg&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;
-&lt;/pre&gt;
-
-
-&lt;p&gt;Understanding the difference between printing and returning is essential to
-learning to use functions effectively, and tweaking the display of results
-this way may help make the difference more obvious.&lt;/p&gt;
-&lt;h2&gt;Addendum: IPython (including IPython Notebook)&lt;/h2&gt;
-&lt;p&gt;The initial examples above focused on the standard CPython runtime, include
-the default interactive interpreter. The IPython interactive interpreter,
-including the IPython Notebook, has a couple of interesting differences in
-behaviour that are relevant to the above comments.&lt;/p&gt;
-&lt;p&gt;Firstly, it &lt;em&gt;does&lt;/em&gt; display return values and printed values differently,
-prefacing &lt;em&gt;results&lt;/em&gt; with an output reference number:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span class="n"&gt;In&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt; &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;
-&lt;span class="mi"&gt;10&lt;/span&gt;
-
-&lt;span class="n"&gt;In&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;
-&lt;span class="n"&gt;Out&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;
-&lt;/pre&gt;
-
-
-&lt;p&gt;Secondly, it has an optional "autocall" feature that allows a user to tell
-IPython to automatically add the missing parentheses to a function call if
-the user leaves them out:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;ipython3 --autocall&lt;span class="o"&gt;=&lt;/span&gt;1 -c &lt;span class="s2"&gt;"print 10"&lt;/span&gt;
--&amp;gt; print&lt;span class="o"&gt;(&lt;/span&gt;10&lt;span class="o"&gt;)&lt;/span&gt;
-10
-&lt;/pre&gt;
-
-
-&lt;p&gt;This is a general purpose feature that allows users to make their IPython
-sessions behave more like languages that don't have first class functions
-(most notably, IPython's autocall feature closely resembles MATLAB's
-"command syntax" notation for calling functions).&lt;/p&gt;
-&lt;p&gt;It also has the side effect that users that use IPython, have autocall
-enabled, and don't use any of the more esoteric quirks of the Python 2
-&lt;code&gt;print&lt;/code&gt; statement (like stream redirection or suppressing the trailing
-newline) may not even notice that &lt;code&gt;print&lt;/code&gt; became an ordinary builtin in
-Python 3.&lt;/p&gt;&lt;/div&gt;</description><category>python</category><guid>http://www.curiousefficiency.org/posts/2014/08/python-teaching-suggestions.html</guid><pubDate>Fri, 08 Aug 2014 12:55:26 GMT</pubDate></item></channel></rss>
+team.&lt;/p&gt;&lt;/div&gt;</description><category>python</category><guid>http://www.curiousefficiency.org/posts/2014/08/python-4000.html</guid><pubDate>Sun, 17 Aug 2014 05:30:55 GMT</pubDate></item></channel></rss>
