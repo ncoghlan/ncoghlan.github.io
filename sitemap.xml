@@ -302,7 +302,7 @@
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/2015/index.html</loc>
-  <lastmod>2015-07-10</lastmod>
+  <lastmod>2015-07-11</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/archive.html</loc>
@@ -362,7 +362,7 @@
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/categories/python.html</loc>
-  <lastmod>2015-07-10</lastmod>
+  <lastmod>2015-07-11</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/categories/science.html</loc>
@@ -402,11 +402,11 @@
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/index-7.html</loc>
-  <lastmod>2015-07-10</lastmod>
+  <lastmod>2015-07-11</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/index.html</loc>
-  <lastmod>2015-07-10</lastmod>
+  <lastmod>2015-07-11</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/pages/about.html</loc>
@@ -978,6 +978,10 @@
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2015/07/asyncio-background-calls.html</loc>
-  <lastmod>2015-07-10</lastmod>
+  <lastmod>2015-07-11</lastmod>
+ </url>
+ <url>
+  <loc>http://www.curiousefficiency.org/posts/2015/07/asyncio-tcp-echo-server.html</loc>
+  <lastmod>2015-07-11</lastmod>
  </url>
 </urlset>

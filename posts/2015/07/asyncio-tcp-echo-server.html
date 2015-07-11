@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>TCP echo client and server in Python 3.5 | Curious Efficiency</title>
+
+    
+            <link href="../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+
+    
+            <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../rss.xml">
+
+      <link rel="canonical" href="http://www.curiousefficiency.org/posts/2015/07/asyncio-tcp-echo-server.html">
+
+
+
+
+    
+        <!--[if lt IE 9]><script src="../../../assets/js/html5.js"></script><![endif]-->
+
+    
+
+
+    
+
+    <meta name="author" content="Nick Coghlan">
+        <link rel="prev" href="asyncio-background-calls.html" title="Background tasks in Python 3.5" type="text/html">
+    
+    <meta property="og:site_name" content="Curious Efficiency">
+    <meta property="og:title" content="TCP echo client and server in Python 3.5">
+    <meta property="og:url" content="http://www.curiousefficiency.org/posts/2015/07/asyncio-tcp-echo-server.html">
+    <meta property="og:description" content="This is a follow-on from my
+previous post
+on Python 3.5's new async/await syntax. Rather than the simple background
+timers used in the original post, this one will look at the impact native
+coroutine ">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2015-07-11T06:31:44+00:00">
+           <meta property="article:tag" content="python">
+
+    
+
+    
+
+
+
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<div class="navbar navbar-fixed-top" id="navbar">
+    <div class="navbar-inner">
+        <div class="container">
+
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+
+            <a class="brand" href="http://www.curiousefficiency.org/">
+
+                <span id="blog-title">Curious Efficiency</span>
+            </a>
+            <!-- Everything you want hidden at 940px or less, place within here -->
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    
+                <li>
+<a href="../../../pages/about.html">About</a>
+                </li>
+<li>
+<a href="../../../archive.html">Archives</a>
+                </li>
+<li>
+<a href="../../../categories/index.html">Tags</a>
+                </li>
+<li>
+<a href="../../../rss.xml">RSS</a>
+                </li>
+<li>
+<a href="http://python-notes.curiousefficiency.org">Python Notes</a>
+
+                    
+                </li>
+</ul>
+                <ul class="nav pull-right">
+                
+                
+                    <li>
+    </li>
+<li>
+    <a href="asyncio-tcp-echo-server.md" id="sourcelink">Source</a>
+    </li>
+
+                
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of Menubar -->
+<div class="container-fluid" id="content" role="main">
+    <!--Body content-->
+    <div class="row-fluid">
+    <div class="span2"></div>
+    <div class="span8">
+    
+    
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article">
+    
+    <header>
+        
+    <h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">TCP echo client and server in Python 3.5</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">Nick Coghlan</span></p>
+            <p class="dateline"><a href="#" rel="bookmark"><time class="published dt-published" datetime="2015-07-11T06:31:44+00:00" itemprop="datePublished" title="2015-07-11 06:31">2015-07-11 06:31</time></a></p>
+                <p class="commentline">
+        
+    <a href="asyncio-tcp-echo-server.html#disqus_thread" data-disqus-identifier="cache/posts/2015/07/asyncio_tcp_echo_server.html">Comments</a>
+
+
+            
+        </p>
+<p class="sourceline"><a href="asyncio-tcp-echo-server.md" id="sourcelink">Source</a></p>
+
+        </div>
+        
+
+    </header>
+
+    <div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>This is a follow-on from my
+<a href="http://www.curiousefficiency.org/posts/2015/07/asyncio-background-calls.html">previous post</a>
+on Python 3.5's new <code>async</code>/<code>await</code> syntax. Rather than the simple background
+timers used in the original post, this one will look at the impact native
+coroutine support has on the TCP echo client and server examples from the
+<a href="https://docs.python.org/3.4/library/asyncio-stream.html#tcp-echo-client-using-streams">asyncio documentation</a>.</p>
+<p>First, we'll recreate the <code>run_in_foreground</code> helper defined in the previous
+post. This helper function makes it easier to work with coroutines from
+otherwise synchronous code (like the interactive prompt):</p>
+<pre class="code literal-block"><span class="k">def</span> <span class="nf">run_in_foreground</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">"""Runs event loop in current thread until the given task completes</span>
+
+<span class="sd">    Returns the result of the task.</span>
+<span class="sd">    For more complex conditions, combine with asyncio.wait()</span>
+<span class="sd">    To include a timeout, combine with asyncio.wait_for()</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">loop</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">loop</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="n">asyncio</span><span class="o">.</span><span class="n">ensure_future</span><span class="p">(</span><span class="n">task</span><span class="p">))</span>
+</pre>
+
+
+<p>Next we'll define the coroutine for our TCP echo server implementation,
+which simply waits to receive up to 100 bytes on each new client connection,
+and then sends that data back to the client:</p>
+<pre class="code literal-block"><span class="n">async</span> <span class="k">def</span> <span class="nf">handle_tcp_echo</span><span class="p">(</span><span class="n">reader</span><span class="p">,</span> <span class="n">writer</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">await</span> <span class="n">reader</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+    <span class="n">addr</span> <span class="o">=</span> <span class="n">writer</span><span class="o">.</span><span class="n">get_extra_info</span><span class="p">(</span><span class="s">'peername'</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"-&gt; Server received </span><span class="si">%r</span><span class="s"> from </span><span class="si">%r</span><span class="s">"</span> <span class="o">%</span> <span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">addr</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"&lt;- Server sending: </span><span class="si">%r</span><span class="s">"</span> <span class="o">%</span> <span class="n">message</span><span class="p">)</span>
+    <span class="n">writer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">await</span> <span class="n">writer</span><span class="o">.</span><span class="n">drain</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"-- Terminating connection on server"</span><span class="p">)</span>
+    <span class="n">writer</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre>
+
+
+<p>And then the client coroutine we'll use to send a message and wait for a
+response:</p>
+<pre class="code literal-block"><span class="n">async</span> <span class="k">def</span> <span class="nf">tcp_echo_client</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="n">reader</span><span class="p">,</span> <span class="n">writer</span> <span class="o">=</span> <span class="n">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">open_connection</span><span class="p">(</span><span class="s">'127.0.0.1'</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span>
+                                                        <span class="n">loop</span><span class="o">=</span><span class="n">loop</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'-&gt; Client sending: </span><span class="si">%r</span><span class="s">'</span> <span class="o">%</span> <span class="n">message</span><span class="p">)</span>
+    <span class="n">writer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="n">await</span> <span class="n">reader</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'&lt;- Client received: </span><span class="si">%r</span><span class="s">'</span> <span class="o">%</span> <span class="n">data</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'-- Terminating connection on client'</span><span class="p">)</span>
+    <span class="n">writer</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">data</span>
+</pre>
+
+
+<p>We then use our <code>run_in_foreground</code> helper to interact with these coroutines
+from the interactive prompt. First, we start the echo server:</p>
+<pre class="code literal-block"><span class="gp">&gt;&gt;&gt; </span><span class="n">make_server</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">start_server</span><span class="p">(</span><span class="n">handle_echo</span><span class="p">,</span> <span class="s">'127.0.0.1'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">server</span> <span class="o">=</span> <span class="n">run_in_foreground</span><span class="p">(</span><span class="n">make_server</span><span class="p">)</span>
+</pre>
+
+
+<p>Conveniently, since this is a coroutine running in the <em>current</em> thread, rather
+than in a different thread, we can retrieve the details of the listening
+socket immediately, including the automatically assigned port number:</p>
+<pre class="code literal-block"><span class="gp">&gt;&gt;&gt; </span><span class="n">server</span><span class="o">.</span><span class="n">sockets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">&lt;socket.socket fd=6, family=AddressFamily.AF_INET, type=2049, proto=6, laddr=('127.0.0.1', 40796)&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">port</span> <span class="o">=</span> <span class="n">server</span><span class="o">.</span><span class="n">sockets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">getsockname</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+</pre>
+
+
+<p>Since we haven't needed to hardcode the port number, if we want to define a
+second server, we can easily do that as well:</p>
+<pre class="code literal-block"><span class="gp">&gt;&gt;&gt; </span><span class="n">make_server2</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">start_server</span><span class="p">(</span><span class="n">handle_tcp_echo</span><span class="p">,</span> <span class="s">'127.0.0.1'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">server2</span> <span class="o">=</span> <span class="n">run_in_foreground</span><span class="p">(</span><span class="n">make_server2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">server2</span><span class="o">.</span><span class="n">sockets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">&lt;socket.socket fd=7, family=AddressFamily.AF_INET, type=2049, proto=6, laddr=('127.0.0.1', 41200)&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">port2</span> <span class="o">=</span> <span class="n">server</span><span class="o">.</span><span class="n">sockets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">getsockname</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+</pre>
+
+
+<p>Now, both of these servers are configured to run directly in the main thread's
+event loop, so trying to talk to them using a synchronous client wouldn't work.
+The client would block the main thread, and the servers wouldn't be able to
+process incoming connections. That's where our asynchronous client coroutine
+comes in: if we use <em>that</em> to send messages to the server, then it doesn't
+block the main thread either, and both the client and server coroutines can
+process incoming events of interest. That gives the following results:</p>
+<pre class="code literal-block"><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">run_in_foreground</span><span class="p">(</span><span class="n">tcp_echo_client</span><span class="p">(</span><span class="s">'Hello World!'</span><span class="p">,</span> <span class="n">port</span><span class="p">)))</span>
+<span class="go">-&gt; Client sending: 'Hello World!'</span>
+<span class="go">-&gt; Server received 'Hello World!' from ('127.0.0.1', 44386)</span>
+<span class="go">&lt;- Server sending: 'Hello World!'</span>
+<span class="go">-- Terminating connection on server</span>
+<span class="go">&lt;- Client received: 'Hello World!'</span>
+<span class="go">-- Terminating connection on client</span>
+<span class="go">Hello World!</span>
+</pre>
+
+
+<p>Note something important here: you will get <em>exactly</em> that sequence of
+output messages, as this is <em>all</em> running in the interpreter's main thread, in
+a deterministic order. If the servers were running in their own threads, we
+wouldn't have that property (and reliably getting access to the port numbers
+the server components chose would also have been far more difficult).</p>
+<p>And to demonstrate both servers are up and running:</p>
+<pre class="code literal-block"><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">run_in_foreground</span><span class="p">(</span><span class="n">tcp_echo_client</span><span class="p">(</span><span class="s">'Hello World!'</span><span class="p">,</span> <span class="n">port2</span><span class="p">)))</span>
+<span class="go">-&gt; Client sending: 'Hello World!'</span>
+<span class="go">-&gt; Server received 'Hello World!' from ('127.0.0.1', 44419)</span>
+<span class="go">&lt;- Server sending: 'Hello World!'</span>
+<span class="go">-- Terminating connection on server</span>
+<span class="go">&lt;- Client received: 'Hello World!'</span>
+<span class="go">-- Terminating connection on client</span>
+<span class="go">Hello World!</span>
+</pre>
+
+
+<p>That then raises an interesting question: how would we send messages to the
+two servers in parallel, while still only using a single thread to manage the
+client and server coroutines? For that, we'll need our other helper function
+from the previous post, <code>run_in_background</code>:</p>
+<pre class="code literal-block"><span class="k">def</span> <span class="nf">run_in_background</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">executor</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">"""Schedules target as a background task</span>
+
+<span class="sd">    Returns the scheduled task.</span>
+
+<span class="sd">    If target is a future or coroutine, equivalent to asyncio.ensure_future</span>
+<span class="sd">    If target is a callable, it is scheduled in the given (or default) executor</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">loop</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">ensure_future</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="n">loop</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="k">pass</span>
+    <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">target</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">loop</span><span class="o">.</span><span class="n">run_in_executor</span><span class="p">(</span><span class="n">executor</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">"background task must be future, coroutine or "</span>
+                    <span class="s">"callable, not {!r}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">target</span><span class="p">)))</span>
+</pre>
+
+
+<p>First, we set up the two client operations we want to run in parallel:</p>
+<pre class="code literal-block"><span class="gp">&gt;&gt;&gt; </span><span class="n">echo1</span> <span class="o">=</span> <span class="n">run_in_background</span><span class="p">(</span><span class="n">tcp_echo_client</span><span class="p">(</span><span class="s">'Hello World!'</span><span class="p">,</span> <span class="n">port</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">echo2</span> <span class="o">=</span> <span class="n">run_in_background</span><span class="p">(</span><span class="n">tcp_echo_client</span><span class="p">(</span><span class="s">'Hello World!'</span><span class="p">,</span> <span class="n">port2</span><span class="p">))</span>
+</pre>
+
+
+<p>Then we use the <code>asyncio.wait</code> function in combination with <code>run_in_foreground</code>
+to run the event loop until both operations are complete:</p>
+<pre class="code literal-block"><span class="gp">&gt;&gt;&gt; </span><span class="n">run_in_foreground</span><span class="p">(</span><span class="n">asyncio</span><span class="o">.</span><span class="n">wait</span><span class="p">([</span><span class="n">echo1</span><span class="p">,</span> <span class="n">echo2</span><span class="p">]))</span>
+<span class="go">-&gt; Client sending: 'Hello World!'</span>
+<span class="go">-&gt; Client sending: 'Hello World!'</span>
+<span class="go">-&gt; Server received 'Hello World!' from ('127.0.0.1', 44461)</span>
+<span class="go">&lt;- Server sending: 'Hello World!'</span>
+<span class="go">-- Terminating connection on server</span>
+<span class="go">-&gt; Server received 'Hello World!' from ('127.0.0.1', 44462)</span>
+<span class="go">&lt;- Server sending: 'Hello World!'</span>
+<span class="go">-- Terminating connection on server</span>
+<span class="go">&lt;- Client received: 'Hello World!'</span>
+<span class="go">-- Terminating connection on client</span>
+<span class="go">&lt;- Client received: 'Hello World!'</span>
+<span class="go">-- Terminating connection on client</span>
+</pre>
+
+
+<p>And finally, we retrieve our results using the <code>result</code> method of the future
+objects returned by <code>run_in_background</code>:</p>
+<pre class="code literal-block"><span class="gp">&gt;&gt;&gt; </span><span class="n">echo1</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="go">'Hello World!'</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">echo2</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="go">'Hello World!'</span>
+</pre>
+
+
+<p>We can set up as many background tasks as we like, and then use <code>asyncio.wait</code>
+as the foreground task to wait for them all to complete.</p>
+</div>
+    </div>
+    <aside class="postpromonav">
+    <nav>
+    
+        <ul itemprop="keywords" class="tags">
+           <li><a class="tag p-category" href="../../../categories/python.html" rel="tag">python</a></li>
+        </ul>
+
+    
+        <ul class="pager">
+            <li class="previous">
+                <a href="asyncio-background-calls.html" rel="prev" title="Background tasks in Python 3.5">Previous post</a>
+            </li>
+        </ul>
+
+    </nav>
+    </aside>
+        <section class="comments">
+        <h2>Comments</h2>
+        
+        
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="boredomandlaziness",
+            disqus_url="http://www.curiousefficiency.org/posts/2015/07/asyncio-tcp-echo-server.html",
+        disqus_title="TCP echo client and server in Python 3.5",
+        disqus_identifier="cache/posts/2015/07/asyncio_tcp_echo_server.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="//disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section>
+    
+
+</article>
+
+        
+       <script>var disqus_shortname="boredomandlaziness";(function(){var a=document.createElement("script");a.async=true;a.src="//"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+
+
+
+    </div>
+    </div>
+    <!--End of body content-->
+</div>
+<div class="footerbox">
+    Contents © 2015 <a href="mailto:ncoghlan@gmail.com">Nick Coghlan</a> - <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, republish as you wish. - Powered by <a href="http://nikola.ralsina.com.ar">Nikola</a>
+    
+</div>
+
+            <script src="../../../assets/js/all-nocdn.js"></script>
+    
+
+    <script>jQuery("a.image-reference,!.islink").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
+    <!-- fancy dates -->
+    <script>
+    moment.locale("");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script>
+    <!-- end fancy dates -->
+    
+
+
+</body>
+</html>
