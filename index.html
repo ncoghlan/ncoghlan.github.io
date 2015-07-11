@@ -183,7 +183,7 @@ second server, we can easily do that as well:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">server2</span> <span class="o">=</span> <span class="n">run_in_foreground</span><span class="p">(</span><span class="n">make_server2</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">server2</span><span class="o">.</span><span class="n">sockets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="go">&lt;socket.socket fd=7, family=AddressFamily.AF_INET, type=2049, proto=6, laddr=('127.0.0.1', 41200)&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">port2</span> <span class="o">=</span> <span class="n">server</span><span class="o">.</span><span class="n">sockets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">getsockname</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">port2</span> <span class="o">=</span> <span class="n">server2</span><span class="o">.</span><span class="n">sockets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">getsockname</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
 </pre>
 
 
