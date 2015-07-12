@@ -154,7 +154,7 @@ otherwise synchronous code (like the interactive prompt):</p>
 <span class="sd">    """</span>
     <span class="k">if</span> <span class="n">loop</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
         <span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">loop</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="n">asyncio</span><span class="o">.</span><span class="n">ensure_future</span><span class="p">(</span><span class="n">task</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">loop</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="n">asyncio</span><span class="o">.</span><span class="n">ensure_future</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="n">loop</span><span class="p">))</span>
 </pre>
 
 
@@ -191,7 +191,7 @@ response:</p>
 
 <p>We then use our <code>run_in_foreground</code> helper to interact with these coroutines
 from the interactive prompt. First, we start the echo server:</p>
-<pre class="code literal-block"><span class="gp">&gt;&gt;&gt; </span><span class="n">make_server</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">start_server</span><span class="p">(</span><span class="n">handle_echo</span><span class="p">,</span> <span class="s">'127.0.0.1'</span><span class="p">)</span>
+<pre class="code literal-block"><span class="gp">&gt;&gt;&gt; </span><span class="n">make_server</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">start_server</span><span class="p">(</span><span class="n">handle_tcp_echo</span><span class="p">,</span> <span class="s">'127.0.0.1'</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">server</span> <span class="o">=</span> <span class="n">run_in_foreground</span><span class="p">(</span><span class="n">make_server</span><span class="p">)</span>
 </pre>
 
@@ -252,32 +252,31 @@ the server components chose would also have been far more difficult).</p>
 
 <p>That then raises an interesting question: how would we send messages to the
 two servers in parallel, while still only using a single thread to manage the
-client and server coroutines? For that, we'll need our other helper function
-from the previous post, <code>run_in_background</code>:</p>
-<pre class="code literal-block"><span class="k">def</span> <span class="nf">run_in_background</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">executor</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-    <span class="sd">"""Schedules target as a background task</span>
+client and server coroutines? For that, we'll need our another of our helper
+functions from the previous post, <code>schedule_coroutine</code>:</p>
+<pre class="code literal-block"><span class="k">def</span> <span class="nf">schedule_coroutine</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">"""Schedules target coroutine in the given event loop</span>
+
+<span class="sd">    If not given, *loop* defaults to the current thread's event loop</span>
 
 <span class="sd">    Returns the scheduled task.</span>
-
-<span class="sd">    If target is a future or coroutine, equivalent to asyncio.ensure_future</span>
-<span class="sd">    If target is a callable, it is scheduled in the given (or default) executor</span>
 <span class="sd">    """</span>
-    <span class="k">if</span> <span class="n">loop</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span>
-    <span class="k">try</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">iscoroutine</span><span class="p">(</span><span class="n">target</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">ensure_future</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="n">loop</span><span class="p">)</span>
-    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
-        <span class="k">pass</span>
-    <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">target</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">loop</span><span class="o">.</span><span class="n">run_in_executor</span><span class="p">(</span><span class="n">executor</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
-    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">"background task must be future, coroutine or "</span>
-                    <span class="s">"callable, not {!r}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">target</span><span class="p">)))</span>
+    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">"target must be a coroutine, "</span>
+                    <span class="s">"not {!r}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">target</span><span class="p">)))</span>
 </pre>
 
 
+<p><strong>Update:</strong> <em>As with the previous post, this post originally suggested a
+combined "run_in_background" helper function that handled both scheduling
+coroutines and calling arbitrary callables in a background thread or process.
+On further reflection, I decided that was unhelpfully conflating two different
+concepts, so I replaced it with separate "schedule_coroutine" and
+"call_in_background" helpers</em></p>
 <p>First, we set up the two client operations we want to run in parallel:</p>
-<pre class="code literal-block"><span class="gp">&gt;&gt;&gt; </span><span class="n">echo1</span> <span class="o">=</span> <span class="n">run_in_background</span><span class="p">(</span><span class="n">tcp_echo_client</span><span class="p">(</span><span class="s">'Hello World!'</span><span class="p">,</span> <span class="n">port</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">echo2</span> <span class="o">=</span> <span class="n">run_in_background</span><span class="p">(</span><span class="n">tcp_echo_client</span><span class="p">(</span><span class="s">'Hello World!'</span><span class="p">,</span> <span class="n">port2</span><span class="p">))</span>
+<pre class="code literal-block"><span class="gp">&gt;&gt;&gt; </span><span class="n">echo1</span> <span class="o">=</span> <span class="n">schedule_coroutine</span><span class="p">(</span><span class="n">tcp_echo_client</span><span class="p">(</span><span class="s">'Hello World!'</span><span class="p">,</span> <span class="n">port</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">echo2</span> <span class="o">=</span> <span class="n">schedule_coroutine</span><span class="p">(</span><span class="n">tcp_echo_client</span><span class="p">(</span><span class="s">'Hello World!'</span><span class="p">,</span> <span class="n">port2</span><span class="p">))</span>
 </pre>
 
 
@@ -296,11 +295,12 @@ to run the event loop until both operations are complete:</p>
 <span class="go">-- Terminating connection on client</span>
 <span class="go">&lt;- Client received: 'Hello World!'</span>
 <span class="go">-- Terminating connection on client</span>
+<span class="go">({&lt;Task finished coro=&lt;tcp_echo_client() done, defined at &lt;stdin&gt;:1&gt; result='Hello World!'&gt;, &lt;Task finished coro=&lt;tcp_echo_client() done, defined at &lt;stdin&gt;:1&gt; result='Hello World!'&gt;}, set())</span>
 </pre>
 
 
-<p>And finally, we retrieve our results using the <code>result</code> method of the future
-objects returned by <code>run_in_background</code>:</p>
+<p>And finally, we retrieve our results using the <code>result</code> method of the task
+objects returned by <code>schedule_coroutine</code>:</p>
 <pre class="code literal-block"><span class="gp">&gt;&gt;&gt; </span><span class="n">echo1</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
 <span class="go">'Hello World!'</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">echo2</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
@@ -308,8 +308,83 @@ objects returned by <code>run_in_background</code>:</p>
 </pre>
 
 
-<p>We can set up as many background tasks as we like, and then use <code>asyncio.wait</code>
-as the foreground task to wait for them all to complete.</p>
+<p>We can set up as many concurrent background tasks as we like, and then use
+<code>asyncio.wait</code> as the foreground task to wait for them all to complete.</p>
+<p>But what if we had an existing blocking client function that we wanted or
+needed to use (e.g. we're using an <code>asyncio</code> server to test a synchronous
+client API). To handle that case, we use our third helper function from the
+previous post:</p>
+<pre class="code literal-block"><span class="k">def</span> <span class="nf">call_in_background</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">executor</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">"""Schedules and starts target callable as a background task</span>
+
+<span class="sd">    If not given, *loop* defaults to the current thread's event loop</span>
+<span class="sd">    If not given, *executor* defaults to the loop's default executor</span>
+
+<span class="sd">    Returns the scheduled task.</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">loop</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">target</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">loop</span><span class="o">.</span><span class="n">run_in_executor</span><span class="p">(</span><span class="n">executor</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">"target must be a callable, "</span>
+                    <span class="s">"not {!r}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">target</span><span class="p">)))</span>
+</pre>
+
+
+<p>To explore this, we'll need a blocking client, which we can build based on
+Python's existing
+<a href="https://docs.python.org/3/howto/sockets.html">socket programming HOWTO guide</a>:</p>
+<pre class="code literal-block"><span class="kn">import</span> <span class="nn">socket</span>
+<span class="k">def</span> <span class="nf">tcp_echo_client_sync</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">port</span><span class="p">):</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'-&gt; Client connecting to port: </span><span class="si">%r</span><span class="s">'</span> <span class="o">%</span> <span class="n">port</span><span class="p">)</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="s">'127.0.0.1'</span><span class="p">,</span> <span class="n">port</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'-&gt; Client sending: </span><span class="si">%r</span><span class="s">'</span> <span class="o">%</span> <span class="n">message</span><span class="p">)</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'&lt;- Client received: </span><span class="si">%r</span><span class="s">'</span> <span class="o">%</span> <span class="n">data</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'-- Terminating connection on client'</span><span class="p">)</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">data</span>
+</pre>
+
+
+<p>We can then use <code>functools.partial</code> in combination with <code>call_in_background</code> to
+start client requests in multiple operating system level threads:</p>
+<pre class="code literal-block"><span class="gp">&gt;&gt;&gt; </span><span class="n">query_server</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">tcp_echo_client_sync</span><span class="p">,</span> <span class="s">"Hello World!"</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">query_server2</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">tcp_echo_client_sync</span><span class="p">,</span> <span class="s">"Hello World!"</span><span class="p">,</span> <span class="n">port2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bg_call</span> <span class="o">=</span> <span class="n">call_in_background</span><span class="p">(</span><span class="n">query_server</span><span class="p">)</span>
+<span class="go">-&gt; Client connecting to port: 35876</span>
+<span class="go">-&gt; Client sending: 'Hello World!'</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bg_call2</span> <span class="o">=</span> <span class="n">call_in_background</span><span class="p">(</span><span class="n">query_server2</span><span class="p">)</span>
+<span class="go">-&gt; Client connecting to port: 41672</span>
+<span class="go">-&gt; Client sending: 'Hello World!'</span>
+</pre>
+
+
+<p>Here we see that, unlike our coroutine clients, the synchronous clients have
+started running immediately in a separate thread. However, because the event
+loop isn't currently running in the main thread, they've blocked waiting for
+a response from the TCP echo servers. As with the coroutine clients, we
+address that by running the event loop in the main thread until our clients
+have both received responses:</p>
+<pre class="code literal-block"><span class="gp">&gt;&gt;&gt; </span><span class="n">run_in_foreground</span><span class="p">(</span><span class="n">asyncio</span><span class="o">.</span><span class="n">wait</span><span class="p">([</span><span class="n">bg_call</span><span class="p">,</span> <span class="n">bg_call2</span><span class="p">]))</span>
+<span class="go">-&gt; Server received 'Hello World!' from ('127.0.0.1', 52585)</span>
+<span class="go">&lt;- Server sending: 'Hello World!'</span>
+<span class="go">-- Terminating connection on server</span>
+<span class="go">-&gt; Server received 'Hello World!' from ('127.0.0.1', 34399)</span>
+<span class="go">&lt;- Server sending: 'Hello World!'</span>
+<span class="go">&lt;- Client received: 'Hello World!'</span>
+<span class="go">-- Terminating connection on server</span>
+<span class="go">-- Terminating connection on client</span>
+<span class="go">&lt;- Client received: 'Hello World!'</span>
+<span class="go">-- Terminating connection on client</span>
+<span class="go">({&lt;Future finished result='Hello World!'&gt;, &lt;Future finished result='Hello World!'&gt;}, set())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bg_call</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="go">'Hello World!'</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bg_call2</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="go">'Hello World!'</span>
+</pre>
 </div>
     </div>
     <aside class="postpromonav">
