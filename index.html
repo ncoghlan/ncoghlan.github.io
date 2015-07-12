@@ -209,7 +209,8 @@ process incoming events of interest. That gives the following results:</p>
 output messages, as this is <em>all</em> running in the interpreter's main thread, in
 a deterministic order. If the servers were running in their own threads, we
 wouldn't have that property (and reliably getting access to the port numbers
-the server components chose would also have been far more difficult).</p>
+the server components were assigned by the underlying operating system would
+also have been far more difficult).</p>
 <p>And to demonstrate both servers are up and running:</p>
 <pre class="code literal-block"><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">run_in_foreground</span><span class="p">(</span><span class="n">tcp_echo_client</span><span class="p">(</span><span class="s">'Hello World!'</span><span class="p">,</span> <span class="n">port2</span><span class="p">)))</span>
 <span class="go">-&gt; Client sending: 'Hello World!'</span>
