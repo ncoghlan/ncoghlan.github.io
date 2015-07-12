@@ -253,7 +253,7 @@ also have been far more difficult).</p>
 
 <p>That then raises an interesting question: how would we send messages to the
 two servers in parallel, while still only using a single thread to manage the
-client and server coroutines? For that, we'll need our another of our helper
+client and server coroutines? For that, we'll need another of our helper
 functions from the previous post, <code>schedule_coroutine</code>:</p>
 <pre class="code literal-block"><span class="k">def</span> <span class="nf">schedule_coroutine</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">"""Schedules target coroutine in the given event loop</span>
