@@ -3,7 +3,7 @@
 much of our economic activity is devoted to preventing boredom in the idle
 time created by increases in efficiency. To be human is to be a strange
 creature indeed :)
-</description><atom:link href="http://www.curiousefficiency.org/rss.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Sun, 11 Oct 2015 05:22:46 GMT</lastBuildDate><generator>https://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>27 languages to improve your Python</title><link>http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;div class="contents topic" id="languages"&gt;
+</description><atom:link href="http://www.curiousefficiency.org/rss.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Sun, 11 Oct 2015 05:32:04 GMT</lastBuildDate><generator>https://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>27 languages to improve your Python</title><link>http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;div class="contents topic" id="languages"&gt;
 &lt;p class="topic-title first"&gt;27 Languages&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#procedural-programming-c-rust-cython" id="id3"&gt;Procedural programming: C, Rust, Cython&lt;/a&gt;&lt;/li&gt;
@@ -69,7 +69,7 @@ choices.&lt;/li&gt;
 &lt;li&gt;If someone we know is learning to program for the first time, and they
 choose to learn a language we don't personally like, we should &lt;em&gt;support them
 in their choice anyway&lt;/em&gt;. They know what fits &lt;em&gt;their&lt;/em&gt; brain better than we do,
-so the right language for us you may not be the right language for them. If
+so the right language for us may not be the right language for them. If
 they start getting frustrated with their original choice, to the point where
 it's demotivating them from learning to program at all, &lt;em&gt;then&lt;/em&gt; it makes sense
 to start recommending alternatives. This advice applies even for those of us
