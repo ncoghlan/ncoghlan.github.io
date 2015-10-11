@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+<head>
+<meta charset="utf-8">
+<base href="http://www.curiousefficiency.org/posts/2012/05/index.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Posts/2012/05 | Curious Efficiency</title>
+<link href="../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta content="#5670d4" name="theme-color">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../../rss.xml">
+<link rel="canonical" href="http://www.curiousefficiency.org/posts/2012/05/index.html">
+<!--[if lt IE 9]><script src="../../../assets/js/html5.js"></script><![endif]-->
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://www.curiousefficiency.org/">
+
+                <span id="blog-title">Curious Efficiency</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../../../pages/about.html">About</a>
+                </li>
+<li>
+<a href="../../../archive.html">Archives</a>
+                </li>
+<li>
+<a href="../../../categories/index.html">Tags</a>
+                </li>
+<li>
+<a href="../../../rss.xml">RSS</a>
+                </li>
+<li>
+<a href="http://python-notes.curiousefficiency.org">Python Notes</a>
+
+                
+            </li>
+</ul>
+<ul class="nav navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+            
+<div class="sectionindex">
+    <header><h2><a href="#">Posts/2012/05</a></h2>
+    </header><div class="postindex">
+    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="djangos-cbvs-are-not-mistake-but.html" class="u-url">Django's CBVs are not a mistake (but deprecating FBVs might be)</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">
+                Nick Coghlan
+            </span></p>
+            <p class="dateline"><a href="djangos-cbvs-are-not-mistake-but.html" rel="bookmark"><time class="published dt-published" datetime="2012-05-29T21:40:00Z" title="2012-05-29 21:40">2012-05-29 21:40</time></a></p>
+                <p class="commentline">
+        
+    <a href="djangos-cbvs-are-not-mistake-but.html#disqus_thread" data-disqus-identifier="cache/posts/2012/05/djangos-cbvs-are-not-mistake-but.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <p>This <a href="http://lukeplant.me.uk/blog/posts/djangos-cbvs-were-a-mistake">interesting piece</a> from Luke Plant went by on Planet Python this morning, and really helped me in understanding many of the complaints I see about Django's Class Based Views. That problem seems to be that when CBVs were introduced, they were brought in as a <i>replacement for</i> the earlier procedural Function Based Views, rather than as a lower level <i>supplemental</i> API that covered an additional set of use cases that weren't being adequately served by the previous approach (I only started using Django with 1.3, so it's taken me a while to come up to speed on this aspect of the framework's history).<br><br>The key point in Luke's article that I agree with is that deprecating FBVs <i>in favour of</i> CBVs and saying the latter is always the superior solution is a mistake. The part I <i>disagree</i> with is that saying this also means that introducing the CBV concept itself was a mistake. CBVs may have been oversold as the "one true way" to do Django views, but "There's one - and preferably only one - obvious way to do it" is <i>not</i> meant to apply at the level of programming paradigms. Yes, it's a design principle that's part of the Zen of Python, and it's a good philosophy to help reduce needless API complication, but when it comes to the complexities of real world programming, you need flexibility in your modelling tools, or you end up fighting the limitations of your tools instead of being able to clearly express your intent.<br><br>Procedural programming, functional programming, object-oriented programming, pipeline-based programming etc - they're all different ways to approach a problem space, and Python is deliberately designed to support all of them.<br><br>It helps to know a bit of programming history and the origins of OOP in the context of this discussion, as Django's FBVs are very similar to implementations of OOP in C and other languages with no native OOP support: you have an object (the HTTP request) and a whole lot of functions that accept that object as their first argument.<br><br>Thus, when you don't use CBVs at all, what you're really doing is bypassing Python's native OO support in favour of a truckload of what are effectively methods on request objects (just written in a procedural style). If you want to pass state around you either store it on the request, you store it in global state (which includes your cache and main datastore) or you pass it explicitly as function arguments (which means you have to daisy chain it to anyone else that needs it). If you use classes instead, then you get an additional mechanism that you can use to affect behaviour for a subset of your views. For example, I recently restricted write access to the PulpDist REST API to site admins, when it had previously been open to all logged in users. I could do that in one place and be confident it affected the entire API because every REST view in PulpDist inherits from a common base class. Since that base class now enforces the new access restrictions, the entire API obeys the rules even though I only changed one class.<br><br>Where Luke is absolutely right, though, is that switching from a procedural approach to an object-oriented one comes with a cost, mostly in the form of non-local effects and non-obvious flow control. If you look at Python's standard library, a rather common model to alleviate this problem is the idea of providing an implementation class, which you can choose to use directly, <i>as well as</i> a set of module level convenience functions. Much of the time, using the convenience functions is a better choice, since they're designed to be simple and clean solutions to common tasks. However, if you need to start tweaking, then being able to either instantiate or subclass the existing backend implementation directly lets you get a lot further before you have to resort to the brute force copy-paste-edit approach to code reuse.<br><br>But please, don't confuse "Django's Generic View implementation is overly complicated and FBVs should be retained as an officially blessed and supported convenience API" with "CBVs are a bad idea". Making the latter claim is really saying "OOP is a bad idea", which is not a supportable assertion (unless you want to argue with decades of CS and software engineering experience). While the weaker claim that "An OOP implementation is often best presented to the API user behind a procedural facade" is less exciting, it has the virtue of being more universally true. Procedural APIs often <i>are</i> simpler and generally introduce less coupling between components. The trick with exposing an OOP layer as well is that it increases the options for your users, as they can now:<br><br></p>
+<ul>
+<li>Just use the procedural layer (Huzzah! Low coupling is good)</li>
+<li>Use the OOP layer through composition (OK, better than reinventing the wheel and coupling is still fairly low when using composition)</li>
+<li>Use the OOP layer through inheritance (Eek, coupling is increasing substantially now, but it's typically still better than copy-paste-edit style reuse)</li>
+<li>Use the upstream implementation as a reference or starting point when writing your own (coupling drops back to zero, but the line count of code that is directly part of the current project just went up substantially)</li>
+</ul>Where Django has arguably made a mistake is in thinking that exposing an OOP layer directly is a reasonable substitute for a pre-existing procedural layer. In general, that's not going to be the case for all the reasons Luke cites in his article. Having the procedural layer become a thin veneer around the published object oriented layer would probably be a good thing, while deprecating it and actively discouraging it's use, even for the cases it handles cleanly, seems potentially unwise.<br><br>A good example of this layered approach to API design is the <span>str.format</span> method. The main API for that is of course the <span>str.format()</span> method itself and that covers the vast majority of use cases. If you just want to customise the display of a particular custom type, then you can provide a <span>__format</span>__ method directly on that class. However, if you want to write a completely custom formatter (for example, one that automatically quotes interpolated values with <span>shlex.quote</span>), then the <span>string.Formatter</span> class is exposed so that you can take advantage of most of the builtin formatting machinery instead of having to rewrite it yourself. Contrast that with the older %-based approach to formatting - if you want to implement a custom formatter based on that, you're completely on your own, the standard library provides no help whatsoever. PEP 3101 provides some of the rationale behind the layered string formatting API. It's by no means perfect, but perfection wasn't the goal - the goal was providing something more flexible and less quirky than %-style formatting, and in that it succeeded admirably. The key lesson that's applicable to Django is that <span>string.Formatter</span> isn't a replacement for <span>str.format</span>, it's a supplement for the relatively rare cases where the simple method API isn't flexible enough.<br><br>A few other examples of this layered API design that spring immediately to mind are the logging module (which provides convenience functions to pass messages directly to the root logger), subprocess (with a few convenience functions that aim to largely hide the Swiss army knife that is <span>subprocess.Popen</span>), textwrap (with <span>textwrap.dedent()</span> providing a shorthand for a particular way of using <span>textwrap.TextWrapper</span>), pickle, json, importlib... You get the idea :)<br><br>Update: Toned down the title and the paragraph after the bulleted list slightly. Since I've never used them myself, I don't know enough about the abuses of FBVs to second guess the Django core devs motivations for actively encouraging the switch to CBVs.
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="embarrassment-of-riches.html" class="u-url">An embarrassment of riches</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">
+                Nick Coghlan
+            </span></p>
+            <p class="dateline"><a href="embarrassment-of-riches.html" rel="bookmark"><time class="published dt-published" datetime="2012-05-22T14:55:00Z" title="2012-05-22 14:55">2012-05-22 14:55</time></a></p>
+                <p class="commentline">
+        
+    <a href="embarrassment-of-riches.html#disqus_thread" data-disqus-identifier="cache/posts/2012/05/embarrassment-of-riches.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <p>Years ago (but still within the last decade) I was involved in a source control trade study for a large multi-national corporation. Management had let a non-software developer select the original "source control tool" and they had picked something that required custom scripting just to do a baseline (I wish I was kidding).<br><br>So a bunch of candidate replacements were put forward for consideration, and CVS won because it was free, thus there would be fewer arguments with management about rolling it out on a project that was already over budget and behind schedule. (The fact that Subversion wasn't considered as a candidate should give you some additional hints about the precise timing of this - Subversion 1.0 was released in February 2004. Yes, for those that are new to this game, you read that right: it is only within the last decade that the majority of the open source VCS world began to enjoy the benefits of atomic commits).<br><br>Other interesting aspects of that system included the fact that one of the developers on that project basically had to write a custom xUnit testing system from scratch in order to start putting together a decent automated test suite for the system, there was no code review tool, and you couldn't include direct links to bug tracker items in emails or anything else - you had to reference them by name or number, and people would then look those names or numbers up in the dedicated bug tracking application client.<br><br>High level design documentation, if it existed at all, was in the form of Microsoft Word documents. Low level API documentation? Yes, that would have been nice (there were some attempts to generate something vaguely readable with Doxygen but, yeah, well, C++).<br><br>Less than ten years later, though, and there are signs our industry is starting to grow up (although I expect many enterprise shops are still paying extortionate rates to the likes of IBM for the "Rational" suite of tools only to gain a significantly inferior development experience):<br></p>
+<ol>
+<li>You can get genuinely high quality code hosting for free. Sure <a href="http://sourceforge.net/">Sourceforge</a> was already around back then, but Git and Mercurial stomp all over CVS from a collaboration point of view. These also come with decent issue trackers and various other collaboration tools. If you don't want to trust a service provider with your code, than tools like <a href="http://gitlabhq.com/">GitLab</a> let you set up similar environments internally.</li>
+<li>Web based issue trackers are everywhere, with the ubiquitous "issue URL" allowing effective cross-linking between tracker issues, documentation, code comments, source control browsers, code review systems, etc.</li>
+<li>Dedicated code review tools like <a href="https://code.google.com/p/gerrit/">Gerrit</a> and <a href="https://code.google.com/p/rietveld/">Reitveld</a> are published as open source (and, in the case of the latter, even available as a free service on <a href="http://codereview.appspot.com/">Google App Engine</a>).</li>
+<li>Services like <a href="http://readthedocs.org/">ReadTheDocs</a> exist, allowing you to easily build and publish high quality documentation. All with nice URLs so you can link it from emails, tracker issues, source code, etc.</li>
+<li>Organisations like <a href="https://www.shiningpanda.com/">Shining Panda CI</a> and <a href="http://travis-ci.org/">Travis CI</a> provide hosted continuous integration services that put the internal capabilities of many large companies to shame.</li>
+<li>Language communities provide cross-platform distribution services to reach a global audience.</li>
+<li>Depending on the language you use, you may even have tools like <a href="http://www.sonarsource.org/">SonarSource</a> available</li>
+<li>Once you go into production in the web application world, service components like <a href="https://www.getsentry.com/welcome/">Sentry</a>, <a href="http://piwik.org/">Piwik</a>, and <a href="http://graphite.wikidot.com/faq">Graphite</a> are again available for no charge.</li>
+</ol>And to access all this good stuff for free? All you have to do is be willing to share your work (and sometimes not even that). If you don't want to share your work, then the service providers generally have very reasonable fees - you could probably put together a state of the art suite of tools for less than a few hundred bucks a month.<br><br>Take my own hobby projects as an example:<br><ul>
+<li>they're hosted on <a href="https://bitbucket.org/ncoghlan/">BitBucket</a> as Mercurial projects (I happen to prefer Mercurial, although I can definitely see why people like Git, too). That gives me integrated issue tracking and online source code browsing, too. (OK, so I could have had essentially that back in the early SourceForge days, but the UI aspects have improved in many respects in the intervening years)</li>
+<li>I can publish my projects on the <a href="http://pypi.python.org/">Python Package Index</a> with a simple "<span>setup.py sdist upload</span>". They're then available for anyone in the world to install with a straightforward command like "<span>pip install walkdir</span>"</li>
+<li>thanks to <a href="https://jenkins.shiningpanda.com/ncoghlan-devs-projects/">Shining Panda CI</a>, I know the downloads from PyPI work, and I also know that the projects work on all the versions and implementations of Python I want to support</li>
+<li>thanks to <a href="http://readthedocs.org/profiles/ncoghlan/">ReadTheDocs</a> and <a href="http://sphinx.pocoo.org/">Sphinx</a>, you can read nicely formatted documentation like <a href="http://walkdir.readthedocs.org/">this</a> rather than trying to decipher plain text files or wiki pages.</li>
+</ul>I'm living in the future and it is seriously <i>cool</i> (and that's just looking at things purely from a software development infrastructure point of view - the rise of "Infrastructure as a Service" and "Platform as a Service" providers, including Red Hat's own <a href="https://openshift.redhat.com/">OpenShift</a>, has massive implications on the deployment side of things, and there's of course the implications of the many open source wheels that don't need to be reinvented)<br><br>The best part from my point of view is that these days I get to work for a <a href="http://www.redhat.com/">company</a> that already genuinely understands the long term significance of the power of collaborative development. It also doesn't hurt that there's still a lot of money to be made in helping the rest of the enterprise world come to grips with that reality :)
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="contextlib2-04-now-with-exitstack.html" class="u-url">contextlib2 0.4: Now with ExitStack!</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">
+                Nick Coghlan
+            </span></p>
+            <p class="dateline"><a href="contextlib2-04-now-with-exitstack.html" rel="bookmark"><time class="published dt-published" datetime="2012-05-05T15:06:00Z" title="2012-05-05 15:06">2012-05-05 15:06</time></a></p>
+                <p class="commentline">
+        
+    <a href="contextlib2-04-now-with-exitstack.html#disqus_thread" data-disqus-identifier="cache/posts/2012/05/contextlib2-04-now-with-exitstack.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <p>Inspired by Michael Foord's efforts with <span>unittest2</span>, <a href="http://contextlib2.readthedocs.org/">contextlib2</a> is a PyPI package where I am working on some new additions to the standard library's <span>contextlib</span> module for Python 3.3.<br><br>The most interesting of those is a replacement for the ill-fated <a href="http://docs.python.org/library/contextlib#contextlib.nested">contextlib.nested</a> API.<br><br>If you use Python 3.2 today, you'll find that the <span>contextlib.nested</span> API doesn't even exist any more. The reason it was deprecated and removed is because it didn't play well with context managers that acquired their resources in <span>__init__</span> rather than <span>__enter__</span> (such as Python's own file objects and many other resources where using a with statement for management is an optional convenience rather than being mandatory).<br><br>The simplest example where the old API caused problems was opening a list of files and then using <span>contextlib.nested</span> to close them all when the operation was complete - if opening any later file threw an exception (e.g. due to a permissions error or a bad file name), then all of the earlier files would remain open until the garbage collector got around to cleaning them up. Not a huge problem on CPython with its refcounting based GC, but a far cry from the deterministic resource cleanup that context managers are supposed to offer.<br><br>Since the deprecation and removal of <span>contextlib.nested</span>, there have been assorted replacement proposals of varying levels of sophistication posted to the Python ideas mailing list. The new <a href="http://contextlib2.readthedocs.org/en/latest/index.html#contextlib2.ExitStack">ExitStack</a> API in this release is my own latest effort, and the first that I've liked well enough to seriously consider as a candidate for inclusion in the standard library module.<br><br>The idea behind providing the <span>ExitStack</span> API is for the standard library to focus specifically on handling the one particularly tricky part of dealing with context managers programmatically: unwinding the context stack correctly, ensuring that exceptions are processed exactly as if any context managers involved had been used in an appropriate series of nested with statements.<br><br>A couple of convenience methods are included (one that enters a context manager in addition to pushing the exit method on to the stack, as well as a simple callback registration method inspired by <span>unittest.TestCase.addCleanup</span>), but the features of the API are otherwise fairly minimal.<br><br>This low level dynamic API can then be used by developers to create their own higher level convenience APIs, as suggested in some of the <a href="http://contextlib2.readthedocs.org/en/latest/index.html#replacing-any-use-of-try-finally-and-flag-variables">examples</a> in the documentation.<br><br>A few specific design notes:<br></p>
+<ul>
+<li>The name <span>ExitStack</span> came about because the object is literally a stack of exit method references (or callback wrappers that behave like exit methods). Earlier variants were <span>ContextStack</span> (too narrow, since you can use the stack for standalone callbacks) and <span>CallbackStack</span> (too broad, since the stored callbacks specifically have the signature of exit methods)</li>
+<li>The <span>push()</span> method accepts exit methods directly, since those are what actually gets stored on the stack. Ducktyping to also accept objects with an <span>__exit__()</span> method is convenient without being confusing (I hope).</li>
+<li>The <span>enter_context()</span> method uses the longer name because the shorter version is too easy to confuse with the stack's own <span>__enter__()</span> method.</li>
+</ul>If you have any questions about the <span>ExitStack</span> design, this is the place to ask. If you find any bugs or other defects, head over to the <a href="https://bitbucket.org/ncoghlan/contextlib2/issues?status=new&amp;status=open">issue tracker</a>.<br>
+</div>
+    </article>
+</div>
+
+
+
+        
+       <script>var disqus_shortname="boredomandlaziness";(function(){var a=document.createElement("script");a.async=true;a.src="//"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+</div>
+        <!--End of body content-->
+
+        <footer id="footer">
+            Contents © 2015 <a href="mailto:ncoghlan@gmail.com">Nick Coghlan</a> - <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, republish as you wish. - Powered by <a href="http://nikola.ralsina.com.ar">Nikola</a>
+            
+        </footer>
+</div>
+</div>
+
+
+            <script src="../../../assets/js/all-nocdn.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    moment.locale("");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates -->
+</div>
+</body>
+</html>

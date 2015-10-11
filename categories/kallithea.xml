@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Curious Efficiency (kallithea)</title><link>http://www.curiousefficiency.org</link><description></description><atom:link href="http://www.curiousefficiency.org/categories/kallithea.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Fri, 10 Jul 2015 20:18:16 GMT</lastBuildDate><generator>http://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Running Kallithea on OpenShift</title><link>http://www.curiousefficiency.org/posts/2014/12/kallithea-on-openshift.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;h2&gt;Kallithea for CPython&lt;/h2&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Curious Efficiency (kallithea)</title><link>http://www.curiousefficiency.org</link><description></description><atom:link href="http://www.curiousefficiency.org/categories/kallithea.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Sun, 11 Oct 2015 04:04:14 GMT</lastBuildDate><generator>https://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Running Kallithea on OpenShift</title><link>http://www.curiousefficiency.org/posts/2014/12/kallithea-on-openshift.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;h2&gt;Kallithea for CPython&lt;/h2&gt;
 &lt;p&gt;The CPython core development team are currently evaluating our options for
 modernising our core development workflows to better match the standards
 set by other projects and services like OpenStack and GitHub.&lt;/p&gt;
@@ -86,7 +86,7 @@ upgrade handling correctly yet)&lt;/p&gt;
 &lt;a href="https://www.openshift.com/app/account/new"&gt;skip that step&lt;/a&gt;, and just
 create a new app under my existing account. However, I didn't have the command
 line tools installed, so that was the first step in creating my own instance:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;yum&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;rhc&lt;/span&gt;
+&lt;pre class="code literal-block"&gt;sudo yum install /usr/bin/rhc
 &lt;/pre&gt;
 
 
@@ -98,7 +98,7 @@ I could have looked that up myself in the
 Online account, generate a local login token for this machine, and upload
 my public SSH key to OpenShift Online. That process involved working through
 the interactive prompts in:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span class="n"&gt;rhc&lt;/span&gt; &lt;span class="n"&gt;setup&lt;/span&gt;
+&lt;pre class="code literal-block"&gt;rhc setup
 &lt;/pre&gt;
 
 
@@ -109,7 +109,7 @@ so I created a separate "app_repos" subdirectory in my development directory
 specifically so I could call my OpenShift app "kallithea" without conflicting
 with my local clone of the main kallithea repo.&lt;/p&gt;
 &lt;p&gt;As described in the quickstart README, the app creation command is:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span class="n"&gt;rhc&lt;/span&gt; &lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="n"&gt;create&lt;/span&gt; &lt;span class="n"&gt;kallithea&lt;/span&gt; &lt;span class="n"&gt;diy&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;0.1&lt;/span&gt; &lt;span class="n"&gt;postgresql&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;9.2&lt;/span&gt;
+&lt;pre class="code literal-block"&gt;rhc app create kallithea diy-0.1 postgresql-9.2
 &lt;/pre&gt;
 
 
@@ -123,17 +123,17 @@ failed. Fortunately, as the troubleshooting notice suggested, a subsequent
 &lt;p&gt;OpenShift provides a default app skeleton automatically, but I actually
 want to get rid of that and replace it with the contents of the quickstart
 repo:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span class="n"&gt;rm&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt; &lt;span class="n"&gt;diy&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;openshift&lt;/span&gt; &lt;span class="n"&gt;misc&lt;/span&gt; &lt;span class="n"&gt;README&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;md&lt;/span&gt;
-&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;commit&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="s"&gt;"Remove template files"&lt;/span&gt;
-&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;remote&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt; &lt;span class="n"&gt;quickstart&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="n"&gt;master&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//github.com/ncoghlan/openshift-kallithea.git&lt;/span&gt;
-&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;pull&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="n"&gt;recursive&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;X&lt;/span&gt; &lt;span class="n"&gt;theirs&lt;/span&gt; &lt;span class="n"&gt;quickstart&lt;/span&gt; &lt;span class="n"&gt;master&lt;/span&gt;
+&lt;pre class="code literal-block"&gt;rm -R diy .openshift misc README.md
+git add .
+git commit -m "Remove template files"
+git remote add quickstart -m master https://github.com/ncoghlan/openshift-kallithea.git
+git pull -s recursive -X theirs quickstart master
 &lt;/pre&gt;
 
 
 &lt;p&gt;The default merge commit message that popped up was fine, so I just accepted
 that and moved on to the most interesting step:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;push&lt;/span&gt;
+&lt;pre class="code literal-block"&gt;git push
 &lt;/pre&gt;
 
 

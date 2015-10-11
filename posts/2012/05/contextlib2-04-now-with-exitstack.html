@@ -1,72 +1,47 @@
 <!DOCTYPE html>
 <html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
-    <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>contextlib2 0.4: Now with ExitStack! | Curious Efficiency</title>
-
-    
-            <link href="../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
-
-    
-            <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../rss.xml">
-
-      <link rel="canonical" href="http://www.curiousefficiency.org/posts/2012/05/contextlib2-04-now-with-exitstack.html">
-
-
-
-
-    
-        <!--[if lt IE 9]><script src="../../../assets/js/html5.js"></script><![endif]-->
-
-    
-
-
-    
-
-    <meta name="author" content="Nick Coghlan">
-        <link rel="prev" href="../01/walkdir-03-released-for-more-python.html" title="WalkDir 0.3 released (for more Python versions, thanks to Shining Panda!)" type="text/html">
-        <link rel="next" href="embarrassment-of-riches.html" title="An embarrassment of riches" type="text/html">
-    
-    <meta property="og:site_name" content="Curious Efficiency">
-    <meta property="og:title" content="contextlib2 0.4: Now with ExitStack!">
-    <meta property="og:url" content="http://www.curiousefficiency.org/posts/2012/05/contextlib2-04-now-with-exitstack.html">
-    <meta property="og:description" content="Inspired by Michael Foord's efforts with unittest2, contextlib2 is a PyPI package where I am working on some new additions to the standard library's contextlib module for Python 3.3.The most interesti">
-    <meta property="og:type" content="article">
-    <meta property="article:published_time" content="2012-05-05T15:06:00+00:00">
-
-    
-
-    
-
-
-
+<head>
+<meta charset="utf-8">
+<base href="http://www.curiousefficiency.org/posts/2012/05/contextlib2-04-now-with-exitstack.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>contextlib2 0.4: Now with ExitStack! | Curious Efficiency</title>
+<link href="../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta content="#5670d4" name="theme-color">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../../rss.xml">
+<link rel="canonical" href="http://www.curiousefficiency.org/posts/2012/05/contextlib2-04-now-with-exitstack.html">
+<!--[if lt IE 9]><script src="../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Nick Coghlan">
+<link rel="prev" href="../01/walkdir-03-released-for-more-python.html" title="WalkDir 0.3 released (for more Python versions, thanks to Shining Panda!)" type="text/html">
+<link rel="next" href="embarrassment-of-riches.html" title="An embarrassment of riches" type="text/html">
+<meta property="og:site_name" content="Curious Efficiency">
+<meta property="og:title" content="contextlib2 0.4: Now with ExitStack!">
+<meta property="og:url" content="http://www.curiousefficiency.org/posts/2012/05/contextlib2-04-now-with-exitstack.html">
+<meta property="og:description" content="Inspired by Michael Foord's efforts with unittest2, contextlib2 is a PyPI package where I am working on some new additions to the standard library's contextlib module for Python 3.3.The most interesti">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2012-05-05T15:06:00Z">
 </head>
 <body>
 <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
 
 <!-- Menubar -->
 
-<div class="navbar navbar-fixed-top" id="navbar">
-    <div class="navbar-inner">
-        <div class="container">
-
-        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-        </a>
-
-            <a class="brand" href="http://www.curiousefficiency.org/">
+            </button>
+            <a class="navbar-brand" href="http://www.curiousefficiency.org/">
 
                 <span id="blog-title">Curious Efficiency</span>
             </a>
-            <!-- Everything you want hidden at 940px or less, place within here -->
-            <div class="nav-collapse collapse">
-                <ul class="nav">
-                    
-                <li>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
 <a href="../../../pages/about.html">About</a>
                 </li>
 <li>
@@ -81,41 +56,33 @@
 <li>
 <a href="http://python-notes.curiousefficiency.org">Python Notes</a>
 
-                    
-                </li>
+                
+            </li>
 </ul>
-                <ul class="nav pull-right">
-                
-                
-                    <li>
-    </li>
+<ul class="nav navbar-nav navbar-right">
 <li>
     <a href="contextlib2-04-now-with-exitstack.src.html" id="sourcelink">Source</a>
     </li>
 
                 
-                </ul>
-            </div>
-        </div>
-    </div>
+            </ul>
 </div>
-<!-- End of Menubar -->
-<div class="container-fluid" id="content" role="main">
-    <!--Body content-->
-    <div class="row-fluid">
-    <div class="span2"></div>
-    <div class="span8">
-    
-    
-<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article">
-    
-    <header>
-        
-    <h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">contextlib2 0.4: Now with ExitStack!</a></h1>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">contextlib2 0.4: Now with ExitStack!</a></h1>
 
         <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">Nick Coghlan</span></p>
-            <p class="dateline"><a href="#" rel="bookmark"><time class="published dt-published" datetime="2012-05-05T15:06:00+00:00" itemprop="datePublished" title="2012-05-05 15:06">2012-05-05 15:06</time></a></p>
+            <p class="byline author vcard"><span class="byline-name fn">
+                    Nick Coghlan
+            </span></p>
+            <p class="dateline"><a href="#" rel="bookmark"><time class="published dt-published" datetime="2012-05-05T15:06:00Z" itemprop="datePublished" title="2012-05-05 15:06">2012-05-05 15:06</time></a></p>
                 <p class="commentline">
         
     <a href="contextlib2-04-now-with-exitstack.html#disqus_thread" data-disqus-identifier="cache/posts/2012/05/contextlib2-04-now-with-exitstack.html">Comments</a>
@@ -128,34 +95,22 @@
         </div>
         
 
-    </header>
-
-    <div class="e-content entry-content" itemprop="articleBody text">
+    </header><div class="e-content entry-content" itemprop="articleBody text">
     <p>Inspired by Michael Foord's efforts with <span>unittest2</span>, <a href="http://contextlib2.readthedocs.org/">contextlib2</a> is a PyPI package where I am working on some new additions to the standard library's <span>contextlib</span> module for Python 3.3.<br><br>The most interesting of those is a replacement for the ill-fated <a href="http://docs.python.org/library/contextlib#contextlib.nested">contextlib.nested</a> API.<br><br>If you use Python 3.2 today, you'll find that the <span>contextlib.nested</span> API doesn't even exist any more. The reason it was deprecated and removed is because it didn't play well with context managers that acquired their resources in <span>__init__</span> rather than <span>__enter__</span> (such as Python's own file objects and many other resources where using a with statement for management is an optional convenience rather than being mandatory).<br><br>The simplest example where the old API caused problems was opening a list of files and then using <span>contextlib.nested</span> to close them all when the operation was complete - if opening any later file threw an exception (e.g. due to a permissions error or a bad file name), then all of the earlier files would remain open until the garbage collector got around to cleaning them up. Not a huge problem on CPython with its refcounting based GC, but a far cry from the deterministic resource cleanup that context managers are supposed to offer.<br><br>Since the deprecation and removal of <span>contextlib.nested</span>, there have been assorted replacement proposals of varying levels of sophistication posted to the Python ideas mailing list. The new <a href="http://contextlib2.readthedocs.org/en/latest/index.html#contextlib2.ExitStack">ExitStack</a> API in this release is my own latest effort, and the first that I've liked well enough to seriously consider as a candidate for inclusion in the standard library module.<br><br>The idea behind providing the <span>ExitStack</span> API is for the standard library to focus specifically on handling the one particularly tricky part of dealing with context managers programmatically: unwinding the context stack correctly, ensuring that exceptions are processed exactly as if any context managers involved had been used in an appropriate series of nested with statements.<br><br>A couple of convenience methods are included (one that enters a context manager in addition to pushing the exit method on to the stack, as well as a simple callback registration method inspired by <span>unittest.TestCase.addCleanup</span>), but the features of the API are otherwise fairly minimal.<br><br>This low level dynamic API can then be used by developers to create their own higher level convenience APIs, as suggested in some of the <a href="http://contextlib2.readthedocs.org/en/latest/index.html#replacing-any-use-of-try-finally-and-flag-variables">examples</a> in the documentation.<br><br>A few specific design notes:<br></p>
 <ul>
 <li>The name <span>ExitStack</span> came about because the object is literally a stack of exit method references (or callback wrappers that behave like exit methods). Earlier variants were <span>ContextStack</span> (too narrow, since you can use the stack for standalone callbacks) and <span>CallbackStack</span> (too broad, since the stored callbacks specifically have the signature of exit methods)</li>
 <li>The <span>push()</span> method accepts exit methods directly, since those are what actually gets stored on the stack. Ducktyping to also accept objects with an <span>__exit__()</span> method is convenient without being confusing (I hope).</li>
 <li>The <span>enter_context()</span> method uses the longer name because the shorter version is too easy to confuse with the stack's own <span>__enter__()</span> method.</li>
 </ul>If you have any questions about the <span>ExitStack</span> design, this is the place to ask. If you find any bugs or other defects, head over to the <a href="https://bitbucket.org/ncoghlan/contextlib2/issues?status=new&amp;status=open">issue tracker</a>.<br>
-    </div>
-    <aside class="postpromonav">
-    <nav>
-    
-
-    
-        <ul class="pager">
-            <li class="previous">
+</div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
                 <a href="../01/walkdir-03-released-for-more-python.html" rel="prev" title="WalkDir 0.3 released (for more Python versions, thanks to Shining Panda!)">Previous post</a>
             </li>
             <li class="next">
                 <a href="embarrassment-of-riches.html" rel="next" title="An embarrassment of riches">Next post</a>
             </li>
-        </ul>
-
-    </nav>
-    </aside>
-        <section class="comments">
-        <h2>Comments</h2>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
         
         
         <div id="disqus_thread"></div>
@@ -172,43 +127,26 @@
             dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
         })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+    </script><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
 </noscript>
     <a href="//disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
-        </section>
-    
-
-</article>
-
-        
-       <script>var disqus_shortname="boredomandlaziness";(function(){var a=document.createElement("script");a.async=true;a.src="//"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
-
-
-
-    </div>
-    </div>
-    <!--End of body content-->
+        </section></article><script>var disqus_shortname="boredomandlaziness";(function(){var a=document.createElement("script");a.async=true;a.src="//"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
 </div>
-<div class="footerbox">
-    Contents © 2015 <a href="mailto:ncoghlan@gmail.com">Nick Coghlan</a> - <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, republish as you wish. - Powered by <a href="http://nikola.ralsina.com.ar">Nikola</a>
-    
+        <!--End of body content-->
+
+        <footer id="footer">
+            Contents © 2015 <a href="mailto:ncoghlan@gmail.com">Nick Coghlan</a> - <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, republish as you wish. - Powered by <a href="http://nikola.ralsina.com.ar">Nikola</a>
+            
+        </footer>
+</div>
 </div>
 
-            <script src="../../../assets/js/all-nocdn.js"></script>
-    
 
-    <script>jQuery("a.image-reference,!.islink").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
-    <!-- fancy dates -->
-    <script>
+            <script src="../../../assets/js/all-nocdn.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
     moment.locale("");
     fancydates(0, "YYYY-MM-DD HH:mm");
-    </script>
-    <!-- end fancy dates -->
-    
-
-
+    </script><!-- end fancy dates -->
 </body>
 </html>

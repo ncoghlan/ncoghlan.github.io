@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+<head>
+<meta charset="utf-8">
+<base href="http://www.curiousefficiency.org/posts/2011/06/index.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Posts/2011/06 | Curious Efficiency</title>
+<link href="../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta content="#5670d4" name="theme-color">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../../rss.xml">
+<link rel="canonical" href="http://www.curiousefficiency.org/posts/2011/06/index.html">
+<!--[if lt IE 9]><script src="../../../assets/js/html5.js"></script><![endif]-->
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://www.curiousefficiency.org/">
+
+                <span id="blog-title">Curious Efficiency</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../../../pages/about.html">About</a>
+                </li>
+<li>
+<a href="../../../archive.html">Archives</a>
+                </li>
+<li>
+<a href="../../../categories/index.html">Tags</a>
+                </li>
+<li>
+<a href="../../../rss.xml">RSS</a>
+                </li>
+<li>
+<a href="http://python-notes.curiousefficiency.org">Python Notes</a>
+
+                
+            </li>
+</ul>
+<ul class="nav navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+            
+<div class="sectionindex">
+    <header><h2><a href="#">Posts/2011/06</a></h2>
+    </header><div class="postindex">
+    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="updated-to-do-list-for-python-33.html" class="u-url">Updated to do list for Python 3.3</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">
+                Nick Coghlan
+            </span></p>
+            <p class="dateline"><a href="updated-to-do-list-for-python-33.html" rel="bookmark"><time class="published dt-published" datetime="2011-06-29T05:27:00Z" title="2011-06-29 05:27">2011-06-29 05:27</time></a></p>
+                <p class="commentline">
+        
+    <a href="updated-to-do-list-for-python-33.html#disqus_thread" data-disqus-identifier="cache/posts/2011/06/updated-to-do-list-for-python-33.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <p>I wrote a <a href="../../../2011/01/some-goals-for-python-33.html">to-do list</a> for 3.3 back in January. It's already obsolete, so inspired by Brett's <a href="http://sayspy.blogspot.com/2011/06/my-personal-plans-for-python-33.html">recent update</a> I have a new list of my own:<br><br></p>
+<h3>Finish PEP 394 (The "python" command on *nix platforms)</h3>This is the PEP clarifying that the current collective recommendation from python-dev to Linux distributions (et al) is to stick with Python 2.x as the system python for the moment. It also involves adding a python2 symlink to the next release of 2.7 so that we follow our own advice.<br><br><h3>PEP 3118 buffer API and memoryview fixes</h3>On <a href="http://bugs.python.org/issue10181">issue #10181</a> I've been doing the software architect thing in devising a way to address the flaws in the design of memoryview objects. Absent further contributions I may resort to coding it myself, otherwise I'll at least review whatever patches are put forward.<br><br><h3>PEP 380 (yield from expressions)</h3>Guido gave his approval to PEP 380 recently. This is almost ready to go in, but <a href="http://bugs.python.org/issue11682">some work</a> needs to be done on incorporating the tests neatly into the regression test suite.<br><br><h3>Import engine</h3>Import engine is a GSoC project I am mentoring that consolidates the scattered state for the import system into methods and attributes on a single object. While the "real" import system state will remain in the current locations for compatibility reasons, the import engine API will provide a more coherent interface to the whole mechanism. It will also allow creation of more limited engine instances for targeted imports (e.g. from plugin directories) that won't be confused by name conflicts with other libraries.<br><br>I'm hopeful Greg will get as far as writing the PEP itself before the end of the summer, otherwise that will become a follow-up activity.<br><br><h3>CPython compiler enhancements</h3>Eugene Toder put together a <a href="http://bugs.python.org/issue11549">nice patch</a> that refactors the CPython compiler to include an AST optimisation step as well as cleaning up several 2.x holdovers in the AST. Getting the AST compiler ready for Python 2.5 is one of the first things I ever hacked on as a core developer and it's still one of my main interest areas.<br><br><h3>PEP 395 (module aliasing)</h3>After starting to work with Django and discovering it commits the sin of putting a package subdirectory on sys.path, I have even more motivation to provide a module aliasing mechanism that doesn't run the risk of accidentally getting multiple copies of the same module loaded in a process. That kind of thing should only happen when you do it on purpose.<br><br>I need to review my proposal in PEP 395 to make sure it also covers the Django use case (and modify the proposal if it doesn't).<br><br><h3>Core mentoring</h3>There are still some coverage patches from the Pycon US sprints to be reviewed and committed, along with a couple from the core mentoring mailing list. I'm also likely to be leading the CPython sprints following PyconAU, so there'll be some more patches to review and commit as a result of that.<br><br><h3>importlib bootstrapping</h3>While the migration to importlib is definitely Brett's project, it's also one I keep a close eye on in case he wants any reviews or feedback on elements of the design.<br><br><h3>PEP process tinkering</h3>I'd still like to clean up PEP 0 by adding the "Consensus" state to PEP 1. However, it has dropped below the above items on the to-do list.<br><br><h3>With statement tinkering</h3>Screwing up @contextmanager for 3.2 gives me even more motivation to want implicit context managers and Alex Gaynor tells me he has a use case for a context manager that can skip the with statement body. As with the PEP process tinkering, these are still on the "yes, please" list, but I'm unlikely to get a chance to work on them any time soon.<br><br><h3>Other miscellaneous features</h3>Resurrecting the post-import hooks PEP would be nice and I'd also like to add some of the ABC registration viewing and monitoring features proposed on the issue tracker.<br><br>So, how long until 3.3 again? :)
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="switching-to-android.html" class="u-url">Switching to Android</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">
+                Nick Coghlan
+            </span></p>
+            <p class="dateline"><a href="switching-to-android.html" rel="bookmark"><time class="published dt-published" datetime="2011-06-15T14:33:00Z" title="2011-06-15 14:33">2011-06-15 14:33</time></a></p>
+                <p class="commentline">
+        
+    <a href="switching-to-android.html#disqus_thread" data-disqus-identifier="cache/posts/2011/06/switching-to-android.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <p>So my new HTC Desire S arrived today which means it is time for an app downloading spree... (starting with just freebies for now while I figure out what I do and don't like, and delete some of the cruft that HTC/Telstra added)<br><br>Already grabbed:<br>Google Goggles<br>Google Sky<br>Google Reader<br>Dropbox<br>Firefox<br>KeepassDroid<br>OI File Manager<br>Shelves for Android (now actually *scanning* my book collection will be quite a project...)<br>Barcode Scanner<br>Compass<br><br>And a ton of standard apps from Google/HTC/Telstra for all the basics (Phone, SMS, Music, Mail/Gmail, FB, Twitter, Camera, Calendar, Clock, Weather, Calculator, Adobe PDF Reader, Maps/Navigation, LED Flashlight, etc).<br><br>Things I know I want but don't have yet:<br><br>Ebook reader (I used Stanza from Lexcycle on the iPhone, but they don't make an Android version)<br>Weight tracker (don't need anything fancy, just something that I can import old data into and will give me a time-weighted average)<br><br>I'm also open to suggestions for things I might want but just don't know it yet, and of course I'll have to track down a few idle time games.</p>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="fixing-grub2-update-issues-with-kubuntu.html" class="u-url">Fixing GRUB2 update issues with Kubuntu 11.04</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">
+                Nick Coghlan
+            </span></p>
+            <p class="dateline"><a href="fixing-grub2-update-issues-with-kubuntu.html" rel="bookmark"><time class="published dt-published" datetime="2011-06-13T12:35:00Z" title="2011-06-13 12:35">2011-06-13 12:35</time></a></p>
+                <p class="commentline">
+        
+    <a href="fixing-grub2-update-issues-with-kubuntu.html#disqus_thread" data-disqus-identifier="cache/posts/2011/06/fixing-grub2-update-issues-with-kubuntu.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <p>After doing a dist-upgrade to 11.04 a while back, my Kubuntu machine refused to boot.<br><br>I eventually tracked this down to GRUB2 os-prober feature freaking out and trying to boot off the partition that held only the "/usr" directory rather than the one with the root and "/boot" directories. (Why, I have no idea. The latter is the first partition and the one that holds the MBR, so os-prober is clearly going to some effort to find and enforce the wrong partition).<br><br>After searching on Google and with a bit of experimentation, I was able to fix it by booting off a LiveCD, adding the line "GRUB_DISABLE_OS_PROBER=true" to "/etc/default/grub" and then running "sudo update-grub".</p>
+    </div>
+    </article>
+</div>
+
+
+
+        
+       <script>var disqus_shortname="boredomandlaziness";(function(){var a=document.createElement("script");a.async=true;a.src="//"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+</div>
+        <!--End of body content-->
+
+        <footer id="footer">
+            Contents © 2015 <a href="mailto:ncoghlan@gmail.com">Nick Coghlan</a> - <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, republish as you wish. - Powered by <a href="http://nikola.ralsina.com.ar">Nikola</a>
+            
+        </footer>
+</div>
+</div>
+
+
+            <script src="../../../assets/js/all-nocdn.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    moment.locale("");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates -->
+</div>
+</body>
+</html>
