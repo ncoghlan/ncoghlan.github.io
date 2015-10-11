@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Curious Efficiency (python)</title><link>http://www.curiousefficiency.org</link><description></description><atom:link href="http://www.curiousefficiency.org/categories/python.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Sun, 11 Oct 2015 06:14:47 GMT</lastBuildDate><generator>https://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>27 languages to improve your Python</title><link>http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;div class="contents topic" id="languages"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Curious Efficiency (python)</title><link>http://www.curiousefficiency.org</link><description></description><atom:link href="http://www.curiousefficiency.org/categories/python.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Sun, 11 Oct 2015 07:36:11 GMT</lastBuildDate><generator>https://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>27 languages to improve your Python</title><link>http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;div class="contents topic" id="languages"&gt;
 &lt;p class="topic-title first"&gt;27 Languages&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#procedural-programming-c-rust-cython" id="id3"&gt;Procedural programming: C, Rust, Cython&lt;/a&gt;&lt;/li&gt;
@@ -130,7 +130,7 @@ Mozilla. The reason it makes this list is because Rust aims to take all of the
 lessons we've learned as an industry regarding what &lt;em&gt;not&lt;/em&gt; to do in C, and
 design a new language that is interoperable with C libraries, offers the same
 precise control over hardware usage that is needed in a low level systems
-program language, but uses a different compile time approach to data modelling
+programming language, but uses a different compile time approach to data modelling
 and memory management to structurally eliminate many of the common flaws
 afflicting C programs (such as buffer overflows, double free errors, null
 pointer access, and thread synchronisation problems). I'm an embedded systems
@@ -345,7 +345,7 @@ applications provides a better illustration of the concept. TypeScript code
 compiles to JavaScript code (which then doesn't include any runtime type
 checking), and TypeScript annotations for popular JavaScript libraries are
 maintained in the dedicated &lt;a class="reference external" href="http://definitelytyped.org/"&gt;DefinitelyTyped&lt;/a&gt; repository.&lt;/p&gt;
-&lt;p&gt;As Chris Neugebaur pointed out in his &lt;a class="reference external" href="https://www.youtube.com/watch?v=_PPQLeimyOM"&gt;PyCon Australia presentation&lt;/a&gt;, this is
+&lt;p&gt;As Chris Neugebauer pointed out in his &lt;a class="reference external" href="https://www.youtube.com/watch?v=_PPQLeimyOM"&gt;PyCon Australia presentation&lt;/a&gt;, this is
 very similar to the proposed relationship between Python, the &lt;a class="reference external" href="https://github.com/python/typeshed"&gt;typeshed&lt;/a&gt; type
 hint repository, and type inference and analysis tools like &lt;a class="reference external" href="http://mypy-lang.org/"&gt;mypy&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;In essence, bothTypeScript and type hinting in Python are ways of writing
