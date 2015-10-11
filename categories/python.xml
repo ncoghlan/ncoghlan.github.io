@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Curious Efficiency (python)</title><link>http://www.curiousefficiency.org</link><description></description><atom:link href="http://www.curiousefficiency.org/categories/python.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Sun, 11 Oct 2015 04:55:42 GMT</lastBuildDate><generator>https://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>27 languages to improve your Python</title><link>http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;div class="contents topic" id="languages"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Curious Efficiency (python)</title><link>http://www.curiousefficiency.org</link><description></description><atom:link href="http://www.curiousefficiency.org/categories/python.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Sun, 11 Oct 2015 05:22:46 GMT</lastBuildDate><generator>https://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>27 languages to improve your Python</title><link>http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;div class="contents topic" id="languages"&gt;
 &lt;p class="topic-title first"&gt;27 Languages&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#procedural-programming-c-rust-cython" id="id3"&gt;Procedural programming: C, Rust, Cython&lt;/a&gt;&lt;/li&gt;
@@ -116,7 +116,7 @@ look.&lt;/p&gt;
 &lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id3"&gt;Procedural programming: C, Rust, Cython&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Python's default execution model is procedural: we start at the top of the main
 module and execute it statement by statement. All of Python's support for the
-other approaches to data and computational modelling covered below are built
+other approaches to data and computational modelling covered below is built
 on this procedural foundation.&lt;/p&gt;
 &lt;p&gt;The &lt;a class="reference external" href="https://en.wikipedia.org/wiki/C_%28programming_language%29"&gt;C&lt;/a&gt; programming language is still the unchallenged ruler of low level
 procedural programming. It's the core implementation language for the reference
@@ -289,7 +289,7 @@ noting as the preferred functional programming language for the .NET CLR.&lt;/p&
 &lt;p&gt;Learning one of these languages is likely to provide insight into Python's own
 computational pipeline modelling tools, including container comprehensions,
 generators, generator expressions, the &lt;tt class="docutils literal"&gt;functools&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;itertools&lt;/tt&gt; standard
-library modules, and third party functional Python toolkits like &lt;tt class="docutils literal"&gt;toolz&lt;/tt&gt;.&lt;/p&gt;
+library modules, and third party functional Python toolkits like &lt;a class="reference external" href="https://toolz.readthedocs.org/en/latest/heritage.html"&gt;toolz&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="event-driven-programming-javascript-go-erlang-elixir"&gt;
 &lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id9"&gt;Event driven programming: JavaScript, Go, Erlang, Elixir&lt;/a&gt;&lt;/h2&gt;
@@ -367,7 +367,7 @@ other object.&lt;/p&gt;
 dialects take the "code as data" concept to extremes, as Lisp code consists of
 nested lists describing the operations to be performed (the name of the language
 itself stands for "LISt Processor"). The great strength of Lisp-style languages
-is that they make it incredibly easy to eliminate write your own domain specific
+is that they make it incredibly easy to write your own domain specific
 languages. The great weakness of Lisp-style languages is that they make it
 incredibly easy to write your own domain specific languages, which can sometimes
 make it difficult to read other people's code.&lt;/p&gt;
@@ -390,7 +390,7 @@ enumeration types and runtime evaluation of gradual typing expressions)&lt;/p&gt
 &lt;p&gt;Popular programming languages don't exist in isolation - they exist as part of
 larger ecosystems of redistributors (both commercial and community focused),
 end users, framework developers, tool developers, educators and more.&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Lua_%28programming_language%29"&gt;Lua&lt;/a&gt; is a popular programming language for embedding in a larger applications
+&lt;p&gt;&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Lua_%28programming_language%29"&gt;Lua&lt;/a&gt; is a popular programming language for embedding in larger applications
 as a scripting engine. Significant examples include it being the language
 used to write add-ons for the World of Warcraft game client, and it's also
 embedded in the RPM utility used by many Linux distributions. Compared to
@@ -413,7 +413,7 @@ community reporting on distributed events.&lt;/p&gt;
 grew specifically as a web development platform, Perl rose to prominence as
 a system administrator's tool, using regular expressions to string together
 and manipulate the output of text-based Linux operating system commands. When
-shell, &lt;tt class="docutils literal"&gt;awk&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;sed&lt;/tt&gt; were no longer up to handling a task, Perl was there
+&lt;tt class="docutils literal"&gt;sh&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;awk&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;sed&lt;/tt&gt; were no longer up to handling a task, Perl was there
 to take over.&lt;/p&gt;
 &lt;p&gt;Learning one of these languages isn't likely to provide any great insight into
 aesthetically beautiful or conceptually elegant programming language design.
@@ -451,7 +451,9 @@ are actually being used to start teaching computational thinking to children.&lt
 &lt;p&gt;One of the most popular of those is &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Scratch_%28programming_language%29"&gt;Scratch&lt;/a&gt;, which uses a drag-and-drop
 programming interface to let students manipulate a self-contained graphical
 environment, with sprites moving around and reacting to events in that
-environment.&lt;/p&gt;
+environment. Graphical environments like Scratch are the programming
+equivalent of the picture books we use to help introduce children to reading
+and writing.&lt;/p&gt;
 &lt;p&gt;This idea of using a special purpose educational language to manipulate a
 graphical environment isn't new though, with one of the earliest incarnations
 being the &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Logo_%28programming_language%29"&gt;Logo&lt;/a&gt; environment created back in the 1960's. In Logo (and similar
