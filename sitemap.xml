@@ -7,599 +7,615 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>http://www.curiousefficiency.org/2004/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/2005/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/2006/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/2007/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/2010/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/2011/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/2012/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/2013/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/2014/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/2015/index.html</loc>
-  <lastmod>2016-04-19T01:50:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
+ </url>
+ <url>
+  <loc>http://www.curiousefficiency.org/2016/index.html</loc>
+  <lastmod>2016-05-02T03:33:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/archive.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
+ </url>
+ <url>
+  <loc>http://www.curiousefficiency.org/categories/cat_pycon-au.html</loc>
+  <lastmod>2016-05-02T03:32:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/categories/cat_python.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:33:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/categories/docker.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/categories/fedora.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/categories/fiction.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/categories/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:33:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/categories/intarwebs.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/categories/kallithea.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/categories/kubuntu.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/categories/metablogging.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/categories/openshift.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/categories/philosophy.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/categories/politics.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/categories/pulpdist.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
+ </url>
+ <url>
+  <loc>http://www.curiousefficiency.org/categories/pycon-au.html</loc>
+  <lastmod>2016-05-02T03:33:00Z</lastmod>
+ </url>
+ <url>
+  <loc>http://www.curiousefficiency.org/categories/python-pycon-au.html</loc>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/categories/python.html</loc>
-  <lastmod>2016-04-19T01:50:00Z</lastmod>
+  <lastmod>2016-05-02T03:33:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/categories/science.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/categories/tech.html</loc>
-  <lastmod>2016-04-19T01:50:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/categories/travel.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/index-1.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/index-2.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/index-3.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/index-4.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/index-5.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/index-6.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/index-7.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/index.html</loc>
-  <lastmod>2016-04-19T01:50:00Z</lastmod>
+  <lastmod>2016-05-02T03:33:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/pages/about.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2004/11/firing-it-up.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2004/11/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2004/11/mt-st-helens.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2004/11/python-quirk.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2004/12/brain-dead-software-1-yast-online.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2004/12/email-blogging.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2004/12/google-footprint.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2004/12/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2004/12/type-checking-in-python.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2005/02/because-james-doesnt-remember-it.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2005/02/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2005/04/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2005/04/self-defeating-advertisements.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2005/07/grand-column.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2005/07/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2005/07/lance-hannah.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2006/04/ego-surfing.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2006/04/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2007/06/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2007/06/what-he-said.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2010/01/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2010/01/justifying-python-language-changes.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2010/01/kubuntu-dev-packages-to-build-python.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2010/01/status-quo-wins-stalemate.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2010/12/ethos.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2010/12/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2010/12/joining-modern-era-of-blogging.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2010/12/musings-on-lotr-movie-adaptations.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/01/comments-update-and-site-to-do-list.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/01/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/01/some-goals-for-python-33.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/01/which-matters-more-to-you-being-right.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/02/bye-bye-blogilo.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/02/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/02/justifying-python-language-changes.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/02/linking-sites-in-blog-posts.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/02/posting-code-and-syntax-highlighting.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/02/status-quo-wins-stalemate.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/02/to-pycon-and-beyond_8775.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/03/climate-change-skepticism-text-book.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/03/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/03/python-language-summit-highlights.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/03/python-language-summit-rough-notes.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/03/python-vm-summit-rough-notes.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/03/python-vm-summit-somewhat-coherent.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/03/queenslands-unelected-leader-of.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/03/thoughts-and-impressions-following.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/03/what-is-python-script.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/04/benefits-and-limitations-of-pyc-only.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/04/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/04/musings-on-culture-of-python-dev.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/06/fixing-grub2-update-issues-with-kubuntu.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/06/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/06/switching-to-android.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/06/updated-to-do-list-for-python-33.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/07/effective-communication-brain-hacking.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/07/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/07/sharing-vs-broadcasting.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/07/sure-its-surprising-but-whats.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/08/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/08/of-python-and-road-maps-or-lack-thereof.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/08/open-source-windows-and-teaching-python.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/08/scripting-languages-and-suitable.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/09/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/09/mirror-all-things.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/09/spinning-up-pulpdist-project.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/10/correcting-ignorance-learning-bit-about.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/10/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/12/help-improve-python-33-standard-library.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/12/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2011/12/new-year-python-meme-december-2011.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2012/01/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2012/01/using-sopa-protests-to-highlight.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2012/01/walkdir-03-released-for-more-python.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2012/05/contextlib2-04-now-with-exitstack.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2012/05/djangos-cbvs-are-not-mistake-but.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2012/05/embarrassment-of-riches.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2012/05/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2012/06/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2012/06/some-thoughts-on-else-clauses-in.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2012/07/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2012/07/the-title-of-this-blog.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2012/07/volunteer-supported-free-threaded-cross.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2012/10/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2012/10/pythons-future-global-perspective.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2012/11/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2012/11/pycon-india-2012.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2013/02/a-sliding-scale-of-freedom.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2013/02/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2013/03/change-future-one-small-slice-of-pycon.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2013/03/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2013/03/python-language-summit-pycon-us-2013.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2014/03/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2014/03/on-wielding-power.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2014/08/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2014/08/multilingual-programming.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2014/08/python-4000.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2014/08/python-teaching-suggestions.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2014/09/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2014/09/seven-billion-seconds-per-second.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2014/12/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2014/12/kallithea-on-openshift.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2015/01/abuse-is-not-ok.html</loc>
-  <lastmod>2016-04-19T01:50:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2015/01/dtca-public-consultation.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2015/01/index.html</loc>
-  <lastmod>2016-04-19T01:50:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2015/04/fedora-encrypted-volumes.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2015/04/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2015/04/pycon-australia-education-miniconf.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2015/04/stop-supporting-python26.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2015/07/asyncio-background-calls.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2015/07/asyncio-tcp-echo-server.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2015/07/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2015/10/27-languages-to-improve-your-python.html</loc>
@@ -607,10 +623,18 @@
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2015/10/index.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html</loc>
-  <lastmod>2016-04-19T01:48:00Z</lastmod>
+  <lastmod>2016-05-02T03:30:00Z</lastmod>
+ </url>
+ <url>
+  <loc>http://www.curiousefficiency.org/posts/2016/05/index.html</loc>
+  <lastmod>2016-05-02T03:33:00Z</lastmod>
+ </url>
+ <url>
+  <loc>http://www.curiousefficiency.org/posts/2016/05/pycon-australia-education-cfp-2016.html</loc>
+  <lastmod>2016-05-02T03:33:00Z</lastmod>
  </url>
 </urlset>
