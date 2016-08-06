@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Curious Efficiency (python)</title><link>http://www.curiousefficiency.org</link><description></description><atom:link href="http://www.curiousefficiency.org/categories/python.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Sat, 06 Aug 2016 12:28:33 GMT</lastBuildDate><generator>https://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>What problem does it solve?</title><link>http://www.curiousefficiency.org/posts/2016/08/what-problem-does-it-solve.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;p&gt;One of the more puzzling aspects of Python for newcomers to the language is the
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Curious Efficiency (python)</title><link>http://www.curiousefficiency.org</link><description></description><atom:link href="http://www.curiousefficiency.org/categories/python.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Sat, 06 Aug 2016 12:35:18 GMT</lastBuildDate><generator>https://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>What problem does it solve?</title><link>http://www.curiousefficiency.org/posts/2016/08/what-problem-does-it-solve.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;p&gt;One of the more puzzling aspects of Python for newcomers to the language is the
 stark usability differences between the standard library's &lt;code&gt;urllib&lt;/code&gt; module
 and the popular (and well-recommended) third party module, &lt;code&gt;requests&lt;/code&gt;, when
 it comes to writing HTTP(S) protocol clients. When your problem is
@@ -17,11 +17,11 @@ Python 2.0 release and hence couldn't take that into account in its API design),
 the vast majority of the usability difference relates to an entirely different
 question we often forget to ask about the software we use:
 &lt;em&gt;What problem does it solve?&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;That is, many of otherwise surprising discrepancies between &lt;code&gt;urllib&lt;/code&gt;/&lt;code&gt;urllib2&lt;/code&gt;
-and &lt;code&gt;requests&lt;/code&gt; are best explained by the fact that they solve
-&lt;em&gt;different problems&lt;/em&gt;, and the problems most HTTP client developers have today
+&lt;p&gt;That is, many otherwise surprising discrepancies between &lt;code&gt;urllib&lt;/code&gt;/&lt;code&gt;urllib2&lt;/code&gt;
+and &lt;code&gt;requests&lt;/code&gt; are best explained by the fact that they &lt;em&gt;solve different
+problems&lt;/em&gt;, and the problems most HTTP client developers have today
 are closer to those Kenneth Reitz designed &lt;code&gt;requests&lt;/code&gt; to solve in 2010/2011,
-than they are to the problems that Jeremy Hylton was aiming to solve mroe than
+than they are to the problems that Jeremy Hylton was aiming to solve more than
 a decade earlier.&lt;/p&gt;
 &lt;h3&gt;It's all in the name&lt;/h3&gt;
 &lt;p&gt;To quote the current Python 3 &lt;code&gt;urllib&lt;/code&gt; package documentation: "urllib is a
@@ -51,13 +51,13 @@ HTTP(S) before you gain access to most HTTP(S) features.&lt;/p&gt;
 &lt;p&gt;When it was written, &lt;code&gt;urllib2&lt;/code&gt; was a square peg that was designed to fit into
 the square hole of "generic URL processing". By contrast, most modern client
 developers are looking for a round peg to fit into the round hole that is
-HTTPS+JSON processing - &lt;code&gt;urllib2&lt;/code&gt; will fit if you shave the corners off first,
-but &lt;code&gt;requests&lt;/code&gt; comes pre-rounded.&lt;/p&gt;
+HTTPS+JSON processing - &lt;code&gt;urllib&lt;/code&gt;/&lt;code&gt;urllib2&lt;/code&gt; will fit if you shave the corners
+off first, but &lt;code&gt;requests&lt;/code&gt; comes pre-rounded.&lt;/p&gt;
 &lt;h3&gt;So why not add requests to the standard library?&lt;/h3&gt;
 &lt;p&gt;Answering the not-so-obvious question of "What problem does it solve?" then
-leads to a more obvious follow-up question: if the problem that &lt;code&gt;urllib&lt;/code&gt;/
-&lt;code&gt;urllib2&lt;/code&gt; were designed to solve is no longer common, while the problem that
-&lt;code&gt;requests&lt;/code&gt; solves &lt;em&gt;is&lt;/em&gt; common, why not add &lt;code&gt;requests&lt;/code&gt; to the standard library?&lt;/p&gt;
+leads to a more obvious follow-up question: if the problems that &lt;code&gt;urllib&lt;/code&gt;/
+&lt;code&gt;urllib2&lt;/code&gt; were designed to solve are no longer common, while the problems that
+&lt;code&gt;requests&lt;/code&gt; solves &lt;em&gt;are&lt;/em&gt; common, why not add &lt;code&gt;requests&lt;/code&gt; to the standard library?&lt;/p&gt;
 &lt;p&gt;If I recall correctly, Guido gave in-principle approval to this idea at a
 language summit back in 2013 or so (after the &lt;code&gt;requests&lt;/code&gt; 1.0 release), and it's
 a fairly common assumption amongst the core development team that either
