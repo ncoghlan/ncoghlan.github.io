@@ -3,7 +3,94 @@
 much of our economic activity is devoted to preventing boredom in the idle
 time created by increases in efficiency. To be human is to be a strange
 creature indeed :)
-</description><atom:link href="http://www.curiousefficiency.org/rss.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Mon, 02 May 2016 03:33:47 GMT</lastBuildDate><generator>https://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Propose a talk for the PyCon Australia Education Seminar!</title><link>http://www.curiousefficiency.org/posts/2016/05/pycon-australia-education-cfp-2016.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;h3&gt;The pitch&lt;/h3&gt;
+</description><atom:link href="http://www.curiousefficiency.org/rss.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Sat, 06 Aug 2016 12:28:33 GMT</lastBuildDate><generator>https://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>What problem does it solve?</title><link>http://www.curiousefficiency.org/posts/2016/08/what-problem-does-it-solve.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;p&gt;One of the more puzzling aspects of Python for newcomers to the language is the
+stark usability differences between the standard library's &lt;code&gt;urllib&lt;/code&gt; module
+and the popular (and well-recommended) third party module, &lt;code&gt;requests&lt;/code&gt;, when
+it comes to writing HTTP(S) protocol clients. When your problem is
+"talk to a HTTP server", the difference in usability isn't immediately obvious,
+but it becomes clear as soon as additional requirements like SSL/TLS,
+authentication, redirect handling, session management, and JSON request and
+response bodies enter the picture.&lt;/p&gt;
+&lt;p&gt;It's tempting, and entirely understandable, to want to
+&lt;a href="http://noamelf.com/2016/08/05/designing-pythonic-apis/"&gt;chalk this difference&lt;/a&gt;
+in ease of use up to &lt;code&gt;requests&lt;/code&gt; being "Pythonic" (in 2016 terms), while &lt;code&gt;urllib&lt;/code&gt;
+has now become un-Pythonic (despite being included in the standard library).&lt;/p&gt;
+&lt;p&gt;While there are certainly a few elements of that (e.g. the &lt;code&gt;property&lt;/code&gt; builtin
+was only added in Python 2.2, while &lt;code&gt;urllib2&lt;/code&gt; was included in the original
+Python 2.0 release and hence couldn't take that into account in its API design),
+the vast majority of the usability difference relates to an entirely different
+question we often forget to ask about the software we use:
+&lt;em&gt;What problem does it solve?&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;That is, many of otherwise surprising discrepancies between &lt;code&gt;urllib&lt;/code&gt;/&lt;code&gt;urllib2&lt;/code&gt;
+and &lt;code&gt;requests&lt;/code&gt; are best explained by the fact that they solve
+&lt;em&gt;different problems&lt;/em&gt;, and the problems most HTTP client developers have today
+are closer to those Kenneth Reitz designed &lt;code&gt;requests&lt;/code&gt; to solve in 2010/2011,
+than they are to the problems that Jeremy Hylton was aiming to solve mroe than
+a decade earlier.&lt;/p&gt;
+&lt;h3&gt;It's all in the name&lt;/h3&gt;
+&lt;p&gt;To quote the current Python 3 &lt;code&gt;urllib&lt;/code&gt; package documentation: "urllib is a
+package that collects several modules for working with URLs".&lt;/p&gt;
+&lt;p&gt;And the docstring from Jeremy's
+&lt;a href="https://hg.python.org/cpython/rev/b800e36aed4e"&gt;original commit message&lt;/a&gt;
+adding &lt;code&gt;urllib2&lt;/code&gt; to CPython: "An extensible library for opening URLs using a
+variety [of] protocols".&lt;/p&gt;
+&lt;p&gt;Wait, what? We're just trying to write a HTTP client, so why is the
+documentation talking about working with URLs in general?&lt;/p&gt;
+&lt;p&gt;While it may seem strange to developers accustomed to the modern HTTPS+JSON
+powered interactive web, it wasn't always clear that that was how things were
+going to turn out.&lt;/p&gt;
+&lt;p&gt;At the turn of the century, the expectation was instead that we'd retain a
+rich variety of data transfer protocols with different characteristics optimised
+for different purposes, and that the most useful client to have in the standard
+library would be one that could be used to talk to multiple different kinds
+of servers (like HTTP, FTP, NFS, etc), without client developers needing to
+worry too much about the specific protocol used (as indicated by the URL
+schema).&lt;/p&gt;
+&lt;p&gt;In practice, things didn't work out that way (mostly due to restrictive
+institutional firewalls meaning HTTP servers were the only remote services that
+could be accessed reliably), so folks in 2016 are now regularly comparing the
+usability of a dedicated HTTP(S)-only client library with a general purpose
+URL handling library that needs to be configured to specifically be using
+HTTP(S) before you gain access to most HTTP(S) features.&lt;/p&gt;
+&lt;p&gt;When it was written, &lt;code&gt;urllib2&lt;/code&gt; was a square peg that was designed to fit into
+the square hole of "generic URL processing". By contrast, most modern client
+developers are looking for a round peg to fit into the round hole that is
+HTTPS+JSON processing - &lt;code&gt;urllib2&lt;/code&gt; will fit if you shave the corners off first,
+but &lt;code&gt;requests&lt;/code&gt; comes pre-rounded.&lt;/p&gt;
+&lt;h3&gt;So why not add requests to the standard library?&lt;/h3&gt;
+&lt;p&gt;Answering the not-so-obvious question of "What problem does it solve?" then
+leads to a more obvious follow-up question: if the problem that &lt;code&gt;urllib&lt;/code&gt;/
+&lt;code&gt;urllib2&lt;/code&gt; were designed to solve is no longer common, while the problem that
+&lt;code&gt;requests&lt;/code&gt; solves &lt;em&gt;is&lt;/em&gt; common, why not add &lt;code&gt;requests&lt;/code&gt; to the standard library?&lt;/p&gt;
+&lt;p&gt;If I recall correctly, Guido gave in-principle approval to this idea at a
+language summit back in 2013 or so (after the &lt;code&gt;requests&lt;/code&gt; 1.0 release), and it's
+a fairly common assumption amongst the core development team that either
+&lt;code&gt;requests&lt;/code&gt; itself (perhaps as a bundled snapshot of an independently upgradable
+component) or a compatible subset of the API with a different implementation
+will eventually end up in the standard library.&lt;/p&gt;
+&lt;p&gt;However, even putting aside the
+&lt;a href="https://github.com/kennethreitz/requests/issues/2424"&gt;misgivings of the requests developers&lt;/a&gt;
+about the idea, there are still some non-trivial system integration problems
+to solve in getting &lt;code&gt;requests&lt;/code&gt; to a point where it would be acceptable as a
+standard library component.&lt;/p&gt;
+&lt;p&gt;In particular, one of the things that &lt;code&gt;requests&lt;/code&gt; does to more reliably handle
+SSL/TLS certificates in a cross-platform way is to bundle the Mozilla
+Certificate Bundle included in the &lt;code&gt;certifi&lt;/code&gt; project. This is a sensible
+thing to do by default (due to the difficulties of obtaining reliable access
+to system security certificates in a cross-platform way), but it conflicts
+with the security policy of the standard library, which specifically aims to
+delegate certificate management to the underlying operating system. That policy
+aims to address two needs: allowing Python applications access to custom
+institutional certificates added to the system certificate store (most notably,
+private CA certificates for large organisations), and avoiding adding an
+additional certificate store to end user systems that needs to be updated when
+the root certificate bundle changes for any other reason.&lt;/p&gt;
+&lt;p&gt;These kinds of problems are technically solvable, but they're not fun to solve,
+and the folks in a position to help solve them already have a great many other
+demands on their time.This means we're not likely to see much in the way of
+progress in this area as long as most of the CPython and &lt;code&gt;requests&lt;/code&gt; developers
+are pursuing their upstream contributions as a spare time activity, rather than
+as something they're specifically employed to do.&lt;/p&gt;&lt;/div&gt;</description><category>python</category><guid>http://www.curiousefficiency.org/posts/2016/08/what-problem-does-it-solve.html</guid><pubDate>Sat, 06 Aug 2016 11:05:53 GMT</pubDate></item><item><title>Propose a talk for the PyCon Australia Education Seminar!</title><link>http://www.curiousefficiency.org/posts/2016/05/pycon-australia-education-cfp-2016.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;h3&gt;The pitch&lt;/h3&gt;
 &lt;div style="float: right"&gt;
   &lt;a href="http://www.oreilly.com/programming/free/python-in-education.csp"&gt;
     &lt;img src="http://www.curiousefficiency.org/files/python-in-education-cover.gif" alt="Python in Education cover"&gt;
@@ -66,17 +153,18 @@ encourage folks to talk to their friends and peers that they'd like to see
 presenting, and see if they're interested in participating.&lt;/p&gt;&lt;/div&gt;</description><category>pycon-au</category><category>python</category><guid>http://www.curiousefficiency.org/posts/2016/05/pycon-australia-education-cfp-2016.html</guid><pubDate>Mon, 02 May 2016 01:29:23 GMT</pubDate></item><item><title>27 languages to improve your Python</title><link>http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;div class="contents topic" id="languages"&gt;
 &lt;p class="topic-title first"&gt;27 Languages&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#procedural-programming-c-rust-cython" id="id3"&gt;Procedural programming: C, Rust, Cython&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#object-oriented-data-modelling-java-c-eiffel" id="id4"&gt;Object-oriented data modelling: Java, C#, Eiffel&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#object-oriented-c-derivatives-c-d" id="id5"&gt;Object-oriented C derivatives: C++, D&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#array-oriented-data-processing-matlab-octave-julia" id="id6"&gt;Array-oriented data processing: MATLAB/Octave, Julia&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#statistical-data-analysis-r" id="id7"&gt;Statistical data analysis: R&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#computational-pipeline-modelling-haskell-scala-clojure-f" id="id8"&gt;Computational pipeline modelling: Haskell, Scala, Clojure, F#&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#event-driven-programming-javascript-go-erlang-elixir" id="id9"&gt;Event driven programming: JavaScript, Go, Erlang, Elixir&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#gradual-typing-typescript" id="id10"&gt;Gradual typing: TypeScript&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#dynamic-metaprogramming-hy-ruby" id="id11"&gt;Dynamic metaprogramming: Hy, Ruby&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#pragmatic-problem-solving-lua-php-perl" id="id12"&gt;Pragmatic problem solving: Lua, PHP, Perl&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#computational-thinking-scratch-logo" id="id13"&gt;Computational thinking: Scratch, Logo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#broadening-our-horizons" id="id3"&gt;Broadening our horizons&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#procedural-programming-c-rust-cython" id="id4"&gt;Procedural programming: C, Rust, Cython&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#object-oriented-data-modelling-java-c-eiffel" id="id5"&gt;Object-oriented data modelling: Java, C#, Eiffel&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#object-oriented-c-derivatives-c-d" id="id6"&gt;Object-oriented C derivatives: C++, D&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#array-oriented-data-processing-matlab-octave-julia" id="id7"&gt;Array-oriented data processing: MATLAB/Octave, Julia&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#statistical-data-analysis-r" id="id8"&gt;Statistical data analysis: R&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#computational-pipeline-modelling-haskell-scala-clojure-f" id="id9"&gt;Computational pipeline modelling: Haskell, Scala, Clojure, F#&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#event-driven-programming-javascript-go-erlang-elixir" id="id10"&gt;Event driven programming: JavaScript, Go, Erlang, Elixir&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#gradual-typing-typescript" id="id11"&gt;Gradual typing: TypeScript&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#dynamic-metaprogramming-hy-ruby" id="id12"&gt;Dynamic metaprogramming: Hy, Ruby&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#pragmatic-problem-solving-lua-php-perl" id="id13"&gt;Pragmatic problem solving: Lua, PHP, Perl&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#computational-thinking-scratch-logo" id="id14"&gt;Computational thinking: Scratch, Logo&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;p&gt;As a co-designer of one of the world's most popular programming languages, one
@@ -145,6 +233,8 @@ the folks &lt;em&gt;writing&lt;/em&gt; the software that are the problem, it's t
 deploying it without performing appropriate due diligence on the provenance
 and security properties of that software)&lt;/li&gt;
 &lt;/ol&gt;
+&lt;div class="section" id="broadening-our-horizons"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id3"&gt;Broadening our horizons&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;My broader suggestion is aimed at folks that are starting to encounter the
 limits of the core procedural subset of Python and would hence like to start
 exploring more of Python's own available "tools for thinking".&lt;/p&gt;
@@ -176,8 +266,9 @@ a Python developer). For a more complete list that takes into account factors
 beyond what a language might teach you as a developer, IEEE Spectrum's
 &lt;a class="reference external" href="http://spectrum.ieee.org/static/interactive-the-top-programming-languages-2015"&gt;annual ranking&lt;/a&gt; of programming language popularity and growth is well worth a
 look.&lt;/p&gt;
+&lt;/div&gt;
 &lt;div class="section" id="procedural-programming-c-rust-cython"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id3"&gt;Procedural programming: C, Rust, Cython&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id4"&gt;Procedural programming: C, Rust, Cython&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Python's default execution model is procedural: we start at the top of the main
 module and execute it statement by statement. All of Python's support for the
 other approaches to data and computational modelling covered below is built
@@ -214,7 +305,7 @@ portability, and other practical aspects of turning source code into running
 systems.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="object-oriented-data-modelling-java-c-eiffel"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id4"&gt;Object-oriented data modelling: Java, C#, Eiffel&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id5"&gt;Object-oriented data modelling: Java, C#, Eiffel&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;One of the main things we need to do in programming is to model the state of
 the real world, and offering native syntactic support for object-oriented
 programming is one of the most popular approaches for doing that:
@@ -263,7 +354,7 @@ a number of standard library modules and third party frameworks that use this
 modules, and class-based views in the &lt;tt class="docutils literal"&gt;Django&lt;/tt&gt; web framework.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="object-oriented-c-derivatives-c-d"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id5"&gt;Object-oriented C derivatives: C++, D&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id6"&gt;Object-oriented C derivatives: C++, D&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;One way of using the CPython runtime is as a "C with objects" programming
 environment - at its core, CPython is implemented using C's approach to
 object-oriented programming, which is to define C &lt;tt class="docutils literal"&gt;structs&lt;/tt&gt; to hold the data
@@ -293,7 +384,7 @@ C runtime model. Learning C++ is also likely to be useful when using Python
 to manipulate existing libraries and toolkits written in C++.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="array-oriented-data-processing-matlab-octave-julia"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id6"&gt;Array-oriented data processing: MATLAB/Octave, Julia&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id7"&gt;Array-oriented data processing: MATLAB/Octave, Julia&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Array oriented programming is designed to support numerical programming models:
 those based on matrix algebra and related numerical methods.&lt;/p&gt;
 &lt;p&gt;While Python's standard library doesn't support this directly, array oriented
@@ -315,7 +406,7 @@ and Nvidia's CUDA, and distributed data processing through ecosystems like
 &lt;a class="reference external" href="https://spark.apache.org/"&gt;Apache Spark&lt;/a&gt; and the Python-specific &lt;a class="reference external" href="http://blaze.pydata.org/"&gt;Blaze&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="statistical-data-analysis-r"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id7"&gt;Statistical data analysis: R&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id8"&gt;Statistical data analysis: R&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;As access to large data sets has grown, so has demand for capable freely
 available analytical tools for processing those data sets. One such tool is
 the &lt;a class="reference external" href="https://en.wikipedia.org/wiki/R_%28programming_language%29"&gt;R&lt;/a&gt; programming language, which focuses specifically on statistical data
@@ -325,7 +416,7 @@ capabilities of the Scientific Python stack, especially the &lt;a class="referen
 manipulation library and the &lt;a class="reference external" href="http://stanford.edu/~mwaskom/software/seaborn/"&gt;seaborn&lt;/a&gt; statistical visualisation library.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="computational-pipeline-modelling-haskell-scala-clojure-f"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id8"&gt;Computational pipeline modelling: Haskell, Scala, Clojure, F#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id9"&gt;Computational pipeline modelling: Haskell, Scala, Clojure, F#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Object-oriented data modelling and array-oriented data processing focus a lot
 of attention on modelling data at rest, either in the form of collections of
 named attributes or as arrays of structured data.&lt;/p&gt;
@@ -356,7 +447,7 @@ generators, generator expressions, the &lt;tt class="docutils literal"&gt;functo
 library modules, and third party functional Python toolkits like &lt;a class="reference external" href="https://toolz.readthedocs.org/en/latest/heritage.html"&gt;toolz&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="event-driven-programming-javascript-go-erlang-elixir"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id9"&gt;Event driven programming: JavaScript, Go, Erlang, Elixir&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id10"&gt;Event driven programming: JavaScript, Go, Erlang, Elixir&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Computational pipelines are an excellent way to handle data transformation and
 analysis problems, but many problems require that an application run as a
 persistent service that &lt;em&gt;waits&lt;/em&gt; for events to occur, and then &lt;em&gt;handles&lt;/em&gt; those
@@ -397,7 +488,7 @@ library modules, third party network service development frameworks like
 and the event handling loops in GUI frameworks.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="gradual-typing-typescript"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id10"&gt;Gradual typing: TypeScript&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id11"&gt;Gradual typing: TypeScript&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;One of the more controversial features that landed in Python 3.5 was the new
 &lt;tt class="docutils literal"&gt;typing&lt;/tt&gt; module, which brings a standard lexicon for gradual typing support
 to the Python ecosystem.&lt;/p&gt;
@@ -422,7 +513,7 @@ TypeScript, and as an entirely optional static analysis task for Python's type
 hinting).&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="dynamic-metaprogramming-hy-ruby"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id11"&gt;Dynamic metaprogramming: Hy, Ruby&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id12"&gt;Dynamic metaprogramming: Hy, Ruby&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;A feature folks coming to Python from languages like C, C++, C# and Java often
 find disconcerting is the notion that "code is data": the fact that things like
 functions and classes are runtime objects that can be manipulated like any
@@ -450,7 +541,7 @@ Metaclasses power features like the core type system, abstract base classes,
 enumeration types and runtime evaluation of gradual typing expressions)&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="pragmatic-problem-solving-lua-php-perl"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id12"&gt;Pragmatic problem solving: Lua, PHP, Perl&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id13"&gt;Pragmatic problem solving: Lua, PHP, Perl&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Popular programming languages don't exist in isolation - they exist as part of
 larger ecosystems of redistributors (both commercial and community focused),
 end users, framework developers, tool developers, educators and more.&lt;/p&gt;
@@ -493,7 +584,7 @@ than the inherent capabilities of the languages themselves.&lt;/p&gt;
 institutional investment in the Python ecosystem.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="computational-thinking-scratch-logo"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id13"&gt;Computational thinking: Scratch, Logo&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id14"&gt;Computational thinking: Scratch, Logo&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Finally, I fairly regularly get into discussions with functional and
 object-oriented programming advocates claiming that those kinds of languages
 are just as easy to learn as procedural ones.&lt;/p&gt;
@@ -1599,170 +1690,4 @@ been put in place to handle existing Wassenaar enforcement regimes in other
 countries. With the way the 2012 Act was drafted, that's almost certainly
 currently not the case, but the proposed 2015 amendments &lt;em&gt;should&lt;/em&gt; fix it
 (assuming the amendments actually have the effects that DECO has indicated
-they're intended to).&lt;/p&gt;&lt;/div&gt;</description><category>politics</category><category>python</category><category>tech</category><guid>http://www.curiousefficiency.org/posts/2015/01/dtca-public-consultation.html</guid><pubDate>Tue, 20 Jan 2015 12:41:51 GMT</pubDate></item><item><title>Running Kallithea on OpenShift</title><link>http://www.curiousefficiency.org/posts/2014/12/kallithea-on-openshift.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;h2&gt;Kallithea for CPython&lt;/h2&gt;
-&lt;p&gt;The CPython core development team are currently evaluating our options for
-modernising our core development workflows to better match the standards
-set by other projects and services like OpenStack and GitHub.&lt;/p&gt;
-&lt;p&gt;The first step in &lt;a href="https://www.python.org/dev/peps/pep-0474/"&gt;my own proposal&lt;/a&gt;
-for that is to migrate a number of the support repositories currently hosted
-using a basic Mercurial server on hg.python.org to an instance of
-&lt;a href="https://kallithea-scm.org/"&gt;Kallithea&lt;/a&gt; hosted as forge.python.org.
-(Kallithea is a GPLv3 Python project that was forked from RhodeCode after
-certain aspects of the latter's commercialisation efforts started alienating
-several members of their user and developer community)&lt;/p&gt;
-&lt;p&gt;Tymoteusz Jankowski (a contributor to Allegro Group's open source data centre
-inventory management system, &lt;a href="http://ralph.allegrogroup.com/"&gt;Ralph&lt;/a&gt;), has
-already started looking at the steps that might be involved in integrating a
-Kallithea instance into the PSF's Salt based
-&lt;a href="https://github.com/xliiv/psf-salt/tree/kallithea"&gt;infrastructure automation&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;However, for my proposal to be as successful as I would like it to be, I need
-the barriers to entry for the development and deployment of the upstream
-Kallithea project itself to be as low as possible. One of the challenges
-we've often had with gaining contributors to CPython infrastructure
-maintenance is the relatively high barriers to entry for trying out service
-changes and sharing them with others, so this time I plan to tackle that
-concern &lt;em&gt;first&lt;/em&gt;, by ensuring that addressing it is a mandatory requirement
-in my proposal.&lt;/p&gt;
-&lt;p&gt;That means tackling two particular problems:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Having a way to easily run local test instances for development and
-  experimentation&lt;/li&gt;
-&lt;li&gt;Having a way to easily share demonstration instances with others&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;For the first problem, I plan to rely on Vagrant and Docker, while for the
-second I'll be relying on the free tier in Red Hat's OpenShift Online
-service. Unfortunately, while the
-&lt;a href="http://www.openshift.org/"&gt;next generation&lt;/a&gt; of OpenShift will support Docker
-images natively, for the time being, I need to tackle these as two separate
-problems, as there aren't any existing Docker based services I'm aware of
-with a free tier that is similarly suited to the task of sharing development
-prototypes for open source web services with a broad audience (let alone
-any such services that are also
-&lt;a href="https://github.com/openshift"&gt;fully open source&lt;/a&gt;).&lt;/p&gt;
-&lt;p&gt;Once I have these working to my satisfaction, I'll propose them to the
-Kallithea team for inclusion in the Kallithea developer documentation, but
-in the meantime I'll just document them here on the blog.&lt;/p&gt;
-&lt;h2&gt;Enabling Kallithea deployment on OpenShift&lt;/h2&gt;
-&lt;p&gt;My first priority is to get a public demonstration instance up and running
-that I can start tweaking towards the CPython core development community's
-needs (e.g. installing the custom repo hooks we run on hg.python.org), so
-I'm starting by figuring out the OpenShift setup needed to run public
-instances - the Vagrant/Docker based setup for local development will come
-later.&lt;/p&gt;
-&lt;p&gt;Conveniently, WorldLine previously created an &lt;a href="https://github.com/worldline/openshift-rhodecode"&gt;OpenShift quickstart for
-RhodeCode&lt;/a&gt; and published
-it under the Apache License 2.0, so I was able to use that as a starting
-point for my own
-&lt;a href="https://github.com/ncoghlan/openshift-kallithea"&gt;Kallithea quickstart&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;While I personally prefer to run Python web services under mod_wsgi in order
-to take advantage of Apache's authentication &amp;amp; authorisation plugin ecosystem,
-that's not a significant concern for the demonstration server use case I have
-in mind here. There are also some other aspects in the WorldLine quickstart
-I'd like to understand better and potentially change (like figuring out a
-better way of installing git that doesn't involve hardcoding a particular
-version), but again, not a big deal for demonstration instances - rather
-than worrying about them too much, I just annotated them as &lt;code&gt;TODO&lt;/code&gt; comments
-in the OpenShift hook source code.&lt;/p&gt;
-&lt;p&gt;I'd also prefer to be running under the official Python 2.7 cartridge rather
-than a DIY cartridge, but again, my focus at this point is on getting
-something up and running, and then iterating from there to improve it.&lt;/p&gt;
-&lt;p&gt;That meant adapting the quickstart from RhodeCode to Kallithea was mostly
-just a matter of changing the names of the various components being installed
-and invoked, together with changing the actual installation and upgrade steps
-to be based on Kallithea's deployment instructions.&lt;/p&gt;
-&lt;p&gt;The keys to this are the
-&lt;a href="https://github.com/ncoghlan/openshift-kallithea/blob/master/.openshift/action_hooks/build"&gt;build hook&lt;/a&gt;
-and the
-&lt;a href="https://github.com/ncoghlan/openshift-kallithea/blob/master/.openshift/action_hooks/start"&gt;start hook&lt;/a&gt;.
-The &lt;a href="https://developers.openshift.com/en/managing-action-hooks.html"&gt;OpenShift docs&lt;/a&gt;
-have more details on the various available action hooks and when they're run.&lt;/p&gt;
-&lt;p&gt;In addition to the &lt;code&gt;TODO&lt;/code&gt; comments noted above, I also added various comments
-explaining &lt;em&gt;what&lt;/em&gt; different parts of the action hook scripts were doing.&lt;/p&gt;
-&lt;p&gt;(Note: I haven't actually &lt;em&gt;tested&lt;/em&gt; an upgrade, only the initial
-deployment described below, so I can't be sure I have actually adapted the
-upgrade handling correctly yet)&lt;/p&gt;
-&lt;h2&gt;Deploying my own Kallithea instance&lt;/h2&gt;
-&lt;p&gt;I already have an OpenShift account, so I could
-&lt;a href="https://www.openshift.com/app/account/new"&gt;skip that step&lt;/a&gt;, and just
-create a new app under my existing account. However, I didn't have the command
-line tools installed, so that was the first step in creating my own instance:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;sudo yum install /usr/bin/rhc
-&lt;/pre&gt;
-
-
-&lt;p&gt;yum is able to figure out on my behalf that it is &lt;code&gt;rubygems-rhc&lt;/code&gt; that
-provides the command line tools for OpenShift in Fedora (alternatively,
-I could have looked that up myself in the
-&lt;a href="https://developers.openshift.com/en/getting-started-client-tools.html#fedora"&gt;OpenShift client tools installation docs&lt;/a&gt;).&lt;/p&gt;
-&lt;p&gt;The next step was to configure the command line tools to use my OpenShift
-Online account, generate a local login token for this machine, and upload
-my public SSH key to OpenShift Online. That process involved working through
-the interactive prompts in:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;rhc setup
-&lt;/pre&gt;
-
-
-&lt;p&gt;With those preliminary OpenShift steps out of the way, it was time to
-move on to deploying the application itself. It's worth noting that
-app creation automatically clones a local git repo named after the application,
-so I created a separate "app_repos" subdirectory in my development directory
-specifically so I could call my OpenShift app "kallithea" without conflicting
-with my local clone of the main kallithea repo.&lt;/p&gt;
-&lt;p&gt;As described in the quickstart README, the app creation command is:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;rhc app create kallithea diy-0.1 postgresql-9.2
-&lt;/pre&gt;
-
-
-&lt;p&gt;That churned away for a while, and then attempted to clone the app repo
-locally over ssh (with SSH putting up a prompt to accept the validity of the
-app's freshly generated SSH key). I'm not sure why, but for some reason that
-automatic clone operation didn't work for me. &lt;code&gt;rhc&lt;/code&gt; put up a detailed
-message explaining that the app creation had worked, but the clone step had
-failed. Fortunately, as the troubleshooting notice suggested, a subsequent
-&lt;code&gt;rhc git-clone kallithea&lt;/code&gt; worked as expected.&lt;/p&gt;
-&lt;p&gt;OpenShift provides a default app skeleton automatically, but I actually
-want to get rid of that and replace it with the contents of the quickstart
-repo:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;rm -R diy .openshift misc README.md
-git add .
-git commit -m "Remove template files"
-git remote add quickstart -m master https://github.com/ncoghlan/openshift-kallithea.git
-git pull -s recursive -X theirs quickstart master
-&lt;/pre&gt;
-
-
-&lt;p&gt;The default merge commit message that popped up was fine, so I just accepted
-that and moved on to the most interesting step:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;git push
-&lt;/pre&gt;
-
-
-&lt;p&gt;Because this is the first build, there's a lot of output related to
-installing and building the PostgreSQL driver and git, before moving on
-to installing Kallithea and its dependencies.&lt;/p&gt;
-&lt;p&gt;However, that still didn't take long, and completed without errors, so I now
-have my own Kallithea instance
-&lt;a href="http://kallithea-ncoghlan.rhcloud.com/"&gt;up and running&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;And no, the default admin credentials created by the quickstart won't work
-anymore - I immediately logged in to the admin account to change them!&lt;/p&gt;
-&lt;h2&gt;Where to from here?&lt;/h2&gt;
-&lt;p&gt;There are various aspects of the current quickstart that are far from ideal,
-but I don't plan to spend a lot of time worrying about it when I know that
-support for using Docker images directly in OpenShift is coming at some
-point in the not too distant future.&lt;/p&gt;
-&lt;p&gt;One of the key advantages of Docker is the much nicer approach it offers to
-layered application development where infrastructure experts can provide
-base images for others to build on, and in the case of deploying Python
-applications with mod_wsgi, that means listening to Graham Dumpleton (the
-author of mod_wsgi, currently working for New Relic).&lt;/p&gt;
-&lt;p&gt;On that front, Graham has actually been
-&lt;a href="http://blog.dscpl.com.au/2014/12/hosting-python-wsgi-applications-using.html"&gt;working on&lt;/a&gt;
-creating a set of Debian based
-&lt;a href="https://registry.hub.docker.com/u/grahamdumpleton/mod-wsgi-docker/"&gt;mod_wsgi Docker images&lt;/a&gt;
-that Python developers can use, rather than having to build their own from
-scratch.&lt;/p&gt;
-&lt;p&gt;In my case, I'd really prefer something based on CentOS 7 or Fedora Cloud,
-but that's a relatively minor quibble, and Graham's images should still make
-a great basis for putting together a Vagrant+Docker based local workflow
-for folks working on Kallithea.&lt;/p&gt;
-&lt;p&gt;That, however, is a topic for a future post :)&lt;/p&gt;&lt;/div&gt;</description><category>docker</category><category>kallithea</category><category>openshift</category><category>python</category><guid>http://www.curiousefficiency.org/posts/2014/12/kallithea-on-openshift.html</guid><pubDate>Thu, 11 Dec 2014 03:18:26 GMT</pubDate></item></channel></rss>
+they're intended to).&lt;/p&gt;&lt;/div&gt;</description><category>politics</category><category>python</category><category>tech</category><guid>http://www.curiousefficiency.org/posts/2015/01/dtca-public-consultation.html</guid><pubDate>Tue, 20 Jan 2015 12:41:51 GMT</pubDate></item></channel></rss>

@@ -1,5 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Curious Efficiency (python)</title><link>http://www.curiousefficiency.org</link><description></description><atom:link href="http://www.curiousefficiency.org/categories/python.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Mon, 02 May 2016 03:33:47 GMT</lastBuildDate><generator>https://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Propose a talk for the PyCon Australia Education Seminar!</title><link>http://www.curiousefficiency.org/posts/2016/05/pycon-australia-education-cfp-2016.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;h3&gt;The pitch&lt;/h3&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Curious Efficiency (python)</title><link>http://www.curiousefficiency.org</link><description></description><atom:link href="http://www.curiousefficiency.org/categories/python.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Sat, 06 Aug 2016 12:28:33 GMT</lastBuildDate><generator>https://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>What problem does it solve?</title><link>http://www.curiousefficiency.org/posts/2016/08/what-problem-does-it-solve.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;p&gt;One of the more puzzling aspects of Python for newcomers to the language is the
+stark usability differences between the standard library's &lt;code&gt;urllib&lt;/code&gt; module
+and the popular (and well-recommended) third party module, &lt;code&gt;requests&lt;/code&gt;, when
+it comes to writing HTTP(S) protocol clients. When your problem is
+"talk to a HTTP server", the difference in usability isn't immediately obvious,
+but it becomes clear as soon as additional requirements like SSL/TLS,
+authentication, redirect handling, session management, and JSON request and
+response bodies enter the picture.&lt;/p&gt;
+&lt;p&gt;It's tempting, and entirely understandable, to want to
+&lt;a href="http://noamelf.com/2016/08/05/designing-pythonic-apis/"&gt;chalk this difference&lt;/a&gt;
+in ease of use up to &lt;code&gt;requests&lt;/code&gt; being "Pythonic" (in 2016 terms), while &lt;code&gt;urllib&lt;/code&gt;
+has now become un-Pythonic (despite being included in the standard library).&lt;/p&gt;
+&lt;p&gt;While there are certainly a few elements of that (e.g. the &lt;code&gt;property&lt;/code&gt; builtin
+was only added in Python 2.2, while &lt;code&gt;urllib2&lt;/code&gt; was included in the original
+Python 2.0 release and hence couldn't take that into account in its API design),
+the vast majority of the usability difference relates to an entirely different
+question we often forget to ask about the software we use:
+&lt;em&gt;What problem does it solve?&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;That is, many of otherwise surprising discrepancies between &lt;code&gt;urllib&lt;/code&gt;/&lt;code&gt;urllib2&lt;/code&gt;
+and &lt;code&gt;requests&lt;/code&gt; are best explained by the fact that they solve
+&lt;em&gt;different problems&lt;/em&gt;, and the problems most HTTP client developers have today
+are closer to those Kenneth Reitz designed &lt;code&gt;requests&lt;/code&gt; to solve in 2010/2011,
+than they are to the problems that Jeremy Hylton was aiming to solve mroe than
+a decade earlier.&lt;/p&gt;
+&lt;h3&gt;It's all in the name&lt;/h3&gt;
+&lt;p&gt;To quote the current Python 3 &lt;code&gt;urllib&lt;/code&gt; package documentation: "urllib is a
+package that collects several modules for working with URLs".&lt;/p&gt;
+&lt;p&gt;And the docstring from Jeremy's
+&lt;a href="https://hg.python.org/cpython/rev/b800e36aed4e"&gt;original commit message&lt;/a&gt;
+adding &lt;code&gt;urllib2&lt;/code&gt; to CPython: "An extensible library for opening URLs using a
+variety [of] protocols".&lt;/p&gt;
+&lt;p&gt;Wait, what? We're just trying to write a HTTP client, so why is the
+documentation talking about working with URLs in general?&lt;/p&gt;
+&lt;p&gt;While it may seem strange to developers accustomed to the modern HTTPS+JSON
+powered interactive web, it wasn't always clear that that was how things were
+going to turn out.&lt;/p&gt;
+&lt;p&gt;At the turn of the century, the expectation was instead that we'd retain a
+rich variety of data transfer protocols with different characteristics optimised
+for different purposes, and that the most useful client to have in the standard
+library would be one that could be used to talk to multiple different kinds
+of servers (like HTTP, FTP, NFS, etc), without client developers needing to
+worry too much about the specific protocol used (as indicated by the URL
+schema).&lt;/p&gt;
+&lt;p&gt;In practice, things didn't work out that way (mostly due to restrictive
+institutional firewalls meaning HTTP servers were the only remote services that
+could be accessed reliably), so folks in 2016 are now regularly comparing the
+usability of a dedicated HTTP(S)-only client library with a general purpose
+URL handling library that needs to be configured to specifically be using
+HTTP(S) before you gain access to most HTTP(S) features.&lt;/p&gt;
+&lt;p&gt;When it was written, &lt;code&gt;urllib2&lt;/code&gt; was a square peg that was designed to fit into
+the square hole of "generic URL processing". By contrast, most modern client
+developers are looking for a round peg to fit into the round hole that is
+HTTPS+JSON processing - &lt;code&gt;urllib2&lt;/code&gt; will fit if you shave the corners off first,
+but &lt;code&gt;requests&lt;/code&gt; comes pre-rounded.&lt;/p&gt;
+&lt;h3&gt;So why not add requests to the standard library?&lt;/h3&gt;
+&lt;p&gt;Answering the not-so-obvious question of "What problem does it solve?" then
+leads to a more obvious follow-up question: if the problem that &lt;code&gt;urllib&lt;/code&gt;/
+&lt;code&gt;urllib2&lt;/code&gt; were designed to solve is no longer common, while the problem that
+&lt;code&gt;requests&lt;/code&gt; solves &lt;em&gt;is&lt;/em&gt; common, why not add &lt;code&gt;requests&lt;/code&gt; to the standard library?&lt;/p&gt;
+&lt;p&gt;If I recall correctly, Guido gave in-principle approval to this idea at a
+language summit back in 2013 or so (after the &lt;code&gt;requests&lt;/code&gt; 1.0 release), and it's
+a fairly common assumption amongst the core development team that either
+&lt;code&gt;requests&lt;/code&gt; itself (perhaps as a bundled snapshot of an independently upgradable
+component) or a compatible subset of the API with a different implementation
+will eventually end up in the standard library.&lt;/p&gt;
+&lt;p&gt;However, even putting aside the
+&lt;a href="https://github.com/kennethreitz/requests/issues/2424"&gt;misgivings of the requests developers&lt;/a&gt;
+about the idea, there are still some non-trivial system integration problems
+to solve in getting &lt;code&gt;requests&lt;/code&gt; to a point where it would be acceptable as a
+standard library component.&lt;/p&gt;
+&lt;p&gt;In particular, one of the things that &lt;code&gt;requests&lt;/code&gt; does to more reliably handle
+SSL/TLS certificates in a cross-platform way is to bundle the Mozilla
+Certificate Bundle included in the &lt;code&gt;certifi&lt;/code&gt; project. This is a sensible
+thing to do by default (due to the difficulties of obtaining reliable access
+to system security certificates in a cross-platform way), but it conflicts
+with the security policy of the standard library, which specifically aims to
+delegate certificate management to the underlying operating system. That policy
+aims to address two needs: allowing Python applications access to custom
+institutional certificates added to the system certificate store (most notably,
+private CA certificates for large organisations), and avoiding adding an
+additional certificate store to end user systems that needs to be updated when
+the root certificate bundle changes for any other reason.&lt;/p&gt;
+&lt;p&gt;These kinds of problems are technically solvable, but they're not fun to solve,
+and the folks in a position to help solve them already have a great many other
+demands on their time.This means we're not likely to see much in the way of
+progress in this area as long as most of the CPython and &lt;code&gt;requests&lt;/code&gt; developers
+are pursuing their upstream contributions as a spare time activity, rather than
+as something they're specifically employed to do.&lt;/p&gt;&lt;/div&gt;</description><category>python</category><guid>http://www.curiousefficiency.org/posts/2016/08/what-problem-does-it-solve.html</guid><pubDate>Sat, 06 Aug 2016 11:05:53 GMT</pubDate></item><item><title>Propose a talk for the PyCon Australia Education Seminar!</title><link>http://www.curiousefficiency.org/posts/2016/05/pycon-australia-education-cfp-2016.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;h3&gt;The pitch&lt;/h3&gt;
 &lt;div style="float: right"&gt;
   &lt;a href="http://www.oreilly.com/programming/free/python-in-education.csp"&gt;
     &lt;img src="http://www.curiousefficiency.org/files/python-in-education-cover.gif" alt="Python in Education cover"&gt;
@@ -62,17 +149,18 @@ encourage folks to talk to their friends and peers that they'd like to see
 presenting, and see if they're interested in participating.&lt;/p&gt;&lt;/div&gt;</description><category>pycon-au</category><category>python</category><guid>http://www.curiousefficiency.org/posts/2016/05/pycon-australia-education-cfp-2016.html</guid><pubDate>Mon, 02 May 2016 01:29:23 GMT</pubDate></item><item><title>27 languages to improve your Python</title><link>http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;div class="contents topic" id="languages"&gt;
 &lt;p class="topic-title first"&gt;27 Languages&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#procedural-programming-c-rust-cython" id="id3"&gt;Procedural programming: C, Rust, Cython&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#object-oriented-data-modelling-java-c-eiffel" id="id4"&gt;Object-oriented data modelling: Java, C#, Eiffel&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#object-oriented-c-derivatives-c-d" id="id5"&gt;Object-oriented C derivatives: C++, D&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#array-oriented-data-processing-matlab-octave-julia" id="id6"&gt;Array-oriented data processing: MATLAB/Octave, Julia&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#statistical-data-analysis-r" id="id7"&gt;Statistical data analysis: R&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#computational-pipeline-modelling-haskell-scala-clojure-f" id="id8"&gt;Computational pipeline modelling: Haskell, Scala, Clojure, F#&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#event-driven-programming-javascript-go-erlang-elixir" id="id9"&gt;Event driven programming: JavaScript, Go, Erlang, Elixir&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#gradual-typing-typescript" id="id10"&gt;Gradual typing: TypeScript&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#dynamic-metaprogramming-hy-ruby" id="id11"&gt;Dynamic metaprogramming: Hy, Ruby&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#pragmatic-problem-solving-lua-php-perl" id="id12"&gt;Pragmatic problem solving: Lua, PHP, Perl&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#computational-thinking-scratch-logo" id="id13"&gt;Computational thinking: Scratch, Logo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#broadening-our-horizons" id="id3"&gt;Broadening our horizons&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#procedural-programming-c-rust-cython" id="id4"&gt;Procedural programming: C, Rust, Cython&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#object-oriented-data-modelling-java-c-eiffel" id="id5"&gt;Object-oriented data modelling: Java, C#, Eiffel&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#object-oriented-c-derivatives-c-d" id="id6"&gt;Object-oriented C derivatives: C++, D&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#array-oriented-data-processing-matlab-octave-julia" id="id7"&gt;Array-oriented data processing: MATLAB/Octave, Julia&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#statistical-data-analysis-r" id="id8"&gt;Statistical data analysis: R&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#computational-pipeline-modelling-haskell-scala-clojure-f" id="id9"&gt;Computational pipeline modelling: Haskell, Scala, Clojure, F#&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#event-driven-programming-javascript-go-erlang-elixir" id="id10"&gt;Event driven programming: JavaScript, Go, Erlang, Elixir&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#gradual-typing-typescript" id="id11"&gt;Gradual typing: TypeScript&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#dynamic-metaprogramming-hy-ruby" id="id12"&gt;Dynamic metaprogramming: Hy, Ruby&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#pragmatic-problem-solving-lua-php-perl" id="id13"&gt;Pragmatic problem solving: Lua, PHP, Perl&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#computational-thinking-scratch-logo" id="id14"&gt;Computational thinking: Scratch, Logo&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;p&gt;As a co-designer of one of the world's most popular programming languages, one
@@ -141,6 +229,8 @@ the folks &lt;em&gt;writing&lt;/em&gt; the software that are the problem, it's t
 deploying it without performing appropriate due diligence on the provenance
 and security properties of that software)&lt;/li&gt;
 &lt;/ol&gt;
+&lt;div class="section" id="broadening-our-horizons"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id3"&gt;Broadening our horizons&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;My broader suggestion is aimed at folks that are starting to encounter the
 limits of the core procedural subset of Python and would hence like to start
 exploring more of Python's own available "tools for thinking".&lt;/p&gt;
@@ -172,8 +262,9 @@ a Python developer). For a more complete list that takes into account factors
 beyond what a language might teach you as a developer, IEEE Spectrum's
 &lt;a class="reference external" href="http://spectrum.ieee.org/static/interactive-the-top-programming-languages-2015"&gt;annual ranking&lt;/a&gt; of programming language popularity and growth is well worth a
 look.&lt;/p&gt;
+&lt;/div&gt;
 &lt;div class="section" id="procedural-programming-c-rust-cython"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id3"&gt;Procedural programming: C, Rust, Cython&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id4"&gt;Procedural programming: C, Rust, Cython&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Python's default execution model is procedural: we start at the top of the main
 module and execute it statement by statement. All of Python's support for the
 other approaches to data and computational modelling covered below is built
@@ -210,7 +301,7 @@ portability, and other practical aspects of turning source code into running
 systems.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="object-oriented-data-modelling-java-c-eiffel"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id4"&gt;Object-oriented data modelling: Java, C#, Eiffel&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id5"&gt;Object-oriented data modelling: Java, C#, Eiffel&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;One of the main things we need to do in programming is to model the state of
 the real world, and offering native syntactic support for object-oriented
 programming is one of the most popular approaches for doing that:
@@ -259,7 +350,7 @@ a number of standard library modules and third party frameworks that use this
 modules, and class-based views in the &lt;tt class="docutils literal"&gt;Django&lt;/tt&gt; web framework.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="object-oriented-c-derivatives-c-d"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id5"&gt;Object-oriented C derivatives: C++, D&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id6"&gt;Object-oriented C derivatives: C++, D&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;One way of using the CPython runtime is as a "C with objects" programming
 environment - at its core, CPython is implemented using C's approach to
 object-oriented programming, which is to define C &lt;tt class="docutils literal"&gt;structs&lt;/tt&gt; to hold the data
@@ -289,7 +380,7 @@ C runtime model. Learning C++ is also likely to be useful when using Python
 to manipulate existing libraries and toolkits written in C++.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="array-oriented-data-processing-matlab-octave-julia"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id6"&gt;Array-oriented data processing: MATLAB/Octave, Julia&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id7"&gt;Array-oriented data processing: MATLAB/Octave, Julia&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Array oriented programming is designed to support numerical programming models:
 those based on matrix algebra and related numerical methods.&lt;/p&gt;
 &lt;p&gt;While Python's standard library doesn't support this directly, array oriented
@@ -311,7 +402,7 @@ and Nvidia's CUDA, and distributed data processing through ecosystems like
 &lt;a class="reference external" href="https://spark.apache.org/"&gt;Apache Spark&lt;/a&gt; and the Python-specific &lt;a class="reference external" href="http://blaze.pydata.org/"&gt;Blaze&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="statistical-data-analysis-r"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id7"&gt;Statistical data analysis: R&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id8"&gt;Statistical data analysis: R&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;As access to large data sets has grown, so has demand for capable freely
 available analytical tools for processing those data sets. One such tool is
 the &lt;a class="reference external" href="https://en.wikipedia.org/wiki/R_%28programming_language%29"&gt;R&lt;/a&gt; programming language, which focuses specifically on statistical data
@@ -321,7 +412,7 @@ capabilities of the Scientific Python stack, especially the &lt;a class="referen
 manipulation library and the &lt;a class="reference external" href="http://stanford.edu/~mwaskom/software/seaborn/"&gt;seaborn&lt;/a&gt; statistical visualisation library.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="computational-pipeline-modelling-haskell-scala-clojure-f"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id8"&gt;Computational pipeline modelling: Haskell, Scala, Clojure, F#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id9"&gt;Computational pipeline modelling: Haskell, Scala, Clojure, F#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Object-oriented data modelling and array-oriented data processing focus a lot
 of attention on modelling data at rest, either in the form of collections of
 named attributes or as arrays of structured data.&lt;/p&gt;
@@ -352,7 +443,7 @@ generators, generator expressions, the &lt;tt class="docutils literal"&gt;functo
 library modules, and third party functional Python toolkits like &lt;a class="reference external" href="https://toolz.readthedocs.org/en/latest/heritage.html"&gt;toolz&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="event-driven-programming-javascript-go-erlang-elixir"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id9"&gt;Event driven programming: JavaScript, Go, Erlang, Elixir&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id10"&gt;Event driven programming: JavaScript, Go, Erlang, Elixir&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Computational pipelines are an excellent way to handle data transformation and
 analysis problems, but many problems require that an application run as a
 persistent service that &lt;em&gt;waits&lt;/em&gt; for events to occur, and then &lt;em&gt;handles&lt;/em&gt; those
@@ -393,7 +484,7 @@ library modules, third party network service development frameworks like
 and the event handling loops in GUI frameworks.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="gradual-typing-typescript"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id10"&gt;Gradual typing: TypeScript&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id11"&gt;Gradual typing: TypeScript&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;One of the more controversial features that landed in Python 3.5 was the new
 &lt;tt class="docutils literal"&gt;typing&lt;/tt&gt; module, which brings a standard lexicon for gradual typing support
 to the Python ecosystem.&lt;/p&gt;
@@ -418,7 +509,7 @@ TypeScript, and as an entirely optional static analysis task for Python's type
 hinting).&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="dynamic-metaprogramming-hy-ruby"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id11"&gt;Dynamic metaprogramming: Hy, Ruby&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id12"&gt;Dynamic metaprogramming: Hy, Ruby&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;A feature folks coming to Python from languages like C, C++, C# and Java often
 find disconcerting is the notion that "code is data": the fact that things like
 functions and classes are runtime objects that can be manipulated like any
@@ -446,7 +537,7 @@ Metaclasses power features like the core type system, abstract base classes,
 enumeration types and runtime evaluation of gradual typing expressions)&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="pragmatic-problem-solving-lua-php-perl"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id12"&gt;Pragmatic problem solving: Lua, PHP, Perl&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id13"&gt;Pragmatic problem solving: Lua, PHP, Perl&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Popular programming languages don't exist in isolation - they exist as part of
 larger ecosystems of redistributors (both commercial and community focused),
 end users, framework developers, tool developers, educators and more.&lt;/p&gt;
@@ -489,7 +580,7 @@ than the inherent capabilities of the languages themselves.&lt;/p&gt;
 institutional investment in the Python ecosystem.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="computational-thinking-scratch-logo"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id13"&gt;Computational thinking: Scratch, Logo&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id14"&gt;Computational thinking: Scratch, Logo&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Finally, I fairly regularly get into discussions with functional and
 object-oriented programming advocates claiming that those kinds of languages
 are just as easy to learn as procedural ones.&lt;/p&gt;
@@ -1763,323 +1854,4 @@ humans&lt;/em&gt;, rather than because of specific things they have done, or spe
 roles they take up?&lt;/p&gt;
 &lt;p&gt;I honestly don't know, but it seems worthwhile to try. I certainly find it
 hard to conceive of a better possible way to spend my own meagre slice of
-those seven billion seconds per second :)&lt;/p&gt;&lt;/div&gt;</description><category>philosophy</category><category>politics</category><category>python</category><category>science</category><guid>http://www.curiousefficiency.org/posts/2014/09/seven-billion-seconds-per-second.html</guid><pubDate>Tue, 23 Sep 2014 07:35:39 GMT</pubDate></item><item><title>The transition to multilingual programming</title><link>http://www.curiousefficiency.org/posts/2014/08/multilingual-programming.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;p&gt;A &lt;a href="https://mail.python.org/pipermail/python-dev/2014-August/135873.html"&gt;recent thread&lt;/a&gt;
-on python-dev prompted
-&lt;a href="https://mail.python.org/pipermail/python-dev/2014-August/135977.html"&gt;me to summarise&lt;/a&gt;
-the current state of the ongoing industry wide transition from bilingual to
-multilingual programming as it relates to Python's cross-platform support. It
-also relates to the reasons why Python 3 turned out to be
-&lt;a href="http://www.curiousefficiency.org/posts/2014/08/python-4000.html"&gt;more disruptive&lt;/a&gt;
-than the core development team initially expected.&lt;/p&gt;
-&lt;p&gt;A good starting point for anyone interested in exploring this topic further
-is the &lt;a href="https://en.wikipedia.org/wiki/Unicode#Origin_and_development"&gt;"Origin and development"&lt;/a&gt;
-section of the Wikipedia article on Unicode, but I'll hit the key points
-below.&lt;/p&gt;
-&lt;h2&gt;Monolingual computing&lt;/h2&gt;
-&lt;p&gt;At their core, computers only understand single bits. Everything above that
-is based on conventions that ascribe higher level meanings to particular
-sequences of bits. One particular important set of conventions for
-communicating between humans and computers are "text encodings": conventions
-that map particular sequences of bits to text in the actual languages humans
-read and write.&lt;/p&gt;
-&lt;p&gt;One of the oldest encodings still in common use is
-&lt;a href="https://en.wikipedia.org/wiki/ASCII"&gt;ASCII&lt;/a&gt; (which stands for "American
-Standard Code for Information Interchange"), developed during the 1960's (it
-just had its 50th birthday in 2013). This encoding maps the letters of the
-English alphabet (in both upper and lower case), the decimal digits,
-various punctuation characters and some additional "control codes" to the
-128 numbers that can be encoded as a 7-bit sequence.&lt;/p&gt;
-&lt;p&gt;Many computer systems today still only work correctly with English - when
-you encounter such a system, it's a fairly good bet that either the system
-itself, or something it depends on, is limited to working with ASCII text.
-(If you're &lt;em&gt;really&lt;/em&gt; unlucky, you might even get to work with modal 5-bit
-encodings like &lt;a href="https://en.wikipedia.org/wiki/ITA2#ITA2"&gt;ITA-2&lt;/a&gt;, as I have.
-The legacy of the telegraph lives on!)&lt;/p&gt;
-&lt;h2&gt;Working with local languages&lt;/h2&gt;
-&lt;p&gt;The first attempts at dealing with this limitation of ASCII simply assigned
-meanings to the full range of 8-bit sequences. Known collectively as
-"Extended ASCII", each of these systems allowed for an additional 128
-characters, which was enough to handle many European and Cyrillic scripts.
-Even 256 characters was nowhere near sufficient to deal with Indic
-or East Asian languages, however, so this time also saw a proliferation of
-ASCII incompatible encodings like ShiftJIS, ISO-2022 and Big5. This is why
-Python ships with support for
-&lt;a href="https://docs.python.org/3/library/codecs.html#standard-encodings"&gt;dozens of codecs&lt;/a&gt;
-from around the world.&lt;/p&gt;
-&lt;p&gt;This proliferation of encodings required a way to tell software which
-encoding should be used to read the data. For protocols that were originally
-designed for communication between computers, agreeing on a common text
-encoding is usually handled as part of the protocol. In cases where no
-encoding information is supplied (or to handle cases where there is a
-mismatch between the claimed encoding and the actual encoding), then
-applications may make use of "encoding detection" algorithms, like those
-provided by the &lt;a href="https://pypi.python.org/pypi/chardet"&gt;chardet&lt;/a&gt; package
-for Python. These algorithms aren't perfect, but can give good answers when
-given a sufficient amount of data to work with.&lt;/p&gt;
-&lt;p&gt;Local operating system interfaces, however, are a different story. Not
-only don't they inherently convey encoding information, but the nature of
-the problem is such that trying to use encoding detection isn't practical.
-Two key systems arose in an attempt to deal with this problem:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Windows code pages&lt;/li&gt;
-&lt;li&gt;POSIX locale encodings&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;With both of these systems, a program would pick a code page or locale, and
-use the corresponding text encoding to decide how to interpret text for
-display to the user or combination with other text. This may include
-deciding how to display information about the contents of the computer
-itself (like listing the files in a directory).&lt;/p&gt;
-&lt;p&gt;The fundamental premise of these two systems is that the computer only needs
-to speak the language of its immediate users. So, while the computer is
-theoretically &lt;em&gt;capable&lt;/em&gt; of communicating in any language, it can effectively
-only communicate with humans in one language at a time. All of the data a
-given application was working with would need to be in a &lt;em&gt;consistent&lt;/em&gt;
-encoding, or the result would be uninterpretable nonsense, something the
-Japanese (and eventually everyone else) came to call
-&lt;a href="https://en.wikipedia.org/wiki/Mojibake"&gt;mojibake&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;It isn't a coincidence that the name for this concept came from an Asian
-country: the encoding problems encountered there make the issues encountered
-with European and Cyrillic languages look trivial by comparison.&lt;/p&gt;
-&lt;p&gt;Unfortunately, this "bilingual computing" approach (so called because the
-computer could generally handle English in addition to the local language)
-causes some serious problems once you consider communicating &lt;em&gt;between&lt;/em&gt;
-computers. While some of those problems were specific to network protocols,
-there are some more serious ones that arise when dealing with nominally
-"local" interfaces:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;networked computing meant one username might be used across multiple
-  systems, including different operating systems&lt;/li&gt;
-&lt;li&gt;network drives allow a single file server to be accessed from multiple
-  clients, including different operating systems&lt;/li&gt;
-&lt;li&gt;portable media (like DVDs and USB keys) allow the same filesystem to be
-  accessed from multiple devices at different points in time&lt;/li&gt;
-&lt;li&gt;data synchronisation services like Dropbox need to faithfully replicate
-  a filesystem hierarchy not only across different desktop environments,
-  but also to mobile devices&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;For these protocols that were originally designed only for local
-interoperability communicating encoding information is generally difficult,
-and it doesn't necessarily match the claimed encoding of the platform you're
-running on.&lt;/p&gt;
-&lt;h2&gt;Unicode and the rise of multilingual computing&lt;/h2&gt;
-&lt;p&gt;The path to addressing the fundamental limitations of bilingual computing
-actually started more than 25 years ago, back in the late 1980's. An initial
-draft proposal for a 16-bit "universal encoding" was released in 1988, the
-&lt;a href="https://en.wikipedia.org/wiki/Unicode_Consortium"&gt;Unicode Consortium&lt;/a&gt; was
-formed in early 1991 and the first volume of the first version of
-&lt;a href="https://en.wikipedia.org/wiki/Unicode"&gt;Unicode&lt;/a&gt; was published later that
-same year.&lt;/p&gt;
-&lt;p&gt;Microsoft added new text handling and operating system APIs to Windows based
-on the 16-bit C level &lt;code&gt;wchar_t&lt;/code&gt; type, and Sun also adopted Unicode as part
-of the core design of Java's approach to handling text.&lt;/p&gt;
-&lt;p&gt;However, there was a problem. The original Unicode design had decided that
-"16 bits ought to be enough for anybody" by restricting their target to
-only modern scripts, and only frequently used characters within those
-scripts. However, when you look at the "rarely used" Kanji and Han characters
-for Japanese and Chinese, you find that they include many characters that
-&lt;em&gt;are&lt;/em&gt; regularly used for the names of people and places - they're just
-largely restricted to proper nouns, and so won't show up in a normal
-vocabulary search. So Unicode 2.0 was defined in 1996, expanding the system
-out to a maximum of 21 bits per code point (using up to 32 bits per code
-point for storage).&lt;/p&gt;
-&lt;p&gt;As a result, Windows (including the CLR) and Java now use the little-endian
-variant of UTF-16 to allow their text APIs to handle arbitrary Unicode code
-points. The original 16-bit code space is now referred to as the Basic
-Multilingual Plane.&lt;/p&gt;
-&lt;p&gt;While all that was going on, the POSIX world ended up adopting a different
-strategy for migrating to full Unicode support: attempting to standardise on
-the ASCII compatible UTF-8 text encoding.&lt;/p&gt;
-&lt;p&gt;The choice between using UTF-8 and UTF-16-LE as the preferred local text
-encoding involves some
-&lt;a href="https://en.wikipedia.org/wiki/UTF-8#Advantages_and_disadvantages"&gt;complicated trade-offs&lt;/a&gt;,
-and that's reflected in the fact that they have ended up being at the heart
-of two competing approaches to multilingual computing.&lt;/p&gt;
-&lt;p&gt;Choosing UTF-8 aims to treat formatting text for communication with the user
-as "just a display issue". It's a low impact design that will "just work" for
-a lot of software, but it comes at a price:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;because encoding consistency checks are mostly avoided, data in different
-  encodings may be freely concatenated and passed on to other applications.
-  Such data is typically not usable by the receiving application.&lt;/li&gt;
-&lt;li&gt;for interfaces without encoding information available, it is often
-  necessary to assume an appropriate encoding in order to display information
-  to the user, or to transform it to a different encoding for communication
-  with another system that may not share the local system's encoding
-  assumptions. These assumptions may not be correct, but won't necessarily
-  cause an error - the data may just be silently misinterpreted as something
-  other than what was originally intended.&lt;/li&gt;
-&lt;li&gt;because data is generally decoded far from where it was introduced, it
-  can be difficult to discover the origin of encoding errors.&lt;/li&gt;
-&lt;li&gt;as a variable width encoding, it is more difficult to develop efficient
-  string manipulation algorithms for UTF-8. Algorithms originally designed
-  for fixed width encodings will no longer work.&lt;/li&gt;
-&lt;li&gt;as a specific instance of the previous point, it isn't possible to split
-  UTF-8 encoded text at arbitrary locations. Care needs to be taken to ensure
-  splits only occur at code point boundaries.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;UTF-16-LE shares the last two problem, but to a lesser degree (simply due to
-the fact most commonly used code points are in the 16-bit Basic Multilingual
-Plane). However, because it &lt;em&gt;isn't&lt;/em&gt; generally suitable for use in network
-protocols and file formats (without significant additional encoding markers),
-the explicit decoding and encoding required encourages designs with a clear
-separation between binary data (including encoded text) and decoded text
-data.&lt;/p&gt;
-&lt;h2&gt;Through the lens of Python&lt;/h2&gt;
-&lt;p&gt;Python and Unicode were born on opposites side of the Atlantic ocean at
-roughly the same time (1991). The growing adoption of Unicode within the
-computing industry has had a profound impact on the evolution of the
-language.&lt;/p&gt;
-&lt;p&gt;Python 1.x was purely a product of the bilingual computing era - it had no
-support for Unicode based text handling at all, and was hence largely
-limited to 8-bit ASCII compatible encodings for text processing.&lt;/p&gt;
-&lt;p&gt;Python 2.x was still primarily a product of the bilingual era, but added
-multilingual support as an optional addon, in the form of the &lt;code&gt;unicode&lt;/code&gt;
-type and support for a wide variety of text encodings.
-&lt;a href="http://www.python.org/dev/peps/pep-0100/"&gt;PEP 100&lt;/a&gt; goes into the many
-technical details that needed to be covered in order to incorporate that
-feature. With Python 2, you &lt;em&gt;can&lt;/em&gt; make multilingual programming work, but
-it requires an active decision on the part of the application developer,
-or at least that they follow the guidelines of a framework that handles the
-problem on their behalf.&lt;/p&gt;
-&lt;p&gt;By contrast, Python 3.x is designed to be a native denizen of the
-multilingual computing world. Support for multiple languages extends as far
-as the variable naming system, such that languages other than English become
-almost as well supported as English already was in Python 2. While the
-English inspired keywords and the English naming in the standard library and
-on the Python Package Index mean that Python's "native" language and the
-preferred language for global collaboration will always be English, the new
-design allows a lot more flexibility when working with data in other
-languages.&lt;/p&gt;
-&lt;p&gt;Consider processing a data table where the headings are names of Japanese
-individuals, and we'd like to use &lt;code&gt;collections.namedtuple&lt;/code&gt; to process
-each row. Python 2 simply can't handle this task:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;collections&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;namedtuple&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;People&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;namedtuple&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"People"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;u"陽斗 慶子 七海"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;Traceback&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;most&lt;/span&gt; &lt;span class="n"&gt;recent&lt;/span&gt; &lt;span class="n"&gt;call&lt;/span&gt; &lt;span class="n"&gt;last&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-  &lt;span class="n"&gt;File&lt;/span&gt; &lt;span class="s"&gt;"&amp;lt;stdin&amp;gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;module&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class="n"&gt;File&lt;/span&gt; &lt;span class="s"&gt;"/usr/lib64/python2.7/collections.py"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="mi"&gt;310&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;namedtuple&lt;/span&gt;
-    &lt;span class="n"&gt;field_names&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;field_names&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="ne"&gt;UnicodeEncodeError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;'ascii'&lt;/span&gt; &lt;span class="n"&gt;codec&lt;/span&gt; &lt;span class="n"&gt;can&lt;/span&gt;&lt;span class="s"&gt;'t encode characters in position 0-1: ordinal not in range(128)&lt;/span&gt;
-&lt;/pre&gt;
-
-
-&lt;p&gt;Users need to either restrict themselves to dictionary style lookups rather
-than attribute access, or else used romanised versions of their names
-(Haruto, Keiko, Nanami for the example). However, the case of "Haruto" is an
-interesting one, as there at least 3 &lt;em&gt;different&lt;/em&gt; ways of writing that as
-Kanji (陽斗, 陽翔, 大翔), but they are all romanised as the same string
-(Haruto). If you try to use romaaji to handle a data set that contains
-more than one variant of that name, you're going to get spurious collisions.&lt;/p&gt;
-&lt;p&gt;Python 3 takes a very different perspective on this problem. It says it
-should just work, and it makes sure it does:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;collections&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;namedtuple&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;People&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;namedtuple&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"People"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;u"陽斗 慶子 七海"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;People&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="err"&gt;陽斗&lt;/span&gt;
-&lt;span class="mi"&gt;1&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="err"&gt;慶子&lt;/span&gt;
-&lt;span class="mi"&gt;2&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="err"&gt;七海&lt;/span&gt;
-&lt;span class="mi"&gt;3&lt;/span&gt;
-&lt;/pre&gt;
-
-
-&lt;p&gt;This change greatly expands the kinds of "data driven" use cases Python can
-support in areas where the ASCII based assumptions of Python 2 would cause
-serious problems.&lt;/p&gt;
-&lt;p&gt;Python 3 still needs to deal with improperly encoded data however, so it
-provides a mechanism for arbitrary binary data to be "smuggled" through
-text strings in the Unicode Private Use Area. This feature was added by
-&lt;a href="http://www.python.org/dev/peps/pep-0383/"&gt;PEP 383&lt;/a&gt; and is managed through
-the &lt;code&gt;surrogateescape&lt;/code&gt; error handler, which is used by default on most
-operating system interfaces. This recreates the old Python 2 behaviour of
-passing improperly encoded data through unchanged when dealing solely with
-local operating system interfaces, but complaining when such improperly
-encoded data is injected into another interface. The codec error handling
-system provides several tools to deal with these files, and we're looking
-at adding a few more relevant convenience functions for Python 3.5.&lt;/p&gt;
-&lt;p&gt;The underlying Unicode changes in Python 3 also made
-&lt;a href="http://www.python.org/dev/peps/pep-0393/"&gt;PEP 393&lt;/a&gt; possible, which changed
-the way the CPython interpreter stores text internally. In Python 2, even
-pure ASCII strings would consume four bytes per code point on Linux systems.
-Using the "narrow build" option (as the Python 2 Windows builds from
-python.org do) reduced that the only two bytes per code point when operating
-within the Basic Multilingual Plane, but at the cost of potentially producing
-&lt;em&gt;wrong answers&lt;/em&gt; when asked to operate on code points outside the Basic
-Multilingual Plane. By contrast, starting with Python 3.3, CPython now
-stores text internally using the smallest fixed width data unit possible.
-That is, &lt;code&gt;latin-1&lt;/code&gt; text uses 8 bits per code point, &lt;code&gt;UCS-2&lt;/code&gt; (Basic
-Multilingual Plane) text uses 16-bits per code point, and only text
-containing code points outside the Basic Multilingual Plane will expand to
-needing the full 32 bits per code point. This can not only significantly
-reduce the amount of memory needed for multilingual applications, but may
-also increase their speed as well (as reducing memory usage also reduces
-the time spent copying data around).&lt;/p&gt;
-&lt;h2&gt;Are we there yet?&lt;/h2&gt;
-&lt;p&gt;In a word, no. Not for Python 3.4, and not for the computing industry at
-large. We're much closer than we ever have been before, though. Most
-POSIX systems now default to UTF-8 as their default encoding, and many
-systems offer a &lt;code&gt;C.UTF-8&lt;/code&gt; locale as an alternative to the traditional
-ASCII based &lt;code&gt;C&lt;/code&gt; locale. When dealing solely with properly encoded data and
-metadata, and properly configured systems, Python 3 should "just work", even
-when exchanging data between different platforms.&lt;/p&gt;
-&lt;p&gt;For Python 3, the remaining challenges fall into a few areas:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;helping existing Python 2 users adopt the optional multilingual features
-  that will prepare them for eventual migration to Python 3 (as well as
-  reassuring those users that don't wish to migrate that Python 2 is still
-  fully supported, and will remain so for at least the next several years,
-  and potentially longer for customers of commercial redistributors)&lt;/li&gt;
-&lt;li&gt;adding back some features for working entirely in the binary domain that
-  were removed in the original Python 3 transition due to an initial
-  assessment that they were operations that only made sense on text data
-  (&lt;a href="http://www.python.org/dev/peps/pep-0361/"&gt;PEP 361&lt;/a&gt; summary:
-  &lt;code&gt;bytes.__mod__&lt;/code&gt; is coming back in Python 3.5 as a valid binary domain
-  operation, &lt;code&gt;bytes.format&lt;/code&gt; stays gone as an operation that only makes sense
-  when working with actual text data)&lt;/li&gt;
-&lt;li&gt;better handling of improperly decoded data, including poor encoding
-  recommendations from the operating system (for example, Python 3.5 will
-  be more sceptical when the operating system tells it the preferred encoding
-  is &lt;code&gt;ASCII&lt;/code&gt; and will enable the &lt;code&gt;surrogateescape&lt;/code&gt; error handler on
-  &lt;code&gt;sys.stdout&lt;/code&gt; when it occurs)&lt;/li&gt;
-&lt;li&gt;eliminating most remaining usage of the legacy code page and locale
-  encoding systems in the CPython interpreter (this most notably affects the
-  Windows console interface and argument decoding on POSIX. While these
-  aren't easy problems to solve, it will still hopefully be possible to
-  address them for Python 3.5)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;More broadly, each major platform has its own significant challenges to
-address:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;for POSIX systems, there are still a lot of systems that don't use UTF-8
-  as the preferred encoding and the assumption of ASCII as the preferred
-  encoding in the default &lt;code&gt;C&lt;/code&gt; locale is positively archaic. There is
-  also still a lot of POSIX software that still believes in the "text is
-  just encoded bytes" assumption, and will happily produce mojibake that
-  makes no sense to other applications or systems.&lt;/li&gt;
-&lt;li&gt;for Windows, keeping the old 8-bit APIs around was deemed necessary for
-  backwards compatibility, but this also means that there is still a lot of
-  Windows software that simply doesn't handle multilingual computing
-  correctly.&lt;/li&gt;
-&lt;li&gt;for both Windows and the JVM, a fair amount of nominally multilingual
-  software actually only works correctly with data in the basic multilingual
-  plane. This is a smaller problem than not supporting multilingual computing
-  at all, but was quite a noticeable problem in Python 2's own Windows
-  support.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Mac OS X is the platform most tightly controlled by any one entity (Apple),
-and they're actually in the best position out of all of the current major
-platforms when it comes to handling multilingual computing correctly. They've
-been one of the major drivers of Unicode since the beginning (two of the
-authors of the initial Unicode proposal were Apple engineers), and were able
-to force the necessary configuration changes on all their systems, rather
-than having to work with an extensive network of OEM partners (Windows,
-commercial Linux vendors) or relatively loose collaborations of individuals
-and organisations (community Linux distributions).&lt;/p&gt;
-&lt;p&gt;Modern mobile platforms are generally in a better position than desktop
-operating systems, mostly by virtue of being newer, and hence defined after
-Unicode was better understood. However, the UTF-8 vs UTF-16-LE distinction
-for text handling exists even there, thanks to the Java inspired Dalvik VM
-in Android (plus the cloud-backed nature of modern smartphones means you're
-even &lt;em&gt;more&lt;/em&gt; likely to be encounter files from multiple machines when working
-on a mobile device).&lt;/p&gt;&lt;/div&gt;</description><category>python</category><guid>http://www.curiousefficiency.org/posts/2014/08/multilingual-programming.html</guid><pubDate>Sun, 24 Aug 2014 06:16:15 GMT</pubDate></item></channel></rss>
+those seven billion seconds per second :)&lt;/p&gt;&lt;/div&gt;</description><category>philosophy</category><category>politics</category><category>python</category><category>science</category><guid>http://www.curiousefficiency.org/posts/2014/09/seven-billion-seconds-per-second.html</guid><pubDate>Tue, 23 Sep 2014 07:35:39 GMT</pubDate></item></channel></rss>

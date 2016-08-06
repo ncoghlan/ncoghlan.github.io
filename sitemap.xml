@@ -43,23 +43,19 @@
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/2015/index.html</loc>
-  <lastmod>2016-05-02T03:30:00Z</lastmod>
+  <lastmod>2016-08-06T11:08:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/2016/index.html</loc>
-  <lastmod>2016-05-02T03:33:00Z</lastmod>
+  <lastmod>2016-08-06T12:28:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/archive.html</loc>
   <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
-  <loc>http://www.curiousefficiency.org/categories/cat_pycon-au.html</loc>
-  <lastmod>2016-05-02T03:32:00Z</lastmod>
- </url>
- <url>
   <loc>http://www.curiousefficiency.org/categories/cat_python.html</loc>
-  <lastmod>2016-05-02T03:33:00Z</lastmod>
+  <lastmod>2016-08-06T12:28:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/categories/docker.html</loc>
@@ -114,12 +110,8 @@
   <lastmod>2016-05-02T03:33:00Z</lastmod>
  </url>
  <url>
-  <loc>http://www.curiousefficiency.org/categories/python-pycon-au.html</loc>
-  <lastmod>2016-05-02T03:30:00Z</lastmod>
- </url>
- <url>
   <loc>http://www.curiousefficiency.org/categories/python.html</loc>
-  <lastmod>2016-05-02T03:33:00Z</lastmod>
+  <lastmod>2016-08-06T12:28:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/categories/science.html</loc>
@@ -159,11 +151,15 @@
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/index-7.html</loc>
-  <lastmod>2016-05-02T03:30:00Z</lastmod>
+  <lastmod>2016-08-06T11:08:00Z</lastmod>
+ </url>
+ <url>
+  <loc>http://www.curiousefficiency.org/index-8.html</loc>
+  <lastmod>2016-08-06T11:08:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/index.html</loc>
-  <lastmod>2016-05-02T03:33:00Z</lastmod>
+  <lastmod>2016-08-06T12:28:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/pages/about.html</loc>
@@ -618,16 +614,12 @@
   <lastmod>2016-05-02T03:30:00Z</lastmod>
  </url>
  <url>
-  <loc>http://www.curiousefficiency.org/posts/2015/10/27-languages-to-improve-your-python.html</loc>
-  <lastmod>2015-10-11T04:05:00Z</lastmod>
- </url>
- <url>
   <loc>http://www.curiousefficiency.org/posts/2015/10/index.html</loc>
-  <lastmod>2016-05-02T03:30:00Z</lastmod>
+  <lastmod>2016-08-06T11:08:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html</loc>
-  <lastmod>2016-05-02T03:30:00Z</lastmod>
+  <lastmod>2016-08-06T11:08:00Z</lastmod>
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2016/05/index.html</loc>
@@ -635,6 +627,14 @@
  </url>
  <url>
   <loc>http://www.curiousefficiency.org/posts/2016/05/pycon-australia-education-cfp-2016.html</loc>
-  <lastmod>2016-05-02T03:33:00Z</lastmod>
+  <lastmod>2016-08-06T11:08:00Z</lastmod>
+ </url>
+ <url>
+  <loc>http://www.curiousefficiency.org/posts/2016/08/index.html</loc>
+  <lastmod>2016-08-06T12:28:00Z</lastmod>
+ </url>
+ <url>
+  <loc>http://www.curiousefficiency.org/posts/2016/08/what-problem-does-it-solve.html</loc>
+  <lastmod>2016-08-06T12:28:00Z</lastmod>
  </url>
 </urlset>
