@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+<head>
+<meta charset="utf-8">
+<base href="http://www.curiousefficiency.org/posts/2016/09/index.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Posts/2016/09 | Curious Efficiency</title>
+<link href="../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta content="#5670d4" name="theme-color">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../../rss.xml">
+<link rel="canonical" href="http://www.curiousefficiency.org/posts/2016/09/index.html">
+<!--[if lt IE 9]><script src="../../../assets/js/html5.js"></script><![endif]-->
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://www.curiousefficiency.org/">
+
+                <span id="blog-title">Curious Efficiency</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../../../pages/about.html">About</a>
+                </li>
+<li>
+<a href="../../../archive.html">Archives</a>
+                </li>
+<li>
+<a href="../../../categories/index.html">Tags</a>
+                </li>
+<li>
+<a href="../../../rss.xml">RSS</a>
+                </li>
+<li>
+<a href="http://python-notes.curiousefficiency.org">Python Notes</a>
+
+                
+            </li>
+</ul>
+<ul class="nav navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+            
+<div class="sectionindex">
+    <header><h2><a href="#">Posts/2016/09</a></h2>
+    </header><div class="postindex">
+    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="python-packaging-ecosystem.html" class="u-url">The Python Packaging Ecosystem</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">
+                Nick Coghlan
+            </span></p>
+            <p class="dateline"><a href="python-packaging-ecosystem.html" rel="bookmark"><time class="published dt-published" datetime="2016-09-17T03:46:31Z" title="2016-09-17 03:46">2016-09-17 03:46</time></a></p>
+                <p class="commentline">
+        
+    <a href="python-packaging-ecosystem.html#disqus_thread" data-disqus-identifier="cache/posts/2016/09/python-packaging-ecosystem.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<div class="contents topic" id="from-development-to-deployment">
+<p class="topic-title first">From Development to Deployment</p>
+<ul class="simple">
+<li><a class="reference internal" href="python-packaging-ecosystem.html#my-core-software-ecosystem-design-philosophy" id="id1">My core software ecosystem design philosophy</a></li>
+<li><a class="reference internal" href="python-packaging-ecosystem.html#the-key-conundrum" id="id2">The key conundrum</a></li>
+<li><a class="reference internal" href="python-packaging-ecosystem.html#platform-management-or-plugin-management" id="id3">Platform management or plugin management?</a></li>
+<li>
+<a class="reference internal" href="python-packaging-ecosystem.html#where-do-we-go-next" id="id4">Where do we go next?</a><ul>
+<li><a class="reference internal" href="python-packaging-ecosystem.html#sustainability-and-the-bystander-effect" id="id5">Sustainability and the bystander effect</a></li>
+<li><a class="reference internal" href="python-packaging-ecosystem.html#migrating-pypi-to-pypi-org" id="id6">Migrating PyPI to pypi.org</a></li>
+<li><a class="reference internal" href="python-packaging-ecosystem.html#making-the-presence-of-a-compiler-on-end-user-systems-optional" id="id7">Making the presence of a compiler on end user systems optional</a></li>
+<li><a class="reference internal" href="python-packaging-ecosystem.html#bootstrapping-dependency-management-tools-on-end-user-systems" id="id8">Bootstrapping dependency management tools on end user systems</a></li>
+<li><a class="reference internal" href="python-packaging-ecosystem.html#making-the-use-of-distutils-and-setuptools-optional" id="id9">Making the use of distutils and setuptools optional</a></li>
+<li><a class="reference internal" href="python-packaging-ecosystem.html#making-pypi-security-independent-of-ssl-tls" id="id10">Making PyPI security independent of SSL/TLS</a></li>
+<li><a class="reference internal" href="python-packaging-ecosystem.html#automating-wheel-creation" id="id11">Automating wheel creation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>There have been a few recent articles reflecting on the current status of
+the Python packaging ecosystem from an end user perspective, so it seems
+worthwhile for me to write-up my perspective as one of the lead architects
+for that ecosystem on how I characterise the overall problem space of software
+publication and distribution, where I think we are at the moment, and where I'd
+like to see us go in the future.</p>
+<p>For context, the specific articles I'm replying to are:</p>
+<ul class="simple">
+<li>
+<a class="reference external" href="https://glyph.twistedmatrix.com/2016/08/python-packaging.html">Python Packaging is Good Now</a> (Glyph Lefkowitz)</li>
+<li>
+<a class="reference external" href="https://jakevdp.github.io/blog/2016/08/25/conda-myths-and-misconceptions/">Conda: Myths and Misconceptions</a> (Jake VanderPlas)</li>
+<li>
+<a class="reference external" href="https://www.paypal-engineering.com/2016/09/07/python-packaging-at-paypal/">Python Packaging at PayPal</a> (Mahmoud Hashemi)</li>
+</ul>
+<p>These are all excellent pieces considering the problem space from different
+perspectives, so if you'd like to learn more about the topics I cover here,
+I highly recommend reading them.</p>
+<div class="section" id="my-core-software-ecosystem-design-philosophy">
+<h2><a class="toc-backref" href="python-packaging-ecosystem.html#id1">My core software ecosystem design philosophy</a></h2>
+<p>Since it heavily influences the way I think about packaging system design in
+general, it's worth stating my core design philosophy explicitly:</p>
+<ul class="simple">
+<li>As a software consumer, I should be able to consume libraries, frameworks,
+and applications in the binary format of my choice, regardless of whether
+or not the relevant software publishers directly publish in that format</li>
+<li>As a software publisher working in the Python ecosystem, I should be able to
+publish my software once, in a single source-based format, and have it be
+automatically consumable in any binary format my users care to use</li>
+</ul>
+<p>This is emphatically <em>not</em> the way many software packaging systems work - for a
+great many systems, the publication format and the consumption format are
+tightly coupled, and the folks managing the publication format or the
+consumption format actively seek to use it as a lever of control over a
+commercial market (think operating system vendor controlled application stores,
+especially for mobile devices).</p>
+<p>While we're unlikely to ever pursue the specific design documented in the
+rest of the PEP (hence the "Deferred" status), the
+"<a class="reference external" href="https://www.python.org/dev/peps/pep-0426/#development-distribution-and-deployment-of-python-software">Development, Distribution, and Deployment of Python Software</a>"
+section of PEP 426 provides additional details on how this philosophy applies
+in practice.</p>
+<p>I'll also note that while I now work on software supply chain management
+tooling at Red Hat, that <em>wasn't</em> the case when I first started actively
+participating in the upstream Python packaging ecosystem
+<a class="reference external" href="https://lwn.net/Articles/580399/">design process</a>. Back then I was working
+on Red Hat's main
+<a class="reference external" href="https://beaker-project.org/">hardware integration testing system</a>, and
+growing increasingly frustrated with the level of effort involved in
+integrating new Python level dependencies into Beaker's RPM based development
+and deployment model. Getting actively involved in tackling these problems on
+the Python upstream side of things then led to also getting more actively
+involved in addressing them on the
+<a class="reference external" href="http://www.slideshare.net/ncoghlan_dev/developing-in-python-on-red-hat-platforms-devnation-2016">Red Hat downstream side</a>.</p>
+</div>
+<div class="section" id="the-key-conundrum">
+<h2><a class="toc-backref" href="python-packaging-ecosystem.html#id2">The key conundrum</a></h2>
+<p>When talking about the design of software packaging ecosystems, it's very easy
+to fall into the trap of only considering  the "direct to peer developers" use
+case, where the software consumer we're attempting to reach is another developer
+working in the same problem domain that we are, using a similar set of
+development tools. Common examples of this include:</p>
+<ul class="simple">
+<li>Linux distro developers publishing software for use by other contributors to
+the same Linux distro ecosystem</li>
+<li>Web service developers publishing software for use by other web service
+developers</li>
+<li>Data scientists publishing software for use by other data scientists</li>
+</ul>
+<p>In these more constrained contexts, you can frequently get away with using a
+single toolchain for both publication and consumption:</p>
+<ul class="simple">
+<li>Linux: just use the system package manager for the relevant distro</li>
+<li>Web services: just use the Python Packaging Authority's twine for publication
+and pip for consumption</li>
+<li>Data science: just use conda for everything</li>
+</ul>
+<p>For newer languages that start in one particular domain with a preferred
+package manager and expand outwards from there, the apparent simplicity arising
+from this homogeneity of use cases may frequently be attributed as an essential
+property of the design of the package manager, but that perception of inherent
+simplicity will typically fade if the language is able to successfully expand
+beyond the original niche its default package manager was designed to handle.</p>
+<p>In the case of Python, for example, distutils was designed as a consistent
+build interface for Linux distro package management, setuptools for plugin
+management in the Open Source Application Foundation's Chandler project, pip
+for dependency management in web service development, and conda for local
+language-independent environment management in data science.
+distutils and setuptools haven't fared especially well from a usability
+perspective when pushed beyond their original design parameters (hence the
+current efforts to make it easier to use full-fledged build systems like
+Scons and Meson as an alternative when publishing Python packages), while pip
+and conda both seem to be doing a better job of accommodating increases in
+their scope of application.</p>
+<p>This history helps illustrate that where things really have the potential to
+get complicated (even beyond the inherent challenges of domain-specific
+software distribution) is when you start needing to <em>cross domain boundaries</em>.
+For example, as the lead maintainer of <tt class="docutils literal">contextlib</tt> in the Python
+standard library, I'm also the maintainer of the <tt class="docutils literal">contextlib2</tt> backport
+project on PyPI. That's not a domain specific utility - folks may need it
+regardless of whether they're using a self-built Python runtime, a pre-built
+Windows or Mac OS X binary they downloaded from python.org, a pre-built
+binary from a Linux distribution, a CPython runtime from some other
+redistributor (homebrew, pyenv, Enthought Canopy, ActiveState,
+Continuum Analytics, AWS Lambda, Azure Machine Learning, etc), or perhaps even
+a different Python runtime entirely (PyPy, PyPy.js, Jython, IronPython,
+MicroPython, VOC, Batavia, etc).</p>
+<p>Fortunately for me, I <em>don't</em> need to worry about all that complexity in the
+wider ecosystem when I'm specifically wearing my <tt class="docutils literal">contextlib2</tt> maintainer
+hat - I just publish an sdist and a universal wheel file to PyPI, and the rest
+of the ecosystem has everything it needs to take care of redistribution
+and end user consumption without any further input from me.</p>
+<p>However, <tt class="docutils literal">contextlib2</tt> is a pure Python project that only depends on the
+standard library, so it's pretty much the simplest possible case from a
+tooling perspective (the only reason I needed to upgrade from distutils to
+setuptools was so I could publish my own wheel files, and the only reason I
+haven't switched to using the <em>much</em> simpler pure-Python-only flit instead of
+either of them is that that doesn't yet easily support publishing backwards
+compatible setup.py based sdists).</p>
+<p>This means that things get significantly more complex once we start wanting to
+use and depend on components written in languages other than Python, so that's
+the broader context I'll consider next.</p>
+</div>
+<div class="section" id="platform-management-or-plugin-management">
+<h2><a class="toc-backref" href="python-packaging-ecosystem.html#id3">Platform management or plugin management?</a></h2>
+<p>When it comes to handling the software distribution problem in general, there
+are two main ways of approaching it:</p>
+<ul class="simple">
+<li>design a plugin management system that doesn't concern itself with the
+management of the application framework that <em>runs</em> the plugins</li>
+<li>design a platform component manager that not only manages the plugins
+themselves, but <em>also</em> the application frameworks that run them</li>
+</ul>
+<p>This "plugin manager or platform component manager?" question shows up over and
+over again in software distribution architecture designs, but the case of most
+relevance to Python developers is in the contrasting approaches that pip and
+conda have adopted to handling the problem of external dependencies for Python
+projects:</p>
+<ul class="simple">
+<li>pip is a <em>plugin manager</em> for Python runtimes. Once you have a Python runtime
+(any Python runtime), pip can help you add pieces to it. However, by design,
+it won't help you manage the underlying Python runtime (just as it wouldn't
+make any sense to try to install Mozilla Firefox as a Firefox Add-On, or
+Google Chrome as a Chrome Extension)</li>
+<li>conda, by contrast, is a <em>component manager</em> for a cross-platform platform
+that provides its own Python runtimes (as well as runtimes for other
+languages). This means that you can get <em>pre-integrated</em> components, rather
+than having to do your own integration between plugins obtained via pip and
+language runtimes obtained via other means</li>
+</ul>
+<p>What this means is that pip, <em>on its own</em>, is not in any way a direct
+alternative to conda. To get comparable capabilities to those offered by conda,
+you have to add in a mechanism for obtaining the underlying language runtimes,
+which means the alternatives are combinations like:</p>
+<ul class="simple">
+<li>apt-get + pip</li>
+<li>dnf + pip</li>
+<li>yum + pip</li>
+<li>pyenv + pip</li>
+<li>homebrew (Mac OS X) + pip</li>
+<li>python.org Windows installer + pip</li>
+<li>Enthought Canopy</li>
+<li>ActiveState's Python runtime + PyPM</li>
+</ul>
+<p>This is the main reason why "just use conda" is excellent advice to any
+prospective Pythonista that isn't already using one of the platform component
+managers mentioned above: giving that answer replaces an otherwise operating
+system dependent or Python specific answer to the runtime management problem
+with a cross-platform and (at least somewhat) language neutral one.</p>
+<p>It's an especially good answer for Windows users, as chocalatey/OneGet/Windows
+Package Management isn't remotely comparable to pyenv or homebrew at this point
+in time, other runtime managers don't work on Windows, and getting folks
+bootstrapped with MinGW, Cygwin or the new (still experimental) Windows
+Subsystem for Linux is just another hurdle to place between them and whatever
+goal they're learning Python for in the first place.</p>
+<p>However, conda's pre-integration based approach to tackling the external
+dependency problem is also why "just use conda for everything" isn't a
+sufficient answer for the Python software ecosystem as a while.</p>
+<p>If you're working on an operating system component for Fedora, Debian, or any
+other distro, you actually <em>want</em> to be using the system provided Python
+runtime, and hence need to be able to readily convert your upstream Python
+dependencies into policy compliant system dependencies.</p>
+<p>Similarly, if you're wanting to support folks that deploy to a preconfigured
+Python environment in services like AWS Lambda, Azure Cloud Functions, Heroku,
+OpenShift or Cloud Foundry, or that use alternative Python runtimes like PyPy
+or MicroPython, then you need a publication technology that doesn't tightly
+couple your releases to a specific version of the underlying language runtime.</p>
+<p>As a result, pip and conda end up existing at slightly different points in the
+system integration pipeline:</p>
+<ul class="simple">
+<li>Publishing and consuming Python software with pip is a matter of "bring your
+own Python runtime". This has the benefit that you <em>can</em> readily bring your
+own runtime (and manage it using whichever tools make sense for your use
+case), but also has the downside that you <em>must</em> supply your own runtime
+(which can sometimes prove to be a significant barrier to entry for new
+Python users, as well as being a pain for cross-platform environment
+management).</li>
+<li>Like Linux system package managers before it, conda takes away the
+requirement to supply your own Python runtime by providing one for you.
+This is great if you don't have any particular preference as to which
+runtime you want to use, but if you <em>do</em> need to use a different runtime
+for some reason, you're likely to end up fighting against the tooling, rather
+than having it help you. (If you're tempted to answer "Just add another
+interpreter to the pre-integrated set!" here, keep in mind that doing so
+without the aid of a runtime independent plugin manager like pip acts as a
+<em>multiplier</em> on the platform level integration testing needed, which can be a
+significant cost even when it's automated)</li>
+</ul>
+</div>
+<div class="section" id="where-do-we-go-next">
+<h2><a class="toc-backref" href="python-packaging-ecosystem.html#id4">Where do we go next?</a></h2>
+<p>In case it isn't already clear from the above, I'm largely happy with the
+respective niches that pip and conda are carving out for themselves as a
+plugin manager for Python runtimes and as a cross-platform platform focused
+on (but not limited to) data analysis use cases.</p>
+<p>However, there's still plenty of scope to improve the effectiveness of the
+collaboration between the upstream Python Packaging Authority and downstream
+Python redistributors, as well as to reduce barriers to entry for participation
+in the ecosystem in general, so I'll go over some of the key areas I see for
+potential improvement.</p>
+<div class="section" id="sustainability-and-the-bystander-effect">
+<h3><a class="toc-backref" href="python-packaging-ecosystem.html#id5">Sustainability and the bystander effect</a></h3>
+<p>It's not a secret that the core PyPA infrastructure (PyPI, pip, twine,
+setuptools) is
+<a class="reference external" href="https://caremad.io/posts/2016/05/powering-pypi/">nowhere near as well-funded</a>
+as you might expect given its criticality to the operations of some truly
+enormous organisations.</p>
+<p>The biggest impact of this is that even when volunteers show up ready and
+willing to work, there may not be anybody in a position to effectively <em>wrangle</em>
+those volunteers, and help keep them collaborating effectively and moving in a
+productive direction.</p>
+<p>To secure long term sustainability for the core Python packaging infrastructure,
+we're only talking amounts on the order of a few hundred thousand dollars a
+year - enough to cover some dedicated operations and publisher support staff for
+PyPI (freeing up the volunteers currently handling those tasks to help work on
+ecosystem improvements), as well as to fund targeted development directed at
+some of the other problems described below.</p>
+<p>However, rather than being a true
+"<a class="reference external" href="https://en.wikipedia.org/wiki/Tragedy_of_the_commons">tragedy of the commons</a>",
+I personally chalk this situation up to a different human cognitive bias: the
+<a class="reference external" href="https://en.wikipedia.org/wiki/Bystander_effect">bystander effect</a>.</p>
+<p>The reason I think that is that we have <em>so many</em> potential sources of the
+necessary funding that even folks that agree there's a problem that needs to be
+solved are assuming that someone else will take care of it, without actually
+checking whether or not that assumption is entirely valid.</p>
+<p>The primary responsibility for correcting that oversight falls squarely on the
+Python Software Foundation, which is why the Packaging Working Group was
+formed in order to investigate possible sources of additional funding, as well
+as to determine how any such funding can be spent most effectively.</p>
+<p>However, a secondary responsibility also falls on customers and staff of
+commercial Python redistributors, as this is <em>exactly</em> the kind of ecosystem
+level risk that commercial redistributors are being paid to manage on behalf of
+their customers, and they're currently not handling this particular situation
+very well. Accordingly, anyone that's actually <em>paying</em> for CPython, pip, and
+related tools (either directly or as a component of a larger offering), and
+expecting them to be supported properly as a result, really needs to be asking
+some very pointed question of their suppliers right about now. (Here's a sample
+question: "We pay you X dollars a year, and the upstream Python ecosystem is
+one of the things we expect you to support with that revenue. How much of what
+we pay you goes towards maintenance of the upstream Python packaging
+infrastructure that we rely on every day?").</p>
+<p>One key point to note about the current situation is that as a 501(c)(3) public
+interest charity, any work the PSF funds will be directed towards better
+fulfilling that public interest mission, and that means focusing primarily on
+the needs of educators and non-profit organisations, rather than those of
+private for-profit entities.</p>
+<p>Commercial redistributors are thus <em>far</em> better positioned to properly
+represent their customers interests in areas where their priorities may
+diverge from those of the wider community (closing the "insider threat"
+loophole in PyPI's current security model is a particular case that comes to
+mind - see <a class="reference internal" href="python-packaging-ecosystem.html#making-pypi-security-independent-of-ssl-tls">Making PyPI security independent of SSL/TLS</a>).</p>
+</div>
+<div class="section" id="migrating-pypi-to-pypi-org">
+<h3><a class="toc-backref" href="python-packaging-ecosystem.html#id6">Migrating PyPI to pypi.org</a></h3>
+<p>An instance of the new PyPI implementation (Warehouse) is up and running at
+<a class="reference external" href="https://pypi.org/">https://pypi.org/</a> and connected directly to the
+production PyPI database, so folks can already explicitly opt-in to using it
+over the legacy implementation if they prefer to do so.</p>
+<p>However, there's still a non-trivial amount of design, development and QA work
+needed on the new version before all existing traffic can be transparently
+switched over to using it.</p>
+<p>Getting at least this step appropriately funded and a clear project management
+plan in place is the main current focus of the PSF's Packaging Working Group.</p>
+</div>
+<div class="section" id="making-the-presence-of-a-compiler-on-end-user-systems-optional">
+<h3><a class="toc-backref" href="python-packaging-ecosystem.html#id7">Making the presence of a compiler on end user systems optional</a></h3>
+<p>Between the <tt class="docutils literal">wheel</tt> format and the <tt class="docutils literal">manylinux1</tt> usefully-distro-independent
+ABI definition, this is largely handled now, with <tt class="docutils literal">conda</tt> available as an
+option to handle the relatively small number of cases that are still a problem
+for <tt class="docutils literal">pip</tt>.</p>
+<p>The main unsolved problem is to allow projects to properly express the
+constraints they place on target environments so that issues can be detected
+at install time or repackaging time, rather than only being detected as
+runtime failures. Such a feature will also greatly expand the ability to
+correctly generate platform level dependencies when converting Python
+projects to downstream package formats like those used by conda and Linux
+system package managers.</p>
+</div>
+<div class="section" id="bootstrapping-dependency-management-tools-on-end-user-systems">
+<h3><a class="toc-backref" href="python-packaging-ecosystem.html#id8">Bootstrapping dependency management tools on end user systems</a></h3>
+<p>With pip being bundled with recent versions of CPython (including CPython 2.7
+maintenance releases), and pip (or a variant like upip) also being bundled with
+most other Python runtimes, the ecosystem bootstrapping problem has largely
+been addressed for new Python users.</p>
+<p>There are still a few usability challenges to be addressed (like defaulting
+to per-user installations when outside a virtual environment, interoperating
+more effectively with platform component managers like conda, and providing
+an officially supported installation interface that works at the Python prompt
+rather than via the operating system command line), but those don't require
+the same level of political coordination across multiple groups that was
+needed to establish pip as the lowest common denominator approach to
+dependency management for Python applications.</p>
+</div>
+<div class="section" id="making-the-use-of-distutils-and-setuptools-optional">
+<h3><a class="toc-backref" href="python-packaging-ecosystem.html#id9">Making the use of distutils and setuptools optional</a></h3>
+<p>As mentioned above, distutils was designed ~18 years ago as a common interface
+for Linux distributions to build Python projects, while setuptools was designed
+~12 years ago as a plugin management system for an open source Microsoft
+Exchange replacement. While both projects have given admirable service in
+their original target niches, and quite a few more besides, their age and
+original purpose means they're significantly more complex than what a user
+needs if all they want to do is to publish their pure Python library or
+framework to the Python Package index.</p>
+<p>Their underlying complexity also makes it incredibly difficult to improve the
+problematic state of their documentation, which is split between the legacy
+distutils documentation in the CPython standard library and the additional
+setuptools specific documentation in the setuptools project.</p>
+<p>Accordingly, what we want to do is to change the way build toolchains for
+Python projects are organised to have 3 clearly distinct tiers:</p>
+<ul class="simple">
+<li>toolchains for pure Python projects</li>
+<li>toolchains for Python projects with simple C extensions</li>
+<li>toolchains for C/C++/other projects with Python bindings</li>
+</ul>
+<p>This allows folks to be introduced to simpler tools like flit first, better
+enables the development of potential alternatives to setuptools at the second
+tier, and supports the use of full-fledged pip-installable build systems like
+Scons and Meson at the third tier.</p>
+<p>The first step in this project, defining the <tt class="docutils literal">pyproject.toml</tt> format to allow
+declarative specification of the dependencies needed to launch <tt class="docutils literal">setup.py</tt>,
+has been implemented, and Daniel Holth's <tt class="docutils literal">enscons</tt> project demonstrates that
+that is already sufficient to bootstrap an external build system even without
+the later stages of the project.</p>
+<p>Future steps include providing native support for <tt class="docutils literal">pyproject.toml</tt> in <tt class="docutils literal">pip</tt>
+and <tt class="docutils literal">easy_install</tt>, as well as defining a declarative approach to invoking
+the build system rather than having to run <tt class="docutils literal">setup.py</tt> with the relevant
+distutils &amp; setuptools flags.</p>
+</div>
+<div class="section" id="making-pypi-security-independent-of-ssl-tls">
+<h3><a class="toc-backref" href="python-packaging-ecosystem.html#id10">Making PyPI security independent of SSL/TLS</a></h3>
+<p>PyPI currently relies entirely on SSL/TLS to protect the integrity of the link
+between software publishers and PyPI, and between PyPI and software consumers.
+The only protections against insider threats from within the PyPI
+administration team are ad hoc usage of GPG artifact signing by some projects,
+personal vetting of new team members by existing team members and 3rd party
+checks against previously published artifact hashes unexpectedly changing.</p>
+<p>A credible design for end-to-end package signing that adequately accounts for
+the significant usability issues that can arise around publisher and consumer
+key management has been available for almost 3 years at this point (see
+<a class="reference external" href="https://www.python.org/dev/peps/pep-0458/">Surviving a Compromise of PyPI</a>
+and
+<a class="reference external" href="https://www.python.org/dev/peps/pep-0480/">Surviving a Compromise of PyPI: the Maximum Security Edition</a>).</p>
+<p>However, implementing that solution has been gated not only on being able to
+first retire the legacy infrastructure, but also the PyPI administators being
+able to credibly commit to the key management obligations of operating the
+signing system, as well as to ensuring that the system-as-implemented actually
+provides the security guarantees of the system-as-designed.</p>
+<p>Accordingly, this isn't a project that can realistically be pursued until the
+underlying sustainability problems have been suitably addressed.</p>
+</div>
+<div class="section" id="automating-wheel-creation">
+<h3><a class="toc-backref" href="python-packaging-ecosystem.html#id11">Automating wheel creation</a></h3>
+<p>While redistributors will generally take care of converting upstream Python
+packages into their own preferred formats, the Python-specific wheel format
+is currently a case where it is left up to publishers to decide whether or
+not to create them, and if they do decide to create them, how to automate that
+process.</p>
+<p>Having PyPI take care of this process automatically is an obviously desirable
+feature, but it's also an incredibly expensive one to build and operate.</p>
+<p>Thus, it currently makes sense to defer this cost to individual projects, as
+there are quite a few commercial continuous integration and continuous
+deployment service providers willing to offer free accounts to open source
+projects, and these can also be used for the task of producing release
+artifacts. Projects also remain free to only publish source artifacts, relying
+on pip's implicit wheel creation and caching and the appropriate use of
+private PyPI mirrors and caches to meet the needs of end users.</p>
+<p>For downstream platform communities already offering shared build
+infrastructure to their members (such as Linux distributions and conda-forge),
+it may make sense to offer Python wheel generation as a supported output option
+for cross-platform development use cases, in addition to the platform's native
+binary packaging format.</p>
+</div>
+</div>
+</div>
+    </div>
+    </article>
+</div>
+
+
+
+        
+       <script>var disqus_shortname="boredomandlaziness";(function(){var a=document.createElement("script");a.async=true;a.src="//"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+</div>
+        <!--End of body content-->
+
+        <footer id="footer">
+            Contents © 2016 <a href="mailto:ncoghlan@gmail.com">Nick Coghlan</a> - <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, republish as you wish. - Powered by <a href="http://nikola.ralsina.com.ar">Nikola</a>
+            
+        </footer>
+</div>
+</div>
+
+
+            <script src="../../../assets/js/all-nocdn.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    moment.locale("");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates -->
+</div>
+</body>
+</html>
