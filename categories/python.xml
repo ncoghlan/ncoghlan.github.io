@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Curious Efficiency (python)</title><link>http://www.curiousefficiency.org</link><description></description><atom:link href="http://www.curiousefficiency.org/categories/python.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Sat, 17 Sep 2016 09:51:14 GMT</lastBuildDate><generator>https://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>The Python Packaging Ecosystem</title><link>http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;div class="contents topic" id="from-development-to-deployment"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Curious Efficiency (python)</title><link>http://www.curiousefficiency.org</link><description></description><atom:link href="http://www.curiousefficiency.org/categories/python.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Sat, 17 Sep 2016 10:00:49 GMT</lastBuildDate><generator>https://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>The Python Packaging Ecosystem</title><link>http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;div class="contents topic" id="from-development-to-deployment"&gt;
 &lt;p class="topic-title first"&gt;From Development to Deployment&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#my-core-software-ecosystem-design-philosophy" id="id1"&gt;My core software ecosystem design philosophy&lt;/a&gt;&lt;/li&gt;
@@ -190,7 +190,7 @@ Subsystem for Linux is just another hurdle to place between them and whatever
 goal they're learning Python for in the first place.&lt;/p&gt;
 &lt;p&gt;However, conda's pre-integration based approach to tackling the external
 dependency problem is also why "just use conda for everything" isn't a
-sufficient answer for the Python software ecosystem as a while.&lt;/p&gt;
+sufficient answer for the Python software ecosystem as a whole.&lt;/p&gt;
 &lt;p&gt;If you're working on an operating system component for Fedora, Debian, or any
 other distro, you actually &lt;em&gt;want&lt;/em&gt; to be using the system provided Python
 runtime, and hence need to be able to readily convert your upstream Python
