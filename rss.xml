@@ -3,7 +3,7 @@
 much of our economic activity is devoted to preventing boredom in the idle
 time created by increases in efficiency. To be human is to be a strange
 creature indeed :)
-</description><atom:link href="http://www.curiousefficiency.org/rss.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Sat, 17 Sep 2016 10:00:49 GMT</lastBuildDate><generator>https://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>The Python Packaging Ecosystem</title><link>http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;div class="contents topic" id="from-development-to-deployment"&gt;
+</description><atom:link href="http://www.curiousefficiency.org/rss.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Thu, 01 Dec 2016 02:42:58 GMT</lastBuildDate><generator>https://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>The Python Packaging Ecosystem</title><link>http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;div class="contents topic" id="from-development-to-deployment"&gt;
 &lt;p class="topic-title first"&gt;From Development to Deployment&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#my-core-software-ecosystem-design-philosophy" id="id1"&gt;My core software ecosystem design philosophy&lt;/a&gt;&lt;/li&gt;
@@ -1920,4 +1920,7 @@ depth, breadth, and hence quality, of our collective thinking.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Update 22 Jan, 2015: Minor typo and grammar fixes&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Update 19 Apr, 2016: This article is also available in
 &lt;a href="http://www.everycloudtech.com/abuse-is-not-ok"&gt;Russian&lt;/a&gt;,
-thanks to &lt;a href="http://www.everycloudtech.com/"&gt;Everycloud technologies&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;&lt;/div&gt;</description><category>python</category><category>tech</category><guid>http://www.curiousefficiency.org/posts/2015/01/abuse-is-not-ok.html</guid><pubDate>Thu, 22 Jan 2015 05:57:26 GMT</pubDate></item></channel></rss>
+thanks to &lt;a href="http://www.everycloudtech.com/"&gt;Everycloud technologies&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Update 1 Dec, 2016: This article is also available in
+&lt;a href="http://www.autoteileprofi.de/science/2016/12/01/kuritarvitamises-toetajad-ei-ole-ok/"&gt;Estonian&lt;/a&gt;,
+thanks to Arija Liepkalnietis&lt;/em&gt;&lt;/p&gt;&lt;/div&gt;</description><category>python</category><category>tech</category><guid>http://www.curiousefficiency.org/posts/2015/01/abuse-is-not-ok.html</guid><pubDate>Thu, 22 Jan 2015 05:57:26 GMT</pubDate></item></channel></rss>
