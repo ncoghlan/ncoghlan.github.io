@@ -1,5 +1,399 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Curious Efficiency (python)</title><link>http://www.curiousefficiency.org</link><description></description><atom:link href="http://www.curiousefficiency.org/categories/cat_python.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Sat, 17 Sep 2016 10:00:49 GMT</lastBuildDate><generator>https://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>The Python Packaging Ecosystem</title><link>http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;div class="contents topic" id="from-development-to-deployment"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Curious Efficiency (python)</title><link>http://www.curiousefficiency.org</link><description></description><atom:link href="http://www.curiousefficiency.org/categories/cat_python.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Mon, 09 Oct 2017 10:00:24 GMT</lastBuildDate><generator>https://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Considering Python's Target Audience</title><link>http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;div class="contents topic" id="who-is-python-being-designed-for"&gt;
+&lt;p class="topic-title first"&gt;Who is Python being designed for?&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#use-cases-for-python-s-reference-interpreter" id="id1"&gt;Use cases for Python's reference interpreter&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#which-audience-does-cpython-primarily-serve" id="id2"&gt;Which audience does CPython primarily serve?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#why-is-this-relevant-to-anything" id="id3"&gt;Why is this relevant to anything?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#where-does-pypi-fit-into-the-picture" id="id4"&gt;Where does PyPI fit into the picture?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#why-are-some-apis-changed-when-adding-them-to-the-standard-library" id="id5"&gt;Why are some APIs changed when adding them to the standard library?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#why-are-some-apis-added-in-provisional-form" id="id6"&gt;Why are some APIs added in provisional form?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#why-are-only-some-standard-library-apis-upgraded" id="id7"&gt;Why are only some standard library APIs upgraded?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#will-any-parts-of-the-standard-library-ever-be-independently-versioned" id="id8"&gt;Will any parts of the standard library ever be independently versioned?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#why-do-these-considerations-matter" id="id9"&gt;Why do these considerations matter?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;p&gt;Several years ago, I
+&lt;a class="reference external" href="http://www.curiousefficiency.org/posts/2011/04/musings-on-culture-of-python-dev.html"&gt;highlighted&lt;/a&gt;
+"CPython moves both too fast and too slowly" as one of the more common causes
+of conflict both within the python-dev mailing list, as well as between the
+active CPython core developers and folks that decide that participating in
+that process wouldn't be an effective use of their personal time and energy.&lt;/p&gt;
+&lt;p&gt;I still consider that to be the case, but it's also a point I've spent a lot
+of time reflecting on in the intervening years, as I wrote that original article
+while I was still working for Boeing Defence Australia. The following month,
+I left Boeing for Red Hat Asia-Pacific, and started gaining a redistributor
+level perspective on
+&lt;a class="reference external" href="http://community.redhat.com/blog/2015/02/the-quid-pro-quo-of-open-infrastructure/"&gt;open source supply chain management&lt;/a&gt;
+in large enterprises.&lt;/p&gt;
+&lt;div class="section" id="use-cases-for-python-s-reference-interpreter"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#id1"&gt;Use cases for Python's reference interpreter&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;While it's a gross oversimplification, I tend to break down CPython's use cases
+as follows (note that these categories aren't fully distinct, they're just
+aimed at focusing my thinking on different factors influencing the rollout of
+new software features and versions):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p class="first"&gt;Education: educator's main interest is in teaching ways of modelling and
+manipulating the world computationally, &lt;em&gt;not&lt;/em&gt; writing or maintaining
+production software). Examples:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Australia's &lt;a class="reference external" href="https://aca.edu.au/#home-unpack"&gt;Digital Curriculum&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Lorena A. Barba's &lt;a class="reference external" href="https://github.com/barbagroup/AeroPython"&gt;AeroPython&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Personal automation &amp;amp; hobby projects: software where the main, and often only,
+user is the individual that wrote it. Examples:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;my Digital Blasphemy&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;&amp;lt;string&amp;gt;&lt;/tt&gt;, line 39)&lt;/p&gt;
+&lt;p&gt;Bullet list ends without a blank line; unexpected unindent.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://nbviewer.jupyter.org/urls/bitbucket.org/ncoghlan/misc/raw/default/notebooks/Digital%20Blasphemy.ipynb"&gt;image download notebook&lt;/a&gt;
+* Paul Fenwick's (Inter)National &lt;a class="reference external" href="https://github.com/pjf/rickastley"&gt;Rick Astley Hotline&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Organisational process automation: software where the main, and often only,
+user is the organisation it was originally written to benefit. Examples:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;CPython's &lt;a class="reference external" href="https://github.com/python/core-workflow"&gt;core workflow tools&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Development, build &amp;amp; release management tooling for Linux distros&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Set-and-forget infrastructure: software where, for sometimes debatable
+reasons, in-life upgrades to the software itself are nigh impossible, but
+upgrades to the underlying platform may be feasible. Examples:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;most self-managed corporate and institutional infrastructure (where properly
+funded sustaining engineering plans are disturbingly rare)&lt;/li&gt;
+&lt;li&gt;grant funded software (where maintenance typically ends when the initial
+grant runs out)&lt;/li&gt;
+&lt;li&gt;software with strict certification requirements (where recertification is
+too expensive for routine updates to be economically viable unless
+absolutely essential)&lt;/li&gt;
+&lt;li&gt;Embedded software systems without auto-upgrade capabilities&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Continuously upgraded infrastructure: software with a robust sustaining
+engineering model, where dependency and platform upgrades are considered
+routine, and no more concerning than any other code change. Examples:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Facebook's Python service infrastructure&lt;/li&gt;
+&lt;li&gt;Rolling release Linux distributions&lt;/li&gt;
+&lt;li&gt;most public PaaS and serverless environments (Heroku, OpenShift, AWS Lambda,
+Google Cloud Functions, Azure Cloud Functions, etc)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Intermittently upgraded standard operating environments: environments that do
+carry out routine upgrades to their core components, but those upgrades occur
+on a cycle measured in years, rather than weeks or months. Examples:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://www.vfxplatform.com/"&gt;VFX Platform&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;LTS Linux distributions&lt;/li&gt;
+&lt;li&gt;CPython and the Python standard library&lt;/li&gt;
+&lt;li&gt;Infrastructure management &amp;amp; orchestration tools (e.g. OpenStack, Ansible)&lt;/li&gt;
+&lt;li&gt;Hardware control systems&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Ephemeral software: software that tends to be used once and then discarded
+or ignored, rather than being subsequently upgraded in place. Examples:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Ad hoc automation scripts&lt;/li&gt;
+&lt;li&gt;Single-player games with a defined "end" (once you've finished them, even
+if you forget to uninstall them, you probably won't reinstall them on a new
+device)&lt;/li&gt;
+&lt;li&gt;Single-player games with little or no persistent state (if you uninstall and
+reinstall them, it doesn't change much about your play experience)&lt;/li&gt;
+&lt;li&gt;Event-specific applications (the application was tied to a specific physical
+event, and once the event is over, that app doesn't matter any more)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Regular use applications: software that tends to be regularly upgraded after
+deployment. Examples:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Business management software&lt;/li&gt;
+&lt;li&gt;Personal &amp;amp; professional productivity applications (e.g. Blender)&lt;/li&gt;
+&lt;li&gt;Developer tools &amp;amp; services (e.g. Mercurial, Buildbot, Roundup)&lt;/li&gt;
+&lt;li&gt;Multi-player games, and other games with significant persistent state, but
+no real defined "end"&lt;/li&gt;
+&lt;li&gt;Embedded software systems with auto-upgrade capabilities&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p class="first"&gt;Shared abstraction layers: software components that are designed to make it
+possible to work effectively in a particular problem domain even if you don't
+personally grasp all the intricacies of that domain yet. Examples:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;most runtime libraries and frameworks fall into this category (e.g. Django,
+Flask, Pyramid, SQL Alchemy, NumPy, SciPy, requests)&lt;/li&gt;
+&lt;li&gt;many testing and type inference tools also fit here (e.g. pytest,
+Hypothesis, vcrpy, behave, mypy)&lt;/li&gt;
+&lt;li&gt;plugins for other applications (e.g. Blender plugins, OpenStack hardware
+adapters)&lt;/li&gt;
+&lt;li&gt;the standard library itself represents the baseline "world according to
+Python" (and that's an
+&lt;a class="reference external" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#broadening-our-horizons"&gt;incredibly complex&lt;/a&gt;
+world view)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="which-audience-does-cpython-primarily-serve"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#id2"&gt;Which audience does CPython primarily serve?&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Ultimately, the main audiences that CPython and the standard library specifically
+serve are those that, for whatever reason, aren't adequately served by the
+combination of a more limited standard library and the installation of
+explicitly declared third party dependencies from PyPI.&lt;/p&gt;
+&lt;p&gt;To oversimplify the above review of different usage and deployment models even
+further, it's possible to summarise the single largest split in Python's user
+base as the one between those that are using Python as a &lt;em&gt;scripting language&lt;/em&gt;
+for some environment of interest, and those that are using it as an &lt;em&gt;application
+development language&lt;/em&gt;, where the eventual artifact that will be distributed is
+something other than the script that they're working on.&lt;/p&gt;
+&lt;p&gt;Typical developer behaviours when using Python as a scripting language include:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;the main working unit consists of a single Python file (or Jupyter notebook!),
+rather than a directory of Python and metadata files&lt;/li&gt;
+&lt;li&gt;there's no separate build step of any kind - the script is distributed &lt;em&gt;as&lt;/em&gt; a
+script, similar to the way standalone shell scripts are distributed&lt;/li&gt;
+&lt;li&gt;there's no separate install step (other than downloading the file to an
+appropriate location), as it is expected that the required runtime environment
+will be preconfigured on the destination system&lt;/li&gt;
+&lt;li&gt;no explicit dependencies stated, except perhaps a minimum Python version,
+or else a statement of the expected execution environment. If dependencies
+outside the standard library are needed, they're expected to be provided by
+the environment being scripted (whether that's an operating system,
+a data analysis platform, or an application that embeds a Python runtime)&lt;/li&gt;
+&lt;li&gt;no separate test suite, with the main test of correctness being "Did the
+script do what you wanted it to do with the input that you gave it?"&lt;/li&gt;
+&lt;li&gt;if testing prior to live execution is needed, it will be in the form of a
+"dry run" or "preview" mode that conveys to the user what the software &lt;em&gt;would&lt;/em&gt;
+do if run that way&lt;/li&gt;
+&lt;li&gt;if static code analysis tools are used at all, it's via integration into the
+user's software development environment, rather than being set up separately
+for each individual script&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;By contrast, typical developer behaviours when using Python as an application
+development language include:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;the main working unit consists of a directory of Python and metadata files,
+rather than a single Python file&lt;/li&gt;
+&lt;li&gt;these is a separate build step to prepare the application for publication,
+even if it's just bundling the files together into a Python sdist, wheel
+or zipapp archive&lt;/li&gt;
+&lt;li&gt;whether there's a separate install step to prepare the application for use
+will depend on how the application is packaged, and what the supported target
+environments are&lt;/li&gt;
+&lt;li&gt;external dependencies are expressed in a metadata file, either directly in
+the project directory (e.g. &lt;tt class="docutils literal"&gt;pyproject.toml&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;requirements.txt&lt;/tt&gt;,
+&lt;tt class="docutils literal"&gt;Pipfile&lt;/tt&gt;), or as part of the generated publication archive (e.g.
+&lt;tt class="docutils literal"&gt;setup.py&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;flit.ini&lt;/tt&gt;)&lt;/li&gt;
+&lt;li&gt;a separate test suite exists, either as unit tests for the Python API,
+integration tests for the functional interfaces, or a combination of the two&lt;/li&gt;
+&lt;li&gt;usage of static analysis tools is configured at the project level as part of
+its testing regime, rather than being dependent on&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;As a result of that split, the main purpose that CPython and the standard
+library end up serving is to define the redistributor independent baseline
+of assumed functionality for educational and ad hoc Python scripting
+environments 3-5 years after the corresponding CPython feature release.&lt;/p&gt;
+&lt;p&gt;For ad hoc scripting use cases, that 3-5 year latency stems from a combination
+of delays in redistributors making new releases available to their users, and
+users of those redistributed versions taking time to revise their standard
+operating environments.&lt;/p&gt;
+&lt;p&gt;In the case of educational environments, educators need that kind of time to
+review the new features and decide whether or not to incorporate them into the
+courses they offer their students.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="why-is-this-relevant-to-anything"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#id3"&gt;Why is this relevant to anything?&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This post was largely inspired by the Twitter discussion following on from
+&lt;a class="reference external" href="https://twitter.com/ncoghlan_dev/status/916994106819088384"&gt;this comment of mine&lt;/a&gt;
+citing the Provisional API status defined in
+&lt;a class="reference external" href="https://www.python.org/dev/peps/pep-0411/"&gt;PEP 411&lt;/a&gt; as an example of an
+open source project issuing a de facto invitation to users to participate more
+actively in the design &amp;amp; development process as co-creators, rather than only
+passively consuming already final designs.&lt;/p&gt;
+&lt;p&gt;The responses included several expressions of frustration regarding the difficulty
+of supporting provisional APIs in higher level libraries, without those libraries
+making the provisional status transitive, and hence limiting support for any
+related features to only the latest version of the provisional API, and not any
+of the earlier iterations.&lt;/p&gt;
+&lt;p&gt;My &lt;a class="reference external" href="https://twitter.com/ncoghlan_dev/status/917092464355241984"&gt;main reaction&lt;/a&gt;
+was to suggest that open source publishers should impose whatever support
+limitations they need to impose to make their ongoing maintenance efforts
+personally sustainable. That means that if supporting older iterations of
+provisional APIs is a pain, then they should only be supported if the project
+developers themselves need that, or if somebody is paying them for the
+inconvenience. This is similar to my view on whether or not volunteer-driven
+projects should support older commercial LTS Python releases for free when it's
+a hassle for them to do: I &lt;a class="reference external" href="http://www.curiousefficiency.org/posts/2015/04/stop-supporting-python26.html"&gt;don't think they should&lt;/a&gt;,
+as I expect most such demands to be stemming from poorly managed institutional
+inertia, rather than from genuine need (and if the need &lt;em&gt;is&lt;/em&gt; genuine, then it
+should instead be possible to find some means of paying to have it addressed).&lt;/p&gt;
+&lt;p&gt;However, my &lt;a class="reference external" href="https://twitter.com/ncoghlan_dev/status/917088410162012160"&gt;second reaction&lt;/a&gt;,
+was to realise that even though I've touched on this topic over the years (e.g.
+in the original 2011 article linked above, as well as in Python 3 Q &amp;amp; A answers
+&lt;a class="reference external" href="http://python-notes.curiousefficiency.org/en/latest/python3/questions_and_answers.html#wouldn-t-a-python-2-8-release-help-ease-the-transition"&gt;here&lt;/a&gt;,
+&lt;a class="reference external" href="http://python-notes.curiousefficiency.org/en/latest/python3/questions_and_answers.html#doesn-t-this-make-python-look-like-an-immature-and-unstable-platform"&gt;here&lt;/a&gt;,
+and &lt;a class="reference external" href="http://python-notes.curiousefficiency.org/en/latest/python3/questions_and_answers.html#what-about-insert-other-shiny-new-feature-here"&gt;here&lt;/a&gt;,
+and to a lesser degree in last year's article on the
+&lt;a class="reference external" href="http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html"&gt;Python Packaging Ecosystem&lt;/a&gt;),
+I've never really attempted to directly explain the impact it has on the standard
+library design process.&lt;/p&gt;
+&lt;p&gt;And without that background, some aspects of the design process, such as the
+introduction of provisional APIs, or the introduction of
+inspired-by-but-not-the-same-as, seem completely nonsensical, as they appear to be an attempt to standardise
+APIs without actually standardising them.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="where-does-pypi-fit-into-the-picture"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#id4"&gt;Where does PyPI fit into the picture?&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The first hurdle that &lt;em&gt;any&lt;/em&gt; proposal sent to python-ideas or python-dev has to
+clear is answering the question "Why isn't a module on PyPI good enough?". The
+vast majority of proposals fail at this step, but there are several common
+themes for getting past it:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;rather than downloading a suitable third party library, novices may be prone
+to copying &amp;amp; pasting bad advice from the internet at large (e.g. this is why
+the &lt;tt class="docutils literal"&gt;secrets&lt;/tt&gt; library now exists: to make it less likely people will use the
+&lt;tt class="docutils literal"&gt;random&lt;/tt&gt; module, which is intended for games and statistical simulations,
+for security-sensitive purposes)&lt;/li&gt;
+&lt;li&gt;the module is intended to provide a reference implementation and to enable
+interoperability between otherwise competing implementations, rather than
+necessarily being all things to all people (e.g. &lt;tt class="docutils literal"&gt;asyncio&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;wsgiref&lt;/tt&gt;,
+&lt;tt class="docutils literal"&gt;unittest`&lt;/tt&gt;, and &lt;tt class="docutils literal"&gt;logging&lt;/tt&gt; all fall into this category)&lt;/li&gt;
+&lt;li&gt;the module is intended for use in other parts of the standard library (e.g.
+&lt;tt class="docutils literal"&gt;enum&lt;/tt&gt; falls into this category, as does &lt;tt class="docutils literal"&gt;unittest&lt;/tt&gt;)&lt;/li&gt;
+&lt;li&gt;the module is designed to support a syntactic addition to the language (e.g.
+the &lt;tt class="docutils literal"&gt;contextlib&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;asyncio&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;typing&lt;/tt&gt; modules fall into this
+category)&lt;/li&gt;
+&lt;li&gt;the module is just plain useful for ad hoc scripting purposes (e.g.
+&lt;tt class="docutils literal"&gt;pathlib&lt;/tt&gt;, and &lt;tt class="docutils literal"&gt;ipaddress&lt;/tt&gt; fall into this category)&lt;/li&gt;
+&lt;li&gt;the module is useful in an educational context (e.g. the &lt;tt class="docutils literal"&gt;statistics&lt;/tt&gt;
+module allows for interactive exploration of statistic concepts, even if you
+wouldn't necessarily want to use it for full-fledged statistical analysis)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Passing this initial "Is PyPI obviously good enough?" check isn't enough to
+ensure that a module will be accepted for inclusion into the standard library,
+but it's enough to shift the question to become "Would including the proposed
+library result in a net improvement to the typical introductory Python software
+developer experience over the next few years?"&lt;/p&gt;
+&lt;p&gt;The introduction of &lt;tt class="docutils literal"&gt;ensurepip&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;venv&lt;/tt&gt; modules into the standard library
+also makes it clear to redistributors that we expect Python level packaging
+and installation tools to be supported in addition to any platform specific
+distribution mechanisms.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="why-are-some-apis-changed-when-adding-them-to-the-standard-library"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#id5"&gt;Why are some APIs changed when adding them to the standard library?&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;While existing third party modules are sometimes adopted wholesale into the
+standard library, in other cases, what actually gets added is a redesigned
+and reimplemented API that draws on the user experience of the existing API,
+but drops or revises some details based on the additional design considerations
+and privileges that go with being part of the language's reference
+implementation.&lt;/p&gt;
+&lt;p&gt;For example, unlike its popular third party predecessor, &lt;tt class="docutils literal"&gt;path.py`, ``pathlib&lt;/tt&gt;
+does &lt;em&gt;not&lt;/em&gt; define string subclasses, but instead independent types. Solving
+the resulting interoperability challenges led to the definition of the
+filesystem path protocol, allowing a wider range of objects to be used with
+interfaces that work with filesystem paths.&lt;/p&gt;
+&lt;p&gt;The API design for the &lt;tt class="docutils literal"&gt;ipaddress&lt;/tt&gt; module was adjusted to explicitly
+separate host interface definitions (IP addresses associated with particular
+IP networks) from the definitions of addresses and networks in order to serve
+as a better tool for teaching IP addressing concepts, whereas the original
+&lt;tt class="docutils literal"&gt;ipaddr&lt;/tt&gt; module is less strict in the way it uses networking terminology.&lt;/p&gt;
+&lt;p&gt;In other cases, standard library modules are constructed as a synthesis of
+multiple existing approaches, and may also rely on syntactic features that
+didn't exist when the APIs for pre-existing libraries were defined. Both of
+these considerations apply for the &lt;tt class="docutils literal"&gt;asyncio&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;typing&lt;/tt&gt; modules,
+while the latter consideration applies for the &lt;tt class="docutils literal"&gt;dataclasses&lt;/tt&gt; API being
+considered in PEP 557 (which can be summarised as "like attrs, but using
+variable annotations for field declarations").&lt;/p&gt;
+&lt;p&gt;The working theory for these kinds of changes is that the existing libraries
+aren't going away, and their maintainers often aren't all that interested
+in putitng up with the constraints associated with standard library maintenance
+(in particular, the relatively slow release cadence). In such cases, it's
+fairly common for the documentation of the standard library version to feature
+a "See Also" link pointing to the original module, especially if the third
+party version offers additional features and flexibility that were omitted
+from the standard library module.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="why-are-some-apis-added-in-provisional-form"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#id6"&gt;Why are some APIs added in provisional form?&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;While CPython does maintain an API deprecation policy, we generally prefer not
+to use it without a compelling justification (this is especially the case
+while other projects are attempting to maintain compatibility with Python 2.7).&lt;/p&gt;
+&lt;p&gt;However, when adding new APIs that are inspired by existing third party ones
+without being exact copies of them, there's a higher than usual risk that some
+of the design decisions may turn out to be problematic in practice.&lt;/p&gt;
+&lt;p&gt;When we consider the risk of such changes to be higher than usual, we'll mark
+the related APIs as provisional, indicating that conservative end users may
+want to avoid relying on them at all, and that developers of shared abstraction
+layers may want to consider imposing stricter than usual constraints on which
+versions of the provisional API they're prepared to support.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="why-are-only-some-standard-library-apis-upgraded"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#id7"&gt;Why are only some standard library APIs upgraded?&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The short answer here is that the main APIs that get upgraded are those where:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;there isn't likely to be a lot of external churn driving additional updates&lt;/li&gt;
+&lt;li&gt;there are clear benefits for either ad hoc scripting use cases or else in
+encouraging future interoperability between multiple third party solutions&lt;/li&gt;
+&lt;li&gt;a credible proposal is submitted by folks interested in doing the work&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If the limitations of an existing module are mainly noticeable when using the
+module for application development purposes (e.g. &lt;tt class="docutils literal"&gt;datetime&lt;/tt&gt;), if
+redistributors already tend to make an improved alternative third party option
+readily available (e.g. &lt;tt class="docutils literal"&gt;requests&lt;/tt&gt;), or if there's a genuine conflict between
+the release cadence of the standard library and the needs of the package in
+question (e.g. &lt;tt class="docutils literal"&gt;certifi&lt;/tt&gt;), then the incentives to propose a change to the
+standard library version tend to be significantly reduced.&lt;/p&gt;
+&lt;p&gt;This is essentially the inverse to the question about PyPI above: since PyPI
+usually &lt;em&gt;is&lt;/em&gt; a sufficiently good distribution mechanism for application
+developer experience enhancements, it makes sense for such enhancements to be
+distributed that way, allowing redistributors and platform providers to make
+their own decisions about what they want to include as part of their default
+offering.&lt;/p&gt;
+&lt;p&gt;Changing CPython and the standard library only comes into play when there is
+perceived value in changing the capabilities that can be assumed to be present
+by default in 3-5 years time.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="will-any-parts-of-the-standard-library-ever-be-independently-versioned"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#id8"&gt;Will any parts of the standard library ever be independently versioned?&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Yes, it's likely the bundling model used for &lt;tt class="docutils literal"&gt;ensurepip&lt;/tt&gt; (where CPython
+releases bundle a recent version of &lt;tt class="docutils literal"&gt;pip&lt;/tt&gt; without actually making it part
+of the standard library) may be applied to other modules in the future.&lt;/p&gt;
+&lt;p&gt;The most probable first candidate for that treatment would be the &lt;tt class="docutils literal"&gt;distutils&lt;/tt&gt;
+build system, as switching to such a model would allow the build system to be
+more readily kept consistent across multiple releases.&lt;/p&gt;
+&lt;p&gt;Other potential candidates for this kind of treatment would be the Tcl/Tk
+graphics bindings, and the IDLE editor, which are already unbundled and turned
+into an optional addon installations by a number of redistributors.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="why-do-these-considerations-matter"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#id9"&gt;Why do these considerations matter?&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;By the very nature of things, the folks that tend to be most actively involved
+in open source development are those folks working on open source applications
+and shared abstraction layers.&lt;/p&gt;
+&lt;p&gt;The folks writing ad hoc scripts or designing educational exercises for their
+students often won't even think of themselves as software developers - they're
+teachers, system administrators, data analysts, quants, epidemiologists,
+physicists, biologists, business analysts, market researchers, animators,
+graphical designers, etc.&lt;/p&gt;
+&lt;p&gt;When all we have to worry about for a language is the application developer
+experience, then we can make a lot of simplifying assumptions around what
+people know, the kinds of tools they're using, the kinds of development
+processes they're following, and the ways they're going to be building and
+deploying their software.&lt;/p&gt;
+&lt;p&gt;Things get significantly more complicated when an application runtime &lt;em&gt;also&lt;/em&gt;
+enjoys broad popularity as a scripting engine. Doing either job well is
+already difficult, and balancing the needs of both audiences as part of a single
+project leads to frequent incomprehension and disbelief on both sides.&lt;/p&gt;
+&lt;p&gt;This post isn't intended to claim that we never make incorrect decisions as part
+of the CPython development process - it's merely pointing out that the most
+reasonable reaction to seemingly nonsensical feature additions to the Python
+standard library is going to be "I'm not part of the intended target audience
+for that addition" rather than "I have no interest in that, so it must be a
+useless and pointless addition of no value to anyone, added purely to annoy me".&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>python</category><guid>http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html</guid><pubDate>Mon, 09 Oct 2017 01:33:41 GMT</pubDate></item><item><title>The Python Packaging Ecosystem</title><link>http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;div class="contents topic" id="from-development-to-deployment"&gt;
 &lt;p class="topic-title first"&gt;From Development to Deployment&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#my-core-software-ecosystem-design-philosophy" id="id1"&gt;My core software ecosystem design philosophy&lt;/a&gt;&lt;/li&gt;
@@ -905,7 +1299,7 @@ maintained in the dedicated &lt;a class="reference external" href="http://defini
 &lt;p&gt;As Chris Neugebauer pointed out in his &lt;a class="reference external" href="https://www.youtube.com/watch?v=_PPQLeimyOM"&gt;PyCon Australia presentation&lt;/a&gt;, this is
 very similar to the proposed relationship between Python, the &lt;a class="reference external" href="https://github.com/python/typeshed"&gt;typeshed&lt;/a&gt; type
 hint repository, and type inference and analysis tools like &lt;a class="reference external" href="http://mypy-lang.org/"&gt;mypy&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;In essence, bothTypeScript and type hinting in Python are ways of writing
+&lt;p&gt;In essence, both TypeScript and type hinting in Python are ways of writing
 particular kinds of tests, either as separate files (just like normal tests),
 or inline with the main body of the code (just like type declarations in
 statically typed languages). In either case, you run a &lt;em&gt;separate&lt;/em&gt; command to
@@ -951,7 +1345,7 @@ end users, framework developers, tool developers, educators and more.&lt;/p&gt;
 as a scripting engine. Significant examples include it being the language
 used to write add-ons for the World of Warcraft game client, and it's also
 embedded in the RPM utility used by many Linux distributions. Compared to
-CPython, a Lua runtime will generally be a tenth of the size, and it's weaker
+CPython, a Lua runtime will generally be a tenth of the size, and its weaker
 introspection capabilities generally make it easier to isolate from the rest of
 the application and the host operating system. A notable contribution from the
 Lua community to the Python ecosystem is the adoption of the LuaJIT FFI

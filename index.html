@@ -15,7 +15,7 @@ creature indeed :)
 <link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
 <link rel="canonical" href="http://www.curiousefficiency.org/index.html">
 <link rel="next" href="index-8.html" type="text/html">
-<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/2016/09/python-packaging-ecosystem.html" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/2017/10/considering-pythons-target-audience.html" type="text/html">
 </head>
 <body>
 <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -70,7 +70,431 @@ creature indeed :)
             
 
 <div class="postindex">
-    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/2016/09/python-packaging-ecosystem.html" class="u-url">The Python Packaging Ecosystem</a></h1>
+    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/2017/10/considering-pythons-target-audience.html" class="u-url">Considering Python's Target Audience</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">
+                Nick Coghlan
+            </span></p>
+            <p class="dateline"><a href="posts/2017/10/considering-pythons-target-audience.html" rel="bookmark"><time class="published dt-published" datetime="2017-10-09T01:33:41Z" title="2017-10-09 01:33">2017-10-09 01:33</time></a></p>
+                <p class="commentline">
+        
+    <a href="posts/2017/10/considering-pythons-target-audience.html#disqus_thread" data-disqus-identifier="cache/posts/2017/10/considering-pythons-target-audience.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<div class="contents topic" id="who-is-python-being-designed-for">
+<p class="topic-title first">Who is Python being designed for?</p>
+<ul class="simple">
+<li><a class="reference internal" href="posts/2017/10/considering-pythons-target-audience.html#use-cases-for-python-s-reference-interpreter" id="id1">Use cases for Python's reference interpreter</a></li>
+<li><a class="reference internal" href="posts/2017/10/considering-pythons-target-audience.html#which-audience-does-cpython-primarily-serve" id="id2">Which audience does CPython primarily serve?</a></li>
+<li><a class="reference internal" href="posts/2017/10/considering-pythons-target-audience.html#why-is-this-relevant-to-anything" id="id3">Why is this relevant to anything?</a></li>
+<li><a class="reference internal" href="posts/2017/10/considering-pythons-target-audience.html#where-does-pypi-fit-into-the-picture" id="id4">Where does PyPI fit into the picture?</a></li>
+<li><a class="reference internal" href="posts/2017/10/considering-pythons-target-audience.html#why-are-some-apis-changed-when-adding-them-to-the-standard-library" id="id5">Why are some APIs changed when adding them to the standard library?</a></li>
+<li><a class="reference internal" href="posts/2017/10/considering-pythons-target-audience.html#why-are-some-apis-added-in-provisional-form" id="id6">Why are some APIs added in provisional form?</a></li>
+<li><a class="reference internal" href="posts/2017/10/considering-pythons-target-audience.html#why-are-only-some-standard-library-apis-upgraded" id="id7">Why are only some standard library APIs upgraded?</a></li>
+<li><a class="reference internal" href="posts/2017/10/considering-pythons-target-audience.html#will-any-parts-of-the-standard-library-ever-be-independently-versioned" id="id8">Will any parts of the standard library ever be independently versioned?</a></li>
+<li><a class="reference internal" href="posts/2017/10/considering-pythons-target-audience.html#why-do-these-considerations-matter" id="id9">Why do these considerations matter?</a></li>
+</ul>
+</div>
+<p>Several years ago, I
+<a class="reference external" href="http://www.curiousefficiency.org/posts/2011/04/musings-on-culture-of-python-dev.html">highlighted</a>
+"CPython moves both too fast and too slowly" as one of the more common causes
+of conflict both within the python-dev mailing list, as well as between the
+active CPython core developers and folks that decide that participating in
+that process wouldn't be an effective use of their personal time and energy.</p>
+<p>I still consider that to be the case, but it's also a point I've spent a lot
+of time reflecting on in the intervening years, as I wrote that original article
+while I was still working for Boeing Defence Australia. The following month,
+I left Boeing for Red Hat Asia-Pacific, and started gaining a redistributor
+level perspective on
+<a class="reference external" href="http://community.redhat.com/blog/2015/02/the-quid-pro-quo-of-open-infrastructure/">open source supply chain management</a>
+in large enterprises.</p>
+<div class="section" id="use-cases-for-python-s-reference-interpreter">
+<h2><a class="toc-backref" href="posts/2017/10/considering-pythons-target-audience.html#id1">Use cases for Python's reference interpreter</a></h2>
+<p>While it's a gross oversimplification, I tend to break down CPython's use cases
+as follows (note that these categories aren't fully distinct, they're just
+aimed at focusing my thinking on different factors influencing the rollout of
+new software features and versions):</p>
+<ul>
+<li>
+<p class="first">Education: educator's main interest is in teaching ways of modelling and
+manipulating the world computationally, <em>not</em> writing or maintaining
+production software). Examples:</p>
+<ul class="simple">
+<li>Australia's <a class="reference external" href="https://aca.edu.au/#home-unpack">Digital Curriculum</a>
+</li>
+<li>Lorena A. Barba's <a class="reference external" href="https://github.com/barbagroup/AeroPython">AeroPython</a>
+</li>
+</ul>
+</li>
+<li>
+<p class="first">Personal automation &amp; hobby projects: software where the main, and often only,
+user is the individual that wrote it. Examples:</p>
+<ul class="simple">
+<li>my Digital Blasphemy</li>
+</ul>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">&lt;string&gt;</tt>, line 39)</p>
+<p>Bullet list ends without a blank line; unexpected unindent.</p>
+</div>
+<p><a class="reference external" href="https://nbviewer.jupyter.org/urls/bitbucket.org/ncoghlan/misc/raw/default/notebooks/Digital%20Blasphemy.ipynb">image download notebook</a>
+* Paul Fenwick's (Inter)National <a class="reference external" href="https://github.com/pjf/rickastley">Rick Astley Hotline</a></p>
+</li>
+<li>
+<p class="first">Organisational process automation: software where the main, and often only,
+user is the organisation it was originally written to benefit. Examples:</p>
+<ul class="simple">
+<li>CPython's <a class="reference external" href="https://github.com/python/core-workflow">core workflow tools</a>
+</li>
+<li>Development, build &amp; release management tooling for Linux distros</li>
+</ul>
+</li>
+<li>
+<p class="first">Set-and-forget infrastructure: software where, for sometimes debatable
+reasons, in-life upgrades to the software itself are nigh impossible, but
+upgrades to the underlying platform may be feasible. Examples:</p>
+<ul class="simple">
+<li>most self-managed corporate and institutional infrastructure (where properly
+funded sustaining engineering plans are disturbingly rare)</li>
+<li>grant funded software (where maintenance typically ends when the initial
+grant runs out)</li>
+<li>software with strict certification requirements (where recertification is
+too expensive for routine updates to be economically viable unless
+absolutely essential)</li>
+<li>Embedded software systems without auto-upgrade capabilities</li>
+</ul>
+</li>
+<li>
+<p class="first">Continuously upgraded infrastructure: software with a robust sustaining
+engineering model, where dependency and platform upgrades are considered
+routine, and no more concerning than any other code change. Examples:</p>
+<ul class="simple">
+<li>Facebook's Python service infrastructure</li>
+<li>Rolling release Linux distributions</li>
+<li>most public PaaS and serverless environments (Heroku, OpenShift, AWS Lambda,
+Google Cloud Functions, Azure Cloud Functions, etc)</li>
+</ul>
+</li>
+<li>
+<p class="first">Intermittently upgraded standard operating environments: environments that do
+carry out routine upgrades to their core components, but those upgrades occur
+on a cycle measured in years, rather than weeks or months. Examples:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://www.vfxplatform.com/">VFX Platform</a></li>
+<li>LTS Linux distributions</li>
+<li>CPython and the Python standard library</li>
+<li>Infrastructure management &amp; orchestration tools (e.g. OpenStack, Ansible)</li>
+<li>Hardware control systems</li>
+</ul>
+</li>
+<li>
+<p class="first">Ephemeral software: software that tends to be used once and then discarded
+or ignored, rather than being subsequently upgraded in place. Examples:</p>
+<ul class="simple">
+<li>Ad hoc automation scripts</li>
+<li>Single-player games with a defined "end" (once you've finished them, even
+if you forget to uninstall them, you probably won't reinstall them on a new
+device)</li>
+<li>Single-player games with little or no persistent state (if you uninstall and
+reinstall them, it doesn't change much about your play experience)</li>
+<li>Event-specific applications (the application was tied to a specific physical
+event, and once the event is over, that app doesn't matter any more)</li>
+</ul>
+</li>
+<li>
+<p class="first">Regular use applications: software that tends to be regularly upgraded after
+deployment. Examples:</p>
+<ul class="simple">
+<li>Business management software</li>
+<li>Personal &amp; professional productivity applications (e.g. Blender)</li>
+<li>Developer tools &amp; services (e.g. Mercurial, Buildbot, Roundup)</li>
+<li>Multi-player games, and other games with significant persistent state, but
+no real defined "end"</li>
+<li>Embedded software systems with auto-upgrade capabilities</li>
+</ul>
+</li>
+<li>
+<p class="first">Shared abstraction layers: software components that are designed to make it
+possible to work effectively in a particular problem domain even if you don't
+personally grasp all the intricacies of that domain yet. Examples:</p>
+<ul class="simple">
+<li>most runtime libraries and frameworks fall into this category (e.g. Django,
+Flask, Pyramid, SQL Alchemy, NumPy, SciPy, requests)</li>
+<li>many testing and type inference tools also fit here (e.g. pytest,
+Hypothesis, vcrpy, behave, mypy)</li>
+<li>plugins for other applications (e.g. Blender plugins, OpenStack hardware
+adapters)</li>
+<li>the standard library itself represents the baseline "world according to
+Python" (and that's an
+<a class="reference external" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#broadening-our-horizons">incredibly complex</a>
+world view)</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="which-audience-does-cpython-primarily-serve">
+<h2><a class="toc-backref" href="posts/2017/10/considering-pythons-target-audience.html#id2">Which audience does CPython primarily serve?</a></h2>
+<p>Ultimately, the main audiences that CPython and the standard library specifically
+serve are those that, for whatever reason, aren't adequately served by the
+combination of a more limited standard library and the installation of
+explicitly declared third party dependencies from PyPI.</p>
+<p>To oversimplify the above review of different usage and deployment models even
+further, it's possible to summarise the single largest split in Python's user
+base as the one between those that are using Python as a <em>scripting language</em>
+for some environment of interest, and those that are using it as an <em>application
+development language</em>, where the eventual artifact that will be distributed is
+something other than the script that they're working on.</p>
+<p>Typical developer behaviours when using Python as a scripting language include:</p>
+<ul class="simple">
+<li>the main working unit consists of a single Python file (or Jupyter notebook!),
+rather than a directory of Python and metadata files</li>
+<li>there's no separate build step of any kind - the script is distributed <em>as</em> a
+script, similar to the way standalone shell scripts are distributed</li>
+<li>there's no separate install step (other than downloading the file to an
+appropriate location), as it is expected that the required runtime environment
+will be preconfigured on the destination system</li>
+<li>no explicit dependencies stated, except perhaps a minimum Python version,
+or else a statement of the expected execution environment. If dependencies
+outside the standard library are needed, they're expected to be provided by
+the environment being scripted (whether that's an operating system,
+a data analysis platform, or an application that embeds a Python runtime)</li>
+<li>no separate test suite, with the main test of correctness being "Did the
+script do what you wanted it to do with the input that you gave it?"</li>
+<li>if testing prior to live execution is needed, it will be in the form of a
+"dry run" or "preview" mode that conveys to the user what the software <em>would</em>
+do if run that way</li>
+<li>if static code analysis tools are used at all, it's via integration into the
+user's software development environment, rather than being set up separately
+for each individual script</li>
+</ul>
+<p>By contrast, typical developer behaviours when using Python as an application
+development language include:</p>
+<ul class="simple">
+<li>the main working unit consists of a directory of Python and metadata files,
+rather than a single Python file</li>
+<li>these is a separate build step to prepare the application for publication,
+even if it's just bundling the files together into a Python sdist, wheel
+or zipapp archive</li>
+<li>whether there's a separate install step to prepare the application for use
+will depend on how the application is packaged, and what the supported target
+environments are</li>
+<li>external dependencies are expressed in a metadata file, either directly in
+the project directory (e.g. <tt class="docutils literal">pyproject.toml</tt>, <tt class="docutils literal">requirements.txt</tt>,
+<tt class="docutils literal">Pipfile</tt>), or as part of the generated publication archive (e.g.
+<tt class="docutils literal">setup.py</tt>, <tt class="docutils literal">flit.ini</tt>)</li>
+<li>a separate test suite exists, either as unit tests for the Python API,
+integration tests for the functional interfaces, or a combination of the two</li>
+<li>usage of static analysis tools is configured at the project level as part of
+its testing regime, rather than being dependent on</li>
+</ul>
+<p>As a result of that split, the main purpose that CPython and the standard
+library end up serving is to define the redistributor independent baseline
+of assumed functionality for educational and ad hoc Python scripting
+environments 3-5 years after the corresponding CPython feature release.</p>
+<p>For ad hoc scripting use cases, that 3-5 year latency stems from a combination
+of delays in redistributors making new releases available to their users, and
+users of those redistributed versions taking time to revise their standard
+operating environments.</p>
+<p>In the case of educational environments, educators need that kind of time to
+review the new features and decide whether or not to incorporate them into the
+courses they offer their students.</p>
+</div>
+<div class="section" id="why-is-this-relevant-to-anything">
+<h2><a class="toc-backref" href="posts/2017/10/considering-pythons-target-audience.html#id3">Why is this relevant to anything?</a></h2>
+<p>This post was largely inspired by the Twitter discussion following on from
+<a class="reference external" href="https://twitter.com/ncoghlan_dev/status/916994106819088384">this comment of mine</a>
+citing the Provisional API status defined in
+<a class="reference external" href="https://www.python.org/dev/peps/pep-0411/">PEP 411</a> as an example of an
+open source project issuing a de facto invitation to users to participate more
+actively in the design &amp; development process as co-creators, rather than only
+passively consuming already final designs.</p>
+<p>The responses included several expressions of frustration regarding the difficulty
+of supporting provisional APIs in higher level libraries, without those libraries
+making the provisional status transitive, and hence limiting support for any
+related features to only the latest version of the provisional API, and not any
+of the earlier iterations.</p>
+<p>My <a class="reference external" href="https://twitter.com/ncoghlan_dev/status/917092464355241984">main reaction</a>
+was to suggest that open source publishers should impose whatever support
+limitations they need to impose to make their ongoing maintenance efforts
+personally sustainable. That means that if supporting older iterations of
+provisional APIs is a pain, then they should only be supported if the project
+developers themselves need that, or if somebody is paying them for the
+inconvenience. This is similar to my view on whether or not volunteer-driven
+projects should support older commercial LTS Python releases for free when it's
+a hassle for them to do: I <a class="reference external" href="http://www.curiousefficiency.org/posts/2015/04/stop-supporting-python26.html">don't think they should</a>,
+as I expect most such demands to be stemming from poorly managed institutional
+inertia, rather than from genuine need (and if the need <em>is</em> genuine, then it
+should instead be possible to find some means of paying to have it addressed).</p>
+<p>However, my <a class="reference external" href="https://twitter.com/ncoghlan_dev/status/917088410162012160">second reaction</a>,
+was to realise that even though I've touched on this topic over the years (e.g.
+in the original 2011 article linked above, as well as in Python 3 Q &amp; A answers
+<a class="reference external" href="http://python-notes.curiousefficiency.org/en/latest/python3/questions_and_answers.html#wouldn-t-a-python-2-8-release-help-ease-the-transition">here</a>,
+<a class="reference external" href="http://python-notes.curiousefficiency.org/en/latest/python3/questions_and_answers.html#doesn-t-this-make-python-look-like-an-immature-and-unstable-platform">here</a>,
+and <a class="reference external" href="http://python-notes.curiousefficiency.org/en/latest/python3/questions_and_answers.html#what-about-insert-other-shiny-new-feature-here">here</a>,
+and to a lesser degree in last year's article on the
+<a class="reference external" href="http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html">Python Packaging Ecosystem</a>),
+I've never really attempted to directly explain the impact it has on the standard
+library design process.</p>
+<p>And without that background, some aspects of the design process, such as the
+introduction of provisional APIs, or the introduction of
+inspired-by-but-not-the-same-as, seem completely nonsensical, as they appear to be an attempt to standardise
+APIs without actually standardising them.</p>
+</div>
+<div class="section" id="where-does-pypi-fit-into-the-picture">
+<h2><a class="toc-backref" href="posts/2017/10/considering-pythons-target-audience.html#id4">Where does PyPI fit into the picture?</a></h2>
+<p>The first hurdle that <em>any</em> proposal sent to python-ideas or python-dev has to
+clear is answering the question "Why isn't a module on PyPI good enough?". The
+vast majority of proposals fail at this step, but there are several common
+themes for getting past it:</p>
+<ul class="simple">
+<li>rather than downloading a suitable third party library, novices may be prone
+to copying &amp; pasting bad advice from the internet at large (e.g. this is why
+the <tt class="docutils literal">secrets</tt> library now exists: to make it less likely people will use the
+<tt class="docutils literal">random</tt> module, which is intended for games and statistical simulations,
+for security-sensitive purposes)</li>
+<li>the module is intended to provide a reference implementation and to enable
+interoperability between otherwise competing implementations, rather than
+necessarily being all things to all people (e.g. <tt class="docutils literal">asyncio</tt>, <tt class="docutils literal">wsgiref</tt>,
+<tt class="docutils literal">unittest`</tt>, and <tt class="docutils literal">logging</tt> all fall into this category)</li>
+<li>the module is intended for use in other parts of the standard library (e.g.
+<tt class="docutils literal">enum</tt> falls into this category, as does <tt class="docutils literal">unittest</tt>)</li>
+<li>the module is designed to support a syntactic addition to the language (e.g.
+the <tt class="docutils literal">contextlib</tt>, <tt class="docutils literal">asyncio</tt> and <tt class="docutils literal">typing</tt> modules fall into this
+category)</li>
+<li>the module is just plain useful for ad hoc scripting purposes (e.g.
+<tt class="docutils literal">pathlib</tt>, and <tt class="docutils literal">ipaddress</tt> fall into this category)</li>
+<li>the module is useful in an educational context (e.g. the <tt class="docutils literal">statistics</tt>
+module allows for interactive exploration of statistic concepts, even if you
+wouldn't necessarily want to use it for full-fledged statistical analysis)</li>
+</ul>
+<p>Passing this initial "Is PyPI obviously good enough?" check isn't enough to
+ensure that a module will be accepted for inclusion into the standard library,
+but it's enough to shift the question to become "Would including the proposed
+library result in a net improvement to the typical introductory Python software
+developer experience over the next few years?"</p>
+<p>The introduction of <tt class="docutils literal">ensurepip</tt> and <tt class="docutils literal">venv</tt> modules into the standard library
+also makes it clear to redistributors that we expect Python level packaging
+and installation tools to be supported in addition to any platform specific
+distribution mechanisms.</p>
+</div>
+<div class="section" id="why-are-some-apis-changed-when-adding-them-to-the-standard-library">
+<h2><a class="toc-backref" href="posts/2017/10/considering-pythons-target-audience.html#id5">Why are some APIs changed when adding them to the standard library?</a></h2>
+<p>While existing third party modules are sometimes adopted wholesale into the
+standard library, in other cases, what actually gets added is a redesigned
+and reimplemented API that draws on the user experience of the existing API,
+but drops or revises some details based on the additional design considerations
+and privileges that go with being part of the language's reference
+implementation.</p>
+<p>For example, unlike its popular third party predecessor, <tt class="docutils literal">path.py`, ``pathlib</tt>
+does <em>not</em> define string subclasses, but instead independent types. Solving
+the resulting interoperability challenges led to the definition of the
+filesystem path protocol, allowing a wider range of objects to be used with
+interfaces that work with filesystem paths.</p>
+<p>The API design for the <tt class="docutils literal">ipaddress</tt> module was adjusted to explicitly
+separate host interface definitions (IP addresses associated with particular
+IP networks) from the definitions of addresses and networks in order to serve
+as a better tool for teaching IP addressing concepts, whereas the original
+<tt class="docutils literal">ipaddr</tt> module is less strict in the way it uses networking terminology.</p>
+<p>In other cases, standard library modules are constructed as a synthesis of
+multiple existing approaches, and may also rely on syntactic features that
+didn't exist when the APIs for pre-existing libraries were defined. Both of
+these considerations apply for the <tt class="docutils literal">asyncio</tt> and <tt class="docutils literal">typing</tt> modules,
+while the latter consideration applies for the <tt class="docutils literal">dataclasses</tt> API being
+considered in PEP 557 (which can be summarised as "like attrs, but using
+variable annotations for field declarations").</p>
+<p>The working theory for these kinds of changes is that the existing libraries
+aren't going away, and their maintainers often aren't all that interested
+in putitng up with the constraints associated with standard library maintenance
+(in particular, the relatively slow release cadence). In such cases, it's
+fairly common for the documentation of the standard library version to feature
+a "See Also" link pointing to the original module, especially if the third
+party version offers additional features and flexibility that were omitted
+from the standard library module.</p>
+</div>
+<div class="section" id="why-are-some-apis-added-in-provisional-form">
+<h2><a class="toc-backref" href="posts/2017/10/considering-pythons-target-audience.html#id6">Why are some APIs added in provisional form?</a></h2>
+<p>While CPython does maintain an API deprecation policy, we generally prefer not
+to use it without a compelling justification (this is especially the case
+while other projects are attempting to maintain compatibility with Python 2.7).</p>
+<p>However, when adding new APIs that are inspired by existing third party ones
+without being exact copies of them, there's a higher than usual risk that some
+of the design decisions may turn out to be problematic in practice.</p>
+<p>When we consider the risk of such changes to be higher than usual, we'll mark
+the related APIs as provisional, indicating that conservative end users may
+want to avoid relying on them at all, and that developers of shared abstraction
+layers may want to consider imposing stricter than usual constraints on which
+versions of the provisional API they're prepared to support.</p>
+</div>
+<div class="section" id="why-are-only-some-standard-library-apis-upgraded">
+<h2><a class="toc-backref" href="posts/2017/10/considering-pythons-target-audience.html#id7">Why are only some standard library APIs upgraded?</a></h2>
+<p>The short answer here is that the main APIs that get upgraded are those where:</p>
+<ul class="simple">
+<li>there isn't likely to be a lot of external churn driving additional updates</li>
+<li>there are clear benefits for either ad hoc scripting use cases or else in
+encouraging future interoperability between multiple third party solutions</li>
+<li>a credible proposal is submitted by folks interested in doing the work</li>
+</ul>
+<p>If the limitations of an existing module are mainly noticeable when using the
+module for application development purposes (e.g. <tt class="docutils literal">datetime</tt>), if
+redistributors already tend to make an improved alternative third party option
+readily available (e.g. <tt class="docutils literal">requests</tt>), or if there's a genuine conflict between
+the release cadence of the standard library and the needs of the package in
+question (e.g. <tt class="docutils literal">certifi</tt>), then the incentives to propose a change to the
+standard library version tend to be significantly reduced.</p>
+<p>This is essentially the inverse to the question about PyPI above: since PyPI
+usually <em>is</em> a sufficiently good distribution mechanism for application
+developer experience enhancements, it makes sense for such enhancements to be
+distributed that way, allowing redistributors and platform providers to make
+their own decisions about what they want to include as part of their default
+offering.</p>
+<p>Changing CPython and the standard library only comes into play when there is
+perceived value in changing the capabilities that can be assumed to be present
+by default in 3-5 years time.</p>
+</div>
+<div class="section" id="will-any-parts-of-the-standard-library-ever-be-independently-versioned">
+<h2><a class="toc-backref" href="posts/2017/10/considering-pythons-target-audience.html#id8">Will any parts of the standard library ever be independently versioned?</a></h2>
+<p>Yes, it's likely the bundling model used for <tt class="docutils literal">ensurepip</tt> (where CPython
+releases bundle a recent version of <tt class="docutils literal">pip</tt> without actually making it part
+of the standard library) may be applied to other modules in the future.</p>
+<p>The most probable first candidate for that treatment would be the <tt class="docutils literal">distutils</tt>
+build system, as switching to such a model would allow the build system to be
+more readily kept consistent across multiple releases.</p>
+<p>Other potential candidates for this kind of treatment would be the Tcl/Tk
+graphics bindings, and the IDLE editor, which are already unbundled and turned
+into an optional addon installations by a number of redistributors.</p>
+</div>
+<div class="section" id="why-do-these-considerations-matter">
+<h2><a class="toc-backref" href="posts/2017/10/considering-pythons-target-audience.html#id9">Why do these considerations matter?</a></h2>
+<p>By the very nature of things, the folks that tend to be most actively involved
+in open source development are those folks working on open source applications
+and shared abstraction layers.</p>
+<p>The folks writing ad hoc scripts or designing educational exercises for their
+students often won't even think of themselves as software developers - they're
+teachers, system administrators, data analysts, quants, epidemiologists,
+physicists, biologists, business analysts, market researchers, animators,
+graphical designers, etc.</p>
+<p>When all we have to worry about for a language is the application developer
+experience, then we can make a lot of simplifying assumptions around what
+people know, the kinds of tools they're using, the kinds of development
+processes they're following, and the ways they're going to be building and
+deploying their software.</p>
+<p>Things get significantly more complicated when an application runtime <em>also</em>
+enjoys broad popularity as a scripting engine. Doing either job well is
+already difficult, and balancing the needs of both audiences as part of a single
+project leads to frequent incomprehension and disbelief on both sides.</p>
+<p>This post isn't intended to claim that we never make incorrect decisions as part
+of the CPython development process - it's merely pointing out that the most
+reasonable reaction to seemingly nonsensical feature additions to the Python
+standard library is going to be "I'm not part of the intended target audience
+for that addition" rather than "I have no interest in that, so it must be a
+useless and pointless addition of no value to anyone, added purely to annoy me".</p>
+</div>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/2016/09/python-packaging-ecosystem.html" class="u-url">The Python Packaging Ecosystem</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn">
                 Nick Coghlan
@@ -1048,7 +1472,7 @@ maintained in the dedicated <a class="reference external" href="http://definitel
 <p>As Chris Neugebauer pointed out in his <a class="reference external" href="https://www.youtube.com/watch?v=_PPQLeimyOM">PyCon Australia presentation</a>, this is
 very similar to the proposed relationship between Python, the <a class="reference external" href="https://github.com/python/typeshed">typeshed</a> type
 hint repository, and type inference and analysis tools like <a class="reference external" href="http://mypy-lang.org/">mypy</a>.</p>
-<p>In essence, bothTypeScript and type hinting in Python are ways of writing
+<p>In essence, both TypeScript and type hinting in Python are ways of writing
 particular kinds of tests, either as separate files (just like normal tests),
 or inline with the main body of the code (just like type declarations in
 statically typed languages). In either case, you run a <em>separate</em> command to
@@ -1094,7 +1518,7 @@ end users, framework developers, tool developers, educators and more.</p>
 as a scripting engine. Significant examples include it being the language
 used to write add-ons for the World of Warcraft game client, and it's also
 embedded in the RPM utility used by many Linux distributions. Compared to
-CPython, a Lua runtime will generally be a tenth of the size, and it's weaker
+CPython, a Lua runtime will generally be a tenth of the size, and its weaker
 introspection capabilities generally make it easier to isolate from the rest of
 the application and the host operating system. A notable contribution from the
 Lua community to the Python ecosystem is the adoption of the LuaJIT FFI
@@ -1896,284 +2320,6 @@ engineering on CentOS is instead a beneficial community byproduct of the
 that goes into Red Hat Enterprise Linux).</p>
 </div>
     </div>
-    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/2015/01/abuse-is-not-ok.html" class="u-url">Abusing Contributors is not OK</a></h1>
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">
-                Nick Coghlan
-            </span></p>
-            <p class="dateline"><a href="posts/2015/01/abuse-is-not-ok.html" rel="bookmark"><time class="published dt-published" datetime="2015-01-22T05:57:26Z" title="2015-01-22 05:57">2015-01-22 05:57</time></a></p>
-                <p class="commentline">
-        
-    <a href="posts/2015/01/abuse-is-not-ok.html#disqus_thread" data-disqus-identifier="cache/posts/2015/01/abuse-is-not-ok.html">Comments</a>
-
-
-        </p>
-</div>
-    </header><div class="e-content entry-content">
-    <div>
-<p>As reported in
-<a href="http://arstechnica.com/business/2015/01/linus-torvalds-on-why-he-isnt-nice-i-dont-care-about-you/">Ars Technica</a>,
-the ongoing efforts to promote diversity in open source communities came
-up once more during the plenary Q&amp;A session with Linus Torvalds, Andrew Tridgell,
-Bdale Garbee and Rusty Russell.</p>
-<p>I was there for that session, and found that Linus's response appeared to
-betray a fundamental misunderstanding of the motives of many of the folks
-pushing for increased diversity in the open source community, as well as a
-lack of awareness of the terrible situations that can arise when leaders in a
-community regularly demonstrate abusive behaviour without suffering any
-significant consequences (just ask folks like Kathy Sierra, Zoe Quinn, Anita
-Sarkeesian and Brianna Wu that have been subjected to sustained campaigns of
-harassment largely for being women that dared to have and express an opinion
-on the internet).</p>
-<p>As the coordinator of the Python Software Foundation's contribution to the
-linux.conf.au 2015 financial assistance program, and as someone with a deep
-personal interest in the overall success of the open source community, I feel
-it is important for me to state explicitly that I consider Linus's level of
-ignorance around appropriate standards of community conduct to be unacceptable
-in an open source community leader in 2015.</p>
-<p>Linus's defence of his abusive behaviour is that he's "not nice", and
-"doesn't care about you". He does care deeply about his project, though,
-and claims to be motivated primarily by wanting that to continue to be
-successful.</p>
-<p>To be completely honest, the momentum behind the Linux juggernaut is now
-large enough that Linus could likely decide to chuck it all in and spend the
-rest of his life on a beach sipping cocktails without worrying about open
-source politics, and people would figure out a way to ensure that Linux
-continued to thrive and grow without him. Many a successful start-up has made
-that transition when the founders leave, and there's no good reason to believe
-an open source community would be fundamentally different in that regard. The
-transition to a new leadership structure might be a little messy, but the
-community would almost certainly figure it out.</p>
-<p>However, there's still a lot of scope for Linus to influence <em>how fast</em> Linux
-grows, and on that front his words and actions suggest that he considers
-being careless in his speech, without regard for the collateral damage
-his verbal broadsides may be doing to his cause, more important than
-having the most positive impact he is capable of having on the future growth
-of the Linux kernel development project and the open source community at
-large.</p>
-<h2>It's not (necessarily) about being nice</h2>
-<p>It may surprise some folks to learn that I don't consider myself a nice human
-either. My temper is formidable (I just keep it under control most of the
-time, a task online communication makes easier by providing the ability to
-walk away from the computer for a while), and any feelings of compassion I
-have for others are more a product of years of deliberate practice and
-hanging around with compassionate people than they are any particularly
-strong innate knack for empathy.</p>
-<p>I'm pretty sure that genuinely nice people do exist, and I assume
-that one of their key motives for creating open, welcoming, inclusive
-communities is because it's fundamentally the right thing to do. The main
-reason I exclude myself from my assumed category of "nice people" is that,
-while I acknowledge that motivation intellectually, it's not really one that
-I feel viscerally.</p>
-<p>Instead, what I do care about, passionately, is <em>helping the best ideas win</em>
-(where I include "feasible" as part of my definition of "best"). Not the
-"best ideas from people willing to tolerate extensive personal abuse".
-The best ideas anyone is willing to share with me, period. And I won't hear
-those ideas unless I help create environments where all participants are
-willing to speak up, not just those that are prepared to accept a blistering
-verbal barrage from a powerful authority figure as a possible consequence of
-attempting to participate. Those are upsetting enough when they come from
-random strangers on the internet, when they come from someone with enormous
-influence not only over you and your future career, but also your entire
-industry, they can be devastating.</p>
-<h2>The second order consequences</h2>
-<p>So there you have it, my not-nice reason for advocating for more welcoming and
-inclusive open source communities: because, from an engineering standpoint, I
-consider "has a high level of tolerance for receiving personal abuse from
-community leaders" to be an extraordinarily stupid filter to apply to your
-pool of potential contributors.</p>
-<p>Exhibiting abusive behaviour as a leader has additional consequences though,
-and they can be even more problematic: by regularly demonstrating abusive
-behaviour yourself, you end up normalising harassment within your community
-in general, both in public and in private.</p>
-<p>I believe Linus when he says he doesn't care about who people are or where
-they're from, only their contributions. I'm the same way - until I've known
-them for a while, I tend to care about contributors and potential
-contributors wholesale (i.e. happy people that enjoy the environment
-they're participating in tend to spend more time engaged, learn faster,
-produce superior contributions, and more quickly reach the point of being
-able to contribute independently), rather than retail (i.e. I care about my
-friends because they're my friends, regardless of context).</p>
-<p>But when you're personally abusive as a leader, you also have to take a high
-level of responsibility for all the folks that look up to you as a role
-model, and act out the same behaviours you exhibit in public. When you reach
-this point, the preconditions for participation in your community now include:</p>
-<ul>
-<li>Willing to tolerate public personal abuse from project leaders</li>
-<li>Willing to tolerate public personal abuse from the community at large</li>
-<li>Willing to tolerate personal abuse in private</li>
-</ul>
-<p>With clauses like that as part of the definition, the claim of "meritocracy"
-starts to feel a little shaky, doesn't it? Meritocracy is a fine ideal
-to strive for, but claiming to have achieved it when you're imposing
-irrelevant requirements like this is arrogant nonsense.</p>
-<p>We're not done yet, though, as this culture of abuse then combines with
-elitism based on previously acquired knowledge to make it normal to <em>abuse
-newcomers for still being in the process of learning</em>. I find it hard to
-conceive of a more effective approach to keeping people from adopting
-something you're giving away for free than tolerating a community that
-publicly abuses people for not magically already knowing how to use
-technology that they may have never even heard of before.</p>
-<p>As a result of this perspective, the only time I'll endeavour to eject anyone
-from a community where I have significant influence is when they're actively
-creating an unpleasant environment for other participants, and demonstrate no
-remorse whatsoever regarding the negative impact their actions are having on
-the overall collaborative effort. I count myself incredibly fortunate to
-have only had to do this a few times in my life so far, but it's something
-I believe in strongly enough for it to have been the basis for once deciding
-to resign from a position paying a six-figure salary at a company I otherwise
-loved working for. To that company's credit, the abusive leader was let go
-not long afterwards, but the whole secretive corporate system is rigged such
-that these toxic "leaders" can usually quickly find new positions elsewhere
-and hence new subordinates to make miserable - the fact that I'm not willing
-to name names here for fear of the professional consequences is just one more
-example of how the system is largely set up to protect abusive leaders rather
-than holding them to account for the impact their actions have on others.</p>
-<h2>Ideas and code are still fair game</h2>
-<p>One of the spurious fears raised against the apparently radical notion of
-refusing to tolerate personal abuse in a collaborative environment is that
-adopting civil communication practices somehow means that bad <em>code</em> must
-then be accepted into the project.</p>
-<p>Eliminating personal abuse doesn't mean eliminating rigorous critique of
-code and ideas. It just means making sure that you <em>are</em> critiquing the
-code and the ideas, rather than tearing down the person contributing them.
-It's the difference between "This code isn't any good, here are the problems
-with it, I'm confident you can do better on your next attempt" (last part
-optional but usually beneficial when it comes to growing your contributor
-community) and "This code is terrible, how dare you befoul my presence with
-it, begone from my sight, worm!".</p>
-<p>The latter response may be a funny joke if done in private between close
-friends, but when it's done in public, in front of a large number of
-onlookers who don't know either the sender or the recipient personally, it
-sets an astoundingly bad example as to what a mutually beneficial
-collaborative peer relationship should look like.</p>
-<p>And if you don't have the self-discipline needed to cope with the changing
-context of our online interactions in the open source community? Well,
-perhaps you don't yet have the temperament needed to be an open source leader
-on an internet that is no longer the sole preserve of those of us that are
-more interested in computers than we are in people. Most of the technical and
-business press have yet to figure out that they can actually do a bit of
-investigative journalism to see how well vendor rhetoric aligns with upstream
-open source engineering activity (frequency of publication is still a far
-more important performance metric for most journalists than questioning the
-spin served up in corporate press releases), so the number of folks peering
-into the open source development fishbowl is only going to grow over time.</p>
-<p>It isn't <em>that</em> hard to learn the necessary self-control, though. It's mostly
-just a matter of taking the time to read each email or code review comment,
-look for the parts that are about the contributor rather than the code or the
-design, and <em>remove them before hitting send</em>. And if that means there's
-nothing left? Then what you were about to send was pure noise, adding nothing
-useful to the conversation, and hence best left unsent. Doing anything less
-than this as a community leader is pure self-indulgence, putting your own
-unwillingness to consider the consequences of your communications ahead of
-the long term interests of your project. We're only talking about software
-here, after all - lives aren't on the line when we're deciding how to respond
-to a particular contribution, so we can afford to take a few moments to
-review the messages we're about to send and consider how they're likely to
-be perceived, both by the recipient, and by everyone else observing the
-exchange.</p>
-<p>With any personal abuse removed, you can be as ruthless about critiquing the
-code and design as you like. Learning not to take critiques of your work
-personally <em>is</em> a necessary skill to acquire if your ambition is to become a
-high profile open source developer - the compromises often necessary in the
-real world of software design and development mean that you <em>will</em> end up
-shipping things that can legitimately be described as terrible, and you're
-going to have to learn to be able to say "Yes, I know it's terrible, for
-reasons X, Y, and Z, and I decided to publish it anyway. If you don't like
-it, don't use it.". (I highly recommend giving talks about these areas you
-know are terrible - they're fun to prepare, fun to give, and it's quite
-entertaining seeing the horrified reactions when people realise I'm not
-kidding when I say all software is terrible and computers don't actually
-work, they just fake it fairly well through an ongoing series of horrible
-hacks built atop other horrible hacks. I'm not surprised the Internet
-breaks sometimes - given the decades of accumulated legacy hardware and
-software we're building on and working around, it's thoroughly astonishing
-that anything technology related ever works at all)</p>
-<p>But no matter how harsh your technical critiques get, never forget that
-there's at least one other human on the far end of that code review or
-email thread. Even if you don't personally care about <em>them</em>, do you really
-think it's a good idea to go through life providing large numbers of people
-with public evidence of why <em>you</em> are a thoroughly unpleasant person to be
-forced to deal with? As a project leader, do you really think you're going
-to attract the best and brightest people, who are often free to spend their
-time and energy however they like, if you set up a sign saying "You must be
-willing to tolerate extensive personal abuse in order to participate here"?</p>
-<h2>What can we do about it?</h2>
-<p>First, and foremost, for those of us that <em>are</em> paid open source community
-leaders, we can recognise that understanding and motivating our contributors
-and potential contributors in order to grow our communities is <em>part of our
-job</em>. If we don't like that, if we'd prefer to be able to "just focus on the
-code", to the degree where we're not willing to learn how to moderate our
-own behaviour in accordance with our level of responsibility, then we need
-to figure out how to reorganise things such that there's someone with better
-people management and communication skills in a position to act as a buffer
-between us and our respective communities.</p>
-<p>If we instead decide we need to better educate ourselves, then there are
-plenty of resources available for us to do so. For folks just beginning to
-explore questions of systemic bias and defaulting to exclusivity,
-gender-based bias is a good one to start with, by perusing resources like the
-<a href="http://geekfeminism.wikia.com/wiki/Feminism_101">Feminism 101</a> section on
-the Geek Feminism wiki, or (if we have the opportunity) attending an
-Ada Initiative
-<a href="http://adainitiative.org/what-we-do/workshops-and-training/">Ally Skills workshop</a>.</p>
-<p>And if we <em>do</em> acknowledge the importance of this work, then we can use our
-influence to help it continue, whether that's by sponsoring educational
-workshops, supporting financial assistance programs, ensuring suitable codes
-of conduct are in place for our events and online communities, supporting
-programs like the GNOME Outreach Program for Women, or organisations like
-the Ada Initiative, and so on, and so forth.</p>
-<p>For those of us that <em>aren't</em> community leaders, then one of the most
-effective things we can do is vote with our feet: at last count, there are
-over a million open source projects in existence, many of them are run in
-such a way that participating in them is almost always a sheer pleasure,
-and if no existing community grabs your interest, you always have the option
-of starting your own.</p>
-<p>Personal enjoyment is only one reason for participating in open source though,
-and professional obligations or personal needs may bring us into contact with
-project leaders and contributors that currently consider personal abuse to be
-an acceptable way of interacting with their peers in a collaborative context.
-If leaving isn't a viable option, then what can we do?</p>
-<p>Firstly, the options I suggest above for community leaders are actually good
-options for <em>any</em> participants in the open source community that view the
-overall growth and success of the free and open source software ethos as
-being more important than any one individual's personal pride or reluctance to
-educate themselves about issues that don't affect them personally.</p>
-<p>Secondly, we can hold our leaders to account. When community leaders give
-presentations at community events, especially when presenting on community
-management topics, feel free to ask the following questions (or variations
-on these themes):</p>
-<ul>
-<li>Are we as community leaders aware of the impact current and historical
-  structural inequalities have on the demographics of our community?</li>
-<li>What have we done recently as individuals to improve our understanding of
-  these issues and their consequences?</li>
-<li>What have we done recently as community leaders to attempt to counter the
-  systemic biases adversely affecting the demographics of our communities?</li>
-</ul>
-<p>These are questions that open source community leaders <em>should</em> be able to
-answer. When we can't, I guess the silver lining is that it means we have
-plenty of scope to get better at what we do. For members of vulnerable
-groups, an inability for leaders to answer these questions is also a
-strong sign as to which communities may not yet be able to provide safe
-spaces for you to participate without experiencing harassment over your
-identity rather than being critiqued solely based on the quality of your
-work.</p>
-<p>If you ask these questions, you <em>will</em> get people complaining about bringing
-politics into a technical environment. The folks complaining are simply wrong,
-as the single most important factor driving the quality of our technology is
-the quality of our thinking. Assuming we have attained meritocracy (aka "the
-most effective collaborative environment possible") is sheer foolishness,
-when a wide array of systemic biases remain in place that work to reduce the
-depth, breadth, and hence quality, of our collective thinking.</p>
-<p><em>Update 22 Jan, 2015: Minor typo and grammar fixes</em></p>
-<p><em>Update 19 Apr, 2016: This article is also available in
-<a href="http://www.everycloudtech.com/abuse-is-not-ok">Russian</a>,
-thanks to <a href="http://www.everycloudtech.com/">Everycloud technologies</a></em></p>
-<p><em>Update 1 Dec, 2016: This article is also available in
-<a href="http://www.autoteileprofi.de/science/2016/12/01/kuritarvitamises-toetajad-ei-ole-ok/">Estonian</a>,
-thanks to Arija Liepkalnietis</em></p>
-</div>
-    </div>
     </article>
 </div>
 
@@ -2186,7 +2332,7 @@ thanks to Arija Liepkalnietis</em></p>
         <!--End of body content-->
 
         <footer id="footer">
-            Contents © 2016 <a href="mailto:ncoghlan@gmail.com">Nick Coghlan</a> - <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, republish as you wish. - Powered by <a href="http://nikola.ralsina.com.ar">Nikola</a>
+            Contents © 2017 <a href="mailto:ncoghlan@gmail.com">Nick Coghlan</a> - <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, republish as you wish. - Powered by <a href="http://nikola.ralsina.com.ar">Nikola</a>
             
         </footer>
 </div>
