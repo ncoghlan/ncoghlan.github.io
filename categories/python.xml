@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Curious Efficiency (python)</title><link>http://www.curiousefficiency.org</link><description></description><atom:link href="http://www.curiousefficiency.org/categories/python.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Mon, 09 Oct 2017 10:00:24 GMT</lastBuildDate><generator>https://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Considering Python's Target Audience</title><link>http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;div class="contents topic" id="who-is-python-being-designed-for"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Curious Efficiency (python)</title><link>http://www.curiousefficiency.org</link><description></description><atom:link href="http://www.curiousefficiency.org/categories/python.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Mon, 09 Oct 2017 10:47:32 GMT</lastBuildDate><generator>https://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Considering Python's Target Audience</title><link>http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;div class="contents topic" id="who-is-python-being-designed-for"&gt;
 &lt;p class="topic-title first"&gt;Who is Python being designed for?&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#use-cases-for-python-s-reference-interpreter" id="id1"&gt;Use cases for Python's reference interpreter&lt;/a&gt;&lt;/li&gt;
@@ -32,38 +32,30 @@ in large enterprises.&lt;/p&gt;
 as follows (note that these categories aren't fully distinct, they're just
 aimed at focusing my thinking on different factors influencing the rollout of
 new software features and versions):&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p class="first"&gt;Education: educator's main interest is in teaching ways of modelling and
-manipulating the world computationally, &lt;em&gt;not&lt;/em&gt; writing or maintaining
-production software). Examples:&lt;/p&gt;
 &lt;ul class="simple"&gt;
+&lt;li&gt;Education: educator's main interest is in teaching ways of modelling and
+manipulating the world computationally, &lt;em&gt;not&lt;/em&gt; writing or maintaining
+production software). Examples:&lt;ul&gt;
 &lt;li&gt;Australia's &lt;a class="reference external" href="https://aca.edu.au/#home-unpack"&gt;Digital Curriculum&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Lorena A. Barba's &lt;a class="reference external" href="https://github.com/barbagroup/AeroPython"&gt;AeroPython&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Personal automation &amp;amp; hobby projects: software where the main, and often only,
-user is the individual that wrote it. Examples:&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;my Digital Blasphemy&lt;/li&gt;
+&lt;li&gt;Personal automation &amp;amp; hobby projects: software where the main, and often only,
+user is the individual that wrote it. Examples:&lt;ul&gt;
+&lt;li&gt;my Digital Blasphemy
+&lt;a class="reference external" href="https://nbviewer.jupyter.org/urls/bitbucket.org/ncoghlan/misc/raw/default/notebooks/Digital%20Blasphemy.ipynb"&gt;image download notebook&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Paul Fenwick's (Inter)National &lt;a class="reference external" href="https://github.com/pjf/rickastley"&gt;Rick Astley Hotline&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;&amp;lt;string&amp;gt;&lt;/tt&gt;, line 39)&lt;/p&gt;
-&lt;p&gt;Bullet list ends without a blank line; unexpected unindent.&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;a class="reference external" href="https://nbviewer.jupyter.org/urls/bitbucket.org/ncoghlan/misc/raw/default/notebooks/Digital%20Blasphemy.ipynb"&gt;image download notebook&lt;/a&gt;
-* Paul Fenwick's (Inter)National &lt;a class="reference external" href="https://github.com/pjf/rickastley"&gt;Rick Astley Hotline&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Organisational process automation: software where the main, and often only,
-user is the organisation it was originally written to benefit. Examples:&lt;/p&gt;
-&lt;ul class="simple"&gt;
+&lt;li&gt;Organisational process automation: software where the main, and often only,
+user is the organisation it was originally written to benefit. Examples:&lt;ul&gt;
 &lt;li&gt;CPython's &lt;a class="reference external" href="https://github.com/python/core-workflow"&gt;core workflow tools&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Development, build &amp;amp; release management tooling for Linux distros&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Set-and-forget infrastructure: software where, for sometimes debatable
+&lt;li&gt;Set-and-forget infrastructure: software where, for sometimes debatable
 reasons, in-life upgrades to the software itself are nigh impossible, but
-upgrades to the underlying platform may be feasible. Examples:&lt;/p&gt;
-&lt;ul class="simple"&gt;
+upgrades to the underlying platform may be feasible. Examples:&lt;ul&gt;
 &lt;li&gt;most self-managed corporate and institutional infrastructure (where properly
 funded sustaining engineering plans are disturbingly rare)&lt;/li&gt;
 &lt;li&gt;grant funded software (where maintenance typically ends when the initial
@@ -74,20 +66,18 @@ absolutely essential)&lt;/li&gt;
 &lt;li&gt;Embedded software systems without auto-upgrade capabilities&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Continuously upgraded infrastructure: software with a robust sustaining
+&lt;li&gt;Continuously upgraded infrastructure: software with a robust sustaining
 engineering model, where dependency and platform upgrades are considered
-routine, and no more concerning than any other code change. Examples:&lt;/p&gt;
-&lt;ul class="simple"&gt;
+routine, and no more concerning than any other code change. Examples:&lt;ul&gt;
 &lt;li&gt;Facebook's Python service infrastructure&lt;/li&gt;
 &lt;li&gt;Rolling release Linux distributions&lt;/li&gt;
 &lt;li&gt;most public PaaS and serverless environments (Heroku, OpenShift, AWS Lambda,
 Google Cloud Functions, Azure Cloud Functions, etc)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Intermittently upgraded standard operating environments: environments that do
+&lt;li&gt;Intermittently upgraded standard operating environments: environments that do
 carry out routine upgrades to their core components, but those upgrades occur
-on a cycle measured in years, rather than weeks or months. Examples:&lt;/p&gt;
-&lt;ul class="simple"&gt;
+on a cycle measured in years, rather than weeks or months. Examples:&lt;ul&gt;
 &lt;li&gt;&lt;a class="reference external" href="http://www.vfxplatform.com/"&gt;VFX Platform&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;LTS Linux distributions&lt;/li&gt;
 &lt;li&gt;CPython and the Python standard library&lt;/li&gt;
@@ -95,9 +85,8 @@ on a cycle measured in years, rather than weeks or months. Examples:&lt;/p&gt;
 &lt;li&gt;Hardware control systems&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Ephemeral software: software that tends to be used once and then discarded
-or ignored, rather than being subsequently upgraded in place. Examples:&lt;/p&gt;
-&lt;ul class="simple"&gt;
+&lt;li&gt;Ephemeral software: software that tends to be used once and then discarded
+or ignored, rather than being subsequently upgraded in place. Examples:&lt;ul&gt;
 &lt;li&gt;Ad hoc automation scripts&lt;/li&gt;
 &lt;li&gt;Single-player games with a defined "end" (once you've finished them, even
 if you forget to uninstall them, you probably won't reinstall them on a new
@@ -108,9 +97,8 @@ reinstall them, it doesn't change much about your play experience)&lt;/li&gt;
 event, and once the event is over, that app doesn't matter any more)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Regular use applications: software that tends to be regularly upgraded after
-deployment. Examples:&lt;/p&gt;
-&lt;ul class="simple"&gt;
+&lt;li&gt;Regular use applications: software that tends to be regularly upgraded after
+deployment. Examples:&lt;ul&gt;
 &lt;li&gt;Business management software&lt;/li&gt;
 &lt;li&gt;Personal &amp;amp; professional productivity applications (e.g. Blender)&lt;/li&gt;
 &lt;li&gt;Developer tools &amp;amp; services (e.g. Mercurial, Buildbot, Roundup)&lt;/li&gt;
@@ -119,10 +107,9 @@ no real defined "end"&lt;/li&gt;
 &lt;li&gt;Embedded software systems with auto-upgrade capabilities&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p class="first"&gt;Shared abstraction layers: software components that are designed to make it
+&lt;li&gt;Shared abstraction layers: software components that are designed to make it
 possible to work effectively in a particular problem domain even if you don't
-personally grasp all the intricacies of that domain yet. Examples:&lt;/p&gt;
-&lt;ul class="simple"&gt;
+personally grasp all the intricacies of that domain yet. Examples:&lt;ul&gt;
 &lt;li&gt;most runtime libraries and frameworks fall into this category (e.g. Django,
 Flask, Pyramid, SQL Alchemy, NumPy, SciPy, requests)&lt;/li&gt;
 &lt;li&gt;many testing and type inference tools also fit here (e.g. pytest,

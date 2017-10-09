@@ -113,45 +113,35 @@ in large enterprises.</p>
 as follows (note that these categories aren't fully distinct, they're just
 aimed at focusing my thinking on different factors influencing the rollout of
 new software features and versions):</p>
-<ul>
-<li>
-<p class="first">Education: educator's main interest is in teaching ways of modelling and
-manipulating the world computationally, <em>not</em> writing or maintaining
-production software). Examples:</p>
 <ul class="simple">
+<li>Education: educator's main interest is in teaching ways of modelling and
+manipulating the world computationally, <em>not</em> writing or maintaining
+production software). Examples:<ul>
 <li>Australia's <a class="reference external" href="https://aca.edu.au/#home-unpack">Digital Curriculum</a>
 </li>
 <li>Lorena A. Barba's <a class="reference external" href="https://github.com/barbagroup/AeroPython">AeroPython</a>
 </li>
 </ul>
 </li>
-<li>
-<p class="first">Personal automation &amp; hobby projects: software where the main, and often only,
-user is the individual that wrote it. Examples:</p>
-<ul class="simple">
-<li>my Digital Blasphemy</li>
-</ul>
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">&lt;string&gt;</tt>, line 39)</p>
-<p>Bullet list ends without a blank line; unexpected unindent.</p>
-</div>
-<p><a class="reference external" href="https://nbviewer.jupyter.org/urls/bitbucket.org/ncoghlan/misc/raw/default/notebooks/Digital%20Blasphemy.ipynb">image download notebook</a>
-* Paul Fenwick's (Inter)National <a class="reference external" href="https://github.com/pjf/rickastley">Rick Astley Hotline</a></p>
+<li>Personal automation &amp; hobby projects: software where the main, and often only,
+user is the individual that wrote it. Examples:<ul>
+<li>my Digital Blasphemy
+<a class="reference external" href="https://nbviewer.jupyter.org/urls/bitbucket.org/ncoghlan/misc/raw/default/notebooks/Digital%20Blasphemy.ipynb">image download notebook</a>
 </li>
-<li>
-<p class="first">Organisational process automation: software where the main, and often only,
-user is the organisation it was originally written to benefit. Examples:</p>
-<ul class="simple">
+<li>Paul Fenwick's (Inter)National <a class="reference external" href="https://github.com/pjf/rickastley">Rick Astley Hotline</a>
+</li>
+</ul>
+</li>
+<li>Organisational process automation: software where the main, and often only,
+user is the organisation it was originally written to benefit. Examples:<ul>
 <li>CPython's <a class="reference external" href="https://github.com/python/core-workflow">core workflow tools</a>
 </li>
 <li>Development, build &amp; release management tooling for Linux distros</li>
 </ul>
 </li>
-<li>
-<p class="first">Set-and-forget infrastructure: software where, for sometimes debatable
+<li>Set-and-forget infrastructure: software where, for sometimes debatable
 reasons, in-life upgrades to the software itself are nigh impossible, but
-upgrades to the underlying platform may be feasible. Examples:</p>
-<ul class="simple">
+upgrades to the underlying platform may be feasible. Examples:<ul>
 <li>most self-managed corporate and institutional infrastructure (where properly
 funded sustaining engineering plans are disturbingly rare)</li>
 <li>grant funded software (where maintenance typically ends when the initial
@@ -162,22 +152,18 @@ absolutely essential)</li>
 <li>Embedded software systems without auto-upgrade capabilities</li>
 </ul>
 </li>
-<li>
-<p class="first">Continuously upgraded infrastructure: software with a robust sustaining
+<li>Continuously upgraded infrastructure: software with a robust sustaining
 engineering model, where dependency and platform upgrades are considered
-routine, and no more concerning than any other code change. Examples:</p>
-<ul class="simple">
+routine, and no more concerning than any other code change. Examples:<ul>
 <li>Facebook's Python service infrastructure</li>
 <li>Rolling release Linux distributions</li>
 <li>most public PaaS and serverless environments (Heroku, OpenShift, AWS Lambda,
 Google Cloud Functions, Azure Cloud Functions, etc)</li>
 </ul>
 </li>
-<li>
-<p class="first">Intermittently upgraded standard operating environments: environments that do
+<li>Intermittently upgraded standard operating environments: environments that do
 carry out routine upgrades to their core components, but those upgrades occur
-on a cycle measured in years, rather than weeks or months. Examples:</p>
-<ul class="simple">
+on a cycle measured in years, rather than weeks or months. Examples:<ul>
 <li><a class="reference external" href="http://www.vfxplatform.com/">VFX Platform</a></li>
 <li>LTS Linux distributions</li>
 <li>CPython and the Python standard library</li>
@@ -185,10 +171,8 @@ on a cycle measured in years, rather than weeks or months. Examples:</p>
 <li>Hardware control systems</li>
 </ul>
 </li>
-<li>
-<p class="first">Ephemeral software: software that tends to be used once and then discarded
-or ignored, rather than being subsequently upgraded in place. Examples:</p>
-<ul class="simple">
+<li>Ephemeral software: software that tends to be used once and then discarded
+or ignored, rather than being subsequently upgraded in place. Examples:<ul>
 <li>Ad hoc automation scripts</li>
 <li>Single-player games with a defined "end" (once you've finished them, even
 if you forget to uninstall them, you probably won't reinstall them on a new
@@ -199,10 +183,8 @@ reinstall them, it doesn't change much about your play experience)</li>
 event, and once the event is over, that app doesn't matter any more)</li>
 </ul>
 </li>
-<li>
-<p class="first">Regular use applications: software that tends to be regularly upgraded after
-deployment. Examples:</p>
-<ul class="simple">
+<li>Regular use applications: software that tends to be regularly upgraded after
+deployment. Examples:<ul>
 <li>Business management software</li>
 <li>Personal &amp; professional productivity applications (e.g. Blender)</li>
 <li>Developer tools &amp; services (e.g. Mercurial, Buildbot, Roundup)</li>
@@ -211,11 +193,9 @@ no real defined "end"</li>
 <li>Embedded software systems with auto-upgrade capabilities</li>
 </ul>
 </li>
-<li>
-<p class="first">Shared abstraction layers: software components that are designed to make it
+<li>Shared abstraction layers: software components that are designed to make it
 possible to work effectively in a particular problem domain even if you don't
-personally grasp all the intricacies of that domain yet. Examples:</p>
-<ul class="simple">
+personally grasp all the intricacies of that domain yet. Examples:<ul>
 <li>most runtime libraries and frameworks fall into this category (e.g. Django,
 Flask, Pyramid, SQL Alchemy, NumPy, SciPy, requests)</li>
 <li>many testing and type inference tools also fit here (e.g. pytest,
