@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Curious Efficiency (pycon-au)</title><link>http://www.curiousefficiency.org</link><description></description><atom:link href="http://www.curiousefficiency.org/categories/pycon-au.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Mon, 02 May 2016 03:33:47 GMT</lastBuildDate><generator>https://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Propose a talk for the PyCon Australia Education Seminar!</title><link>http://www.curiousefficiency.org/posts/2016/05/pycon-australia-education-cfp-2016.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;h3&gt;The pitch&lt;/h3&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Curious Efficiency (pycon-au)</title><link>https://www.curiousefficiency.org</link><description></description><atom:link href="https://www.curiousefficiency.org/categories/pycon-au.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Fri, 03 Nov 2017 11:27:25 GMT</lastBuildDate><generator>https://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Propose a talk for the PyCon Australia Education Seminar!</title><link>https://www.curiousefficiency.org/posts/2016/05/pycon-australia-education-cfp-2016.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;h3&gt;The pitch&lt;/h3&gt;
 &lt;div style="float: right"&gt;
   &lt;a href="http://www.oreilly.com/programming/free/python-in-education.csp"&gt;
-    &lt;img src="http://www.curiousefficiency.org/files/python-in-education-cover.gif" alt="Python in Education cover"&gt;
+    &lt;img src="https://www.curiousefficiency.org/files/python-in-education-cover.gif" alt="Python in Education cover"&gt;
    &lt;/a&gt;
 &lt;/div&gt;
 
@@ -59,4 +59,4 @@ and what hasn't, and creating personal connections that can help facilitate
 additional collaboration throughout the year.&lt;/p&gt;
 &lt;p&gt;So, in addition to encouraging people to submit their own proposals, I'd also
 encourage folks to talk to their friends and peers that they'd like to see
-presenting, and see if they're interested in participating.&lt;/p&gt;&lt;/div&gt;</description><category>pycon-au</category><category>python</category><guid>http://www.curiousefficiency.org/posts/2016/05/pycon-australia-education-cfp-2016.html</guid><pubDate>Mon, 02 May 2016 01:29:23 GMT</pubDate></item></channel></rss>
+presenting, and see if they're interested in participating.&lt;/p&gt;&lt;/div&gt;</description><category>pycon-au</category><category>python</category><guid>https://www.curiousefficiency.org/posts/2016/05/pycon-australia-education-cfp-2016.html</guid><pubDate>Mon, 02 May 2016 01:29:23 GMT</pubDate></item></channel></rss>

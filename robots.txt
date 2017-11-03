@@ -1,2 +1,2 @@
-Sitemap: http://www.curiousefficiency.org/sitemapindex.xml
+Sitemap: https://www.curiousefficiency.org/sitemapindex.xml
 

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Curious Efficiency (python)</title><link>http://www.curiousefficiency.org</link><description></description><atom:link href="http://www.curiousefficiency.org/categories/python.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Mon, 09 Oct 2017 10:47:32 GMT</lastBuildDate><generator>https://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Considering Python's Target Audience</title><link>http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;div class="contents topic" id="who-is-python-being-designed-for"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Curious Efficiency (python)</title><link>https://www.curiousefficiency.org</link><description></description><atom:link href="https://www.curiousefficiency.org/categories/python.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Fri, 03 Nov 2017 11:27:25 GMT</lastBuildDate><generator>https://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Considering Python's Target Audience</title><link>https://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;div class="contents topic" id="who-is-python-being-designed-for"&gt;
 &lt;p class="topic-title first"&gt;Who is Python being designed for?&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#use-cases-for-python-s-reference-interpreter" id="id1"&gt;Use cases for Python's reference interpreter&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#which-audience-does-cpython-primarily-serve" id="id2"&gt;Which audience does CPython primarily serve?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#why-is-this-relevant-to-anything" id="id3"&gt;Why is this relevant to anything?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#where-does-pypi-fit-into-the-picture" id="id4"&gt;Where does PyPI fit into the picture?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#why-are-some-apis-changed-when-adding-them-to-the-standard-library" id="id5"&gt;Why are some APIs changed when adding them to the standard library?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#why-are-some-apis-added-in-provisional-form" id="id6"&gt;Why are some APIs added in provisional form?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#why-are-only-some-standard-library-apis-upgraded" id="id7"&gt;Why are only some standard library APIs upgraded?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#will-any-parts-of-the-standard-library-ever-be-independently-versioned" id="id8"&gt;Will any parts of the standard library ever be independently versioned?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#why-do-these-considerations-matter" id="id9"&gt;Why do these considerations matter?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#use-cases-for-python-s-reference-interpreter" id="id1"&gt;Use cases for Python's reference interpreter&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#which-audience-does-cpython-primarily-serve" id="id2"&gt;Which audience does CPython primarily serve?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#why-is-this-relevant-to-anything" id="id3"&gt;Why is this relevant to anything?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#where-does-pypi-fit-into-the-picture" id="id4"&gt;Where does PyPI fit into the picture?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#why-are-some-apis-changed-when-adding-them-to-the-standard-library" id="id5"&gt;Why are some APIs changed when adding them to the standard library?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#why-are-some-apis-added-in-provisional-form" id="id6"&gt;Why are some APIs added in provisional form?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#why-are-only-some-standard-library-apis-upgraded" id="id7"&gt;Why are only some standard library APIs upgraded?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#will-any-parts-of-the-standard-library-ever-be-independently-versioned" id="id8"&gt;Will any parts of the standard library ever be independently versioned?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#why-do-these-considerations-matter" id="id9"&gt;Why do these considerations matter?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;p&gt;Several years ago, I
@@ -27,7 +27,7 @@ level perspective on
 &lt;a class="reference external" href="http://community.redhat.com/blog/2015/02/the-quid-pro-quo-of-open-infrastructure/"&gt;open source supply chain management&lt;/a&gt;
 in large enterprises.&lt;/p&gt;
 &lt;div class="section" id="use-cases-for-python-s-reference-interpreter"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#id1"&gt;Use cases for Python's reference interpreter&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#id1"&gt;Use cases for Python's reference interpreter&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;While it's a gross oversimplification, I tend to break down CPython's use cases
 as follows (note that these categories aren't fully distinct, they're just
 aimed at focusing my thinking on different factors influencing the rollout of
@@ -125,7 +125,7 @@ world view)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div class="section" id="which-audience-does-cpython-primarily-serve"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#id2"&gt;Which audience does CPython primarily serve?&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#id2"&gt;Which audience does CPython primarily serve?&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Ultimately, the main audiences that CPython and the standard library specifically
 serve are those that, for whatever reason, aren't adequately served by the
 combination of a more limited standard library and the installation of
@@ -192,7 +192,7 @@ review the new features and decide whether or not to incorporate them into the
 courses they offer their students.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="why-is-this-relevant-to-anything"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#id3"&gt;Why is this relevant to anything?&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#id3"&gt;Why is this relevant to anything?&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;This post was largely inspired by the Twitter discussion following on from
 &lt;a class="reference external" href="https://twitter.com/ncoghlan_dev/status/916994106819088384"&gt;this comment of mine&lt;/a&gt;
 citing the Provisional API status defined in
@@ -233,7 +233,7 @@ inspired-by-but-not-the-same-as, seem completely nonsensical, as they appear to 
 APIs without actually standardising them.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="where-does-pypi-fit-into-the-picture"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#id4"&gt;Where does PyPI fit into the picture?&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#id4"&gt;Where does PyPI fit into the picture?&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The first hurdle that &lt;em&gt;any&lt;/em&gt; proposal sent to python-ideas or python-dev has to
 clear is answering the question "Why isn't a module on PyPI good enough?". The
 vast majority of proposals fail at this step, but there are several common
@@ -270,7 +270,7 @@ and installation tools to be supported in addition to any platform specific
 distribution mechanisms.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="why-are-some-apis-changed-when-adding-them-to-the-standard-library"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#id5"&gt;Why are some APIs changed when adding them to the standard library?&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#id5"&gt;Why are some APIs changed when adding them to the standard library?&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;While existing third party modules are sometimes adopted wholesale into the
 standard library, in other cases, what actually gets added is a redesigned
 and reimplemented API that draws on the user experience of the existing API,
@@ -304,7 +304,7 @@ party version offers additional features and flexibility that were omitted
 from the standard library module.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="why-are-some-apis-added-in-provisional-form"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#id6"&gt;Why are some APIs added in provisional form?&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#id6"&gt;Why are some APIs added in provisional form?&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;While CPython does maintain an API deprecation policy, we generally prefer not
 to use it without a compelling justification (this is especially the case
 while other projects are attempting to maintain compatibility with Python 2.7).&lt;/p&gt;
@@ -318,7 +318,7 @@ layers may want to consider imposing stricter than usual constraints on which
 versions of the provisional API they're prepared to support.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="why-are-only-some-standard-library-apis-upgraded"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#id7"&gt;Why are only some standard library APIs upgraded?&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#id7"&gt;Why are only some standard library APIs upgraded?&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The short answer here is that the main APIs that get upgraded are those where:&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;there isn't likely to be a lot of external churn driving additional updates&lt;/li&gt;
@@ -344,7 +344,7 @@ perceived value in changing the capabilities that can be assumed to be present
 by default in 3-5 years time.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="will-any-parts-of-the-standard-library-ever-be-independently-versioned"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#id8"&gt;Will any parts of the standard library ever be independently versioned?&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#id8"&gt;Will any parts of the standard library ever be independently versioned?&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Yes, it's likely the bundling model used for &lt;tt class="docutils literal"&gt;ensurepip&lt;/tt&gt; (where CPython
 releases bundle a recent version of &lt;tt class="docutils literal"&gt;pip&lt;/tt&gt; without actually making it part
 of the standard library) may be applied to other modules in the future.&lt;/p&gt;
@@ -356,7 +356,7 @@ graphics bindings, and the IDLE editor, which are already unbundled and turned
 into an optional addon installations by a number of redistributors.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="why-do-these-considerations-matter"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#id9"&gt;Why do these considerations matter?&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#id9"&gt;Why do these considerations matter?&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;By the very nature of things, the folks that tend to be most actively involved
 in open source development are those folks working on open source applications
 and shared abstraction layers.&lt;/p&gt;
@@ -380,20 +380,20 @@ reasonable reaction to seemingly nonsensical feature additions to the Python
 standard library is going to be "I'm not part of the intended target audience
 for that addition" rather than "I have no interest in that, so it must be a
 useless and pointless addition of no value to anyone, added purely to annoy me".&lt;/p&gt;
-&lt;/div&gt;&lt;/div&gt;</description><category>python</category><guid>http://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html</guid><pubDate>Mon, 09 Oct 2017 01:33:41 GMT</pubDate></item><item><title>The Python Packaging Ecosystem</title><link>http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;div class="contents topic" id="from-development-to-deployment"&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>python</category><guid>https://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html</guid><pubDate>Mon, 09 Oct 2017 01:33:41 GMT</pubDate></item><item><title>The Python Packaging Ecosystem</title><link>https://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;div class="contents topic" id="from-development-to-deployment"&gt;
 &lt;p class="topic-title first"&gt;From Development to Deployment&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#my-core-software-ecosystem-design-philosophy" id="id1"&gt;My core software ecosystem design philosophy&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#the-key-conundrum" id="id2"&gt;The key conundrum&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#platform-management-or-plugin-management" id="id3"&gt;Platform management or plugin management?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#where-do-we-go-next" id="id4"&gt;Where do we go next?&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#sustainability-and-the-bystander-effect" id="id5"&gt;Sustainability and the bystander effect&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#migrating-pypi-to-pypi-org" id="id6"&gt;Migrating PyPI to pypi.org&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#making-the-presence-of-a-compiler-on-end-user-systems-optional" id="id7"&gt;Making the presence of a compiler on end user systems optional&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#bootstrapping-dependency-management-tools-on-end-user-systems" id="id8"&gt;Bootstrapping dependency management tools on end user systems&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#making-the-use-of-distutils-and-setuptools-optional" id="id9"&gt;Making the use of distutils and setuptools optional&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#making-pypi-security-independent-of-ssl-tls" id="id10"&gt;Making PyPI security independent of SSL/TLS&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#automating-wheel-creation" id="id11"&gt;Automating wheel creation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#my-core-software-ecosystem-design-philosophy" id="id1"&gt;My core software ecosystem design philosophy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#the-key-conundrum" id="id2"&gt;The key conundrum&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#platform-management-or-plugin-management" id="id3"&gt;Platform management or plugin management?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#where-do-we-go-next" id="id4"&gt;Where do we go next?&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#sustainability-and-the-bystander-effect" id="id5"&gt;Sustainability and the bystander effect&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#migrating-pypi-to-pypi-org" id="id6"&gt;Migrating PyPI to pypi.org&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#making-the-presence-of-a-compiler-on-end-user-systems-optional" id="id7"&gt;Making the presence of a compiler on end user systems optional&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#bootstrapping-dependency-management-tools-on-end-user-systems" id="id8"&gt;Bootstrapping dependency management tools on end user systems&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#making-the-use-of-distutils-and-setuptools-optional" id="id9"&gt;Making the use of distutils and setuptools optional&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#making-pypi-security-independent-of-ssl-tls" id="id10"&gt;Making PyPI security independent of SSL/TLS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#automating-wheel-creation" id="id11"&gt;Automating wheel creation&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -414,7 +414,7 @@ like to see us go in the future.&lt;/p&gt;
 perspectives, so if you'd like to learn more about the topics I cover here,
 I highly recommend reading them.&lt;/p&gt;
 &lt;div class="section" id="my-core-software-ecosystem-design-philosophy"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#id1"&gt;My core software ecosystem design philosophy&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#id1"&gt;My core software ecosystem design philosophy&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Since it heavily influences the way I think about packaging system design in
 general, it's worth stating my core design philosophy explicitly:&lt;/p&gt;
 &lt;ul class="simple"&gt;
@@ -450,7 +450,7 @@ involved in addressing them on the
 &lt;a class="reference external" href="http://www.slideshare.net/ncoghlan_dev/developing-in-python-on-red-hat-platforms-devnation-2016"&gt;Red Hat downstream side&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="the-key-conundrum"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#id2"&gt;The key conundrum&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#id2"&gt;The key conundrum&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;When talking about the design of software packaging ecosystems, it's very easy
 to fall into the trap of only considering  the "direct to peer developers" use
 case, where the software consumer we're attempting to reach is another developer
@@ -518,7 +518,7 @@ use and depend on components written in languages other than Python, so that's
 the broader context I'll consider next.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="platform-management-or-plugin-management"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#id3"&gt;Platform management or plugin management?&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#id3"&gt;Platform management or plugin management?&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;When it comes to handling the software distribution problem in general, there
 are two main ways of approaching it:&lt;/p&gt;
 &lt;ul class="simple"&gt;
@@ -604,7 +604,7 @@ significant cost even when it's automated)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div class="section" id="where-do-we-go-next"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#id4"&gt;Where do we go next?&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#id4"&gt;Where do we go next?&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;In case it isn't already clear from the above, I'm largely happy with the
 respective niches that pip and conda are carving out for themselves as a
 plugin manager for Python runtimes and as a cross-platform platform focused
@@ -615,7 +615,7 @@ Python redistributors, as well as to reduce barriers to entry for participation
 in the ecosystem in general, so I'll go over some of the key areas I see for
 potential improvement.&lt;/p&gt;
 &lt;div class="section" id="sustainability-and-the-bystander-effect"&gt;
-&lt;h3&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#id5"&gt;Sustainability and the bystander effect&lt;/a&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#id5"&gt;Sustainability and the bystander effect&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;It's not a secret that the core PyPA infrastructure (PyPI, pip, twine,
 setuptools) is
 &lt;a class="reference external" href="https://caremad.io/posts/2016/05/powering-pypi/"&gt;nowhere near as well-funded&lt;/a&gt;
@@ -664,10 +664,10 @@ private for-profit entities.&lt;/p&gt;
 represent their customers interests in areas where their priorities may
 diverge from those of the wider community (closing the "insider threat"
 loophole in PyPI's current security model is a particular case that comes to
-mind - see &lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#making-pypi-security-independent-of-ssl-tls"&gt;Making PyPI security independent of SSL/TLS&lt;/a&gt;).&lt;/p&gt;
+mind - see &lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#making-pypi-security-independent-of-ssl-tls"&gt;Making PyPI security independent of SSL/TLS&lt;/a&gt;).&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="migrating-pypi-to-pypi-org"&gt;
-&lt;h3&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#id6"&gt;Migrating PyPI to pypi.org&lt;/a&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#id6"&gt;Migrating PyPI to pypi.org&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;An instance of the new PyPI implementation (Warehouse) is up and running at
 &lt;a class="reference external" href="https://pypi.org/"&gt;https://pypi.org/&lt;/a&gt; and connected directly to the
 production PyPI database, so folks can already explicitly opt-in to using it
@@ -679,7 +679,7 @@ switched over to using it.&lt;/p&gt;
 plan in place is the main current focus of the PSF's Packaging Working Group.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="making-the-presence-of-a-compiler-on-end-user-systems-optional"&gt;
-&lt;h3&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#id7"&gt;Making the presence of a compiler on end user systems optional&lt;/a&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#id7"&gt;Making the presence of a compiler on end user systems optional&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Between the &lt;tt class="docutils literal"&gt;wheel&lt;/tt&gt; format and the &lt;tt class="docutils literal"&gt;manylinux1&lt;/tt&gt; usefully-distro-independent
 ABI definition, this is largely handled now, with &lt;tt class="docutils literal"&gt;conda&lt;/tt&gt; available as an
 option to handle the relatively small number of cases that are still a problem
@@ -693,7 +693,7 @@ projects to downstream package formats like those used by conda and Linux
 system package managers.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="bootstrapping-dependency-management-tools-on-end-user-systems"&gt;
-&lt;h3&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#id8"&gt;Bootstrapping dependency management tools on end user systems&lt;/a&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#id8"&gt;Bootstrapping dependency management tools on end user systems&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;With pip being bundled with recent versions of CPython (including CPython 2.7
 maintenance releases), and pip (or a variant like upip) also being bundled with
 most other Python runtimes, the ecosystem bootstrapping problem has largely
@@ -708,7 +708,7 @@ needed to establish pip as the lowest common denominator approach to
 dependency management for Python applications.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="making-the-use-of-distutils-and-setuptools-optional"&gt;
-&lt;h3&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#id9"&gt;Making the use of distutils and setuptools optional&lt;/a&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#id9"&gt;Making the use of distutils and setuptools optional&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;As mentioned above, distutils was designed ~18 years ago as a common interface
 for Linux distributions to build Python projects, while setuptools was designed
 ~12 years ago as a plugin management system for an open source Microsoft
@@ -743,7 +743,7 @@ the build system rather than having to run &lt;tt class="docutils literal"&gt;se
 distutils &amp;amp; setuptools flags.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="making-pypi-security-independent-of-ssl-tls"&gt;
-&lt;h3&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#id10"&gt;Making PyPI security independent of SSL/TLS&lt;/a&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#id10"&gt;Making PyPI security independent of SSL/TLS&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;PyPI currently relies entirely on SSL/TLS to protect the integrity of the link
 between software publishers and PyPI, and between PyPI and software consumers.
 The only protections against insider threats from within the PyPI
@@ -765,7 +765,7 @@ provides the security guarantees of the system-as-designed.&lt;/p&gt;
 underlying sustainability problems have been suitably addressed.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="automating-wheel-creation"&gt;
-&lt;h3&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#id11"&gt;Automating wheel creation&lt;/a&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#id11"&gt;Automating wheel creation&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;While redistributors will generally take care of converting upstream Python
 packages into their own preferred formats, the Python-specific wheel format
 is currently a case where it is left up to publishers to decide whether or
@@ -786,7 +786,7 @@ it may make sense to offer Python wheel generation as a supported output option
 for cross-platform development use cases, in addition to the platform's native
 binary packaging format.&lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;/div&gt;</description><category>python</category><guid>http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html</guid><pubDate>Sat, 17 Sep 2016 03:46:31 GMT</pubDate></item><item><title>What problem does it solve?</title><link>http://www.curiousefficiency.org/posts/2016/08/what-problem-does-it-solve.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;p&gt;One of the more puzzling aspects of Python for newcomers to the language is the
+&lt;/div&gt;&lt;/div&gt;</description><category>python</category><guid>https://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html</guid><pubDate>Sat, 17 Sep 2016 03:46:31 GMT</pubDate></item><item><title>What problem does it solve?</title><link>https://www.curiousefficiency.org/posts/2016/08/what-problem-does-it-solve.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;p&gt;One of the more puzzling aspects of Python for newcomers to the language is the
 stark usability differences between the standard library's &lt;code&gt;urllib&lt;/code&gt; module
 and the popular (and well-recommended) third party module, &lt;code&gt;requests&lt;/code&gt;, when
 it comes to writing HTTP(S) protocol clients. When your problem is
@@ -873,10 +873,10 @@ and the folks in a position to help solve them already have a great many other
 demands on their time.This means we're not likely to see much in the way of
 progress in this area as long as most of the CPython and &lt;code&gt;requests&lt;/code&gt; developers
 are pursuing their upstream contributions as a spare time activity, rather than
-as something they're specifically employed to do.&lt;/p&gt;&lt;/div&gt;</description><category>python</category><guid>http://www.curiousefficiency.org/posts/2016/08/what-problem-does-it-solve.html</guid><pubDate>Sat, 06 Aug 2016 11:05:53 GMT</pubDate></item><item><title>Propose a talk for the PyCon Australia Education Seminar!</title><link>http://www.curiousefficiency.org/posts/2016/05/pycon-australia-education-cfp-2016.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;h3&gt;The pitch&lt;/h3&gt;
+as something they're specifically employed to do.&lt;/p&gt;&lt;/div&gt;</description><category>python</category><guid>https://www.curiousefficiency.org/posts/2016/08/what-problem-does-it-solve.html</guid><pubDate>Sat, 06 Aug 2016 11:05:53 GMT</pubDate></item><item><title>Propose a talk for the PyCon Australia Education Seminar!</title><link>https://www.curiousefficiency.org/posts/2016/05/pycon-australia-education-cfp-2016.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;h3&gt;The pitch&lt;/h3&gt;
 &lt;div style="float: right"&gt;
   &lt;a href="http://www.oreilly.com/programming/free/python-in-education.csp"&gt;
-    &lt;img src="http://www.curiousefficiency.org/files/python-in-education-cover.gif" alt="Python in Education cover"&gt;
+    &lt;img src="https://www.curiousefficiency.org/files/python-in-education-cover.gif" alt="Python in Education cover"&gt;
    &lt;/a&gt;
 &lt;/div&gt;
 
@@ -933,21 +933,21 @@ and what hasn't, and creating personal connections that can help facilitate
 additional collaboration throughout the year.&lt;/p&gt;
 &lt;p&gt;So, in addition to encouraging people to submit their own proposals, I'd also
 encourage folks to talk to their friends and peers that they'd like to see
-presenting, and see if they're interested in participating.&lt;/p&gt;&lt;/div&gt;</description><category>pycon-au</category><category>python</category><guid>http://www.curiousefficiency.org/posts/2016/05/pycon-australia-education-cfp-2016.html</guid><pubDate>Mon, 02 May 2016 01:29:23 GMT</pubDate></item><item><title>27 languages to improve your Python</title><link>http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;div class="contents topic" id="languages"&gt;
+presenting, and see if they're interested in participating.&lt;/p&gt;&lt;/div&gt;</description><category>pycon-au</category><category>python</category><guid>https://www.curiousefficiency.org/posts/2016/05/pycon-australia-education-cfp-2016.html</guid><pubDate>Mon, 02 May 2016 01:29:23 GMT</pubDate></item><item><title>27 languages to improve your Python</title><link>https://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;div class="contents topic" id="languages"&gt;
 &lt;p class="topic-title first"&gt;27 Languages&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#broadening-our-horizons" id="id3"&gt;Broadening our horizons&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#procedural-programming-c-rust-cython" id="id4"&gt;Procedural programming: C, Rust, Cython&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#object-oriented-data-modelling-java-c-eiffel" id="id5"&gt;Object-oriented data modelling: Java, C#, Eiffel&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#object-oriented-c-derivatives-c-d" id="id6"&gt;Object-oriented C derivatives: C++, D&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#array-oriented-data-processing-matlab-octave-julia" id="id7"&gt;Array-oriented data processing: MATLAB/Octave, Julia&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#statistical-data-analysis-r" id="id8"&gt;Statistical data analysis: R&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#computational-pipeline-modelling-haskell-scala-clojure-f" id="id9"&gt;Computational pipeline modelling: Haskell, Scala, Clojure, F#&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#event-driven-programming-javascript-go-erlang-elixir" id="id10"&gt;Event driven programming: JavaScript, Go, Erlang, Elixir&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#gradual-typing-typescript" id="id11"&gt;Gradual typing: TypeScript&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#dynamic-metaprogramming-hy-ruby" id="id12"&gt;Dynamic metaprogramming: Hy, Ruby&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#pragmatic-problem-solving-lua-php-perl" id="id13"&gt;Pragmatic problem solving: Lua, PHP, Perl&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference internal" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#computational-thinking-scratch-logo" id="id14"&gt;Computational thinking: Scratch, Logo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#broadening-our-horizons" id="id3"&gt;Broadening our horizons&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#procedural-programming-c-rust-cython" id="id4"&gt;Procedural programming: C, Rust, Cython&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#object-oriented-data-modelling-java-c-eiffel" id="id5"&gt;Object-oriented data modelling: Java, C#, Eiffel&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#object-oriented-c-derivatives-c-d" id="id6"&gt;Object-oriented C derivatives: C++, D&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#array-oriented-data-processing-matlab-octave-julia" id="id7"&gt;Array-oriented data processing: MATLAB/Octave, Julia&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#statistical-data-analysis-r" id="id8"&gt;Statistical data analysis: R&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#computational-pipeline-modelling-haskell-scala-clojure-f" id="id9"&gt;Computational pipeline modelling: Haskell, Scala, Clojure, F#&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#event-driven-programming-javascript-go-erlang-elixir" id="id10"&gt;Event driven programming: JavaScript, Go, Erlang, Elixir&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#gradual-typing-typescript" id="id11"&gt;Gradual typing: TypeScript&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#dynamic-metaprogramming-hy-ruby" id="id12"&gt;Dynamic metaprogramming: Hy, Ruby&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#pragmatic-problem-solving-lua-php-perl" id="id13"&gt;Pragmatic problem solving: Lua, PHP, Perl&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#computational-thinking-scratch-logo" id="id14"&gt;Computational thinking: Scratch, Logo&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;p&gt;As a co-designer of one of the world's most popular programming languages, one
@@ -1020,7 +1020,7 @@ and security properties of that software)&lt;/li&gt;
 limits of the core procedural subset of Python and would hence like to start
 exploring more of Python's own available "tools for thinking".&lt;/p&gt;
 &lt;div class="section" id="broadening-our-horizons"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id3"&gt;Broadening our horizons&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id3"&gt;Broadening our horizons&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;One of the things we do as part of the Python core development process is to
 look at features we appreciate having available in other languages we have
 experience with, and see whether or not there is a way to adapt them to be
@@ -1051,7 +1051,7 @@ beyond what a language might teach you as a developer, IEEE Spectrum's
 look.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="procedural-programming-c-rust-cython"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id4"&gt;Procedural programming: C, Rust, Cython&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id4"&gt;Procedural programming: C, Rust, Cython&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Python's default execution model is procedural: we start at the top of the main
 module and execute it statement by statement. All of Python's support for the
 other approaches to data and computational modelling covered below is built
@@ -1088,7 +1088,7 @@ portability, and other practical aspects of turning source code into running
 systems.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="object-oriented-data-modelling-java-c-eiffel"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id5"&gt;Object-oriented data modelling: Java, C#, Eiffel&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id5"&gt;Object-oriented data modelling: Java, C#, Eiffel&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;One of the main things we need to do in programming is to model the state of
 the real world, and offering native syntactic support for object-oriented
 programming is one of the most popular approaches for doing that:
@@ -1137,7 +1137,7 @@ a number of standard library modules and third party frameworks that use this
 modules, and class-based views in the &lt;tt class="docutils literal"&gt;Django&lt;/tt&gt; web framework.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="object-oriented-c-derivatives-c-d"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id6"&gt;Object-oriented C derivatives: C++, D&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id6"&gt;Object-oriented C derivatives: C++, D&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;One way of using the CPython runtime is as a "C with objects" programming
 environment - at its core, CPython is implemented using C's approach to
 object-oriented programming, which is to define C &lt;tt class="docutils literal"&gt;structs&lt;/tt&gt; to hold the data
@@ -1167,7 +1167,7 @@ C runtime model. Learning C++ is also likely to be useful when using Python
 to manipulate existing libraries and toolkits written in C++.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="array-oriented-data-processing-matlab-octave-julia"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id7"&gt;Array-oriented data processing: MATLAB/Octave, Julia&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id7"&gt;Array-oriented data processing: MATLAB/Octave, Julia&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Array oriented programming is designed to support numerical programming models:
 those based on matrix algebra and related numerical methods.&lt;/p&gt;
 &lt;p&gt;While Python's standard library doesn't support this directly, array oriented
@@ -1189,7 +1189,7 @@ and Nvidia's CUDA, and distributed data processing through ecosystems like
 &lt;a class="reference external" href="https://spark.apache.org/"&gt;Apache Spark&lt;/a&gt; and the Python-specific &lt;a class="reference external" href="http://blaze.pydata.org/"&gt;Blaze&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="statistical-data-analysis-r"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id8"&gt;Statistical data analysis: R&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id8"&gt;Statistical data analysis: R&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;As access to large data sets has grown, so has demand for capable freely
 available analytical tools for processing those data sets. One such tool is
 the &lt;a class="reference external" href="https://en.wikipedia.org/wiki/R_%28programming_language%29"&gt;R&lt;/a&gt; programming language, which focuses specifically on statistical data
@@ -1199,7 +1199,7 @@ capabilities of the Scientific Python stack, especially the &lt;a class="referen
 manipulation library and the &lt;a class="reference external" href="http://stanford.edu/~mwaskom/software/seaborn/"&gt;seaborn&lt;/a&gt; statistical visualisation library.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="computational-pipeline-modelling-haskell-scala-clojure-f"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id9"&gt;Computational pipeline modelling: Haskell, Scala, Clojure, F#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id9"&gt;Computational pipeline modelling: Haskell, Scala, Clojure, F#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Object-oriented data modelling and array-oriented data processing focus a lot
 of attention on modelling data at rest, either in the form of collections of
 named attributes or as arrays of structured data.&lt;/p&gt;
@@ -1230,7 +1230,7 @@ generators, generator expressions, the &lt;tt class="docutils literal"&gt;functo
 library modules, and third party functional Python toolkits like &lt;a class="reference external" href="https://toolz.readthedocs.org/en/latest/heritage.html"&gt;toolz&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="event-driven-programming-javascript-go-erlang-elixir"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id10"&gt;Event driven programming: JavaScript, Go, Erlang, Elixir&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id10"&gt;Event driven programming: JavaScript, Go, Erlang, Elixir&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Computational pipelines are an excellent way to handle data transformation and
 analysis problems, but many problems require that an application run as a
 persistent service that &lt;em&gt;waits&lt;/em&gt; for events to occur, and then &lt;em&gt;handles&lt;/em&gt; those
@@ -1271,7 +1271,7 @@ library modules, third party network service development frameworks like
 and the event handling loops in GUI frameworks.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="gradual-typing-typescript"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id11"&gt;Gradual typing: TypeScript&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id11"&gt;Gradual typing: TypeScript&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;One of the more controversial features that landed in Python 3.5 was the new
 &lt;tt class="docutils literal"&gt;typing&lt;/tt&gt; module, which brings a standard lexicon for gradual typing support
 to the Python ecosystem.&lt;/p&gt;
@@ -1296,7 +1296,7 @@ TypeScript, and as an entirely optional static analysis task for Python's type
 hinting).&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="dynamic-metaprogramming-hy-ruby"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id12"&gt;Dynamic metaprogramming: Hy, Ruby&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id12"&gt;Dynamic metaprogramming: Hy, Ruby&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;A feature folks coming to Python from languages like C, C++, C# and Java often
 find disconcerting is the notion that "code is data": the fact that things like
 functions and classes are runtime objects that can be manipulated like any
@@ -1324,7 +1324,7 @@ Metaclasses power features like the core type system, abstract base classes,
 enumeration types and runtime evaluation of gradual typing expressions)&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="pragmatic-problem-solving-lua-php-perl"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id13"&gt;Pragmatic problem solving: Lua, PHP, Perl&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id13"&gt;Pragmatic problem solving: Lua, PHP, Perl&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Popular programming languages don't exist in isolation - they exist as part of
 larger ecosystems of redistributors (both commercial and community focused),
 end users, framework developers, tool developers, educators and more.&lt;/p&gt;
@@ -1367,7 +1367,7 @@ than the inherent capabilities of the languages themselves.&lt;/p&gt;
 institutional investment in the Python ecosystem.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="computational-thinking-scratch-logo"&gt;
-&lt;h2&gt;&lt;a class="toc-backref" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id14"&gt;Computational thinking: Scratch, Logo&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#id14"&gt;Computational thinking: Scratch, Logo&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Finally, I fairly regularly get into discussions with functional and
 object-oriented programming advocates claiming that those kinds of languages
 are just as easy to learn as procedural ones.&lt;/p&gt;
@@ -1408,7 +1408,7 @@ learn at some point as beginners. When we do that, we're better able to work
 effectively with students and other newcomers, as we're more likely to
 remember to unpack our chains of logic, including the steps we'd otherwise take
 for granted.&lt;/p&gt;
-&lt;/div&gt;&lt;/div&gt;</description><category>python</category><guid>http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html</guid><pubDate>Sun, 11 Oct 2015 02:54:39 GMT</pubDate></item><item><title>TCP echo client and server in Python 3.5</title><link>http://www.curiousefficiency.org/posts/2015/07/asyncio-tcp-echo-server.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;p&gt;This is a follow-on from my
+&lt;/div&gt;&lt;/div&gt;</description><category>python</category><guid>https://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html</guid><pubDate>Sun, 11 Oct 2015 02:54:39 GMT</pubDate></item><item><title>TCP echo client and server in Python 3.5</title><link>https://www.curiousefficiency.org/posts/2015/07/asyncio-tcp-echo-server.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;p&gt;This is a follow-on from my
 &lt;a href="http://www.curiousefficiency.org/posts/2015/07/asyncio-background-calls.html"&gt;previous post&lt;/a&gt;
 on Python 3.5's new &lt;code&gt;async&lt;/code&gt;/&lt;code&gt;await&lt;/code&gt; syntax. Rather than the simple background
 timers used in the original post, this one will look at the impact native
@@ -1657,7 +1657,7 @@ have both received responses:&lt;/p&gt;
 &lt;span class="go"&gt;'Hello World!'&lt;/span&gt;
 &lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;bg_call2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="go"&gt;'Hello World!'&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</description><category>python</category><guid>http://www.curiousefficiency.org/posts/2015/07/asyncio-tcp-echo-server.html</guid><pubDate>Sat, 11 Jul 2015 06:31:44 GMT</pubDate></item><item><title>Background tasks in Python 3.5</title><link>http://www.curiousefficiency.org/posts/2015/07/asyncio-background-calls.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;p&gt;One of the recurring questions with asyncio is "How do I execute one or two
+&lt;/pre&gt;&lt;/div&gt;</description><category>python</category><guid>https://www.curiousefficiency.org/posts/2015/07/asyncio-tcp-echo-server.html</guid><pubDate>Sat, 11 Jul 2015 06:31:44 GMT</pubDate></item><item><title>Background tasks in Python 3.5</title><link>https://www.curiousefficiency.org/posts/2015/07/asyncio-background-calls.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;p&gt;One of the recurring questions with asyncio is "How do I execute one or two
 operations asynchronously in an otherwise synchronous application?"&lt;/p&gt;
 &lt;p&gt;Say, for example, I have the following code:&lt;/p&gt;
 &lt;pre class="code literal-block"&gt;&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;itertools&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nn"&gt;time&lt;/span&gt;
@@ -1844,7 +1844,7 @@ to run the event loop:&lt;/p&gt;
 &lt;p&gt;That's both a strength (as you can run multiple blocking IO operations in
 parallel), but also a significant weakness - one of the benefits of explicit
 coroutines is their predictability, as you know &lt;em&gt;none&lt;/em&gt; of them will start
-doing anything until you start running the event loop.&lt;/p&gt;&lt;/div&gt;</description><category>python</category><guid>http://www.curiousefficiency.org/posts/2015/07/asyncio-background-calls.html</guid><pubDate>Fri, 10 Jul 2015 08:17:53 GMT</pubDate></item><item><title>Stop Supporting Python 2.6 (For Free)</title><link>http://www.curiousefficiency.org/posts/2015/04/stop-supporting-python26.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;p&gt;(Note: I'm speaking with my "CPython core developer" hat on in this article,
+doing anything until you start running the event loop.&lt;/p&gt;&lt;/div&gt;</description><category>python</category><guid>https://www.curiousefficiency.org/posts/2015/07/asyncio-background-calls.html</guid><pubDate>Fri, 10 Jul 2015 08:17:53 GMT</pubDate></item><item><title>Stop Supporting Python 2.6 (For Free)</title><link>https://www.curiousefficiency.org/posts/2015/04/stop-supporting-python26.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;p&gt;(Note: I'm speaking with my "CPython core developer" hat on in this article,
 rather than my "Red Hat employee" one, although it's the latter role that
 gave me broad visibility into the Fedora/RHEL/CentOS Python ecosystem)&lt;/p&gt;
 &lt;p&gt;Alex Gaynor recently raised some
@@ -1992,7 +1992,7 @@ so the folks that are seeking it should be expected to pay for it to happen.
 (Apparent exceptions like CentOS aren't exceptions at all: sustaining
 engineering on CentOS is instead a beneficial community byproduct of the
 &lt;a href="http://crunchtools.com/deep-dive-rebase-vs-backport/"&gt;paid sustaining engineering&lt;/a&gt;
-that goes into Red Hat Enterprise Linux).&lt;/p&gt;&lt;/div&gt;</description><category>python</category><guid>http://www.curiousefficiency.org/posts/2015/04/stop-supporting-python26.html</guid><pubDate>Sat, 04 Apr 2015 09:30:05 GMT</pubDate></item><item><title>Abusing Contributors is not OK</title><link>http://www.curiousefficiency.org/posts/2015/01/abuse-is-not-ok.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;p&gt;As reported in
+that goes into Red Hat Enterprise Linux).&lt;/p&gt;&lt;/div&gt;</description><category>python</category><guid>https://www.curiousefficiency.org/posts/2015/04/stop-supporting-python26.html</guid><pubDate>Sat, 04 Apr 2015 09:30:05 GMT</pubDate></item><item><title>Abusing Contributors is not OK</title><link>https://www.curiousefficiency.org/posts/2015/01/abuse-is-not-ok.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;p&gt;As reported in
 &lt;a href="http://arstechnica.com/business/2015/01/linus-torvalds-on-why-he-isnt-nice-i-dont-care-about-you/"&gt;Ars Technica&lt;/a&gt;,
 the ongoing efforts to promote diversity in open source communities came
 up once more during the plenary Q&amp;amp;A session with Linus Torvalds, Andrew Tridgell,
@@ -2252,7 +2252,7 @@ depth, breadth, and hence quality, of our collective thinking.&lt;/p&gt;
 thanks to &lt;a href="http://www.everycloudtech.com/"&gt;Everycloud technologies&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Update 1 Dec, 2016: This article is also available in
 &lt;a href="http://www.autoteileprofi.de/science/2016/12/01/kuritarvitamises-toetajad-ei-ole-ok/"&gt;Estonian&lt;/a&gt;,
-thanks to Arija Liepkalnietis&lt;/em&gt;&lt;/p&gt;&lt;/div&gt;</description><category>python</category><category>tech</category><guid>http://www.curiousefficiency.org/posts/2015/01/abuse-is-not-ok.html</guid><pubDate>Thu, 22 Jan 2015 05:57:26 GMT</pubDate></item><item><title>DTCA Public Consultation - Brisbane</title><link>http://www.curiousefficiency.org/posts/2015/01/dtca-public-consultation.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;p&gt;Over the weekend, Asher Wolf
+thanks to Arija Liepkalnietis&lt;/em&gt;&lt;/p&gt;&lt;/div&gt;</description><category>python</category><category>tech</category><guid>https://www.curiousefficiency.org/posts/2015/01/abuse-is-not-ok.html</guid><pubDate>Thu, 22 Jan 2015 05:57:26 GMT</pubDate></item><item><title>DTCA Public Consultation - Brisbane</title><link>https://www.curiousefficiency.org/posts/2015/01/dtca-public-consultation.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;p&gt;Over the weekend, Asher Wolf
 &lt;a href="https://twitter.com/Asher_Wolf/status/555909774596784129"&gt;alerted me&lt;/a&gt; (and
 many others in the open source and cryptographic communities) to the
 Australian Defence Trade Controls Act 2012, and the current public
@@ -2428,4 +2428,4 @@ been put in place to handle existing Wassenaar enforcement regimes in other
 countries. With the way the 2012 Act was drafted, that's almost certainly
 currently not the case, but the proposed 2015 amendments &lt;em&gt;should&lt;/em&gt; fix it
 (assuming the amendments actually have the effects that DECO has indicated
-they're intended to).&lt;/p&gt;&lt;/div&gt;</description><category>politics</category><category>python</category><category>tech</category><guid>http://www.curiousefficiency.org/posts/2015/01/dtca-public-consultation.html</guid><pubDate>Tue, 20 Jan 2015 12:41:51 GMT</pubDate></item></channel></rss>
+they're intended to).&lt;/p&gt;&lt;/div&gt;</description><category>politics</category><category>python</category><category>tech</category><guid>https://www.curiousefficiency.org/posts/2015/01/dtca-public-consultation.html</guid><pubDate>Tue, 20 Jan 2015 12:41:51 GMT</pubDate></item></channel></rss>
