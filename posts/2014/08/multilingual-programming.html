@@ -2,11 +2,16 @@
 <html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
 <head>
 <meta charset="utf-8">
-<base href="https://www.curiousefficiency.org/posts/2014/08/multilingual-programming.html">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The transition to multilingual programming | Curious Efficiency</title>
-<link href="../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
-<meta content="#5670d4" name="theme-color">
+<link href="../../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/html4css1.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/nikola_rst.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/colorbox.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/theme.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../rss.xml">
 <link rel="canonical" href="https://www.curiousefficiency.org/posts/2014/08/multilingual-programming.html">
 <!--[if lt IE 9]><script src="../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Nick Coghlan">
@@ -84,7 +89,7 @@ multilingual programming as it relates to Python's cross-platform sup">
 <article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">The transition to multilingual programming</a></h1>
 
         <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                     Nick Coghlan
             </span></p>
             <p class="dateline"><a href="#" rel="bookmark"><time class="published dt-published" datetime="2014-08-24T06:16:15Z" itemprop="datePublished" title="2014-08-24 06:16">2014-08-24 06:16</time></a></p>
@@ -95,7 +100,7 @@ multilingual programming as it relates to Python's cross-platform sup">
 
             
         </p>
-<p class="sourceline"><a href="multilingual-programming.md" id="sourcelink">Source</a></p>
+<p class="sourceline"><a href="multilingual-programming.md" class="sourcelink">Source</a></p>
 
         </div>
         
@@ -292,13 +297,13 @@ languages.</p>
 <p>Consider processing a data table where the headings are names of Japanese
 individuals, and we'd like to use <code>collections.namedtuple</code> to process
 each row. Python 2 simply can't handle this task:</p>
-<pre class="code literal-block"><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">People</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s">"People"</span><span class="p">,</span> <span class="s">u"陽斗 慶子 七海"</span><span class="p">)</span>
+<pre class="code literal-block"><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">People</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">"People"</span><span class="p">,</span> <span class="sa">u</span><span class="s2">"陽斗 慶子 七海"</span><span class="p">)</span>
 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
-  <span class="n">File</span> <span class="s">"&lt;stdin&gt;"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-  <span class="n">File</span> <span class="s">"/usr/lib64/python2.7/collections.py"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">310</span><span class="p">,</span> <span class="ow">in</span> <span class="n">namedtuple</span>
+  <span class="n">File</span> <span class="s2">"&lt;stdin&gt;"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+  <span class="n">File</span> <span class="s2">"/usr/lib64/python2.7/collections.py"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">310</span><span class="p">,</span> <span class="ow">in</span> <span class="n">namedtuple</span>
     <span class="n">field_names</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">field_names</span><span class="p">)</span>
-<span class="ne">UnicodeEncodeError</span><span class="p">:</span> <span class="s">'ascii'</span> <span class="n">codec</span> <span class="n">can</span><span class="s">'t encode characters in position 0-1: ordinal not in range(128)</span>
+<span class="ne">UnicodeEncodeError</span><span class="p">:</span> <span class="s1">'ascii'</span> <span class="n">codec</span> <span class="n">can</span><span class="s1">'t encode characters in position 0-1: ordinal not in range(128)</span>
 </pre>
 
 
@@ -311,8 +316,8 @@ Kanji (陽斗, 陽翔, 大翔), but they are all romanised as the same string
 more than one variant of that name, you're going to get spurious collisions.</p>
 <p>Python 3 takes a very different perspective on this problem. It says it
 should just work, and it makes sure it does:</p>
-<pre class="code literal-block"><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">People</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s">"People"</span><span class="p">,</span> <span class="s">u"陽斗 慶子 七海"</span><span class="p">)</span>
+<pre class="code literal-block"><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">People</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">"People"</span><span class="p">,</span> <span class="sa">u</span><span class="s2">"陽斗 慶子 七海"</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">d</span> <span class="o">=</span> <span class="n">People</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">d</span><span class="o">.</span><span class="err">陽斗</span>
 <span class="mi">1</span>
@@ -448,28 +453,28 @@ on a mobile device).</p>
         };
         (function() {
             var dsq = document.createElement('script'); dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
         })();
-    </script><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
 </noscript>
-    <a href="//disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
-        </section></article><script>var disqus_shortname="boredomandlaziness";(function(){var a=document.createElement("script");a.async=true;a.src="//"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+        </section></article><script>var disqus_shortname="boredomandlaziness";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
 </div>
         <!--End of body content-->
 
         <footer id="footer">
-            Contents © 2017 <a href="mailto:ncoghlan@gmail.com">Nick Coghlan</a> - <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, republish as you wish. - Powered by <a href="http://nikola.ralsina.com.ar">Nikola</a>
+            Contents © 2018 <a href="mailto:ncoghlan@gmail.com">Nick Coghlan</a> - <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, republish as you wish. - Powered by <a href="http://nikola.ralsina.com.ar">Nikola</a>
             
         </footer>
 </div>
 </div>
 
 
-            <script src="../../../assets/js/all-nocdn.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
-    moment.locale("");
+            <script src="../../../assets/js/jquery.min.js"></script><script src="../../../assets/js/bootstrap.min.js"></script><script src="../../../assets/js/moment-with-locales.min.js"></script><script src="../../../assets/js/fancydates.js"></script><script src="../../../assets/js/jquery.colorbox-min.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    moment.locale("en");
     fancydates(0, "YYYY-MM-DD HH:mm");
     </script><!-- end fancy dates -->
 </body>

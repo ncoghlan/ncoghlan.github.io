@@ -2,11 +2,16 @@
 <html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
 <head>
 <meta charset="utf-8">
-<base href="https://www.curiousefficiency.org/posts/2015/07/asyncio-tcp-echo-server.html">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TCP echo client and server in Python 3.5 | Curious Efficiency</title>
-<link href="../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
-<meta content="#5670d4" name="theme-color">
+<link href="../../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/html4css1.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/nikola_rst.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/colorbox.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/theme.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../rss.xml">
 <link rel="canonical" href="https://www.curiousefficiency.org/posts/2015/07/asyncio-tcp-echo-server.html">
 <!--[if lt IE 9]><script src="../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Nick Coghlan">
@@ -84,7 +89,7 @@ coroutine ">
 <article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">TCP echo client and server in Python 3.5</a></h1>
 
         <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                     Nick Coghlan
             </span></p>
             <p class="dateline"><a href="#" rel="bookmark"><time class="published dt-published" datetime="2015-07-11T06:31:44Z" itemprop="datePublished" title="2015-07-11 06:31">2015-07-11 06:31</time></a></p>
@@ -95,7 +100,7 @@ coroutine ">
 
             
         </p>
-<p class="sourceline"><a href="asyncio-tcp-echo-server.md" id="sourcelink">Source</a></p>
+<p class="sourceline"><a href="asyncio-tcp-echo-server.md" class="sourcelink">Source</a></p>
 
         </div>
         
@@ -111,7 +116,7 @@ coroutine support has on the TCP echo client and server examples from the
 <p>First, we'll recreate the <code>run_in_foreground</code> helper defined in the previous
 post. This helper function makes it easier to work with coroutines from
 otherwise synchronous code (like the interactive prompt):</p>
-<pre class="code literal-block"><span class="k">def</span> <span class="nf">run_in_foreground</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<pre class="code literal-block"><span></span><span class="k">def</span> <span class="nf">run_in_foreground</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">"""Runs event loop in current thread until the given task completes</span>
 
 <span class="sd">    Returns the result of the task.</span>
@@ -127,29 +132,29 @@ otherwise synchronous code (like the interactive prompt):</p>
 <p>Next we'll define the coroutine for our TCP echo server implementation,
 which simply waits to receive up to 100 bytes on each new client connection,
 and then sends that data back to the client:</p>
-<pre class="code literal-block"><span class="n">async</span> <span class="k">def</span> <span class="nf">handle_tcp_echo</span><span class="p">(</span><span class="n">reader</span><span class="p">,</span> <span class="n">writer</span><span class="p">):</span>
+<pre class="code literal-block"><span></span><span class="n">async</span> <span class="k">def</span> <span class="nf">handle_tcp_echo</span><span class="p">(</span><span class="n">reader</span><span class="p">,</span> <span class="n">writer</span><span class="p">):</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">await</span> <span class="n">reader</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
     <span class="n">message</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
-    <span class="n">addr</span> <span class="o">=</span> <span class="n">writer</span><span class="o">.</span><span class="n">get_extra_info</span><span class="p">(</span><span class="s">'peername'</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"-&gt; Server received </span><span class="si">%r</span><span class="s"> from </span><span class="si">%r</span><span class="s">"</span> <span class="o">%</span> <span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">addr</span><span class="p">))</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"&lt;- Server sending: </span><span class="si">%r</span><span class="s">"</span> <span class="o">%</span> <span class="n">message</span><span class="p">)</span>
+    <span class="n">addr</span> <span class="o">=</span> <span class="n">writer</span><span class="o">.</span><span class="n">get_extra_info</span><span class="p">(</span><span class="s1">'peername'</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">"-&gt; Server received </span><span class="si">%r</span><span class="s2"> from </span><span class="si">%r</span><span class="s2">"</span> <span class="o">%</span> <span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">addr</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">"&lt;- Server sending: </span><span class="si">%r</span><span class="s2">"</span> <span class="o">%</span> <span class="n">message</span><span class="p">)</span>
     <span class="n">writer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
     <span class="n">await</span> <span class="n">writer</span><span class="o">.</span><span class="n">drain</span><span class="p">()</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"-- Terminating connection on server"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">"-- Terminating connection on server"</span><span class="p">)</span>
     <span class="n">writer</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre>
 
 
 <p>And then the client coroutine we'll use to send a message and wait for a
 response:</p>
-<pre class="code literal-block"><span class="n">async</span> <span class="k">def</span> <span class="nf">tcp_echo_client</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-    <span class="n">reader</span><span class="p">,</span> <span class="n">writer</span> <span class="o">=</span> <span class="n">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">open_connection</span><span class="p">(</span><span class="s">'127.0.0.1'</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span>
+<pre class="code literal-block"><span></span><span class="n">async</span> <span class="k">def</span> <span class="nf">tcp_echo_client</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="n">reader</span><span class="p">,</span> <span class="n">writer</span> <span class="o">=</span> <span class="n">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">open_connection</span><span class="p">(</span><span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span>
                                                         <span class="n">loop</span><span class="o">=</span><span class="n">loop</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">'-&gt; Client sending: </span><span class="si">%r</span><span class="s">'</span> <span class="o">%</span> <span class="n">message</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">'-&gt; Client sending: </span><span class="si">%r</span><span class="s1">'</span> <span class="o">%</span> <span class="n">message</span><span class="p">)</span>
     <span class="n">writer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
     <span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="n">await</span> <span class="n">reader</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">'&lt;- Client received: </span><span class="si">%r</span><span class="s">'</span> <span class="o">%</span> <span class="n">data</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">'-- Terminating connection on client'</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">'&lt;- Client received: </span><span class="si">%r</span><span class="s1">'</span> <span class="o">%</span> <span class="n">data</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">'-- Terminating connection on client'</span><span class="p">)</span>
     <span class="n">writer</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">data</span>
 </pre>
@@ -157,7 +162,7 @@ response:</p>
 
 <p>We then use our <code>run_in_foreground</code> helper to interact with these coroutines
 from the interactive prompt. First, we start the echo server:</p>
-<pre class="code literal-block"><span class="gp">&gt;&gt;&gt; </span><span class="n">make_server</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">start_server</span><span class="p">(</span><span class="n">handle_tcp_echo</span><span class="p">,</span> <span class="s">'127.0.0.1'</span><span class="p">)</span>
+<pre class="code literal-block"><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">make_server</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">start_server</span><span class="p">(</span><span class="n">handle_tcp_echo</span><span class="p">,</span> <span class="s1">'127.0.0.1'</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">server</span> <span class="o">=</span> <span class="n">run_in_foreground</span><span class="p">(</span><span class="n">make_server</span><span class="p">)</span>
 </pre>
 
@@ -165,7 +170,7 @@ from the interactive prompt. First, we start the echo server:</p>
 <p>Conveniently, since this is a coroutine running in the <em>current</em> thread, rather
 than in a different thread, we can retrieve the details of the listening
 socket immediately, including the automatically assigned port number:</p>
-<pre class="code literal-block"><span class="gp">&gt;&gt;&gt; </span><span class="n">server</span><span class="o">.</span><span class="n">sockets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<pre class="code literal-block"><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">server</span><span class="o">.</span><span class="n">sockets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="go">&lt;socket.socket fd=6, family=AddressFamily.AF_INET, type=2049, proto=6, laddr=('127.0.0.1', 40796)&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">port</span> <span class="o">=</span> <span class="n">server</span><span class="o">.</span><span class="n">sockets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">getsockname</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
 </pre>
@@ -173,7 +178,7 @@ socket immediately, including the automatically assigned port number:</p>
 
 <p>Since we haven't needed to hardcode the port number, if we want to define a
 second server, we can easily do that as well:</p>
-<pre class="code literal-block"><span class="gp">&gt;&gt;&gt; </span><span class="n">make_server2</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">start_server</span><span class="p">(</span><span class="n">handle_tcp_echo</span><span class="p">,</span> <span class="s">'127.0.0.1'</span><span class="p">)</span>
+<pre class="code literal-block"><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">make_server2</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">start_server</span><span class="p">(</span><span class="n">handle_tcp_echo</span><span class="p">,</span> <span class="s1">'127.0.0.1'</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">server2</span> <span class="o">=</span> <span class="n">run_in_foreground</span><span class="p">(</span><span class="n">make_server2</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">server2</span><span class="o">.</span><span class="n">sockets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="go">&lt;socket.socket fd=7, family=AddressFamily.AF_INET, type=2049, proto=6, laddr=('127.0.0.1', 41200)&gt;</span>
@@ -188,7 +193,7 @@ process incoming connections. That's where our asynchronous client coroutine
 comes in: if we use <em>that</em> to send messages to the server, then it doesn't
 block the main thread either, and both the client and server coroutines can
 process incoming events of interest. That gives the following results:</p>
-<pre class="code literal-block"><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">run_in_foreground</span><span class="p">(</span><span class="n">tcp_echo_client</span><span class="p">(</span><span class="s">'Hello World!'</span><span class="p">,</span> <span class="n">port</span><span class="p">)))</span>
+<pre class="code literal-block"><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">run_in_foreground</span><span class="p">(</span><span class="n">tcp_echo_client</span><span class="p">(</span><span class="s1">'Hello World!'</span><span class="p">,</span> <span class="n">port</span><span class="p">)))</span>
 <span class="go">-&gt; Client sending: 'Hello World!'</span>
 <span class="go">-&gt; Server received 'Hello World!' from ('127.0.0.1', 44386)</span>
 <span class="go">&lt;- Server sending: 'Hello World!'</span>
@@ -206,7 +211,7 @@ wouldn't have that property (and reliably getting access to the port numbers
 the server components were assigned by the underlying operating system would
 also have been far more difficult).</p>
 <p>And to demonstrate both servers are up and running:</p>
-<pre class="code literal-block"><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">run_in_foreground</span><span class="p">(</span><span class="n">tcp_echo_client</span><span class="p">(</span><span class="s">'Hello World!'</span><span class="p">,</span> <span class="n">port2</span><span class="p">)))</span>
+<pre class="code literal-block"><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">run_in_foreground</span><span class="p">(</span><span class="n">tcp_echo_client</span><span class="p">(</span><span class="s1">'Hello World!'</span><span class="p">,</span> <span class="n">port2</span><span class="p">)))</span>
 <span class="go">-&gt; Client sending: 'Hello World!'</span>
 <span class="go">-&gt; Server received 'Hello World!' from ('127.0.0.1', 44419)</span>
 <span class="go">&lt;- Server sending: 'Hello World!'</span>
@@ -221,7 +226,7 @@ also have been far more difficult).</p>
 two servers in parallel, while still only using a single thread to manage the
 client and server coroutines? For that, we'll need another of our helper
 functions from the previous post, <code>schedule_coroutine</code>:</p>
-<pre class="code literal-block"><span class="k">def</span> <span class="nf">schedule_coroutine</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<pre class="code literal-block"><span></span><span class="k">def</span> <span class="nf">schedule_coroutine</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">"""Schedules target coroutine in the given event loop</span>
 
 <span class="sd">    If not given, *loop* defaults to the current thread's event loop</span>
@@ -230,8 +235,8 @@ functions from the previous post, <code>schedule_coroutine</code>:</p>
 <span class="sd">    """</span>
     <span class="k">if</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">iscoroutine</span><span class="p">(</span><span class="n">target</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">ensure_future</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="n">loop</span><span class="p">)</span>
-    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">"target must be a coroutine, "</span>
-                    <span class="s">"not {!r}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">target</span><span class="p">)))</span>
+    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">"target must be a coroutine, "</span>
+                    <span class="s2">"not {!r}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">target</span><span class="p">)))</span>
 </pre>
 
 
@@ -242,14 +247,14 @@ On further reflection, I decided that was unhelpfully conflating two different
 concepts, so I replaced it with separate "schedule_coroutine" and
 "call_in_background" helpers</em></p>
 <p>First, we set up the two client operations we want to run in parallel:</p>
-<pre class="code literal-block"><span class="gp">&gt;&gt;&gt; </span><span class="n">echo1</span> <span class="o">=</span> <span class="n">schedule_coroutine</span><span class="p">(</span><span class="n">tcp_echo_client</span><span class="p">(</span><span class="s">'Hello World!'</span><span class="p">,</span> <span class="n">port</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">echo2</span> <span class="o">=</span> <span class="n">schedule_coroutine</span><span class="p">(</span><span class="n">tcp_echo_client</span><span class="p">(</span><span class="s">'Hello World!'</span><span class="p">,</span> <span class="n">port2</span><span class="p">))</span>
+<pre class="code literal-block"><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">echo1</span> <span class="o">=</span> <span class="n">schedule_coroutine</span><span class="p">(</span><span class="n">tcp_echo_client</span><span class="p">(</span><span class="s1">'Hello World!'</span><span class="p">,</span> <span class="n">port</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">echo2</span> <span class="o">=</span> <span class="n">schedule_coroutine</span><span class="p">(</span><span class="n">tcp_echo_client</span><span class="p">(</span><span class="s1">'Hello World!'</span><span class="p">,</span> <span class="n">port2</span><span class="p">))</span>
 </pre>
 
 
 <p>Then we use the <code>asyncio.wait</code> function in combination with <code>run_in_foreground</code>
 to run the event loop until both operations are complete:</p>
-<pre class="code literal-block"><span class="gp">&gt;&gt;&gt; </span><span class="n">run_in_foreground</span><span class="p">(</span><span class="n">asyncio</span><span class="o">.</span><span class="n">wait</span><span class="p">([</span><span class="n">echo1</span><span class="p">,</span> <span class="n">echo2</span><span class="p">]))</span>
+<pre class="code literal-block"><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">run_in_foreground</span><span class="p">(</span><span class="n">asyncio</span><span class="o">.</span><span class="n">wait</span><span class="p">([</span><span class="n">echo1</span><span class="p">,</span> <span class="n">echo2</span><span class="p">]))</span>
 <span class="go">-&gt; Client sending: 'Hello World!'</span>
 <span class="go">-&gt; Client sending: 'Hello World!'</span>
 <span class="go">-&gt; Server received 'Hello World!' from ('127.0.0.1', 44461)</span>
@@ -268,7 +273,7 @@ to run the event loop until both operations are complete:</p>
 
 <p>And finally, we retrieve our results using the <code>result</code> method of the task
 objects returned by <code>schedule_coroutine</code>:</p>
-<pre class="code literal-block"><span class="gp">&gt;&gt;&gt; </span><span class="n">echo1</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<pre class="code literal-block"><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">echo1</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
 <span class="go">'Hello World!'</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">echo2</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
 <span class="go">'Hello World!'</span>
@@ -281,7 +286,7 @@ objects returned by <code>schedule_coroutine</code>:</p>
 needed to use (e.g. we're using an <code>asyncio</code> server to test a synchronous
 client API). To handle that case, we use our third helper function from the
 previous post:</p>
-<pre class="code literal-block"><span class="k">def</span> <span class="nf">call_in_background</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">executor</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<pre class="code literal-block"><span></span><span class="k">def</span> <span class="nf">call_in_background</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">executor</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">"""Schedules and starts target callable as a background task</span>
 
 <span class="sd">    If not given, *loop* defaults to the current thread's event loop</span>
@@ -293,24 +298,24 @@ previous post:</p>
         <span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span>
     <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">target</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">loop</span><span class="o">.</span><span class="n">run_in_executor</span><span class="p">(</span><span class="n">executor</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
-    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">"target must be a callable, "</span>
-                    <span class="s">"not {!r}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">target</span><span class="p">)))</span>
+    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">"target must be a callable, "</span>
+                    <span class="s2">"not {!r}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">target</span><span class="p">)))</span>
 </pre>
 
 
 <p>To explore this, we'll need a blocking client, which we can build based on
 Python's existing
 <a href="https://docs.python.org/3/howto/sockets.html">socket programming HOWTO guide</a>:</p>
-<pre class="code literal-block"><span class="kn">import</span> <span class="nn">socket</span>
+<pre class="code literal-block"><span></span><span class="kn">import</span> <span class="nn">socket</span>
 <span class="k">def</span> <span class="nf">tcp_echo_client_sync</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">port</span><span class="p">):</span>
     <span class="n">conn</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">'-&gt; Client connecting to port: </span><span class="si">%r</span><span class="s">'</span> <span class="o">%</span> <span class="n">port</span><span class="p">)</span>
-    <span class="n">conn</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="s">'127.0.0.1'</span><span class="p">,</span> <span class="n">port</span><span class="p">))</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">'-&gt; Client sending: </span><span class="si">%r</span><span class="s">'</span> <span class="o">%</span> <span class="n">message</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">'-&gt; Client connecting to port: </span><span class="si">%r</span><span class="s1">'</span> <span class="o">%</span> <span class="n">port</span><span class="p">)</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="n">port</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">'-&gt; Client sending: </span><span class="si">%r</span><span class="s1">'</span> <span class="o">%</span> <span class="n">message</span><span class="p">)</span>
     <span class="n">conn</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">'&lt;- Client received: </span><span class="si">%r</span><span class="s">'</span> <span class="o">%</span> <span class="n">data</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">'-- Terminating connection on client'</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">'&lt;- Client received: </span><span class="si">%r</span><span class="s1">'</span> <span class="o">%</span> <span class="n">data</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">'-- Terminating connection on client'</span><span class="p">)</span>
     <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">data</span>
 </pre>
@@ -318,8 +323,8 @@ Python's existing
 
 <p>We can then use <code>functools.partial</code> in combination with <code>call_in_background</code> to
 start client requests in multiple operating system level threads:</p>
-<pre class="code literal-block"><span class="gp">&gt;&gt;&gt; </span><span class="n">query_server</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">tcp_echo_client_sync</span><span class="p">,</span> <span class="s">"Hello World!"</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">query_server2</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">tcp_echo_client_sync</span><span class="p">,</span> <span class="s">"Hello World!"</span><span class="p">,</span> <span class="n">port2</span><span class="p">)</span>
+<pre class="code literal-block"><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">query_server</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">tcp_echo_client_sync</span><span class="p">,</span> <span class="s2">"Hello World!"</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">query_server2</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">tcp_echo_client_sync</span><span class="p">,</span> <span class="s2">"Hello World!"</span><span class="p">,</span> <span class="n">port2</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">bg_call</span> <span class="o">=</span> <span class="n">call_in_background</span><span class="p">(</span><span class="n">query_server</span><span class="p">)</span>
 <span class="go">-&gt; Client connecting to port: 35876</span>
 <span class="go">-&gt; Client sending: 'Hello World!'</span>
@@ -335,7 +340,7 @@ loop isn't currently running in the main thread, they've blocked waiting for
 a response from the TCP echo servers. As with the coroutine clients, we
 address that by running the event loop in the main thread until our clients
 have both received responses:</p>
-<pre class="code literal-block"><span class="gp">&gt;&gt;&gt; </span><span class="n">run_in_foreground</span><span class="p">(</span><span class="n">asyncio</span><span class="o">.</span><span class="n">wait</span><span class="p">([</span><span class="n">bg_call</span><span class="p">,</span> <span class="n">bg_call2</span><span class="p">]))</span>
+<pre class="code literal-block"><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">run_in_foreground</span><span class="p">(</span><span class="n">asyncio</span><span class="o">.</span><span class="n">wait</span><span class="p">([</span><span class="n">bg_call</span><span class="p">,</span> <span class="n">bg_call2</span><span class="p">]))</span>
 <span class="go">-&gt; Server received 'Hello World!' from ('127.0.0.1', 52585)</span>
 <span class="go">&lt;- Server sending: 'Hello World!'</span>
 <span class="go">-- Terminating connection on server</span>
@@ -378,28 +383,28 @@ have both received responses:</p>
         };
         (function() {
             var dsq = document.createElement('script'); dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
         })();
-    </script><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
 </noscript>
-    <a href="//disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
-        </section></article><script>var disqus_shortname="boredomandlaziness";(function(){var a=document.createElement("script");a.async=true;a.src="//"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+        </section></article><script>var disqus_shortname="boredomandlaziness";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
 </div>
         <!--End of body content-->
 
         <footer id="footer">
-            Contents © 2017 <a href="mailto:ncoghlan@gmail.com">Nick Coghlan</a> - <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, republish as you wish. - Powered by <a href="http://nikola.ralsina.com.ar">Nikola</a>
+            Contents © 2018 <a href="mailto:ncoghlan@gmail.com">Nick Coghlan</a> - <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, republish as you wish. - Powered by <a href="http://nikola.ralsina.com.ar">Nikola</a>
             
         </footer>
 </div>
 </div>
 
 
-            <script src="../../../assets/js/all-nocdn.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
-    moment.locale("");
+            <script src="../../../assets/js/jquery.min.js"></script><script src="../../../assets/js/bootstrap.min.js"></script><script src="../../../assets/js/moment-with-locales.min.js"></script><script src="../../../assets/js/fancydates.js"></script><script src="../../../assets/js/jquery.colorbox-min.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    moment.locale("en");
     fancydates(0, "YYYY-MM-DD HH:mm");
     </script><!-- end fancy dates -->
 </body>

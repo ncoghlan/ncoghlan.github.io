@@ -2,11 +2,16 @@
 <html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
 <head>
 <meta charset="utf-8">
-<base href="https://www.curiousefficiency.org/posts/2014/08/python-teaching-suggestions.html">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Some Suggestions for Teaching Python | Curious Efficiency</title>
-<link href="../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
-<meta content="#5670d4" name="theme-color">
+<link href="../../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/html4css1.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/nikola_rst.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/colorbox.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/theme.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../rss.xml">
 <link rel="canonical" href="https://www.curiousefficiency.org/posts/2014/08/python-teaching-suggestions.html">
 <!--[if lt IE 9]><script src="../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Nick Coghlan">
@@ -82,7 +87,7 @@ presentation from one of UQ's tutors at PyCon Australia">
 <article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">Some Suggestions for Teaching Python</a></h1>
 
         <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                     Nick Coghlan
             </span></p>
             <p class="dateline"><a href="#" rel="bookmark"><time class="published dt-published" datetime="2014-08-08T12:55:26Z" itemprop="datePublished" title="2014-08-08 12:55">2014-08-08 12:55</time></a></p>
@@ -93,7 +98,7 @@ presentation from one of UQ's tutors at PyCon Australia">
 
             
         </p>
-<p class="sourceline"><a href="python-teaching-suggestions.md" id="sourcelink">Source</a></p>
+<p class="sourceline"><a href="python-teaching-suggestions.md" class="sourcelink">Source</a></p>
 
         </div>
         
@@ -107,26 +112,26 @@ presentation from one of UQ's tutors at PyCon Australia 2014.</p>
 of teaching programming, a few seemed like things that could be avoided.</p>
 <h2>Getting floating point results from integer division</h2>
 <p>In Python 2, integer division copies C in truncating the answer by default:</p>
-<pre class="code literal-block">    <span class="nv">$ </span>python -c <span class="s2">"print(3/4)"</span>
-    0
+<pre class="code literal-block"><span></span>    $ python -c <span class="s2">"print(3/4)"</span>
+    <span class="m">0</span>
 </pre>
 
 
 <p>Promoting to floating point requires type coercion, a command line flag
 or a future import:</p>
-<pre class="code literal-block">    <span class="nv">$ </span>python -c <span class="s2">"print(float(3)/4)"</span>
-    0.75
-    <span class="nv">$ </span>python -Qnew -c <span class="s2">"print(3/4)"</span>
-    0.75
-    <span class="nv">$ </span>python -c <span class="s2">"from __future__ import division; print(3/4)"</span>
-    0.75
+<pre class="code literal-block"><span></span>    $ python -c <span class="s2">"print(float(3)/4)"</span>
+    <span class="m">0</span>.75
+    $ python -Qnew -c <span class="s2">"print(3/4)"</span>
+    <span class="m">0</span>.75
+    $ python -c <span class="s2">"from __future__ import division; print(3/4)"</span>
+    <span class="m">0</span>.75
 </pre>
 
 
 <p>Python 3 just does the right thing by default, so one way to avoid the
 problem entirely is to teach Python 3 instead of Python 2:</p>
-<pre class="code literal-block">    <span class="nv">$ </span>python3 -c <span class="s2">"print(3/4)"</span>
-    0.75
+<pre class="code literal-block"><span></span>    $ python3 -c <span class="s2">"print(3/4)"</span>
+    <span class="m">0</span>.75
 </pre>
 
 
@@ -140,18 +145,18 @@ of years earlier than that, while Python 2.5 was still in development).</p>
 and forth feasible is to limit myself to the common print syntax that works
 the same in both versions: passing a single argument surrounded by
 parentheses.</p>
-<pre class="code literal-block"><span class="nv">$ </span>python -c <span class="s1">'print("Hello world!")'</span>
+<pre class="code literal-block"><span></span>$ python -c <span class="s1">'print("Hello world!")'</span>
 Hello world!
-<span class="nv">$ </span>python3 -c <span class="s1">'print("Hello world!")'</span>
+$ python3 -c <span class="s1">'print("Hello world!")'</span>
 Hello world!
 </pre>
 
 
 <p>If I need to pass multiple arguments, I'll use string formatting, rather
 than the implicit concatenation feature.</p>
-<pre class="code literal-block"><span class="nv">$ </span>python -c <span class="s1">'print("{} {}{}".format("Hello", "world", "!"))'</span>
+<pre class="code literal-block"><span></span>$ python -c <span class="s1">'print("{} {}{}".format("Hello", "world", "!"))'</span>
 Hello world!
-<span class="nv">$ </span>python3 -c <span class="s1">'print("{} {}{}".format("Hello", "world", "!"))'</span>
+$ python3 -c <span class="s1">'print("{} {}{}".format("Hello", "world", "!"))'</span>
 Hello world!
 </pre>
 
@@ -167,7 +172,7 @@ version independent.</p>
 was the challenge of teaching students the difference between printing and
 returning values. The problem is the "Print" part of the Read-Eval-Print-Loop
 provided by Python's interactive interpreter:</p>
-<pre class="code literal-block"><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">print_arg</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<pre class="code literal-block"><span></span><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">print_arg</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
 <span class="o">...</span>     <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="o">...</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">return_arg</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
@@ -184,10 +189,10 @@ provided by Python's interactive interpreter:</p>
 for types like numbers where the results of <code>str</code> and <code>repr</code> are the same.
 Even when they're different, those differences may not be obvious to a
 student:</p>
-<pre class="code literal-block"><span class="o">&gt;&gt;&gt;</span> <span class="n">print_arg</span><span class="p">(</span><span class="s">"Hello world"</span><span class="p">)</span>
+<pre class="code literal-block"><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">print_arg</span><span class="p">(</span><span class="s2">"Hello world"</span><span class="p">)</span>
 <span class="n">Hello</span> <span class="n">world</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">return_arg</span><span class="p">(</span><span class="s">"Hello world"</span><span class="p">)</span>
-<span class="s">'Hello world'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">return_arg</span><span class="p">(</span><span class="s2">"Hello world"</span><span class="p">)</span>
+<span class="s1">'Hello world'</span>
 </pre>
 
 
@@ -196,9 +201,9 @@ worth trying to me is to teach students how to replace <code>sys.displayhook</co
 particular, I suggest demonstrating the following change, and seeing if it
 helps explain the difference between printing output for display to the user
 and returning values for further processing:</p>
-<pre class="code literal-block"><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">new_displayhook</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+<pre class="code literal-block"><span></span><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">new_displayhook</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
 <span class="o">...</span>     <span class="k">if</span> <span class="n">obj</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-<span class="o">...</span>         <span class="k">print</span><span class="p">(</span><span class="s">"-&gt; {!r}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
+<span class="o">...</span>         <span class="k">print</span><span class="p">(</span><span class="s2">"-&gt; {!r}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
 <span class="o">...</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">sys</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">sys</span><span class="o">.</span><span class="n">displayhook</span> <span class="o">=</span> <span class="n">new_displayhook</span>
@@ -219,7 +224,7 @@ including the IPython Notebook, has a couple of interesting differences in
 behaviour that are relevant to the above comments.</p>
 <p>Firstly, it <em>does</em> display return values and printed values differently,
 prefacing <em>results</em> with an output reference number:</p>
-<pre class="code literal-block"><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="k">print</span> <span class="mi">10</span>
+<pre class="code literal-block"><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="k">print</span> <span class="mi">10</span>
 <span class="mi">10</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="mi">10</span>
@@ -230,9 +235,9 @@ prefacing <em>results</em> with an output reference number:</p>
 <p>Secondly, it has an optional "autocall" feature that allows a user to tell
 IPython to automatically add the missing parentheses to a function call if
 the user leaves them out:</p>
-<pre class="code literal-block"><span class="nv">$ </span>ipython3 --autocall<span class="o">=</span><span class="m">1</span> -c <span class="s2">"print 10"</span>
--&gt; print<span class="o">(</span>10<span class="o">)</span>
-10
+<pre class="code literal-block"><span></span>$ ipython3 --autocall<span class="o">=</span><span class="m">1</span> -c <span class="s2">"print 10"</span>
+-&gt; print<span class="o">(</span><span class="m">10</span><span class="o">)</span>
+<span class="m">10</span>
 </pre>
 
 
@@ -271,28 +276,28 @@ Python 3.</p>
         };
         (function() {
             var dsq = document.createElement('script'); dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
         })();
-    </script><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
 </noscript>
-    <a href="//disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
-        </section></article><script>var disqus_shortname="boredomandlaziness";(function(){var a=document.createElement("script");a.async=true;a.src="//"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+        </section></article><script>var disqus_shortname="boredomandlaziness";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
 </div>
         <!--End of body content-->
 
         <footer id="footer">
-            Contents © 2017 <a href="mailto:ncoghlan@gmail.com">Nick Coghlan</a> - <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, republish as you wish. - Powered by <a href="http://nikola.ralsina.com.ar">Nikola</a>
+            Contents © 2018 <a href="mailto:ncoghlan@gmail.com">Nick Coghlan</a> - <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, republish as you wish. - Powered by <a href="http://nikola.ralsina.com.ar">Nikola</a>
             
         </footer>
 </div>
 </div>
 
 
-            <script src="../../../assets/js/all-nocdn.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
-    moment.locale("");
+            <script src="../../../assets/js/jquery.min.js"></script><script src="../../../assets/js/bootstrap.min.js"></script><script src="../../../assets/js/moment-with-locales.min.js"></script><script src="../../../assets/js/fancydates.js"></script><script src="../../../assets/js/jquery.colorbox-min.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    moment.locale("en");
     fancydates(0, "YYYY-MM-DD HH:mm");
     </script><!-- end fancy dates -->
 </body>

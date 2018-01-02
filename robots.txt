@@ -1,2 +1,4 @@
 Sitemap: https://www.curiousefficiency.org/sitemapindex.xml
 
+User-Agent: *
+Host: www.curiousefficiency.org

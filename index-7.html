@@ -2,7 +2,6 @@
 <html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
 <head>
 <meta charset="utf-8">
-<base href="https://www.curiousefficiency.org/index-7.html">
 <meta name="description" content="Efficiency (a virtue) is the child of laziness and greed (both vices), while
 much of our economic activity is devoted to preventing boredom in the idle
 time created by increases in efficiency. To be human is to be a strange
@@ -10,8 +9,14 @@ creature indeed :)
 ">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Curious Efficiency (old posts, page 7) | Curious Efficiency</title>
-<link href="assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
-<meta content="#5670d4" name="theme-color">
+<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="assets/css/html4css1.css" rel="stylesheet" type="text/css">
+<link href="assets/css/nikola_rst.css" rel="stylesheet" type="text/css">
+<link href="assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="assets/css/colorbox.css" rel="stylesheet" type="text/css">
+<link href="assets/css/theme.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
 <link rel="canonical" href="https://www.curiousefficiency.org/index-7.html">
 <link rel="prev" href="index-8.html" type="text/html">
@@ -70,10 +75,14 @@ creature indeed :)
             
             
 
+    
+
+
+    
 <div class="postindex">
     <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/2014/09/seven-billion-seconds-per-second.html" class="u-url">Seven billion seconds per second</a></h1>
         <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 Nick Coghlan
             </span></p>
             <p class="dateline"><a href="posts/2014/09/seven-billion-seconds-per-second.html" rel="bookmark"><time class="published dt-published" datetime="2014-09-23T07:35:39Z" title="2014-09-23 07:35">2014-09-23 07:35</time></a></p>
@@ -141,7 +150,7 @@ those seven billion seconds per second :)</p>
     </div>
     </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/2014/08/multilingual-programming.html" class="u-url">The transition to multilingual programming</a></h1>
         <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 Nick Coghlan
             </span></p>
             <p class="dateline"><a href="posts/2014/08/multilingual-programming.html" rel="bookmark"><time class="published dt-published" datetime="2014-08-24T06:16:15Z" title="2014-08-24 06:16">2014-08-24 06:16</time></a></p>
@@ -344,13 +353,13 @@ languages.</p>
 <p>Consider processing a data table where the headings are names of Japanese
 individuals, and we'd like to use <code>collections.namedtuple</code> to process
 each row. Python 2 simply can't handle this task:</p>
-<pre class="code literal-block"><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">People</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s">"People"</span><span class="p">,</span> <span class="s">u"陽斗 慶子 七海"</span><span class="p">)</span>
+<pre class="code literal-block"><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">People</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">"People"</span><span class="p">,</span> <span class="sa">u</span><span class="s2">"陽斗 慶子 七海"</span><span class="p">)</span>
 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
-  <span class="n">File</span> <span class="s">"&lt;stdin&gt;"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-  <span class="n">File</span> <span class="s">"/usr/lib64/python2.7/collections.py"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">310</span><span class="p">,</span> <span class="ow">in</span> <span class="n">namedtuple</span>
+  <span class="n">File</span> <span class="s2">"&lt;stdin&gt;"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+  <span class="n">File</span> <span class="s2">"/usr/lib64/python2.7/collections.py"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">310</span><span class="p">,</span> <span class="ow">in</span> <span class="n">namedtuple</span>
     <span class="n">field_names</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">field_names</span><span class="p">)</span>
-<span class="ne">UnicodeEncodeError</span><span class="p">:</span> <span class="s">'ascii'</span> <span class="n">codec</span> <span class="n">can</span><span class="s">'t encode characters in position 0-1: ordinal not in range(128)</span>
+<span class="ne">UnicodeEncodeError</span><span class="p">:</span> <span class="s1">'ascii'</span> <span class="n">codec</span> <span class="n">can</span><span class="s1">'t encode characters in position 0-1: ordinal not in range(128)</span>
 </pre>
 
 
@@ -363,8 +372,8 @@ Kanji (陽斗, 陽翔, 大翔), but they are all romanised as the same string
 more than one variant of that name, you're going to get spurious collisions.</p>
 <p>Python 3 takes a very different perspective on this problem. It says it
 should just work, and it makes sure it does:</p>
-<pre class="code literal-block"><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">People</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s">"People"</span><span class="p">,</span> <span class="s">u"陽斗 慶子 七海"</span><span class="p">)</span>
+<pre class="code literal-block"><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">People</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">"People"</span><span class="p">,</span> <span class="sa">u</span><span class="s2">"陽斗 慶子 七海"</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">d</span> <span class="o">=</span> <span class="n">People</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">d</span><span class="o">.</span><span class="err">陽斗</span>
 <span class="mi">1</span>
@@ -478,7 +487,7 @@ on a mobile device).</p>
     </div>
     </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/2014/08/python-4000.html" class="u-url">Why Python 4.0 won't be like Python 3.0</a></h1>
         <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 Nick Coghlan
             </span></p>
             <p class="dateline"><a href="posts/2014/08/python-4000.html" rel="bookmark"><time class="published dt-published" datetime="2014-08-17T05:30:55Z" title="2014-08-17 05:30">2014-08-17 05:30</time></a></p>
@@ -631,7 +640,7 @@ team.</p>
     </div>
     </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/2014/08/python-teaching-suggestions.html" class="u-url">Some Suggestions for Teaching Python</a></h1>
         <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 Nick Coghlan
             </span></p>
             <p class="dateline"><a href="posts/2014/08/python-teaching-suggestions.html" rel="bookmark"><time class="published dt-published" datetime="2014-08-08T12:55:26Z" title="2014-08-08 12:55">2014-08-08 12:55</time></a></p>
@@ -651,26 +660,26 @@ presentation from one of UQ's tutors at PyCon Australia 2014.</p>
 of teaching programming, a few seemed like things that could be avoided.</p>
 <h2>Getting floating point results from integer division</h2>
 <p>In Python 2, integer division copies C in truncating the answer by default:</p>
-<pre class="code literal-block">    <span class="nv">$ </span>python -c <span class="s2">"print(3/4)"</span>
-    0
+<pre class="code literal-block"><span></span>    $ python -c <span class="s2">"print(3/4)"</span>
+    <span class="m">0</span>
 </pre>
 
 
 <p>Promoting to floating point requires type coercion, a command line flag
 or a future import:</p>
-<pre class="code literal-block">    <span class="nv">$ </span>python -c <span class="s2">"print(float(3)/4)"</span>
-    0.75
-    <span class="nv">$ </span>python -Qnew -c <span class="s2">"print(3/4)"</span>
-    0.75
-    <span class="nv">$ </span>python -c <span class="s2">"from __future__ import division; print(3/4)"</span>
-    0.75
+<pre class="code literal-block"><span></span>    $ python -c <span class="s2">"print(float(3)/4)"</span>
+    <span class="m">0</span>.75
+    $ python -Qnew -c <span class="s2">"print(3/4)"</span>
+    <span class="m">0</span>.75
+    $ python -c <span class="s2">"from __future__ import division; print(3/4)"</span>
+    <span class="m">0</span>.75
 </pre>
 
 
 <p>Python 3 just does the right thing by default, so one way to avoid the
 problem entirely is to teach Python 3 instead of Python 2:</p>
-<pre class="code literal-block">    <span class="nv">$ </span>python3 -c <span class="s2">"print(3/4)"</span>
-    0.75
+<pre class="code literal-block"><span></span>    $ python3 -c <span class="s2">"print(3/4)"</span>
+    <span class="m">0</span>.75
 </pre>
 
 
@@ -684,18 +693,18 @@ of years earlier than that, while Python 2.5 was still in development).</p>
 and forth feasible is to limit myself to the common print syntax that works
 the same in both versions: passing a single argument surrounded by
 parentheses.</p>
-<pre class="code literal-block"><span class="nv">$ </span>python -c <span class="s1">'print("Hello world!")'</span>
+<pre class="code literal-block"><span></span>$ python -c <span class="s1">'print("Hello world!")'</span>
 Hello world!
-<span class="nv">$ </span>python3 -c <span class="s1">'print("Hello world!")'</span>
+$ python3 -c <span class="s1">'print("Hello world!")'</span>
 Hello world!
 </pre>
 
 
 <p>If I need to pass multiple arguments, I'll use string formatting, rather
 than the implicit concatenation feature.</p>
-<pre class="code literal-block"><span class="nv">$ </span>python -c <span class="s1">'print("{} {}{}".format("Hello", "world", "!"))'</span>
+<pre class="code literal-block"><span></span>$ python -c <span class="s1">'print("{} {}{}".format("Hello", "world", "!"))'</span>
 Hello world!
-<span class="nv">$ </span>python3 -c <span class="s1">'print("{} {}{}".format("Hello", "world", "!"))'</span>
+$ python3 -c <span class="s1">'print("{} {}{}".format("Hello", "world", "!"))'</span>
 Hello world!
 </pre>
 
@@ -711,7 +720,7 @@ version independent.</p>
 was the challenge of teaching students the difference between printing and
 returning values. The problem is the "Print" part of the Read-Eval-Print-Loop
 provided by Python's interactive interpreter:</p>
-<pre class="code literal-block"><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">print_arg</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<pre class="code literal-block"><span></span><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">print_arg</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
 <span class="o">...</span>     <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="o">...</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">return_arg</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
@@ -728,10 +737,10 @@ provided by Python's interactive interpreter:</p>
 for types like numbers where the results of <code>str</code> and <code>repr</code> are the same.
 Even when they're different, those differences may not be obvious to a
 student:</p>
-<pre class="code literal-block"><span class="o">&gt;&gt;&gt;</span> <span class="n">print_arg</span><span class="p">(</span><span class="s">"Hello world"</span><span class="p">)</span>
+<pre class="code literal-block"><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">print_arg</span><span class="p">(</span><span class="s2">"Hello world"</span><span class="p">)</span>
 <span class="n">Hello</span> <span class="n">world</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">return_arg</span><span class="p">(</span><span class="s">"Hello world"</span><span class="p">)</span>
-<span class="s">'Hello world'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">return_arg</span><span class="p">(</span><span class="s2">"Hello world"</span><span class="p">)</span>
+<span class="s1">'Hello world'</span>
 </pre>
 
 
@@ -740,9 +749,9 @@ worth trying to me is to teach students how to replace <code>sys.displayhook</co
 particular, I suggest demonstrating the following change, and seeing if it
 helps explain the difference between printing output for display to the user
 and returning values for further processing:</p>
-<pre class="code literal-block"><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">new_displayhook</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+<pre class="code literal-block"><span></span><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">new_displayhook</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
 <span class="o">...</span>     <span class="k">if</span> <span class="n">obj</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-<span class="o">...</span>         <span class="k">print</span><span class="p">(</span><span class="s">"-&gt; {!r}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
+<span class="o">...</span>         <span class="k">print</span><span class="p">(</span><span class="s2">"-&gt; {!r}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
 <span class="o">...</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">sys</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">sys</span><span class="o">.</span><span class="n">displayhook</span> <span class="o">=</span> <span class="n">new_displayhook</span>
@@ -763,7 +772,7 @@ including the IPython Notebook, has a couple of interesting differences in
 behaviour that are relevant to the above comments.</p>
 <p>Firstly, it <em>does</em> display return values and printed values differently,
 prefacing <em>results</em> with an output reference number:</p>
-<pre class="code literal-block"><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="k">print</span> <span class="mi">10</span>
+<pre class="code literal-block"><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="k">print</span> <span class="mi">10</span>
 <span class="mi">10</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="mi">10</span>
@@ -774,9 +783,9 @@ prefacing <em>results</em> with an output reference number:</p>
 <p>Secondly, it has an optional "autocall" feature that allows a user to tell
 IPython to automatically add the missing parentheses to a function call if
 the user leaves them out:</p>
-<pre class="code literal-block"><span class="nv">$ </span>ipython3 --autocall<span class="o">=</span><span class="m">1</span> -c <span class="s2">"print 10"</span>
--&gt; print<span class="o">(</span>10<span class="o">)</span>
-10
+<pre class="code literal-block"><span></span>$ ipython3 --autocall<span class="o">=</span><span class="m">1</span> -c <span class="s2">"print 10"</span>
+-&gt; print<span class="o">(</span><span class="m">10</span><span class="o">)</span>
+<span class="m">10</span>
 </pre>
 
 
@@ -793,7 +802,7 @@ Python 3.</p>
     </div>
     </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/2014/03/on-wielding-power.html" class="u-url">On Wielding Power</a></h1>
         <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 Nick Coghlan
             </span></p>
             <p class="dateline"><a href="posts/2014/03/on-wielding-power.html" rel="bookmark"><time class="published dt-published" datetime="2014-03-31T22:00:00Z" title="2014-03-31 22:00">2014-03-31 22:00</time></a></p>
@@ -991,7 +1000,7 @@ of itself to be an unacceptable breach of <em>their</em> trust.</p>
     </div>
     </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/2013/03/change-future-one-small-slice-of-pycon.html" class="u-url">Change the Future - one small slice of PyCon US 2013</a></h1>
         <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 Nick Coghlan
             </span></p>
             <p class="dateline"><a href="posts/2013/03/change-future-one-small-slice-of-pycon.html" rel="bookmark"><time class="published dt-published" datetime="2013-03-22T01:38:00Z" title="2013-03-22 01:38">2013-03-22 01:38</time></a></p>
@@ -1007,7 +1016,7 @@ of itself to be an unacceptable breach of <em>their</em> trust.</p>
     </div>
     </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/2013/03/python-language-summit-pycon-us-2013.html" class="u-url">Python Language Summit - PyCon US 2013</a></h1>
         <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 Nick Coghlan
             </span></p>
             <p class="dateline"><a href="posts/2013/03/python-language-summit-pycon-us-2013.html" rel="bookmark"><time class="published dt-published" datetime="2013-03-14T14:28:00Z" title="2013-03-14 14:28">2013-03-14 14:28</time></a></p>
@@ -1023,7 +1032,7 @@ of itself to be an unacceptable breach of <em>their</em> trust.</p>
     </div>
     </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/2013/02/a-sliding-scale-of-freedom.html" class="u-url">A Sliding Scale of Freedom</a></h1>
         <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 Nick Coghlan
             </span></p>
             <p class="dateline"><a href="posts/2013/02/a-sliding-scale-of-freedom.html" rel="bookmark"><time class="published dt-published" datetime="2013-02-26T14:45:00Z" title="2013-02-26 14:45">2013-02-26 14:45</time></a></p>
@@ -1041,7 +1050,7 @@ of itself to be an unacceptable breach of <em>their</em> trust.</p>
     </div>
     </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/2012/11/pycon-india-2012.html" class="u-url">PyCon India 2012</a></h1>
         <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 Nick Coghlan
             </span></p>
             <p class="dateline"><a href="posts/2012/11/pycon-india-2012.html" rel="bookmark"><time class="published dt-published" datetime="2012-11-21T06:34:00Z" title="2012-11-21 06:34">2012-11-21 06:34</time></a></p>
@@ -1057,7 +1066,7 @@ of itself to be an unacceptable breach of <em>their</em> trust.</p>
     </div>
     </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/2012/10/pythons-future-global-perspective.html" class="u-url">Python's Future: A Global Perspective</a></h1>
         <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 Nick Coghlan
             </span></p>
             <p class="dateline"><a href="posts/2012/10/pythons-future-global-perspective.html" rel="bookmark"><time class="published dt-published" datetime="2012-10-01T17:58:00Z" title="2012-10-01 17:58">2012-10-01 17:58</time></a></p>
@@ -1083,20 +1092,20 @@ of itself to be an unacceptable breach of <em>their</em> trust.</p>
             <li class="next">
                 <a href="index-6.html" rel="next">Older posts</a>
             </li>
-        </ul></nav><script>var disqus_shortname="boredomandlaziness";(function(){var a=document.createElement("script");a.async=true;a.src="//"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+        </ul></nav><script>var disqus_shortname="boredomandlaziness";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
 </div>
         <!--End of body content-->
 
         <footer id="footer">
-            Contents © 2017 <a href="mailto:ncoghlan@gmail.com">Nick Coghlan</a> - <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, republish as you wish. - Powered by <a href="http://nikola.ralsina.com.ar">Nikola</a>
+            Contents © 2018 <a href="mailto:ncoghlan@gmail.com">Nick Coghlan</a> - <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, republish as you wish. - Powered by <a href="http://nikola.ralsina.com.ar">Nikola</a>
             
         </footer>
 </div>
 </div>
 
 
-            <script src="assets/js/all-nocdn.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
-    moment.locale("");
+            <script src="assets/js/jquery.min.js"></script><script src="assets/js/bootstrap.min.js"></script><script src="assets/js/moment-with-locales.min.js"></script><script src="assets/js/fancydates.js"></script><script src="assets/js/jquery.colorbox-min.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    moment.locale("en");
     fancydates(0, "YYYY-MM-DD HH:mm");
     </script><!-- end fancy dates -->
 </body>
