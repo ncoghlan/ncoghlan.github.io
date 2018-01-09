@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Curious Efficiency</title><link>https://www.curiousefficiency.org</link><description>Efficiency (a virtue) is the child of laziness and greed (both vices), while
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0"><channel><title>Curious Efficiency</title><link>https://www.curiousefficiency.org</link><description>Efficiency (a virtue) is the child of laziness and greed (both vices), while
 much of our economic activity is devoted to preventing boredom in the idle
 time created by increases in efficiency. To be human is to be a strange
 creature indeed :)
-</description><atom:link href="https://www.curiousefficiency.org/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Tue, 02 Jan 2018 07:47:28 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Considering Python's Target Audience</title><link>https://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;div class="contents topic" id="who-is-python-being-designed-for"&gt;
+</description><atom:link type="application/rss+xml" rel="self" href="https://www.curiousefficiency.org/rss.xml"></atom:link><language>en</language><lastBuildDate>Tue, 09 Jan 2018 06:09:30 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Considering Python's Target Audience</title><link>https://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;div class="contents topic" id="who-is-python-being-designed-for"&gt;
 &lt;p class="topic-title first"&gt;Who is Python being designed for?&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#use-cases-for-python-s-reference-interpreter" id="id1"&gt;Use cases for Python's reference interpreter&lt;/a&gt;&lt;/li&gt;
@@ -1868,7 +1868,7 @@ doing anything until you start running the event loop.&lt;/p&gt;&lt;/div&gt;</de
 &lt;p&gt;In my case, I just wanted to read the music files, so it turns out that &lt;code&gt;cryptsetup&lt;/code&gt; was all I needed, but I didn't figure that out until after I'd already installed &lt;code&gt;tcplay&lt;/code&gt; as well.&lt;/p&gt;
 &lt;p&gt;For both &lt;code&gt;cryptsetup&lt;/code&gt; and &lt;code&gt;tcplay&lt;/code&gt;, one of the things you need to set up in order to access a TrueCrypt encrypted &lt;em&gt;file&lt;/em&gt; (as opposed to a fully encrypted volume) is a loopback device - these let you map a filesystem block device back to a file living on another filesystem. The examples in the &lt;code&gt;tcplay&lt;/code&gt; manual page (&lt;code&gt;man tcplay&lt;/code&gt;) indicated the command I needed to set that up was &lt;code&gt;losetup&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;However, the &lt;code&gt;losetup&lt;/code&gt; instructions gave me trouble, as they appeared to be telling me I didn't have any loopback devices:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;[ncoghlan@thechalk ~]$ losetup -f
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;[ncoghlan@thechalk ~]$ losetup -f &amp;lt;path to encrypted file&amp;gt;
 losetup: cannot find an unused loop device: No such file or directory
 &lt;/pre&gt;
 
@@ -1877,7 +1877,7 @@ losetup: cannot find an unused loop device: No such file or directory
 &lt;p&gt;So I scanned further down through the list of search results, with &lt;a href="https://bugzilla.redhat.com/show_bug.cgi?id=1019440"&gt;this Fedora bug report&lt;/a&gt; about difficulty accessing TrueCrypt volumes catching my eye. As with the Stack Overflow answer, most of the comments there seemed to be about reverting the effect of &lt;a href="https://bugzilla.redhat.com/show_bug.cgi?id=896160"&gt;a change to Fedora's default behaviour&lt;/a&gt; a change which meant that Fedora no longer came with any loop devices preconfigured.&lt;/p&gt;
 &lt;p&gt;However, looking more closely at Kay's original request to trim back the list of default devices revealed an interesting statement: "Loop devices can and should be created on-demand, and only when needed, losetup has been updated since Fedora 17 to do that just fine."&lt;/p&gt;
 &lt;p&gt;That didn't match my own experience with the &lt;code&gt;losetup&lt;/code&gt; command, so I wondered what might be going on to explain the discrepancy, which is when it occurred to me that running &lt;code&gt;losetup&lt;/code&gt; with root access might solve the problem. Generally speaking, ordinary users aren't going to have the permissions needed to create new devices, and I'd been running the &lt;code&gt;losetup&lt;/code&gt; command using my normal user permissions rather than running it as &lt;code&gt;root&lt;/code&gt;. That was a fairly straightforward theory to test, and sure enough, that worked:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;[ncoghlan@thechalk ~]$ sudo losetup -f
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;[ncoghlan@thechalk ~]$ sudo losetup -f &amp;lt;path to encrypted file&amp;gt;
 /dev/loop0
 &lt;/pre&gt;
 

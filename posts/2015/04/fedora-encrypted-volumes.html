@@ -109,7 +109,7 @@
 <p>In my case, I just wanted to read the music files, so it turns out that <code>cryptsetup</code> was all I needed, but I didn't figure that out until after I'd already installed <code>tcplay</code> as well.</p>
 <p>For both <code>cryptsetup</code> and <code>tcplay</code>, one of the things you need to set up in order to access a TrueCrypt encrypted <em>file</em> (as opposed to a fully encrypted volume) is a loopback device - these let you map a filesystem block device back to a file living on another filesystem. The examples in the <code>tcplay</code> manual page (<code>man tcplay</code>) indicated the command I needed to set that up was <code>losetup</code>.</p>
 <p>However, the <code>losetup</code> instructions gave me trouble, as they appeared to be telling me I didn't have any loopback devices:</p>
-<pre class="code literal-block"><span></span>[ncoghlan@thechalk ~]$ losetup -f
+<pre class="code literal-block"><span></span>[ncoghlan@thechalk ~]$ losetup -f &lt;path to encrypted file&gt;
 losetup: cannot find an unused loop device: No such file or directory
 </pre>
 
@@ -118,7 +118,7 @@ losetup: cannot find an unused loop device: No such file or directory
 <p>So I scanned further down through the list of search results, with <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1019440">this Fedora bug report</a> about difficulty accessing TrueCrypt volumes catching my eye. As with the Stack Overflow answer, most of the comments there seemed to be about reverting the effect of <a href="https://bugzilla.redhat.com/show_bug.cgi?id=896160">a change to Fedora's default behaviour</a> a change which meant that Fedora no longer came with any loop devices preconfigured.</p>
 <p>However, looking more closely at Kay's original request to trim back the list of default devices revealed an interesting statement: "Loop devices can and should be created on-demand, and only when needed, losetup has been updated since Fedora 17 to do that just fine."</p>
 <p>That didn't match my own experience with the <code>losetup</code> command, so I wondered what might be going on to explain the discrepancy, which is when it occurred to me that running <code>losetup</code> with root access might solve the problem. Generally speaking, ordinary users aren't going to have the permissions needed to create new devices, and I'd been running the <code>losetup</code> command using my normal user permissions rather than running it as <code>root</code>. That was a fairly straightforward theory to test, and sure enough, that worked:</p>
-<pre class="code literal-block"><span></span>[ncoghlan@thechalk ~]$ sudo losetup -f
+<pre class="code literal-block"><span></span>[ncoghlan@thechalk ~]$ sudo losetup -f &lt;path to encrypted file&gt;
 /dev/loop0
 </pre>
 
