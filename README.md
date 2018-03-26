@@ -1,4 +1,4 @@
 ncoghlan.github.io
 ==================
 
-Github pages for www.curiousefficiency.org
+Github pages for [Curious Efficiency](https://curiousefficiency.org)
