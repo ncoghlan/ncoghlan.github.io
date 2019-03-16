@@ -3,7 +3,7 @@
 much of our economic activity is devoted to preventing boredom in the idle
 time created by increases in efficiency. To be human is to be a strange
 creature indeed :)
-</description><atom:link href="https://www.curiousefficiency.org/rss.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Sat, 16 Mar 2019 15:22:51 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>What does "x = a + b" mean?</title><link>https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;div class="contents topic" id="making-sense-of-x-a-b"&gt;
+</description><atom:link href="https://www.curiousefficiency.org/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sat, 16 Mar 2019 15:38:32 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>What does "x = a + b" mean?</title><link>https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;div class="contents topic" id="making-sense-of-x-a-b"&gt;
 &lt;p class="topic-title first"&gt;Making sense of "x = a + b"&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#shorthand-notations-and-shared-context" id="id3"&gt;Shorthand notations and shared context&lt;/a&gt;&lt;/li&gt;
