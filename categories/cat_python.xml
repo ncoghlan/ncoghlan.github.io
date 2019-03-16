@@ -1,5 +1,309 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0"><channel><title>Curious Efficiency (Posts about python)</title><link>https://www.curiousefficiency.org</link><description></description><atom:link rel="self" href="https://www.curiousefficiency.org/categories/cat_python.xml" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sat, 16 Mar 2019 04:03:30 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Considering Python's Target Audience</title><link>https://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;div class="contents topic" id="who-is-python-being-designed-for"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0"><channel><title>Curious Efficiency (Posts about python)</title><link>https://www.curiousefficiency.org</link><description></description><atom:link href="https://www.curiousefficiency.org/categories/cat_python.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Sat, 16 Mar 2019 15:22:52 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>What does "x = a + b" mean?</title><link>https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;div class="contents topic" id="making-sense-of-x-a-b"&gt;
+&lt;p class="topic-title first"&gt;Making sense of "x = a + b"&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#shorthand-notations-and-shared-context" id="id3"&gt;Shorthand notations and shared context&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#the-original-shared-context-algebra" id="id4"&gt;The original shared context: Algebra&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#the-corresponding-python-context-numbers" id="id5"&gt;The corresponding Python context: Numbers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#another-mathematical-context-matrix-algebra" id="id6"&gt;Another mathematical context: Matrix algebra&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#the-corresponding-python-context-numpy-arrays" id="id7"&gt;The corresponding Python context: NumPy Arrays&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#python-s-string-concatenation-context" id="id8"&gt;Python's string concatenation context&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#python-s-immutable-sequence-concatenation-context" id="id9"&gt;Python's immutable sequence concatenation context&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#python-s-mutable-sequence-concatenation-context" id="id10"&gt;Python's mutable sequence concatenation context&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#a-brief-digression-back-to-mathematics-multisets" id="id11"&gt;A brief digression back to mathematics: Multisets&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#and-back-to-python-once-more-collections-counter" id="id12"&gt;And back to Python once more: &lt;tt class="docutils literal"&gt;collections.Counter&lt;/tt&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#what-does-all-this-have-to-do-with-the-idea-of-dictionary-addition" id="id13"&gt;What does all this have to do with the idea of dictionary addition?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="shorthand-notations-and-shared-context"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#id3"&gt;Shorthand notations and shared context&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Guido van Rossum recently put together an
+&lt;a class="reference external" href="https://neopythonic.blogspot.com/2019/03/why-operators-are-useful.html"&gt;excellent post&lt;/a&gt;
+talking about the value of infix binary operators in making certain kinds of
+operations easier to reason about correctly.&lt;/p&gt;
+&lt;p&gt;The context inspiring that post is a python-ideas discussion regarding the
+possibility of adding a shorthand spelling (&lt;tt class="docutils literal"&gt;x = a + b&lt;/tt&gt;) to Python for the
+operation:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+x = a.copy()
+x.update(b)
+&lt;/pre&gt;
+&lt;p&gt;The PEP for that proposal is still in development, so I'm not going to link to
+it directly &lt;a class="footnote-reference" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#id2" id="id1"&gt;[1]&lt;/a&gt;, but the paragraph above gives the gist of the idea. Guido's
+article came in response to the assertion that infix operators don't improve
+readability, when we have plenty of empirical evidence to show that they do.&lt;/p&gt;
+&lt;p&gt;Where &lt;em&gt;this&lt;/em&gt; article comes from is a key point that Guido's article mentions,
+but doesn't emphasise: that those readability benefits rely heavily on
+implicitly shared context between the author of an expression and the readers
+of that expression.&lt;/p&gt;
+&lt;p&gt;Without a previous agreement on the semantics, the only possible general answer
+to the question "What does &lt;tt class="docutils literal"&gt;x = a + b&lt;/tt&gt; mean?" is "I need more information to
+answer that".&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-original-shared-context-algebra"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#id4"&gt;The original shared context: Algebra&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;If the additional information supplied is "This is an algebraic expression",
+then &lt;tt class="docutils literal"&gt;x = a + b&lt;/tt&gt; is expressing a constraint on the permitted values of &lt;tt class="docutils literal"&gt;x&lt;/tt&gt;,
+&lt;tt class="docutils literal"&gt;a&lt;/tt&gt;, and &lt;tt class="docutils literal"&gt;b&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;Specifying &lt;tt class="docutils literal"&gt;x = a - b&lt;/tt&gt; as an additional constraint would then further allow
+the reader to infer that &lt;tt class="docutils literal"&gt;x = a&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;b = 0&lt;/tt&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-corresponding-python-context-numbers"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#id5"&gt;The corresponding Python context: Numbers&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The use case for &lt;tt class="docutils literal"&gt;+&lt;/tt&gt; in Python that most closely corresponds with algebra is
+using it with numbers - the key differences lie in the meaning of &lt;tt class="docutils literal"&gt;=&lt;/tt&gt;, rather
+than the meaning of &lt;tt class="docutils literal"&gt;+&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;So if the additional information supplied is "This is a Python assignment
+statement; &lt;tt class="docutils literal"&gt;a&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;b&lt;/tt&gt; are both well-behaved finite numbers", then the
+reader will be able to infer that &lt;tt class="docutils literal"&gt;x&lt;/tt&gt; will be the sum of the two numbers.&lt;/p&gt;
+&lt;p&gt;Inferring the exact numeric type of &lt;tt class="docutils literal"&gt;x&lt;/tt&gt; would require yet more information
+about the types of &lt;tt class="docutils literal"&gt;a&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;b&lt;/tt&gt;, as types implementing the numeric &lt;tt class="docutils literal"&gt;+&lt;/tt&gt;
+operator are expected to participate in a type coercion protocol that gives
+both operands a chance to carry out the operation, and only raises &lt;tt class="docutils literal"&gt;TypeError&lt;/tt&gt;
+if neither type understands the other.&lt;/p&gt;
+&lt;p&gt;The original algebraic meaning then gets expressed in Python as
+&lt;tt class="docutils literal"&gt;assert x == a + b&lt;/tt&gt;, and successful execution of the assignment statement
+ensures that assertion will pass.&lt;/p&gt;
+&lt;p&gt;In this context, types implementing the &lt;tt class="docutils literal"&gt;+&lt;/tt&gt; operator are expected to provide
+all the properties that would be expected of the corresponding mathematical
+concepts (&lt;tt class="docutils literal"&gt;a + b == b + a&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;a + (b + c)  == (a + b) + c&lt;/tt&gt;, etc), subject
+to the limitations of performing calculations on computers that actually exist.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="another-mathematical-context-matrix-algebra"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#id6"&gt;Another mathematical context: Matrix algebra&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;If the given expression used uppercase letters, as in &lt;tt class="docutils literal"&gt;X = A + B&lt;/tt&gt;, then the
+additional information supplied may instead be "This is a matrix algebra
+expression". (It's a notational convention in mathematics that matrices be
+assigned uppercase letters, while lowercase letters indicate scalar values)&lt;/p&gt;
+&lt;p&gt;For matrices, addition and subtraction are defined as only being valid between
+matrices of the same size and shape, so if &lt;tt class="docutils literal"&gt;X = A - B&lt;/tt&gt; were to be supplied as
+an additional constraint, then the implications would be:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;X&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;A&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;B&lt;/tt&gt; are all the same size and shape&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;B&lt;/tt&gt; consists entirely of zeroes&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;X = A&lt;/tt&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-corresponding-python-context-numpy-arrays"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#id7"&gt;The corresponding Python context: NumPy Arrays&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;numpy.ndarray&lt;/tt&gt; type, and other types implementing the same API, bring the
+semantics of matrix algebra to Python programming, similar to the way that the
+builtin numeric types bring the semantics of scalar algebra.&lt;/p&gt;
+&lt;p&gt;This means that if the additional information supplied is "This is a Python
+assignment statement; &lt;tt class="docutils literal"&gt;A&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;B&lt;/tt&gt; are both matrices of the same size and
+shape containing well-behaved finite numbers", then the reader will be able to
+infer that &lt;tt class="docutils literal"&gt;X&lt;/tt&gt; will be a new matrix of the same shape and size as matrices
+&lt;tt class="docutils literal"&gt;A&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;B&lt;/tt&gt;, with each element in &lt;tt class="docutils literal"&gt;X&lt;/tt&gt; being the sum of the corresponding
+elements in &lt;tt class="docutils literal"&gt;A&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;B&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;As with scalar algebra, inferring the exact numeric type of the elements of
+&lt;tt class="docutils literal"&gt;X&lt;/tt&gt; would require more information about the types of the elements in &lt;tt class="docutils literal"&gt;A&lt;/tt&gt;
+and &lt;tt class="docutils literal"&gt;B&lt;/tt&gt;, the original algebraic meaning gets expressed in Python as
+&lt;tt class="docutils literal"&gt;assert X == A + B&lt;/tt&gt;, successful execution of the assignment statement
+ensures that assertion will pass, and types implementing &lt;tt class="docutils literal"&gt;+&lt;/tt&gt; in this context
+are expected to provide the properties that would be expected of a matrix in
+mathematics.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="python-s-string-concatenation-context"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#id8"&gt;Python's string concatenation context&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Mathematics doesn't provide a convenient infix notation for concatenating two
+strings together (aside from writing their names directly next to each other),
+so programming language designers are forced to choose one.&lt;/p&gt;
+&lt;p&gt;While this does vary across languages, the most common choice is the one that
+Python uses: the &lt;tt class="docutils literal"&gt;+&lt;/tt&gt; operator.&lt;/p&gt;
+&lt;p&gt;This is formally a distinct operation from numeric addition, with different
+semantic expectations, and CPython's C API somewhat coincidentally ended up
+reflecting that distinction by offering two different ways of implementing
+&lt;tt class="docutils literal"&gt;+&lt;/tt&gt; on a type: the &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;tp_number-&amp;gt;nb_add&lt;/span&gt;&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;tp_sequence-&amp;gt;sq_concat&lt;/span&gt;&lt;/tt&gt; slots.
+(This distinction is absent at the Python level: only &lt;tt class="docutils literal"&gt;__add__&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;__radd__&lt;/tt&gt;
+and &lt;tt class="docutils literal"&gt;__iadd__&lt;/tt&gt; are exposed, and they always populate the relevant
+&lt;tt class="docutils literal"&gt;tp_number&lt;/tt&gt; slots in CPython)&lt;/p&gt;
+&lt;p&gt;The key semantic difference between algebraic addition and string concatenation is
+that in algebraic addition, the order of the operands doesn't matter
+(&lt;tt class="docutils literal"&gt;a + b == b + a&lt;/tt&gt;), while in the string concatenation case, the order of the
+operands determines which items appear first in the result (e.g.
+&lt;tt class="docutils literal"&gt;"Hello" + "World" == "HelloWorld"&lt;/tt&gt; vs &lt;tt class="docutils literal"&gt;"World" + "Hello" == "WorldHello"&lt;/tt&gt;).
+This means that &lt;tt class="docutils literal"&gt;a + b == b + a&lt;/tt&gt; being true when concatenating strings
+indicates that either one or both strings are empty, or else the two strings are
+identical.&lt;/p&gt;
+&lt;p&gt;Another less obvious semantic difference is that strings don't participate in
+the type coercion protocol that is defined for numbers: if the right hand
+operand isn't a string (or string subclass) instance, they'll raise
+&lt;tt class="docutils literal"&gt;TypeError&lt;/tt&gt; immediately, rather than letting the other operand attempt the
+operation.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="python-s-immutable-sequence-concatenation-context"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#id9"&gt;Python's immutable sequence concatenation context&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Python goes further than merely allowing &lt;tt class="docutils literal"&gt;+&lt;/tt&gt; to be used for string
+concatenation: it allows it to be used for arbitrary sequence concatenation.&lt;/p&gt;
+&lt;p&gt;For immutable container types like &lt;tt class="docutils literal"&gt;tuple&lt;/tt&gt;, this closely parallels the way
+that string concatenation works: a new immutable instance of the same type is
+created containing references to the same items referenced by the original
+operands:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt;&amp;gt;&amp;gt; a = 1, 2, 3
+&amp;gt;&amp;gt;&amp;gt; b = 4, 5, 6
+&amp;gt;&amp;gt;&amp;gt; x = a + b
+&amp;gt;&amp;gt;&amp;gt; a
+(1, 2, 3)
+&amp;gt;&amp;gt;&amp;gt; b
+(4, 5, 6)
+&amp;gt;&amp;gt;&amp;gt; x
+(1, 2, 3, 4, 5, 6)
+&lt;/pre&gt;
+&lt;p&gt;As for strings, immutable sequences will usually only interact with other
+instances of the same type (or subclasses), even when the &lt;tt class="docutils literal"&gt;x += b&lt;/tt&gt; notation
+is used as an alternative to &lt;tt class="docutils literal"&gt;x = x + b&lt;/tt&gt;. For example:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt;&amp;gt;&amp;gt; x = 1, 2, 3
+&amp;gt;&amp;gt;&amp;gt; x += [4, 5, 6]
+Traceback (most recent call last):
+  File "&amp;lt;stdin&amp;gt;", line 1, in &amp;lt;module&amp;gt;
+TypeError: can only concatenate tuple (not "list") to tuple
+&amp;gt;&amp;gt;&amp;gt; x += 4, 5, 6
+&amp;gt;&amp;gt;&amp;gt; x
+(1, 2, 3, 4, 5, 6)
+&lt;/pre&gt;
+&lt;p&gt;In addition to &lt;tt class="docutils literal"&gt;str&lt;/tt&gt;, the &lt;tt class="docutils literal"&gt;tuple&lt;/tt&gt;, and &lt;tt class="docutils literal"&gt;bytes&lt;/tt&gt; types implement these
+concatenation semantics. &lt;tt class="docutils literal"&gt;range&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;memoryview&lt;/tt&gt;, while otherwise
+implementing the &lt;tt class="docutils literal"&gt;Sequence&lt;/tt&gt; API, don't support concatenation operations.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="python-s-mutable-sequence-concatenation-context"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#id10"&gt;Python's mutable sequence concatenation context&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Mutable sequence types add yet another variation to the possible meanings of
+&lt;tt class="docutils literal"&gt;+&lt;/tt&gt; in Python. For the specific example of &lt;tt class="docutils literal"&gt;x = a + b&lt;/tt&gt;, they're very similar
+to immutable sequences, creating a fresh instance that references the same items
+as the original operands:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt;&amp;gt;&amp;gt; a = [1, 2, 3]
+&amp;gt;&amp;gt;&amp;gt; b = [4, 5, 6]
+&amp;gt;&amp;gt;&amp;gt; x = a + b
+&amp;gt;&amp;gt;&amp;gt; a
+[1, 2, 3]
+&amp;gt;&amp;gt;&amp;gt; b
+[4, 5, 6]
+&amp;gt;&amp;gt;&amp;gt; x
+[1, 2, 3, 4, 5, 6]
+&lt;/pre&gt;
+&lt;p&gt;Where they diverge is that the &lt;tt class="docutils literal"&gt;x += b&lt;/tt&gt; operation will modify the target
+sequence directly, rather than creating a new container:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt;&amp;gt;&amp;gt; a = [1, 2, 3]
+&amp;gt;&amp;gt;&amp;gt; b = [4, 5, 6]
+&amp;gt;&amp;gt;&amp;gt; x = a; x = x + b
+&amp;gt;&amp;gt;&amp;gt; a
+[1, 2, 3]
+&amp;gt;&amp;gt;&amp;gt; x = a; x += b
+&amp;gt;&amp;gt;&amp;gt; a
+[1, 2, 3, 4, 5, 6]
+&lt;/pre&gt;
+&lt;p&gt;The other difference is that where &lt;tt class="docutils literal"&gt;+&lt;/tt&gt; remains restrictive as to the
+container types it will work with, &lt;tt class="docutils literal"&gt;+=&lt;/tt&gt; is typically generalised to work
+with arbitrary iterables on the right hand side, just like the
+&lt;tt class="docutils literal"&gt;MutableMapping.extend()&lt;/tt&gt; method:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt;&amp;gt;&amp;gt; x = [1, 2, 3]
+&amp;gt;&amp;gt;&amp;gt; x = x + (4, 5, 6)
+Traceback (most recent call last):
+  File "&amp;lt;stdin&amp;gt;", line 1, in &amp;lt;module&amp;gt;
+TypeError: can only concatenate list (not "tuple") to list
+&amp;gt;&amp;gt;&amp;gt; x += (4, 5, 6)
+&amp;gt;&amp;gt;&amp;gt; x
+[1, 2, 3, 4, 5, 6]
+&lt;/pre&gt;
+&lt;p&gt;Amongst the builtins, &lt;tt class="docutils literal"&gt;list&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;bytearray&lt;/tt&gt; implement these semantics
+(although &lt;tt class="docutils literal"&gt;bytearray&lt;/tt&gt; limits even in-place concatenation to &lt;tt class="docutils literal"&gt;bytes&lt;/tt&gt;-like
+types that support &lt;tt class="docutils literal"&gt;memoryview&lt;/tt&gt; style access). Elsewhere in the standard
+library, &lt;tt class="docutils literal"&gt;collections.deque&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;array.array&lt;/tt&gt; are other mutable sequence
+types that behave this way.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="a-brief-digression-back-to-mathematics-multisets"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#id11"&gt;A brief digression back to mathematics: Multisets&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Multisets are a concept in mathematics that allow for values to occur in a set
+more than once, with the multiset then being the mapping from the values
+themselves to the count of how many times that value occurs in the multiset
+(with a count of zero or less being the same as the value being omitted from
+the set entirely).&lt;/p&gt;
+&lt;p&gt;While they don't natively use the &lt;tt class="docutils literal"&gt;x = a + b&lt;/tt&gt; notation the way that scalar
+algebra and matrix algebra do, the key point regarding multisets that's relevant
+to this article is the fact that they do have a "Sum" operation defined, and the
+semantics of that operation are very similar to those used for matrix addition:
+element wise summation for each item in the multiset. If a particular value is
+only present in one of the multisets, that's handled the same way as if it were
+present with a count of zero.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="and-back-to-python-once-more-collections-counter"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#id12"&gt;And back to Python once more: &lt;tt class="docutils literal"&gt;collections.Counter&lt;/tt&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Since Python 2.7 and 3.1, Python has included an implementation of the
+mathematical multiset concept in the form of the &lt;tt class="docutils literal"&gt;collections.Counter&lt;/tt&gt; class.
+It uses &lt;tt class="docutils literal"&gt;x = a + b&lt;/tt&gt; to denote multiset summation:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt;&amp;gt;&amp;gt; a = collections.Counter(maths=2, python=2)
+&amp;gt;&amp;gt;&amp;gt; b = collections.Counter(python=4, maths=1)
+&amp;gt;&amp;gt;&amp;gt; x = a + b
+&amp;gt;&amp;gt;&amp;gt; x
+Counter({'python': 6, 'maths': 3})
+&lt;/pre&gt;
+&lt;p&gt;As with sequences, counter instances define their own interoperability domain,
+so they won't accept arbitrary mappings for a binary &lt;tt class="docutils literal"&gt;+&lt;/tt&gt; operation:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt;&amp;gt;&amp;gt; x = a + dict(python=4, maths=1)
+Traceback (most recent call last):
+  File "&amp;lt;stdin&amp;gt;", line 1, in &amp;lt;module&amp;gt;
+TypeError: unsupported operand type(s) for +: 'Counter' and 'dict'
+&lt;/pre&gt;
+&lt;p&gt;But they're more permissive for in-place operations, accepting arbitrary
+mapping objects:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt;&amp;gt;&amp;gt; x += dict(python=4, maths=1)
+&amp;gt;&amp;gt;&amp;gt; x
+Counter({'python': 10, 'maths': 4})
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-does-all-this-have-to-do-with-the-idea-of-dictionary-addition"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#id13"&gt;What does all this have to do with the idea of dictionary addition?&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Python's dictionaries are quite interesting mathematically, as in mathematical
+terms, they're not actually a container. Instead, they're a function mapping
+between a domain defined by the set of keys, and a range defined by a multiset
+of values. Attempting to define algebraic operations on them is thus a bit like
+attempting to define meaningful algebraic operations on "&lt;tt class="docutils literal"&gt;def &lt;span class="pre"&gt;f():&lt;/span&gt; pass&lt;/tt&gt;".&lt;/p&gt;
+&lt;p&gt;This means that unlike the addition of &lt;tt class="docutils literal"&gt;collections.Counter&lt;/tt&gt; (which was
+grounded in the semantics of mathematical multisets and borrowed its Python
+notation from element-wise addition on matrices), or the addition of the matrix
+multiplication operator (which was grounded in the semantics of matrix algebra,
+and only needed a text-editor-friendly symbol assigned, similar to using &lt;tt class="docutils literal"&gt;*&lt;/tt&gt;
+instead of &lt;tt class="docutils literal"&gt;×&lt;/tt&gt; for scalar multiplication and &lt;tt class="docutils literal"&gt;/&lt;/tt&gt; instead of &lt;tt class="docutils literal"&gt;÷&lt;/tt&gt; for
+division), any addition of in-fix operator support for merging dictionaries will
+be blazing completely new conceptual trails not previously found in either
+mathematics or in other mainstream programming languages.&lt;/p&gt;
+&lt;p&gt;That seems to me like a big leap to take for something where the in-place form
+already has a perfectly acceptable spelling (&lt;tt class="docutils literal"&gt;d1.update(d2)&lt;/tt&gt;), and a more
+expression-friendly variant could be provided as a new dictionary class method:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+@classmethod
+def from_merge(cls, *inputs):
+    self = cls()
+    for input in inputs:
+        self.update(input)
+    return self
+&lt;/pre&gt;
+&lt;p&gt;With that defined, then the exact equivalent of the proposed &lt;tt class="docutils literal"&gt;d1 + d2&lt;/tt&gt; would
+be &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;type(d1).from_merge(d1,&lt;/span&gt; d2)&lt;/tt&gt;, and in practice, you would often give the
+desired result type explicitly rather than inferring it from the inputs
+(e.g. &lt;tt class="docutils literal"&gt;dict.from_merge(d1, d2)&lt;/tt&gt;).&lt;/p&gt;
+&lt;p&gt;However, the PEP is still in the very first stage of the discussion and review
+process, so it's entirely possible that by the time it reaches &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;python-dev&lt;/span&gt;&lt;/tt&gt;
+it will be making a more modest proposal like a new &lt;tt class="docutils literal"&gt;dict&lt;/tt&gt; class method,
+rather than the current proposal of operator syntax support.&lt;/p&gt;
+&lt;hr class="docutils"&gt;
+&lt;table class="docutils footnote" frame="void" id="id2" rules="none"&gt;
+&lt;colgroup&gt;&lt;col class="label"&gt;&lt;col&gt;&lt;/colgroup&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td class="label"&gt;&lt;a class="fn-backref" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#id1"&gt;[1]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;The whole point of the python-ideas phase of discussion is to get a PEP
+ready for a more critical review by the core development team, so it isn't
+fair to the PEP author to invite wider review before they're ready for it.&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>python</category><guid>https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html</guid><pubDate>Sat, 16 Mar 2019 06:06:21 GMT</pubDate></item><item><title>Considering Python's Target Audience</title><link>https://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;div class="contents topic" id="who-is-python-being-designed-for"&gt;
 &lt;p class="topic-title first"&gt;Who is Python being designed for?&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#use-cases-for-python-s-reference-interpreter" id="id1"&gt;Use cases for Python's reference interpreter&lt;/a&gt;&lt;/li&gt;

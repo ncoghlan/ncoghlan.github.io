@@ -3,7 +3,311 @@
 much of our economic activity is devoted to preventing boredom in the idle
 time created by increases in efficiency. To be human is to be a strange
 creature indeed :)
-</description><atom:link rel="self" href="https://www.curiousefficiency.org/rss.xml" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sat, 16 Mar 2019 04:03:30 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Considering Python's Target Audience</title><link>https://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;div class="contents topic" id="who-is-python-being-designed-for"&gt;
+</description><atom:link href="https://www.curiousefficiency.org/rss.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Sat, 16 Mar 2019 15:22:51 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>What does "x = a + b" mean?</title><link>https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;div class="contents topic" id="making-sense-of-x-a-b"&gt;
+&lt;p class="topic-title first"&gt;Making sense of "x = a + b"&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#shorthand-notations-and-shared-context" id="id3"&gt;Shorthand notations and shared context&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#the-original-shared-context-algebra" id="id4"&gt;The original shared context: Algebra&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#the-corresponding-python-context-numbers" id="id5"&gt;The corresponding Python context: Numbers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#another-mathematical-context-matrix-algebra" id="id6"&gt;Another mathematical context: Matrix algebra&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#the-corresponding-python-context-numpy-arrays" id="id7"&gt;The corresponding Python context: NumPy Arrays&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#python-s-string-concatenation-context" id="id8"&gt;Python's string concatenation context&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#python-s-immutable-sequence-concatenation-context" id="id9"&gt;Python's immutable sequence concatenation context&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#python-s-mutable-sequence-concatenation-context" id="id10"&gt;Python's mutable sequence concatenation context&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#a-brief-digression-back-to-mathematics-multisets" id="id11"&gt;A brief digression back to mathematics: Multisets&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#and-back-to-python-once-more-collections-counter" id="id12"&gt;And back to Python once more: &lt;tt class="docutils literal"&gt;collections.Counter&lt;/tt&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#what-does-all-this-have-to-do-with-the-idea-of-dictionary-addition" id="id13"&gt;What does all this have to do with the idea of dictionary addition?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="shorthand-notations-and-shared-context"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#id3"&gt;Shorthand notations and shared context&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Guido van Rossum recently put together an
+&lt;a class="reference external" href="https://neopythonic.blogspot.com/2019/03/why-operators-are-useful.html"&gt;excellent post&lt;/a&gt;
+talking about the value of infix binary operators in making certain kinds of
+operations easier to reason about correctly.&lt;/p&gt;
+&lt;p&gt;The context inspiring that post is a python-ideas discussion regarding the
+possibility of adding a shorthand spelling (&lt;tt class="docutils literal"&gt;x = a + b&lt;/tt&gt;) to Python for the
+operation:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+x = a.copy()
+x.update(b)
+&lt;/pre&gt;
+&lt;p&gt;The PEP for that proposal is still in development, so I'm not going to link to
+it directly &lt;a class="footnote-reference" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#id2" id="id1"&gt;[1]&lt;/a&gt;, but the paragraph above gives the gist of the idea. Guido's
+article came in response to the assertion that infix operators don't improve
+readability, when we have plenty of empirical evidence to show that they do.&lt;/p&gt;
+&lt;p&gt;Where &lt;em&gt;this&lt;/em&gt; article comes from is a key point that Guido's article mentions,
+but doesn't emphasise: that those readability benefits rely heavily on
+implicitly shared context between the author of an expression and the readers
+of that expression.&lt;/p&gt;
+&lt;p&gt;Without a previous agreement on the semantics, the only possible general answer
+to the question "What does &lt;tt class="docutils literal"&gt;x = a + b&lt;/tt&gt; mean?" is "I need more information to
+answer that".&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-original-shared-context-algebra"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#id4"&gt;The original shared context: Algebra&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;If the additional information supplied is "This is an algebraic expression",
+then &lt;tt class="docutils literal"&gt;x = a + b&lt;/tt&gt; is expressing a constraint on the permitted values of &lt;tt class="docutils literal"&gt;x&lt;/tt&gt;,
+&lt;tt class="docutils literal"&gt;a&lt;/tt&gt;, and &lt;tt class="docutils literal"&gt;b&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;Specifying &lt;tt class="docutils literal"&gt;x = a - b&lt;/tt&gt; as an additional constraint would then further allow
+the reader to infer that &lt;tt class="docutils literal"&gt;x = a&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;b = 0&lt;/tt&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-corresponding-python-context-numbers"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#id5"&gt;The corresponding Python context: Numbers&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The use case for &lt;tt class="docutils literal"&gt;+&lt;/tt&gt; in Python that most closely corresponds with algebra is
+using it with numbers - the key differences lie in the meaning of &lt;tt class="docutils literal"&gt;=&lt;/tt&gt;, rather
+than the meaning of &lt;tt class="docutils literal"&gt;+&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;So if the additional information supplied is "This is a Python assignment
+statement; &lt;tt class="docutils literal"&gt;a&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;b&lt;/tt&gt; are both well-behaved finite numbers", then the
+reader will be able to infer that &lt;tt class="docutils literal"&gt;x&lt;/tt&gt; will be the sum of the two numbers.&lt;/p&gt;
+&lt;p&gt;Inferring the exact numeric type of &lt;tt class="docutils literal"&gt;x&lt;/tt&gt; would require yet more information
+about the types of &lt;tt class="docutils literal"&gt;a&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;b&lt;/tt&gt;, as types implementing the numeric &lt;tt class="docutils literal"&gt;+&lt;/tt&gt;
+operator are expected to participate in a type coercion protocol that gives
+both operands a chance to carry out the operation, and only raises &lt;tt class="docutils literal"&gt;TypeError&lt;/tt&gt;
+if neither type understands the other.&lt;/p&gt;
+&lt;p&gt;The original algebraic meaning then gets expressed in Python as
+&lt;tt class="docutils literal"&gt;assert x == a + b&lt;/tt&gt;, and successful execution of the assignment statement
+ensures that assertion will pass.&lt;/p&gt;
+&lt;p&gt;In this context, types implementing the &lt;tt class="docutils literal"&gt;+&lt;/tt&gt; operator are expected to provide
+all the properties that would be expected of the corresponding mathematical
+concepts (&lt;tt class="docutils literal"&gt;a + b == b + a&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;a + (b + c)  == (a + b) + c&lt;/tt&gt;, etc), subject
+to the limitations of performing calculations on computers that actually exist.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="another-mathematical-context-matrix-algebra"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#id6"&gt;Another mathematical context: Matrix algebra&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;If the given expression used uppercase letters, as in &lt;tt class="docutils literal"&gt;X = A + B&lt;/tt&gt;, then the
+additional information supplied may instead be "This is a matrix algebra
+expression". (It's a notational convention in mathematics that matrices be
+assigned uppercase letters, while lowercase letters indicate scalar values)&lt;/p&gt;
+&lt;p&gt;For matrices, addition and subtraction are defined as only being valid between
+matrices of the same size and shape, so if &lt;tt class="docutils literal"&gt;X = A - B&lt;/tt&gt; were to be supplied as
+an additional constraint, then the implications would be:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;X&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;A&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;B&lt;/tt&gt; are all the same size and shape&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;B&lt;/tt&gt; consists entirely of zeroes&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;X = A&lt;/tt&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-corresponding-python-context-numpy-arrays"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#id7"&gt;The corresponding Python context: NumPy Arrays&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;numpy.ndarray&lt;/tt&gt; type, and other types implementing the same API, bring the
+semantics of matrix algebra to Python programming, similar to the way that the
+builtin numeric types bring the semantics of scalar algebra.&lt;/p&gt;
+&lt;p&gt;This means that if the additional information supplied is "This is a Python
+assignment statement; &lt;tt class="docutils literal"&gt;A&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;B&lt;/tt&gt; are both matrices of the same size and
+shape containing well-behaved finite numbers", then the reader will be able to
+infer that &lt;tt class="docutils literal"&gt;X&lt;/tt&gt; will be a new matrix of the same shape and size as matrices
+&lt;tt class="docutils literal"&gt;A&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;B&lt;/tt&gt;, with each element in &lt;tt class="docutils literal"&gt;X&lt;/tt&gt; being the sum of the corresponding
+elements in &lt;tt class="docutils literal"&gt;A&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;B&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;As with scalar algebra, inferring the exact numeric type of the elements of
+&lt;tt class="docutils literal"&gt;X&lt;/tt&gt; would require more information about the types of the elements in &lt;tt class="docutils literal"&gt;A&lt;/tt&gt;
+and &lt;tt class="docutils literal"&gt;B&lt;/tt&gt;, the original algebraic meaning gets expressed in Python as
+&lt;tt class="docutils literal"&gt;assert X == A + B&lt;/tt&gt;, successful execution of the assignment statement
+ensures that assertion will pass, and types implementing &lt;tt class="docutils literal"&gt;+&lt;/tt&gt; in this context
+are expected to provide the properties that would be expected of a matrix in
+mathematics.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="python-s-string-concatenation-context"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#id8"&gt;Python's string concatenation context&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Mathematics doesn't provide a convenient infix notation for concatenating two
+strings together (aside from writing their names directly next to each other),
+so programming language designers are forced to choose one.&lt;/p&gt;
+&lt;p&gt;While this does vary across languages, the most common choice is the one that
+Python uses: the &lt;tt class="docutils literal"&gt;+&lt;/tt&gt; operator.&lt;/p&gt;
+&lt;p&gt;This is formally a distinct operation from numeric addition, with different
+semantic expectations, and CPython's C API somewhat coincidentally ended up
+reflecting that distinction by offering two different ways of implementing
+&lt;tt class="docutils literal"&gt;+&lt;/tt&gt; on a type: the &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;tp_number-&amp;gt;nb_add&lt;/span&gt;&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;tp_sequence-&amp;gt;sq_concat&lt;/span&gt;&lt;/tt&gt; slots.
+(This distinction is absent at the Python level: only &lt;tt class="docutils literal"&gt;__add__&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;__radd__&lt;/tt&gt;
+and &lt;tt class="docutils literal"&gt;__iadd__&lt;/tt&gt; are exposed, and they always populate the relevant
+&lt;tt class="docutils literal"&gt;tp_number&lt;/tt&gt; slots in CPython)&lt;/p&gt;
+&lt;p&gt;The key semantic difference between algebraic addition and string concatenation is
+that in algebraic addition, the order of the operands doesn't matter
+(&lt;tt class="docutils literal"&gt;a + b == b + a&lt;/tt&gt;), while in the string concatenation case, the order of the
+operands determines which items appear first in the result (e.g.
+&lt;tt class="docutils literal"&gt;"Hello" + "World" == "HelloWorld"&lt;/tt&gt; vs &lt;tt class="docutils literal"&gt;"World" + "Hello" == "WorldHello"&lt;/tt&gt;).
+This means that &lt;tt class="docutils literal"&gt;a + b == b + a&lt;/tt&gt; being true when concatenating strings
+indicates that either one or both strings are empty, or else the two strings are
+identical.&lt;/p&gt;
+&lt;p&gt;Another less obvious semantic difference is that strings don't participate in
+the type coercion protocol that is defined for numbers: if the right hand
+operand isn't a string (or string subclass) instance, they'll raise
+&lt;tt class="docutils literal"&gt;TypeError&lt;/tt&gt; immediately, rather than letting the other operand attempt the
+operation.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="python-s-immutable-sequence-concatenation-context"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#id9"&gt;Python's immutable sequence concatenation context&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Python goes further than merely allowing &lt;tt class="docutils literal"&gt;+&lt;/tt&gt; to be used for string
+concatenation: it allows it to be used for arbitrary sequence concatenation.&lt;/p&gt;
+&lt;p&gt;For immutable container types like &lt;tt class="docutils literal"&gt;tuple&lt;/tt&gt;, this closely parallels the way
+that string concatenation works: a new immutable instance of the same type is
+created containing references to the same items referenced by the original
+operands:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt;&amp;gt;&amp;gt; a = 1, 2, 3
+&amp;gt;&amp;gt;&amp;gt; b = 4, 5, 6
+&amp;gt;&amp;gt;&amp;gt; x = a + b
+&amp;gt;&amp;gt;&amp;gt; a
+(1, 2, 3)
+&amp;gt;&amp;gt;&amp;gt; b
+(4, 5, 6)
+&amp;gt;&amp;gt;&amp;gt; x
+(1, 2, 3, 4, 5, 6)
+&lt;/pre&gt;
+&lt;p&gt;As for strings, immutable sequences will usually only interact with other
+instances of the same type (or subclasses), even when the &lt;tt class="docutils literal"&gt;x += b&lt;/tt&gt; notation
+is used as an alternative to &lt;tt class="docutils literal"&gt;x = x + b&lt;/tt&gt;. For example:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt;&amp;gt;&amp;gt; x = 1, 2, 3
+&amp;gt;&amp;gt;&amp;gt; x += [4, 5, 6]
+Traceback (most recent call last):
+  File "&amp;lt;stdin&amp;gt;", line 1, in &amp;lt;module&amp;gt;
+TypeError: can only concatenate tuple (not "list") to tuple
+&amp;gt;&amp;gt;&amp;gt; x += 4, 5, 6
+&amp;gt;&amp;gt;&amp;gt; x
+(1, 2, 3, 4, 5, 6)
+&lt;/pre&gt;
+&lt;p&gt;In addition to &lt;tt class="docutils literal"&gt;str&lt;/tt&gt;, the &lt;tt class="docutils literal"&gt;tuple&lt;/tt&gt;, and &lt;tt class="docutils literal"&gt;bytes&lt;/tt&gt; types implement these
+concatenation semantics. &lt;tt class="docutils literal"&gt;range&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;memoryview&lt;/tt&gt;, while otherwise
+implementing the &lt;tt class="docutils literal"&gt;Sequence&lt;/tt&gt; API, don't support concatenation operations.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="python-s-mutable-sequence-concatenation-context"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#id10"&gt;Python's mutable sequence concatenation context&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Mutable sequence types add yet another variation to the possible meanings of
+&lt;tt class="docutils literal"&gt;+&lt;/tt&gt; in Python. For the specific example of &lt;tt class="docutils literal"&gt;x = a + b&lt;/tt&gt;, they're very similar
+to immutable sequences, creating a fresh instance that references the same items
+as the original operands:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt;&amp;gt;&amp;gt; a = [1, 2, 3]
+&amp;gt;&amp;gt;&amp;gt; b = [4, 5, 6]
+&amp;gt;&amp;gt;&amp;gt; x = a + b
+&amp;gt;&amp;gt;&amp;gt; a
+[1, 2, 3]
+&amp;gt;&amp;gt;&amp;gt; b
+[4, 5, 6]
+&amp;gt;&amp;gt;&amp;gt; x
+[1, 2, 3, 4, 5, 6]
+&lt;/pre&gt;
+&lt;p&gt;Where they diverge is that the &lt;tt class="docutils literal"&gt;x += b&lt;/tt&gt; operation will modify the target
+sequence directly, rather than creating a new container:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt;&amp;gt;&amp;gt; a = [1, 2, 3]
+&amp;gt;&amp;gt;&amp;gt; b = [4, 5, 6]
+&amp;gt;&amp;gt;&amp;gt; x = a; x = x + b
+&amp;gt;&amp;gt;&amp;gt; a
+[1, 2, 3]
+&amp;gt;&amp;gt;&amp;gt; x = a; x += b
+&amp;gt;&amp;gt;&amp;gt; a
+[1, 2, 3, 4, 5, 6]
+&lt;/pre&gt;
+&lt;p&gt;The other difference is that where &lt;tt class="docutils literal"&gt;+&lt;/tt&gt; remains restrictive as to the
+container types it will work with, &lt;tt class="docutils literal"&gt;+=&lt;/tt&gt; is typically generalised to work
+with arbitrary iterables on the right hand side, just like the
+&lt;tt class="docutils literal"&gt;MutableMapping.extend()&lt;/tt&gt; method:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt;&amp;gt;&amp;gt; x = [1, 2, 3]
+&amp;gt;&amp;gt;&amp;gt; x = x + (4, 5, 6)
+Traceback (most recent call last):
+  File "&amp;lt;stdin&amp;gt;", line 1, in &amp;lt;module&amp;gt;
+TypeError: can only concatenate list (not "tuple") to list
+&amp;gt;&amp;gt;&amp;gt; x += (4, 5, 6)
+&amp;gt;&amp;gt;&amp;gt; x
+[1, 2, 3, 4, 5, 6]
+&lt;/pre&gt;
+&lt;p&gt;Amongst the builtins, &lt;tt class="docutils literal"&gt;list&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;bytearray&lt;/tt&gt; implement these semantics
+(although &lt;tt class="docutils literal"&gt;bytearray&lt;/tt&gt; limits even in-place concatenation to &lt;tt class="docutils literal"&gt;bytes&lt;/tt&gt;-like
+types that support &lt;tt class="docutils literal"&gt;memoryview&lt;/tt&gt; style access). Elsewhere in the standard
+library, &lt;tt class="docutils literal"&gt;collections.deque&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;array.array&lt;/tt&gt; are other mutable sequence
+types that behave this way.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="a-brief-digression-back-to-mathematics-multisets"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#id11"&gt;A brief digression back to mathematics: Multisets&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Multisets are a concept in mathematics that allow for values to occur in a set
+more than once, with the multiset then being the mapping from the values
+themselves to the count of how many times that value occurs in the multiset
+(with a count of zero or less being the same as the value being omitted from
+the set entirely).&lt;/p&gt;
+&lt;p&gt;While they don't natively use the &lt;tt class="docutils literal"&gt;x = a + b&lt;/tt&gt; notation the way that scalar
+algebra and matrix algebra do, the key point regarding multisets that's relevant
+to this article is the fact that they do have a "Sum" operation defined, and the
+semantics of that operation are very similar to those used for matrix addition:
+element wise summation for each item in the multiset. If a particular value is
+only present in one of the multisets, that's handled the same way as if it were
+present with a count of zero.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="and-back-to-python-once-more-collections-counter"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#id12"&gt;And back to Python once more: &lt;tt class="docutils literal"&gt;collections.Counter&lt;/tt&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Since Python 2.7 and 3.1, Python has included an implementation of the
+mathematical multiset concept in the form of the &lt;tt class="docutils literal"&gt;collections.Counter&lt;/tt&gt; class.
+It uses &lt;tt class="docutils literal"&gt;x = a + b&lt;/tt&gt; to denote multiset summation:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt;&amp;gt;&amp;gt; a = collections.Counter(maths=2, python=2)
+&amp;gt;&amp;gt;&amp;gt; b = collections.Counter(python=4, maths=1)
+&amp;gt;&amp;gt;&amp;gt; x = a + b
+&amp;gt;&amp;gt;&amp;gt; x
+Counter({'python': 6, 'maths': 3})
+&lt;/pre&gt;
+&lt;p&gt;As with sequences, counter instances define their own interoperability domain,
+so they won't accept arbitrary mappings for a binary &lt;tt class="docutils literal"&gt;+&lt;/tt&gt; operation:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt;&amp;gt;&amp;gt; x = a + dict(python=4, maths=1)
+Traceback (most recent call last):
+  File "&amp;lt;stdin&amp;gt;", line 1, in &amp;lt;module&amp;gt;
+TypeError: unsupported operand type(s) for +: 'Counter' and 'dict'
+&lt;/pre&gt;
+&lt;p&gt;But they're more permissive for in-place operations, accepting arbitrary
+mapping objects:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;gt;&amp;gt;&amp;gt; x += dict(python=4, maths=1)
+&amp;gt;&amp;gt;&amp;gt; x
+Counter({'python': 10, 'maths': 4})
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-does-all-this-have-to-do-with-the-idea-of-dictionary-addition"&gt;
+&lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#id13"&gt;What does all this have to do with the idea of dictionary addition?&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Python's dictionaries are quite interesting mathematically, as in mathematical
+terms, they're not actually a container. Instead, they're a function mapping
+between a domain defined by the set of keys, and a range defined by a multiset
+of values. Attempting to define algebraic operations on them is thus a bit like
+attempting to define meaningful algebraic operations on "&lt;tt class="docutils literal"&gt;def &lt;span class="pre"&gt;f():&lt;/span&gt; pass&lt;/tt&gt;".&lt;/p&gt;
+&lt;p&gt;This means that unlike the addition of &lt;tt class="docutils literal"&gt;collections.Counter&lt;/tt&gt; (which was
+grounded in the semantics of mathematical multisets and borrowed its Python
+notation from element-wise addition on matrices), or the addition of the matrix
+multiplication operator (which was grounded in the semantics of matrix algebra,
+and only needed a text-editor-friendly symbol assigned, similar to using &lt;tt class="docutils literal"&gt;*&lt;/tt&gt;
+instead of &lt;tt class="docutils literal"&gt;×&lt;/tt&gt; for scalar multiplication and &lt;tt class="docutils literal"&gt;/&lt;/tt&gt; instead of &lt;tt class="docutils literal"&gt;÷&lt;/tt&gt; for
+division), any addition of in-fix operator support for merging dictionaries will
+be blazing completely new conceptual trails not previously found in either
+mathematics or in other mainstream programming languages.&lt;/p&gt;
+&lt;p&gt;That seems to me like a big leap to take for something where the in-place form
+already has a perfectly acceptable spelling (&lt;tt class="docutils literal"&gt;d1.update(d2)&lt;/tt&gt;), and a more
+expression-friendly variant could be provided as a new dictionary class method:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+@classmethod
+def from_merge(cls, *inputs):
+    self = cls()
+    for input in inputs:
+        self.update(input)
+    return self
+&lt;/pre&gt;
+&lt;p&gt;With that defined, then the exact equivalent of the proposed &lt;tt class="docutils literal"&gt;d1 + d2&lt;/tt&gt; would
+be &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;type(d1).from_merge(d1,&lt;/span&gt; d2)&lt;/tt&gt;, and in practice, you would often give the
+desired result type explicitly rather than inferring it from the inputs
+(e.g. &lt;tt class="docutils literal"&gt;dict.from_merge(d1, d2)&lt;/tt&gt;).&lt;/p&gt;
+&lt;p&gt;However, the PEP is still in the very first stage of the discussion and review
+process, so it's entirely possible that by the time it reaches &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;python-dev&lt;/span&gt;&lt;/tt&gt;
+it will be making a more modest proposal like a new &lt;tt class="docutils literal"&gt;dict&lt;/tt&gt; class method,
+rather than the current proposal of operator syntax support.&lt;/p&gt;
+&lt;hr class="docutils"&gt;
+&lt;table class="docutils footnote" frame="void" id="id2" rules="none"&gt;
+&lt;colgroup&gt;&lt;col class="label"&gt;&lt;col&gt;&lt;/colgroup&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td class="label"&gt;&lt;a class="fn-backref" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html#id1"&gt;[1]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;The whole point of the python-ideas phase of discussion is to get a PEP
+ready for a more critical review by the core development team, so it isn't
+fair to the PEP author to invite wider review before they're ready for it.&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>python</category><guid>https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean.html</guid><pubDate>Sat, 16 Mar 2019 06:06:21 GMT</pubDate></item><item><title>Considering Python's Target Audience</title><link>https://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;div class="contents topic" id="who-is-python-being-designed-for"&gt;
 &lt;p class="topic-title first"&gt;Who is Python being designed for?&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience.html#use-cases-for-python-s-reference-interpreter" id="id1"&gt;Use cases for Python's reference interpreter&lt;/a&gt;&lt;/li&gt;
@@ -1896,152 +2200,4 @@ losetup: cannot find an unused loop device: No such file or directory
 &lt;li&gt;Thirdly, I added a &lt;a href="http://unix.stackexchange.com/a/198637/61794"&gt;new answer&lt;/a&gt; to the Stack Exchange question I had found, suggesting the use of the higher level &lt;code&gt;losetup&lt;/code&gt; command over the lower level &lt;code&gt;mknod&lt;/code&gt; command&lt;/li&gt;
 &lt;li&gt;Finally, I wrote this post recounting the tale of figuring this out from a combination of local system manual pages and online searches&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Adding a right-click option to Dolphin to be able to automatically mount TrueCrypt encrypted files as volumes and open them would be an even nicer solution, but also a whole lot more work. The only actual &lt;em&gt;change&lt;/em&gt; suggested in my above set of additional steps is tweaking a particular error message in one particular situation, which should be far more attainable than a new Dolphin feature or addon.&lt;/p&gt;&lt;/div&gt;</description><category>fedora</category><guid>https://www.curiousefficiency.org/posts/2015/04/fedora-encrypted-volumes.html</guid><pubDate>Sat, 25 Apr 2015 22:24:15 GMT</pubDate></item><item><title>Stop Supporting Python 2.6 (For Free)</title><link>https://www.curiousefficiency.org/posts/2015/04/stop-supporting-python26.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;p&gt;(Note: I'm speaking with my "CPython core developer" hat on in this article,
-rather than my "Red Hat employee" one, although it's the latter role that
-gave me broad visibility into the Fedora/RHEL/CentOS Python ecosystem)&lt;/p&gt;
-&lt;p&gt;Alex Gaynor recently raised some
-&lt;a href="https://alexgaynor.net/2015/mar/30/red-hat-open-source-community/"&gt;significant concerns&lt;/a&gt;
-in relation to his perception that Red Hat expects the upstream community
-to support our long term support releases for as long as we do, only without
-getting paid for it.&lt;/p&gt;
-&lt;p&gt;That's not true, so I'm going to say it explicitly: if you're currently
-supporting Python 2.6 for free because folks using RHEL 6 or one of its
-derivatives say they need it, and this is proving to be a hassle for you,
-then stop. If they complain, then point them at this post, as providing an
-easily linkable reference for that purpose is one of the main reasons I'm
-writing it. If they still don't like it, then you may want to further suggest
-that they come argue with me about it, and leave you alone.&lt;/p&gt;
-&lt;p&gt;The affected users have more options than they may realise, and upstream
-open source developers shouldn't feel obliged to donate their own time to
-help end users cope with organisations that aren't yet able to upgrade their
-internal infrastructure in a more timely fashion.&lt;/p&gt;
-&lt;h2&gt;Red Hat Supported Python Upgrade Paths&lt;/h2&gt;
-&lt;p&gt;Since &lt;a href="https://developerblog.redhat.com/2013/09/12/rhscl1-ga/"&gt;September 2013&lt;/a&gt;,
-Red Hat Enterprise Linux subscriptions have included access to an additional
-component called
-&lt;a href="https://access.redhat.com/documentation/en-US/Red_Hat_Software_Collections/1/html/1.2_Release_Notes/chap-RHSCL.html#sect-RHSCL-About"&gt;Red Hat Software Collections&lt;/a&gt;. You can think of Software Collections roughly
-as "virtualenv for the system package manager", providing access to newer
-language runtimes (including Python 2.7 and 3.3), database runtimes, and
-web server runtimes, all without interfering with the versions of those
-integrated with (and used by) the operating system layer itself.&lt;/p&gt;
-&lt;p&gt;This model (and the fact they're included with the base Red Hat Enterprise
-Linux subscription) means that Red Hat subscribers are able to install
-and use these newer runtimes without needing to upgrade the entire operating
-system.&lt;/p&gt;
-&lt;p&gt;Since &lt;a href="https://developerblog.redhat.com/2014/06/10/red-hat-enterprise-linux-7-now-generally-available/"&gt;June 2014&lt;/a&gt;,
-Red Hat Enterprise Linux 7 has also been available, including an upgrade of
-the system Python to Python 2.7. The latest release of that is
-&lt;a href="https://www.redhat.com/en/about/press-releases/red-hat-continues-platform-innovation-general-availability-first-minor-release-red-hat-enterprise-linux-7"&gt;Red Hat Enterprise Linux 7.1&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;As Red Hat subscriptions all include free upgrades to new releases, the main
-barrier to deployment of these newer Python releases is
-&lt;a href="https://twitter.com/kevinrkosar/status/583786245261754368"&gt;institutional inertia&lt;/a&gt;.
-While it's entirely admirable that many upstream developers are generous
-enough to help their end users work around this inertia, in the long run
-doing so is detrimental for everyone concerned, as long term sustaining
-engineering for old releases is genuinely demotivating for upstream
-developers (it's a good job, but a lousy way to spend your free time), and
-for end users, working around institutional inertia this way reduces the
-pressure to actually get the situation addressed properly.&lt;/p&gt;
-&lt;p&gt;Beyond Red Hat Enterprise Linux, Red Hat's portfolio also includes
-both the &lt;a href="https://www.openshift.com/"&gt;OpenShift&lt;/a&gt; Platform-as-a-Service
-offering and the &lt;a href="http://www.feedhenry.com/"&gt;Feed Henry&lt;/a&gt; Mobile Application
-Platform. For many organisations looking to adopt an iterative approach to
-web service development, those are going to be a better fit than deploying
-directly to Red Hat Enterprise Linux and building a custom web service
-management system around that.&lt;/p&gt;
-&lt;h2&gt;Third Party Supported Python Upgrade Paths&lt;/h2&gt;
-&lt;p&gt;The current Red Hat supported upgrade paths require administrative access to
-a system. While it's aimed primarily at scientific users, the comprehensive
-&lt;a href="https://store.continuum.io/cshop/anaconda/"&gt;Anaconda Python distribution&lt;/a&gt;
-from Continuum Analytics is a good way to obtain prebuilt versions of Python
-for Red Hat Enterprise Linux that can be installed by individual users
-without administrative access.&lt;/p&gt;
-&lt;p&gt;At Strata 2015, Continuum's Python distribution not only featured in a
-combined announcement regarding on-premise deployment of &lt;a href="http://redhatstorage.redhat.com/2015/02/17/deploying-pyspark-on-red-hat-storage-glusterfs/"&gt;Anaconda Cluster
-together with Red Hat Storage&lt;/a&gt;,
-but also in Microsoft's announcement of Python support in the
-&lt;a href="http://continuum.io/blog/azureml"&gt;Azure Machine Learning service&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;For users that don't need a full scientific Python distribution, Continuum
-Analytics also offer &lt;a href="http://continuum.io/downloads"&gt;miniconda&lt;/a&gt; which just
-provides a Python runtime and the conda package manager, providing end users
-with a cross-platform way to obtain and manage multiple Python runtimes
-without needing administrative access to their systems.&lt;/p&gt;
-&lt;h2&gt;Community Supported Python Upgrade Paths&lt;/h2&gt;
-&lt;p&gt;The question of providing upgrade paths for folks without an active Red Hat
-subscription has also been taken into consideration.&lt;/p&gt;
-&lt;p&gt;In &lt;a href="https://www.redhat.com/en/about/press-releases/red-hat-and-centos-join-forces"&gt;January 2014&lt;/a&gt;
-Red Hat became an official sponsor of the long established CentOS project,
-with the aim of providing a stable base for community open source innovation
-above the operating system layer (this aim contrasts with the aims of the
-Fedora project, which is intended primarily to drive innovation within the
-operating system layer itself).&lt;/p&gt;
-&lt;p&gt;CentOS 7 was originally released in
-&lt;a href="http://seven.centos.org/2014/07/release-announcement-for-centos-7x86_64/"&gt;July 2014&lt;/a&gt;,
-and the latest release, CentOS 7(1503), was just published (as the name
-suggests) in
-&lt;a href="http://seven.centos.org/2015/03/centos-7-1503-is-released/"&gt;March 2015&lt;/a&gt;).&lt;/p&gt;
-&lt;p&gt;For CentOS and other RHEL derivatives, the upstream project for Red Hat
-Software Collections is hosted at
-&lt;a href="https://www.softwarecollections.org/en/"&gt;softwarecollections.org&lt;/a&gt;, making
-these collections available to the whole Fedora/RHEL/CentOS ecosystem, rather
-than only being available to Red Hat subscribers.&lt;/p&gt;
-&lt;p&gt;Folks running Fedora Rawhide that are particularly keen to be on the cutting
-edge of Python can even obtain prerelease Python 3.5 nightly builds as a
-software collection from Miro Hrončok's
-&lt;a href="https://copr.fedoraproject.org/coprs/churchyard/python3-nightly/"&gt;Fedora COPR repository&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;In addition to maintaining Fedora itself, the Fedora community also maintains
-the &lt;a href="https://fedoraproject.org/wiki/EPEL"&gt;Extra Packages for Enterprise Linux&lt;/a&gt;
-(EPEL) repositories, providing ready access to non-conflicting packages
-beyond those in the set included in the base Red Hat Enterprise Linx and
-CentOS releases.&lt;/p&gt;
-&lt;h2&gt;Providing Commercial Red Hat Enterprise Linux Support&lt;/h2&gt;
-&lt;p&gt;If projects are regularly receiving requests for support on Red Hat Enterprise
-Linux and derived platforms, and the developers involved are actively looking
-to build a sustainable business around their software, then a steady stream
-of these requests may represent an opportunity worth exploring. After all,
-Red Hat's subscribers all appreciate the value that deploying commercially
-supported open source software can bring to an organisation, and are
-necessarily familiar with the use of software subscriptions to support
-sustaining engineering and the ongoing development of new features for the
-open source software that they deploy.&lt;/p&gt;
-&lt;p&gt;One of the key things that many customers are looking for is pre-release
-integration testing to provide some level of assurance that the software
-they deploy will work in their environment, while another is a secure
-development and distribution pipeline that ensures that the software they
-install is coming from organisations that they trust.&lt;/p&gt;
-&lt;p&gt;One of Red Hat's essential tools for managing this distributed integration
-testing and content assurance effort is its
-&lt;a href="https://www.redhat.com/en/partners"&gt;Partner Program&lt;/a&gt;. This program is
-designed to not only assist Red Hat subscribers in finding supported
-software that meets their needs, but also to provide Red Hat, partners, and
-customers with confidence that the components of deployed solutions will
-work well together in target deployment environments.&lt;/p&gt;
-&lt;p&gt;Specifically for web service developers that would like to provide a
-supported on-premise offering, last year's announcement of a &lt;a href="https://www.redhat.com/en/about/press-releases/red-hat-announces-certification-for-containerized-applications-extends-customer-confidence-and-trust-to-the-cloud"&gt;Container Certification Program&lt;/a&gt;
-(with Red Hat Enterprise Linux 7 and the OpenShift Platform-as-a-Service
-offering as certified container hosts) extended Red Hat's certification
-programs to cover the certification of Docker containers in addition to
-other forms of Linux application deployment.&lt;/p&gt;
-&lt;p&gt;Even more recently, the
-&lt;a href="http://connect.redhat.com/zones/containers"&gt;Red Hat Container Development Kit&lt;/a&gt;
-was introduced to help streamline that certification process for Red Hat
-Independent Software Vendor Partners.&lt;/p&gt;
-&lt;p&gt;But these are all things that folks should only explore if they're
-specifically interested in building a commercial support business around
-their software. If users are trying to get long term maintenance support
-for a community project for free, then upstream developers should be sending
-a single unified message in response: don't assume you'll be able to run
-new versions of open source software on old platforms unless you're
-specifically paying someone to ensure that happens.&lt;/p&gt;
-&lt;p&gt;I'm not saying this because I work for a platform vendor that gets paid (at
-least in part) to do this, I'm saying it because most open source projects
-are maintained by innovators that are upgrading their technology stacks
-regularly, where versions of components are already old after 2 years and
-truly ancient after 5. Expecting open source innovators to provide long term
-maintenance for free is simply unreasonable - regularly upgrading their own
-stacks means they don't need this long term platform support for themselves,
-so the folks that are seeking it should be expected to pay for it to happen.
-(Apparent exceptions like CentOS aren't exceptions at all: sustaining
-engineering on CentOS is instead a beneficial community byproduct of the
-&lt;a href="http://crunchtools.com/deep-dive-rebase-vs-backport/"&gt;paid sustaining engineering&lt;/a&gt;
-that goes into Red Hat Enterprise Linux).&lt;/p&gt;&lt;/div&gt;</description><category>python</category><guid>https://www.curiousefficiency.org/posts/2015/04/stop-supporting-python26.html</guid><pubDate>Sat, 04 Apr 2015 09:30:05 GMT</pubDate></item></channel></rss>
+&lt;p&gt;Adding a right-click option to Dolphin to be able to automatically mount TrueCrypt encrypted files as volumes and open them would be an even nicer solution, but also a whole lot more work. The only actual &lt;em&gt;change&lt;/em&gt; suggested in my above set of additional steps is tweaking a particular error message in one particular situation, which should be far more attainable than a new Dolphin feature or addon.&lt;/p&gt;&lt;/div&gt;</description><category>fedora</category><guid>https://www.curiousefficiency.org/posts/2015/04/fedora-encrypted-volumes.html</guid><pubDate>Sat, 25 Apr 2015 22:24:15 GMT</pubDate></item></channel></rss>
