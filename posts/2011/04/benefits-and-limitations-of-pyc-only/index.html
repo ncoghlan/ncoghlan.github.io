@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The benefits (and limitations) of PYC-only Python distribution | Curious Efficiency</title>
+<link href="../../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../../../rss.xml">
+<link rel="canonical" href="https://www.curiousefficiency.org/posts/2011/04/benefits-and-limitations-of-pyc-only/">
+<!--[if lt IE 9]><script src="../../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Alyssa Coghlan">
+<link rel="prev" href="../../03/climate-change-skepticism-text-book/" title='Climate change "skepticism": a text book case of the "Tragedy of the Commons"' type="text/html">
+<link rel="next" href="../musings-on-culture-of-python-dev/" title="Musings on the culture of python-dev" type="text/html">
+<meta property="og:site_name" content="Curious Efficiency">
+<meta property="og:title" content="The benefits (and limitations) of PYC-only Python distribution">
+<meta property="og:url" content="https://www.curiousefficiency.org/posts/2011/04/benefits-and-limitations-of-pyc-only/">
+<meta property="og:description" content="This Stack Overflow question hit my feed reader recently, prompting the usual discussion about the effectiveness of PYC only distribution as a mechanism for obfuscating Python code.PYC Only Distributi">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2011-04-09T12:47:00Z">
+<meta property="article:tag" content="python">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Header and menu bar -->
+<div class="container">
+      <header class="blog-header py-3"><div class="row nbb-header align-items-center">
+          <div class="col-md-3 col-xs-2 col-sm-2" style="width: auto;">
+            <button class="navbar-toggler navbar-light bg-light nbb-navbar-toggler" type="button" data-toggle="collapse" data-target=".bs-nav-collapsible" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse bs-nav-collapsible bootblog4-search-form-holder">
+                
+            </div>
+        </div>
+          <div class="col-md-6 col-xs-10 col-sm-10 bootblog4-brand" style="width: auto;">
+            <a class="navbar-brand blog-header-logo text-dark" href="../../../../">
+
+            <span id="blog-title">Curious Efficiency</span>
+        </a>
+          </div>
+            <div class="col-md-3 justify-content-end align-items-center bs-nav-collapsible collapse flex-collapse bootblog4-right-nav">
+            <nav class="navbar navbar-light bg-white"><ul class="navbar-nav bootblog4-right-nav">
+<li class="nav-item">
+    <a href="index.src.html" id="sourcelink" class="nav-link">Source</a>
+    </li>
+
+
+                    
+            </ul></nav>
+</div>
+    </div>
+</header><nav class="navbar navbar-expand-md navbar-light bg-white static-top"><div class="collapse navbar-collapse bs-nav-collapsible" id="bs-navbar">
+            <ul class="navbar-nav nav-fill d-flex w-100">
+<li class="nav-item">
+<a href="../../../../pages/about.html" class="nav-link">About</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../archive.html" class="nav-link">Archives</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../categories/index.html" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../rss.xml" class="nav-link">RSS</a>
+                </li>
+<li class="nav-item">
+<a href="https://python-notes.curiousefficiency.org" class="nav-link">Python Notes</a>
+
+                
+            </li>
+</ul>
+</div>
+<!-- /.navbar-collapse -->
+</nav>
+</div>
+
+<div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">The benefits (and limitations) of PYC-only Python distribution</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    Alyssa Coghlan
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2011-04-09T12:47:00Z" itemprop="datePublished" title="2011-04-09 12:47">2011-04-09 12:47</time></a>
+            </p>
+                <p class="commentline">
+    
+    <a href="#disqus_thread" data-disqus-identifier="cache/posts/2011/04/benefits-and-limitations-of-pyc-only.html">Comments</a>
+
+
+            
+        </p>
+<p class="sourceline"><a href="index.src.html" class="sourcelink">Source</a></p>
+
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <a href="http://programmers.stackexchange.com/questions/66616/ways-to-prevent-client-seeing-my-code">This Stack Overflow question</a> hit my feed reader recently, prompting the usual discussion about the effectiveness of PYC only distribution as a mechanism for obfuscating Python code.<br><br><h3>PYC Only Distribution</h3>In case it isn't completely obvious from the name, PYC only distribution is a matter of taking your code base, running "compileall" (or an equivalent utility) over it to generate the .pyc files, and then removing all of the original .py source files from the distributed version.<br><br>Plenty of Python programmers (especially the pure open source ones) consider this practice an absolute travesty and would be quite happy to see it disallowed entirely. Early drafts of PEP 3147 (PYC Repository Directories) in fact proposed exactly that - in the absence of the associated source file, a compiled PYC file would have been ignored.<br><br>However, such blatant backwards incompatibility aroused protests from several parties (including me), and support for PYC-only distribution was restored in later versions of the PEP (although "compileall" now requires a command line switch in order to generate the files in the correct location for PYC-only distribution).<br><br><h3>Use Cases</h3>As I see it, there are a couple of legitimate use cases for PYC-only distribution:<br><ul>
+<li>Embedded firmware: If your code is going onto an embedded system where space is at a premium, there's no point including both your source code <i>and</i> the PYC files. Better to just include the compiled ones, as that is all you really need</li>
+<li>Cutting down on support calls (or at least making the ones you do get more comprehensible): Engineers and scientists like to tinker. It's in their nature. When they know just enough Python to be a danger to themselves and others, you can get some truly bizarre tickets if they've been fiddling with things and failed to revert their changes correctly (or didn't revert them at all). Shipping only the PYC files can help make sure the temptation to fiddle never even arises</li>
+</ul>
+<br>Of the two, the former is by far the stronger use case. The latter is attempting a technical solution to a social problem and those rarely work out well in the long run. Still, however arguable its merits, I personally consider deterrence of casual modifications a valid use case for the feature.<br><br><h3>Drawbacks</h3>Stripping the source code out of the distribution does involve some pretty serious drawbacks. The main one is the fact that you no longer have the ability to fall back to re-compilation if the embedded magic cookie doesn't match the execution environment.<br><br>This restricts practical PYC-only distribution to comparatively constrained environments that can ensure a matching version of Python is available to execute the PYC files, such as:<br><ul>
+<li>Embedded systems</li>
+<li>Corporate SOEs (Standard Operating Environments)</li>
+<li>Bundled interpreters targeting a specific platform</li>
+</ul>
+<br>Cross-platform compatibility of PYC files (especially for 32-bit vs 64-bit and ARM vs x86) is also significantly less robust than the cross-platform compatibility of Python source code.<br><br><h3>Limitations</h3>Going back to the SO question that most recently got me thinking about this topic, the big limitation to keep in mind is this: <i>shipping only PYC files will not reliably keep anyone from reading your code</i>. While comments do get thrown away by the compilation process, and docstrings can be stripped with the "-OO" option, Python will always know the <i>names</i> of all the variables at runtime, so that information will always be present in the compiled bytecode. Given both the code structure and the original variable names, most decent programmers are going to be able to understand what the code was doing, even if they don't have access to the comments and docstrings.<br><br>While there aren't any currently active open source projects that provide full decompilation of CPython bytecode, such projects have existed in the past and could easily exist again in the future. There are also companies which provide Python decompilation as a paid service (decompyle and depython are the two that I am personally aware of).<br><br><h3>Alternatives</h3>You can deter casual tinkering reasonably well by placing your code in a zip archive with a non-standard extension (even .py!). If you prepend an appropriate shebang line, you can even mark it as executable on POSIX based systems (see <a href="../../../../2011/03/what-is-python-script.html">this post</a> for more information).<br><br>You could also write your code in Cython or RPython instead of vanilla Python and ship fully compiled executable binaries.<br><br>There are minifier projects for Python (such as <a href="http://pypi.python.org/pypi/mnfy">mnfy</a>) that could be fairly readily adapted to perform obfuscation tricks (such as replacing meaningful variable names with uninformative terms like "_id1").
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../../../categories/python/" rel="tag">python</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../../03/climate-change-skepticism-text-book/" rel="prev" title='Climate change "skepticism": a text book case of the "Tragedy of the Commons"'>Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../musings-on-culture-of-python-dev/" rel="next" title="Musings on the culture of python-dev">Next post</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
+        
+    
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="boredomandlaziness",
+            disqus_url="https://www.curiousefficiency.org/posts/2011/04/benefits-and-limitations-of-pyc-only/",
+        disqus_title="The benefits (and limitations) of PYC-only Python distribution",
+        disqus_identifier="cache/posts/2011/04/benefits-and-limitations-of-pyc-only.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section></article><script>var disqus_shortname="boredomandlaziness";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><!--End of body content--><footer id="footer">
+            Contents © 2024 <a href="mailto:ncoghlan@gmail.com">Alyssa Coghlan</a> - <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, republish as you wish. - Powered by <a href="http://nikola.ralsina.com.ar">Nikola</a>
+            
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="../../../../assets/js/all-nocdn.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>

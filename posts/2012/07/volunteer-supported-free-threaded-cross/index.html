@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Volunteer developed free-threaded cross platform virtual machines? | Curious Efficiency</title>
+<link href="../../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../../../rss.xml">
+<link rel="canonical" href="https://www.curiousefficiency.org/posts/2012/07/volunteer-supported-free-threaded-cross/">
+<!--[if lt IE 9]><script src="../../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Alyssa Coghlan">
+<link rel="prev" href="../the-title-of-this-blog/" title="The title of this blog" type="text/html">
+<link rel="next" href="../../10/pythons-future-global-perspective/" title="Python's Future: A Global Perspective" type="text/html">
+<meta property="og:site_name" content="Curious Efficiency">
+<meta property="og:title" content="Volunteer developed free-threaded cross platform virtual machines?">
+<meta property="og:url" content="https://www.curiousefficiency.org/posts/2012/07/volunteer-supported-free-threaded-cross/">
+<meta property="og:description" content="Since writing my Python 3 Q &amp; A, including some thoughts on why the CPython GIL isn't likely to go away any time soon, I've been pondering the question of free-threaded cross platform virtual machines">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2012-07-11T02:58:00Z">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="tech">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Header and menu bar -->
+<div class="container">
+      <header class="blog-header py-3"><div class="row nbb-header align-items-center">
+          <div class="col-md-3 col-xs-2 col-sm-2" style="width: auto;">
+            <button class="navbar-toggler navbar-light bg-light nbb-navbar-toggler" type="button" data-toggle="collapse" data-target=".bs-nav-collapsible" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse bs-nav-collapsible bootblog4-search-form-holder">
+                
+            </div>
+        </div>
+          <div class="col-md-6 col-xs-10 col-sm-10 bootblog4-brand" style="width: auto;">
+            <a class="navbar-brand blog-header-logo text-dark" href="../../../../">
+
+            <span id="blog-title">Curious Efficiency</span>
+        </a>
+          </div>
+            <div class="col-md-3 justify-content-end align-items-center bs-nav-collapsible collapse flex-collapse bootblog4-right-nav">
+            <nav class="navbar navbar-light bg-white"><ul class="navbar-nav bootblog4-right-nav">
+<li class="nav-item">
+    <a href="index.src.html" id="sourcelink" class="nav-link">Source</a>
+    </li>
+
+
+                    
+            </ul></nav>
+</div>
+    </div>
+</header><nav class="navbar navbar-expand-md navbar-light bg-white static-top"><div class="collapse navbar-collapse bs-nav-collapsible" id="bs-navbar">
+            <ul class="navbar-nav nav-fill d-flex w-100">
+<li class="nav-item">
+<a href="../../../../pages/about.html" class="nav-link">About</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../archive.html" class="nav-link">Archives</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../categories/index.html" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../rss.xml" class="nav-link">RSS</a>
+                </li>
+<li class="nav-item">
+<a href="https://python-notes.curiousefficiency.org" class="nav-link">Python Notes</a>
+
+                
+            </li>
+</ul>
+</div>
+<!-- /.navbar-collapse -->
+</nav>
+</div>
+
+<div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Volunteer developed free-threaded cross platform virtual machines?</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    Alyssa Coghlan
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2012-07-11T02:58:00Z" itemprop="datePublished" title="2012-07-11 02:58">2012-07-11 02:58</time></a>
+            </p>
+                <p class="commentline">
+    
+    <a href="#disqus_thread" data-disqus-identifier="cache/posts/2012/07/volunteer-supported-free-threaded-cross.html">Comments</a>
+
+
+            
+        </p>
+<p class="sourceline"><a href="index.src.html" class="sourcelink">Source</a></p>
+
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <p>Since writing my <a href="http://python-notes.curiousefficiency.org/en/latest/python3/questions_and_answers.html">Python 3 Q &amp; A</a>, including <a href="http://python-notes.curiousefficiency.org/en/latest/python3/questions_and_answers.html#but-but-surely-fixing-the-gil-is-more-important-than-fixing-unicode">some thoughts</a> on why the CPython GIL isn't likely to go away any time soon, I've been pondering the question of free-threaded cross platform virtual machines for dynamic languages. Specifically, I've been trying to think of any examples of such that are driven almost entirely by volunteer based development.<br><br></p>
+<h2>  A brief VM survey </h2>
+<br>The JVM and Dalvik have plenty of full time developers, and the CLR provided by Microsoft not only has full time developers, but also isn't cross platform.<br>Mono's core development was funded directly by first Ximian, then Novell and now Xamarin, and since the CLR is free-threaded, free-threading support would have been a requirement from the start.<br><br>However, if we switch over to the dynamic language specific VM side, the reference implementations for both Python and Ruby use a Global Interpreter Lock to ease maintenance and maximise speed of execution in the original single-threaded scripting use case. This means neither can scale to multiple cores without using either multiple processes and some form of inter-process communications, or else invoking code that doesn't need to hold the interpreter lock (e.g. C extensions for CPython).<br><br>Both Python and Ruby have JVM and CLR implementations that <i>are</i> free-threaded (Jython, JRuby, IronPython, IronRuby), since they can take advantage of  the cross platform threading primitives in the underlying corporate sponsored VM.<br><br>Rubinius, with Engine Yard's backing, is creating a free-threaded Ruby interpreter in the form of Rubinius 2.0. In my opinion, they've done something smart by avoiding the Win32 API entirely and just writing POSIX code, leaving the task of dealing with Microsoft's idiosyncratic approach to OS interfaces as a problem for the <a href="http://mingw-w64.sourceforge.net/">MinGW developers</a>. Unfortunately (from the point of view of this particular problem), CPython long ago adopted the approach of treating Windows as a first class native build target, rather than requiring the use of a third party POSIX compatibility layer.<br><br>PyPy is heading in a different direction, focusing on making <a href="http://pypy.org/tmdonate.html">Software Transactional Memory</a> a viable approach to concurrency in Python, without the well-known data corruption and deadlock pitfalls of thread-based concurrency.<br><br>Lua <a href="http://lua-users.org/wiki/ThreadsTutorial">doesn't support</a> native threading in the core VM at all - it just has a couple of GIL hooks that are no-ops by default, but can be overridden to implement a GIL.<br><br>Perl 5 supports threads using the <a href="http://perldoc.perl.org/threads.html">subinterpreter model</a> - by default, all state is thread local and you have to take <a href="http://perldoc.perl.org/threads/shared.html">explicit steps</a> to make it visible to other threads. Perl also warns that using threads may lead to segfaults when using non-thread-safe modules.<br><br>Parrot (and thus Perl 6) has a rather <a href="http://docs.parrot.org/parrot/devel/html/docs/pdds/pdd25_concurrency.pod.html">ambitious concurrency model</a>, but I have no idea how well it works in practice. With Perl 6 still in development, are there any documented production deployments?<br><br>Javascript doesn't support full shared memory thread, only <a href="https://developer.mozilla.org/en/Using_web_workers">Web Worker Threads</a>. Since objects have to be serialised for inter-thread communication, the model is closer to lightweight processes than it is to shared memory threading.<br><h2>  Whither CPython?<br>
+</h2>
+<br>CPython doesn't have any full time developers assigned these days -  the PSF budget doesn't stretch that far (yet!), and the companies that  use Python (including PSF sponsor members) are generally (with a couple of notable exceptions) more interested  in paying people to build applications with the versions that exist now  rather than paying them directly to build better versions for use in  the future. That's not to say companies don't contribute code (we see  plenty of corporate contributions in the form of upstream patches from  Linux distro vendors like Red Hat and Canonical, as well as major users  like CCP Games, and companies have sponsored particular development  activities via the PSF, such as Dave Murray's work on email enhancements  that landed in 3.3), just that they don't tend to pay developers to  think about future directions for Python in general.<br><br><br>Even when the PythonLabs team (IIRC, Guido van Rossum, Tim  Peters, Barry Warsaw, Jeremy Hylton, Fred Drake, maybe some others) were  being funded by Digital Creations/Zope Corporation:<br><ul>
+<li>it still wasn't full time for any of them</li>
+<li>multi-core machines were still rare back then</li>
+<li>DC/Zope is focused on web applications, which are far more likely to be IO bound than CPU bound</li>
+</ul>In more recent years, and this is the first of the exceptions I mentioned earlier, we had Google paying Guido to spend 20  hours a week guiding the development of Python 3, but that was all about  fixing the Unicode model rather than improving multi-core support.<br><br>The other exception was the Google funded Unladen Swallow effort, which aimed to bring an LLVM based JIT to CPython. While that effort did result in many improvements to LLVM, and the creation of an excellent benchmark suite for long running Python processes (much of which is still used by PyPy to this day), it <a href="http://qinsb.blogspot.com.au/2011/03/unladen-swallow-retrospective.html">ultimately failed</a> in its original aim.<br><br><h2>  Formalising and enhancing subinterpreters</h2>Given the high compatibility risks with existing threaded Python code and especially the risk of segfaults in C extensions that come with making CPython truly free-threaded, the Perl 5 subinterpreter model actually looks like the most promising way forward to me. With that approach, all code execution within a given interpreter is still serialised as normal, while a new communication mechanism would allow data to be safely passed between interpreters.<br><br>Since it isn't exposed at the Python level, many developers don't realise that CPython already supports the use of <a href="http://docs.python.org/c-api/init.html#sub-interpreter-support">subinterpreters</a> to provide some degree of isolation between different pieces of code. The Apache <a href="https://en.wikipedia.org/wiki/Mod_wsgi">mod_wsgi </a>module uses this feature to provide some isolation between different WSGI applications running on the same Apache instance.<br><br>Unfortunately, there are currently quite a few quirks and limitations with this feature, which is why it has never been elevated to a formal part of the language specification and exposed at the Python level. In addition, the GIL is part of the state that is still shared, so exposing the feature as it exists today wouldn't help at all with concurrency goals.<br><br>That leads to my personal recommendation to anyone that would like to see better thread-based concurrency support in CPython:<br><ul>
+<li>Create a CPython fork (either by importing directly from <a href="http://hg.python.org/">http://hg.python.org/cpython</a>, or by forking the <a href="https://bitbucket.org/python_mirrors/cpython">BitBucket mirror</a>).</li>
+<li>Make the subinterpreter support compatible with the PyGilState APIs  (Graham Dumpleton and I will actually be discussing this aspect at  PyConAU next month, so I'd suggest talking to Graham before doing anything on this part)</li>
+<li>Create a two-tiered locking scheme, where each interpreter (including the main interpreter) has a Subinterpreter Lock that is used to protect the main eval loop, while the Global Interpreter Lock remains in place to protect state that is shared between interpreters</li>
+<li>Use the subinterpreter lock in preference to the GIL to protect most Python code evaluation</li>
+<li>Design a mechanism for passing objects between interpreters without serialising or copying them. The CLR application domain design may provide some inspiration here.</li>
+</ul>This is by no means an easy project, but it's the one I see as having the greatest potential for allowing CPython to exploit multiple cores effectively without requiring serialisation of data. I'll also note that whatever mechanism is designed for that last bullet point may potentially translate to efficient communication between local processes via memory mapped files.<br><br>But no, I'm not going to write it. Given what I work on (task automation and IO bound web and CLI applications), I don't need it personally or professionally, and it's too big a project to realistically attempt as a hobby/language PR exercise.<br><br>If you're interested in funding efforts to make something like this happen for Python 3.4 (likely coming in early-mid 2014), but don't know how to go about finding developers to work on it, then it's worth getting in touch with the <a href="http://python.org/psf/about/#how-do-i-reach-the-psf">PSF board</a>. If you want better thread-based concurrency support in Python and are a Red Hat customer, it also wouldn't hurt to mention it via the appropriate channels :)<br><br>Update: Added Javascript to the VM survey.
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../../../categories/python/" rel="tag">python</a></li>
+            <li><a class="tag p-category" href="../../../../categories/tech/" rel="tag">tech</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../the-title-of-this-blog/" rel="prev" title="The title of this blog">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../../10/pythons-future-global-perspective/" rel="next" title="Python's Future: A Global Perspective">Next post</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
+        
+    
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="boredomandlaziness",
+            disqus_url="https://www.curiousefficiency.org/posts/2012/07/volunteer-supported-free-threaded-cross/",
+        disqus_title="Volunteer developed free-threaded cross platform virtual machines?",
+        disqus_identifier="cache/posts/2012/07/volunteer-supported-free-threaded-cross.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section></article><script>var disqus_shortname="boredomandlaziness";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><!--End of body content--><footer id="footer">
+            Contents © 2024 <a href="mailto:ncoghlan@gmail.com">Alyssa Coghlan</a> - <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, republish as you wish. - Powered by <a href="http://nikola.ralsina.com.ar">Nikola</a>
+            
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="../../../../assets/js/all-nocdn.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>

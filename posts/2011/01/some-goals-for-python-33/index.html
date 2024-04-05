@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Some goals for Python 3.3 | Curious Efficiency</title>
+<link href="../../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../../../rss.xml">
+<link rel="canonical" href="https://www.curiousefficiency.org/posts/2011/01/some-goals-for-python-33/">
+<!--[if lt IE 9]><script src="../../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Alyssa Coghlan">
+<link rel="prev" href="../which-matters-more-to-you-being-right/" title="Which matters more to you: being right or staying friends?" type="text/html">
+<link rel="next" href="../comments-update-and-site-to-do-list/" title="Comments update and site to-do list" type="text/html">
+<meta property="og:site_name" content="Curious Efficiency">
+<meta property="og:title" content="Some goals for Python 3.3">
+<meta property="og:url" content="https://www.curiousefficiency.org/posts/2011/01/some-goals-for-python-33/">
+<meta property="og:description" content="With 3.2 nearly out the door, it's time to think seriously about goals for Python 3.3 and anything else I'd like to get done on the Python front this year. This post will serve as a to-do list of sort">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2011-01-27T12:45:00Z">
+<meta property="article:tag" content="python">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Header and menu bar -->
+<div class="container">
+      <header class="blog-header py-3"><div class="row nbb-header align-items-center">
+          <div class="col-md-3 col-xs-2 col-sm-2" style="width: auto;">
+            <button class="navbar-toggler navbar-light bg-light nbb-navbar-toggler" type="button" data-toggle="collapse" data-target=".bs-nav-collapsible" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse bs-nav-collapsible bootblog4-search-form-holder">
+                
+            </div>
+        </div>
+          <div class="col-md-6 col-xs-10 col-sm-10 bootblog4-brand" style="width: auto;">
+            <a class="navbar-brand blog-header-logo text-dark" href="../../../../">
+
+            <span id="blog-title">Curious Efficiency</span>
+        </a>
+          </div>
+            <div class="col-md-3 justify-content-end align-items-center bs-nav-collapsible collapse flex-collapse bootblog4-right-nav">
+            <nav class="navbar navbar-light bg-white"><ul class="navbar-nav bootblog4-right-nav">
+<li class="nav-item">
+    <a href="index.src.html" id="sourcelink" class="nav-link">Source</a>
+    </li>
+
+
+                    
+            </ul></nav>
+</div>
+    </div>
+</header><nav class="navbar navbar-expand-md navbar-light bg-white static-top"><div class="collapse navbar-collapse bs-nav-collapsible" id="bs-navbar">
+            <ul class="navbar-nav nav-fill d-flex w-100">
+<li class="nav-item">
+<a href="../../../../pages/about.html" class="nav-link">About</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../archive.html" class="nav-link">Archives</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../categories/index.html" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../rss.xml" class="nav-link">RSS</a>
+                </li>
+<li class="nav-item">
+<a href="https://python-notes.curiousefficiency.org" class="nav-link">Python Notes</a>
+
+                
+            </li>
+</ul>
+</div>
+<!-- /.navbar-collapse -->
+</nav>
+</div>
+
+<div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Some goals for Python 3.3</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    Alyssa Coghlan
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2011-01-27T12:45:00Z" itemprop="datePublished" title="2011-01-27 12:45">2011-01-27 12:45</time></a>
+            </p>
+                <p class="commentline">
+    
+    <a href="#disqus_thread" data-disqus-identifier="cache/posts/2011/01/some-goals-for-python-33.html">Comments</a>
+
+
+            
+        </p>
+<p class="sourceline"><a href="index.src.html" class="sourcelink">Source</a></p>
+
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <p>With 3.2 nearly out the door, it's time to think seriously about goals for Python 3.3 and anything else I'd like to get done on the Python front this year. This post will serve as a to-do list of sorts.<br><br><b>PEP 1 Update</b><br>When cleaning up PEP 0 to clear out some of the accumulated cruft in the lists of Meta and Informational PEPs, I ran into a problem where the API specification PEPs use the "Final" state to indicate when consensus has been reached and the API has been locked in. This conflicts with the normal use of the Final state to indicate that a PEP is over a done with and is only being kept around for historical reasons.<br><br>A brief discussion on python-dev suggested "Consensus" as a new end state for these PEPs. I like that solution, but adopting it requires an update to PEP 1. I'd like to get to that sometime this year.<br><br><b>PEP 343 and 377, redux</b><br>There are a couple of rough edges on the with statement and the associated context management protocol that still bother me.<br><br>Firstly, the fact that there is no way for a context manager to skip the body of a with statement means certain constructs simply can't be factored out properly. I previously tried to address this with PEP 377, but that solution was rightly rejected as having too great an impact on common cases which didn't need the extra complexity. I have since thought of an alternative approach that is both more flexible and has a much lower impact on ordinary cases, so it has a higher chance of acceptance.<br><br>Secondly, I'd like to revisit the idea of implicit context managers. These were dropped from PEP 343 due largely to terminology problems - we weren't sure whether the term "context manager" referred to objects with enter and exit methods, or to the objects that were able to create such an object on demand. With the meaning of context manager now well established, I believe it should be possible to implement and document this in a way that makes intuitive sense, while making it significantly easier to write context managers that are both stateful and reusable.<br><br><b>That's my __name__, don't wear it out</b><br>As per a <a href="http://mail.python.org/pipermail/python-ideas/2011-January/008983.html">recent python-ideas discussion</a>, __name__ currently serves multiple masters, which leads to conflicts in certain situations (with __name__ set to a value that is correct for some purposes, but wrong for others). This is especially prevalent with the __main__ module, but can also apply to pseudo-packages, where something is documented as a single unified namespace, but is actually implemented as multiple files combined into a package.<br><br>For Python 3.3, I'd like to have a mechanism in place to start sorting this out without breaking every Python script on the planet that relies on the "if __name__ == '__main__':" idiom.<br><br><b>Other PEPs (e.g. PEP 380, 393)</b><br>There are a few other PEPs that will hopefully be landing for 3.3, including the subgenerator and memory efficient string PEPs. While I probably won't take much of an active hand in implementing those, there will still be plenty of related python-dev discussion and checkins to review.<br><br>And on a completely non-code-related front... with any luck I'll be able to find myself a more directly open source focused job this year. I have the luxury of being fussy in my choice of employment though, so I can happily sit back and relax while waiting to see how that pans out :)</p>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../../../categories/python/" rel="tag">python</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../which-matters-more-to-you-being-right/" rel="prev" title="Which matters more to you: being right or staying friends?">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../comments-update-and-site-to-do-list/" rel="next" title="Comments update and site to-do list">Next post</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
+        
+    
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="boredomandlaziness",
+            disqus_url="https://www.curiousefficiency.org/posts/2011/01/some-goals-for-python-33/",
+        disqus_title="Some goals for Python 3.3",
+        disqus_identifier="cache/posts/2011/01/some-goals-for-python-33.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section></article><script>var disqus_shortname="boredomandlaziness";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><!--End of body content--><footer id="footer">
+            Contents © 2024 <a href="mailto:ncoghlan@gmail.com">Alyssa Coghlan</a> - <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, republish as you wish. - Powered by <a href="http://nikola.ralsina.com.ar">Nikola</a>
+            
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="../../../../assets/js/all-nocdn.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>

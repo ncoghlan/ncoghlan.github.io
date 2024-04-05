@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Curious Efficiency (Posts about kallithea)</title><link>https://www.curiousefficiency.org</link><description></description><atom:link rel="self" href="https://www.curiousefficiency.org/categories/kallithea.xml" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 17 Mar 2019 04:34:15 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Running Kallithea on OpenShift</title><link>https://www.curiousefficiency.org/posts/2014/12/kallithea-on-openshift.html</link><dc:creator>Nick Coghlan</dc:creator><description>&lt;div&gt;&lt;h2&gt;Kallithea for CPython&lt;/h2&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Curious Efficiency (Posts about kallithea)</title><link>https://www.curiousefficiency.org</link><description></description><atom:link href="https://www.curiousefficiency.org/categories/kallithea.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 05 Apr 2024 04:35:10 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Running Kallithea on OpenShift</title><link>https://www.curiousefficiency.org/posts/2014/12/kallithea-on-openshift/</link><dc:creator>Alyssa Coghlan</dc:creator><description>&lt;h2&gt;Kallithea for CPython&lt;/h2&gt;
 &lt;p&gt;The CPython core development team are currently evaluating our options for
 modernising our core development workflows to better match the standards
 set by other projects and services like OpenStack and GitHub.&lt;/p&gt;
@@ -86,9 +86,8 @@ upgrade handling correctly yet)&lt;/p&gt;
 &lt;a href="https://www.openshift.com/app/account/new"&gt;skip that step&lt;/a&gt;, and just
 create a new app under my existing account. However, I didn't have the command
 line tools installed, so that was the first step in creating my own instance:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;sudo yum install /usr/bin/rhc
-&lt;/pre&gt;
-
+&lt;div class="code"&gt;&lt;pre class="code literal-block"&gt;sudo yum install /usr/bin/rhc
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;yum is able to figure out on my behalf that it is &lt;code&gt;rubygems-rhc&lt;/code&gt; that
 provides the command line tools for OpenShift in Fedora (alternatively,
@@ -98,9 +97,8 @@ I could have looked that up myself in the
 Online account, generate a local login token for this machine, and upload
 my public SSH key to OpenShift Online. That process involved working through
 the interactive prompts in:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;rhc setup
-&lt;/pre&gt;
-
+&lt;div class="code"&gt;&lt;pre class="code literal-block"&gt;rhc setup
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;With those preliminary OpenShift steps out of the way, it was time to
 move on to deploying the application itself. It's worth noting that
@@ -109,9 +107,8 @@ so I created a separate "app_repos" subdirectory in my development directory
 specifically so I could call my OpenShift app "kallithea" without conflicting
 with my local clone of the main kallithea repo.&lt;/p&gt;
 &lt;p&gt;As described in the quickstart README, the app creation command is:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;rhc app create kallithea diy-0.1 postgresql-9.2
-&lt;/pre&gt;
-
+&lt;div class="code"&gt;&lt;pre class="code literal-block"&gt;rhc app create kallithea diy-0.1 postgresql-9.2
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;That churned away for a while, and then attempted to clone the app repo
 locally over ssh (with SSH putting up a prompt to accept the validity of the
@@ -123,19 +120,17 @@ failed. Fortunately, as the troubleshooting notice suggested, a subsequent
 &lt;p&gt;OpenShift provides a default app skeleton automatically, but I actually
 want to get rid of that and replace it with the contents of the quickstart
 repo:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;rm -R diy .openshift misc README.md
+&lt;div class="code"&gt;&lt;pre class="code literal-block"&gt;rm -R diy .openshift misc README.md
 git add .
 git commit -m "Remove template files"
 git remote add quickstart -m master https://github.com/ncoghlan/openshift-kallithea.git
 git pull -s recursive -X theirs quickstart master
-&lt;/pre&gt;
-
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;The default merge commit message that popped up was fine, so I just accepted
 that and moved on to the most interesting step:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;git push
-&lt;/pre&gt;
-
+&lt;div class="code"&gt;&lt;pre class="code literal-block"&gt;git push
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Because this is the first build, there's a lot of output related to
 installing and building the PostgreSQL driver and git, before moving on
@@ -165,4 +160,4 @@ scratch.&lt;/p&gt;
 but that's a relatively minor quibble, and Graham's images should still make
 a great basis for putting together a Vagrant+Docker based local workflow
 for folks working on Kallithea.&lt;/p&gt;
-&lt;p&gt;That, however, is a topic for a future post :)&lt;/p&gt;&lt;/div&gt;</description><category>docker</category><category>kallithea</category><category>openshift</category><category>python</category><guid>https://www.curiousefficiency.org/posts/2014/12/kallithea-on-openshift.html</guid><pubDate>Thu, 11 Dec 2014 03:18:26 GMT</pubDate></item></channel></rss>
+&lt;p&gt;That, however, is a topic for a future post :)&lt;/p&gt;</description><category>docker</category><category>kallithea</category><category>openshift</category><category>python</category><guid>https://www.curiousefficiency.org/posts/2014/12/kallithea-on-openshift/</guid><pubDate>Thu, 11 Dec 2014 03:18:26 GMT</pubDate></item></channel></rss>
