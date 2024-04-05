@@ -39,7 +39,7 @@ here. The original site blurb on Boredom & Laziness read as follows:
 "Curious Efficiency" is really just a nicer way of referring to the same
 concept.
 
-`This post <../posts/2012/07/the-title-of-this-blog/>`__ goes into some
+`This post <../../posts/2012/07/the-title-of-this-blog/>`__ goes into some
 additional detail on the concepts that inspired the naming, both the original
 form, and the current more conventionally acceptable phrasing.
 
