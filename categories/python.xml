@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Curious Efficiency (Posts about python)</title><link>https://www.curiousefficiency.org</link><description></description><atom:link href="https://www.curiousefficiency.org/categories/python.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 05 Apr 2024 10:55:12 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>What does "x = a + b" mean?</title><link>https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean/</link><dc:creator>Alyssa Coghlan</dc:creator><description>&lt;nav class="contents" id="making-sense-of-x-a-b" role="doc-toc"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Curious Efficiency (Posts about python)</title><link>https://www.curiousefficiency.org</link><description></description><atom:link href="https://www.curiousefficiency.org/categories/python.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 05 Apr 2024 11:44:44 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>What does "x = a + b" mean?</title><link>https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean/</link><dc:creator>Alyssa Coghlan</dc:creator><description>&lt;nav class="contents" id="making-sense-of-x-a-b" role="doc-toc"&gt;
 &lt;p class="topic-title"&gt;Making sense of "x = a + b"&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;p&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean/#shorthand-notations-and-shared-context" id="toc-entry-1"&gt;Shorthand notations and shared context&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
@@ -324,7 +324,7 @@ updated accordingly.&lt;/p&gt;
 &lt;/ul&gt;
 &lt;/nav&gt;
 &lt;p&gt;Several years ago, I
-&lt;a class="reference external" href="http://www.curiousefficiency.org/posts/2011/04/musings-on-culture-of-python-dev/"&gt;highlighted&lt;/a&gt;
+&lt;a class="reference external" href="https://www.curiousefficiency.org/posts/2011/04/musings-on-culture-of-python-dev/"&gt;highlighted&lt;/a&gt;
 "CPython moves both too fast and too slowly" as one of the more common causes
 of conflict both within the python-dev mailing list, as well as between the
 active CPython core developers and folks that decide that participating in
@@ -334,7 +334,7 @@ of time reflecting on in the intervening years, as I wrote that original article
 while I was still working for Boeing Defence Australia. The following month,
 I left Boeing for Red Hat Asia-Pacific, and started gaining a redistributor
 level perspective on
-&lt;a class="reference external" href="http://community.redhat.com/blog/2015/02/the-quid-pro-quo-of-open-infrastructure/"&gt;open source supply chain management&lt;/a&gt;
+&lt;a class="reference external" href="https://community.redhat.com/blog/2015/02/the-quid-pro-quo-of-open-infrastructure/"&gt;open source supply chain management&lt;/a&gt;
 in large enterprises.&lt;/p&gt;
 &lt;section id="use-cases-for-python-s-reference-interpreter"&gt;
 &lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience/#toc-entry-1" role="doc-backlink"&gt;Use cases for Python's reference interpreter&lt;/a&gt;&lt;/h2&gt;
@@ -394,7 +394,7 @@ Google Cloud Functions, Azure Cloud Functions, etc)&lt;/p&gt;&lt;/li&gt;
 carry out routine upgrades to their core components, but those upgrades occur
 on a cycle measured in years, rather than weeks or months. Examples:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="http://www.vfxplatform.com/"&gt;VFX Platform&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.vfxplatform.com/"&gt;VFX Platform&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;LTS Linux distributions&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;CPython and the Python standard library&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Infrastructure management &amp;amp; orchestration tools (e.g. OpenStack, Ansible)&lt;/p&gt;&lt;/li&gt;
@@ -437,7 +437,7 @@ Hypothesis, vcrpy, behave, mypy)&lt;/p&gt;&lt;/li&gt;
 adapters)&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;the standard library itself represents the baseline "world according to
 Python" (and that's an
-&lt;a class="reference external" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#broadening-our-horizons"&gt;incredibly complex&lt;/a&gt;
+&lt;a class="reference external" href="https://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#broadening-our-horizons"&gt;incredibly complex&lt;/a&gt;
 world view)&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
@@ -532,18 +532,18 @@ provisional APIs is a pain, then they should only be supported if the project
 developers themselves need that, or if somebody is paying them for the
 inconvenience. This is similar to my view on whether or not volunteer-driven
 projects should support older commercial LTS Python releases for free when it's
-a hassle for them to do: I &lt;a class="reference external" href="http://www.curiousefficiency.org/posts/2015/04/stop-supporting-python26/"&gt;don't think they should&lt;/a&gt;,
+a hassle for them to do: I &lt;a class="reference external" href="https://www.curiousefficiency.org/posts/2015/04/stop-supporting-python26/"&gt;don't think they should&lt;/a&gt;,
 as I expect most such demands to be stemming from poorly managed institutional
 inertia, rather than from genuine need (and if the need &lt;em&gt;is&lt;/em&gt; genuine, then it
 should instead be possible to find some means of paying to have it addressed).&lt;/p&gt;
 &lt;p&gt;However, my &lt;a class="reference external" href="https://twitter.com/ncoghlan_dev/status/917088410162012160"&gt;second reaction&lt;/a&gt;,
 was to realise that even though I've touched on this topic over the years (e.g.
 in the original 2011 article linked above, as well as in Python 3 Q &amp;amp; A answers
-&lt;a class="reference external" href="http://python-notes.curiousefficiency.org/en/latest/python3/questions_and_answers.html#wouldn-t-a-python-2-8-release-help-ease-the-transition"&gt;here&lt;/a&gt;,
-&lt;a class="reference external" href="http://python-notes.curiousefficiency.org/en/latest/python3/questions_and_answers.html#doesn-t-this-make-python-look-like-an-immature-and-unstable-platform"&gt;here&lt;/a&gt;,
-and &lt;a class="reference external" href="http://python-notes.curiousefficiency.org/en/latest/python3/questions_and_answers.html#what-about-insert-other-shiny-new-feature-here"&gt;here&lt;/a&gt;,
+&lt;a class="reference external" href="https://python-notes.curiousefficiency.org/en/latest/python3/questions_and_answers.html#wouldn-t-a-python-2-8-release-help-ease-the-transition"&gt;here&lt;/a&gt;,
+&lt;a class="reference external" href="https://python-notes.curiousefficiency.org/en/latest/python3/questions_and_answers.html#doesn-t-this-make-python-look-like-an-immature-and-unstable-platform"&gt;here&lt;/a&gt;,
+and &lt;a class="reference external" href="https://python-notes.curiousefficiency.org/en/latest/python3/questions_and_answers.html#what-about-insert-other-shiny-new-feature-here"&gt;here&lt;/a&gt;,
 and to a lesser degree in last year's article on the
-&lt;a class="reference external" href="http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem/"&gt;Python Packaging Ecosystem&lt;/a&gt;),
+&lt;a class="reference external" href="https://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem/"&gt;Python Packaging Ecosystem&lt;/a&gt;),
 I've never really attempted to directly explain the impact it has on the standard
 library design process.&lt;/p&gt;
 &lt;p&gt;And without that background, some aspects of the design process, such as the
@@ -767,7 +767,7 @@ integrating new Python level dependencies into Beaker's RPM based development
 and deployment model. Getting actively involved in tackling these problems on
 the Python upstream side of things then led to also getting more actively
 involved in addressing them on the
-&lt;a class="reference external" href="http://www.slideshare.net/ncoghlan_dev/developing-in-python-on-red-hat-platforms-devnation-2016"&gt;Red Hat downstream side&lt;/a&gt;.&lt;/p&gt;
+&lt;a class="reference external" href="https://www.slideshare.net/ncoghlan_dev/developing-in-python-on-red-hat-platforms-devnation-2016"&gt;Red Hat downstream side&lt;/a&gt;.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="the-key-conundrum"&gt;
 &lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem/#toc-entry-2" role="doc-backlink"&gt;The key conundrum&lt;/a&gt;&lt;/h2&gt;
@@ -1115,7 +1115,7 @@ but it becomes clear as soon as additional requirements like SSL/TLS,
 authentication, redirect handling, session management, and JSON request and
 response bodies enter the picture.&lt;/p&gt;
 &lt;p&gt;It's tempting, and entirely understandable, to want to
-&lt;a href="http://noamelf.com/2016/08/05/designing-pythonic-apis/"&gt;chalk this difference&lt;/a&gt;
+&lt;a href="https://noamelf.com/2016/08/05/designing-pythonic-apis/"&gt;chalk this difference&lt;/a&gt;
 in ease of use up to &lt;code&gt;requests&lt;/code&gt; being "Pythonic" (in 2016 terms), while &lt;code&gt;urllib&lt;/code&gt;
 has now become un-Pythonic (despite being included in the standard library).&lt;/p&gt;
 &lt;p&gt;While there are certainly a few elements of that (e.g. the &lt;code&gt;property&lt;/code&gt; builtin
@@ -1195,7 +1195,7 @@ progress in this area as long as most of the CPython and &lt;code&gt;requests&lt
 are pursuing their upstream contributions as a spare time activity, rather than
 as something they're specifically employed to do.&lt;/p&gt;</description><category>python</category><guid>https://www.curiousefficiency.org/posts/2016/08/what-problem-does-it-solve/</guid><pubDate>Sat, 06 Aug 2016 11:05:53 GMT</pubDate></item><item><title>Propose a talk for the PyCon Australia Education Seminar!</title><link>https://www.curiousefficiency.org/posts/2016/05/pycon-australia-education-cfp-2016/</link><dc:creator>Alyssa Coghlan</dc:creator><description>&lt;h3&gt;The pitch&lt;/h3&gt;
 &lt;div style="float: right"&gt;
-  &lt;a href="http://www.oreilly.com/programming/free/python-in-education.csp"&gt;
+  &lt;a href="https://www.oreilly.com/programming/free/python-in-education.csp"&gt;
     &lt;img src="https://www.curiousefficiency.org/files/python-in-education-cover.gif" alt="Python in Education cover"&gt;
    &lt;/a&gt;
 &lt;/div&gt;
@@ -1367,7 +1367,7 @@ and Swift programming languages, and I'm not familiar enough with art-focused
 environments like &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Processing_%28programming_language%29"&gt;Processing&lt;/a&gt; to even guess at what learning them might teach
 a Python developer). For a more complete list that takes into account factors
 beyond what a language might teach you as a developer, IEEE Spectrum's
-&lt;a class="reference external" href="http://spectrum.ieee.org/static/interactive-the-top-programming-languages-2015"&gt;annual ranking&lt;/a&gt; of programming language popularity and growth is well worth a
+&lt;a class="reference external" href="https://spectrum.ieee.org/static/interactive-the-top-programming-languages-2015"&gt;annual ranking&lt;/a&gt; of programming language popularity and growth is well worth a
 look.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="procedural-programming-c-rust-cython"&gt;
@@ -1436,7 +1436,7 @@ the IronPython implementation of Python (the core components of the original
 IronPython 1.0 implementation were extracted to create the language neutral
 .NET Dynamic Language Runtime). For a long time, .NET was a proprietary Windows
 specific technology, with &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Mono_%28software%29"&gt;mono&lt;/a&gt; as a cross-platform open source
-reimplementation, but Microsoft shifted to an &lt;a class="reference external" href="http://radar.oreilly.com/2015/06/net-open-source.html"&gt;open source ecosystem strategy&lt;/a&gt;
+reimplementation, but Microsoft shifted to an &lt;a class="reference external" href="https://radar.oreilly.com/2015/06/net-open-source.html"&gt;open source ecosystem strategy&lt;/a&gt;
 in early 2015.&lt;/p&gt;
 &lt;p&gt;Unlike most of the languages in this list, &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Eiffel_%28programming_language%29"&gt;Eiffel&lt;/a&gt; isn't one I'd recommend
 for practical day-to-day use. Rather, it's one I recommend because learning it
@@ -1506,7 +1506,7 @@ oriented programming and type-based function overloading.&lt;/p&gt;
 capabilities of the Scientific Python stack, as well as providing opportunities
 to explore hardware level parallel execution through technologies like OpenCL
 and Nvidia's CUDA, and distributed data processing through ecosystems like
-&lt;a class="reference external" href="https://spark.apache.org/"&gt;Apache Spark&lt;/a&gt; and the Python-specific &lt;a class="reference external" href="http://blaze.pydata.org/"&gt;Blaze&lt;/a&gt;.&lt;/p&gt;
+&lt;a class="reference external" href="https://spark.apache.org/"&gt;Apache Spark&lt;/a&gt; and the Python-specific &lt;a class="reference external" href="https://blaze.pydata.org/"&gt;Blaze&lt;/a&gt;.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="statistical-data-analysis-r"&gt;
 &lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python/#toc-entry-6" role="doc-backlink"&gt;Statistical data analysis: R&lt;/a&gt;&lt;/h2&gt;
@@ -1516,7 +1516,7 @@ the &lt;a class="reference external" href="https://en.wikipedia.org/wiki/R_%28pr
 analysis and visualisation.&lt;/p&gt;
 &lt;p&gt;Learning R is likely to provide insight into the statistical analysis
 capabilities of the Scientific Python stack, especially the &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Pandas_%28software%29"&gt;pandas&lt;/a&gt; data
-manipulation library and the &lt;a class="reference external" href="http://stanford.edu/~mwaskom/software/seaborn/"&gt;seaborn&lt;/a&gt; statistical visualisation library.&lt;/p&gt;
+manipulation library and the &lt;a class="reference external" href="https://stanford.edu/~mwaskom/software/seaborn/"&gt;seaborn&lt;/a&gt; statistical visualisation library.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="computational-pipeline-modelling-haskell-scala-clojure-f"&gt;
 &lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python/#toc-entry-7" role="doc-backlink"&gt;Computational pipeline modelling: Haskell, Scala, Clojure, F#&lt;/a&gt;&lt;/h2&gt;
@@ -1587,7 +1587,7 @@ from other languages like Python, Java, or Ruby.&lt;/p&gt;
 concurrency and parallelism support, including native coroutines, generator
 based coroutines, the &lt;code class="docutils literal"&gt;concurrent.futures&lt;/code&gt; and &lt;code class="docutils literal"&gt;asyncio&lt;/code&gt; standard
 library modules, third party network service development frameworks like
-&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Twisted_%28software%29"&gt;Twisted&lt;/a&gt; and &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Tornado_%28web_server%29"&gt;Tornado&lt;/a&gt;, the &lt;a class="reference external" href="http://channels.readthedocs.org/en/latest/concepts.html"&gt;channels&lt;/a&gt; concept being introduced to Django,
+&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Twisted_%28software%29"&gt;Twisted&lt;/a&gt; and &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Tornado_%28web_server%29"&gt;Tornado&lt;/a&gt;, the &lt;a class="reference external" href="https://channels.readthedocs.org/en/latest/concepts.html"&gt;channels&lt;/a&gt; concept being introduced to Django,
 and the event handling loops in GUI frameworks.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="gradual-typing-typescript"&gt;
@@ -1602,10 +1602,10 @@ controversy).&lt;/p&gt;
 applications provides a better illustration of the concept. TypeScript code
 compiles to JavaScript code (which then doesn't include any runtime type
 checking), and TypeScript annotations for popular JavaScript libraries are
-maintained in the dedicated &lt;a class="reference external" href="http://definitelytyped.org/"&gt;DefinitelyTyped&lt;/a&gt; repository.&lt;/p&gt;
+maintained in the dedicated &lt;a class="reference external" href="https://definitelytyped.org/"&gt;DefinitelyTyped&lt;/a&gt; repository.&lt;/p&gt;
 &lt;p&gt;As Chris Neugebauer pointed out in his &lt;a class="reference external" href="https://www.youtube.com/watch?v=_PPQLeimyOM"&gt;PyCon Australia presentation&lt;/a&gt;, this is
 very similar to the proposed relationship between Python, the &lt;a class="reference external" href="https://github.com/python/typeshed"&gt;typeshed&lt;/a&gt; type
-hint repository, and type inference and analysis tools like &lt;a class="reference external" href="http://mypy-lang.org/"&gt;mypy&lt;/a&gt;.&lt;/p&gt;
+hint repository, and type inference and analysis tools like &lt;a class="reference external" href="https://mypy-lang.org/"&gt;mypy&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;In essence, both TypeScript and type hinting in Python are ways of writing
 particular kinds of tests, either as separate files (just like normal tests),
 or inline with the main body of the code (just like type declarations in
@@ -1637,7 +1637,7 @@ implement core language constructs like iteration.&lt;/p&gt;
 &lt;p&gt;Learning one of these languages is likely to provide insight into Python's own
 dynamic metaprogramming support, including function and class decorators,
 &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Monkey_patch"&gt;monkeypatching&lt;/a&gt;, the &lt;code class="docutils literal"&gt;unittest.mock&lt;/code&gt; standard library module, and third
-party object proxying modules like &lt;a class="reference external" href="http://wrapt.readthedocs.org/en/latest/"&gt;wrapt&lt;/a&gt;. (I'm not aware of any languages to
+party object proxying modules like &lt;a class="reference external" href="https://wrapt.readthedocs.org/en/latest/"&gt;wrapt&lt;/a&gt;. (I'm not aware of any languages to
 learn that are likely to provide insight into Python's metaclass system, so if
 anyone has any suggestions on that front, please mention them in the comments.
 Metaclasses power features like the core type system, abstract base classes,
@@ -1681,7 +1681,7 @@ do with fortuitous opportunities, accidents of history and lowering barriers to
 adoption by working with redistributors to be made available by default, rather
 than the inherent capabilities of the languages themselves.&lt;/p&gt;
 &lt;p&gt;In particular, it may provide insight into the significance of projects like
-&lt;a class="reference external" href="http://ckan.org/instances/#"&gt;CKAN&lt;/a&gt;, &lt;a class="reference external" href="https://wiki.openstack.org/wiki/TelcoWorkingGroup"&gt;OpenStack NFV&lt;/a&gt;, &lt;a class="reference external" href="https://www.blender.org/"&gt;Blender&lt;/a&gt;, &lt;a class="reference external" href="http://www.scipy.org/"&gt;SciPy&lt;/a&gt;, &lt;a class="reference external" href="http://openmdao.org/"&gt;OpenMDAO&lt;/a&gt;, &lt;a class="reference external" href="http://esa.github.io/pygmo/"&gt;PyGMO&lt;/a&gt;,
+&lt;a class="reference external" href="https://ckan.org/instances/#"&gt;CKAN&lt;/a&gt;, &lt;a class="reference external" href="https://wiki.openstack.org/wiki/TelcoWorkingGroup"&gt;OpenStack NFV&lt;/a&gt;, &lt;a class="reference external" href="https://www.blender.org/"&gt;Blender&lt;/a&gt;, &lt;a class="reference external" href="https://www.scipy.org/"&gt;SciPy&lt;/a&gt;, &lt;a class="reference external" href="https://openmdao.org/"&gt;OpenMDAO&lt;/a&gt;, &lt;a class="reference external" href="https://esa.github.io/pygmo/"&gt;PyGMO&lt;/a&gt;,
 &lt;a class="reference external" href="https://developer.nvidia.com/pycuda"&gt;PyCUDA&lt;/a&gt;, the &lt;a class="reference external" href="https://www.raspberrypi.org/"&gt;Raspberry Pi Foundation&lt;/a&gt; and Python's adoption by a
 &lt;a class="reference external" href="https://us.pycon.org/2015/sponsors/"&gt;wide range of commercial organisations&lt;/a&gt;, for securing ongoing
 institutional investment in the Python ecosystem.&lt;/p&gt;
@@ -1729,7 +1729,7 @@ effectively with students and other newcomers, as we're more likely to
 remember to unpack our chains of logic, including the steps we'd otherwise take
 for granted.&lt;/p&gt;
 &lt;/section&gt;</description><category>python</category><guid>https://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python/</guid><pubDate>Sun, 11 Oct 2015 02:54:39 GMT</pubDate></item><item><title>TCP echo client and server in Python 3.5</title><link>https://www.curiousefficiency.org/posts/2015/07/asyncio-tcp-echo-server/</link><dc:creator>Alyssa Coghlan</dc:creator><description>&lt;p&gt;This is a follow-on from my
-&lt;a href="http://www.curiousefficiency.org/posts/2015/07/asyncio-background-calls.html"&gt;previous post&lt;/a&gt;
+&lt;a href="https://www.curiousefficiency.org/posts/2015/07/asyncio-background-calls.html"&gt;previous post&lt;/a&gt;
 on Python 3.5's new &lt;code&gt;async&lt;/code&gt;/&lt;code&gt;await&lt;/code&gt; syntax. Rather than the simple background
 timers used in the original post, this one will look at the impact native
 coroutine support has on the TCP echo client and server examples from the
@@ -2184,7 +2184,7 @@ for end users, working around institutional inertia this way reduces the
 pressure to actually get the situation addressed properly.&lt;/p&gt;
 &lt;p&gt;Beyond Red Hat Enterprise Linux, Red Hat's portfolio also includes
 both the &lt;a href="https://www.openshift.com/"&gt;OpenShift&lt;/a&gt; Platform-as-a-Service
-offering and the &lt;a href="http://www.feedhenry.com/"&gt;Feed Henry&lt;/a&gt; Mobile Application
+offering and the &lt;a href="https://www.feedhenry.com/"&gt;Feed Henry&lt;/a&gt; Mobile Application
 Platform. For many organisations looking to adopt an iterative approach to
 web service development, those are going to be a better fit than deploying
 directly to Red Hat Enterprise Linux and building a custom web service
@@ -2197,12 +2197,12 @@ from Continuum Analytics is a good way to obtain prebuilt versions of Python
 for Red Hat Enterprise Linux that can be installed by individual users
 without administrative access.&lt;/p&gt;
 &lt;p&gt;At Strata 2015, Continuum's Python distribution not only featured in a
-combined announcement regarding on-premise deployment of &lt;a href="http://redhatstorage.redhat.com/2015/02/17/deploying-pyspark-on-red-hat-storage-glusterfs/"&gt;Anaconda Cluster
+combined announcement regarding on-premise deployment of &lt;a href="https://redhatstorage.redhat.com/2015/02/17/deploying-pyspark-on-red-hat-storage-glusterfs/"&gt;Anaconda Cluster
 together with Red Hat Storage&lt;/a&gt;,
 but also in Microsoft's announcement of Python support in the
-&lt;a href="http://continuum.io/blog/azureml"&gt;Azure Machine Learning service&lt;/a&gt;&lt;/p&gt;
+&lt;a href="https://continuum.io/blog/azureml"&gt;Azure Machine Learning service&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;For users that don't need a full scientific Python distribution, Continuum
-Analytics also offer &lt;a href="http://continuum.io/downloads"&gt;miniconda&lt;/a&gt; which just
+Analytics also offer &lt;a href="https://continuum.io/downloads"&gt;miniconda&lt;/a&gt; which just
 provides a Python runtime and the conda package manager, providing end users
 with a cross-platform way to obtain and manage multiple Python runtimes
 without needing administrative access to their systems.&lt;/p&gt;
@@ -2216,10 +2216,10 @@ above the operating system layer (this aim contrasts with the aims of the
 Fedora project, which is intended primarily to drive innovation within the
 operating system layer itself).&lt;/p&gt;
 &lt;p&gt;CentOS 7 was originally released in
-&lt;a href="http://seven.centos.org/2014/07/release-announcement-for-centos-7x86_64/"&gt;July 2014&lt;/a&gt;,
+&lt;a href="https://seven.centos.org/2014/07/release-announcement-for-centos-7x86_64/"&gt;July 2014&lt;/a&gt;,
 and the latest release, CentOS 7(1503), was just published (as the name
 suggests) in
-&lt;a href="http://seven.centos.org/2015/03/centos-7-1503-is-released/"&gt;March 2015&lt;/a&gt;).&lt;/p&gt;
+&lt;a href="https://seven.centos.org/2015/03/centos-7-1503-is-released/"&gt;March 2015&lt;/a&gt;).&lt;/p&gt;
 &lt;p&gt;For CentOS and other RHEL derivatives, the upstream project for Red Hat
 Software Collections is hosted at
 &lt;a href="https://www.softwarecollections.org/en/"&gt;softwarecollections.org&lt;/a&gt;, making
@@ -2263,7 +2263,7 @@ offering as certified container hosts) extended Red Hat's certification
 programs to cover the certification of Docker containers in addition to
 other forms of Linux application deployment.&lt;/p&gt;
 &lt;p&gt;Even more recently, the
-&lt;a href="http://connect.redhat.com/zones/containers"&gt;Red Hat Container Development Kit&lt;/a&gt;
+&lt;a href="https://connect.redhat.com/zones/containers"&gt;Red Hat Container Development Kit&lt;/a&gt;
 was introduced to help streamline that certification process for Red Hat
 Independent Software Vendor Partners.&lt;/p&gt;
 &lt;p&gt;But these are all things that folks should only explore if they're
@@ -2283,9 +2283,9 @@ stacks means they don't need this long term platform support for themselves,
 so the folks that are seeking it should be expected to pay for it to happen.
 (Apparent exceptions like CentOS aren't exceptions at all: sustaining
 engineering on CentOS is instead a beneficial community byproduct of the
-&lt;a href="http://crunchtools.com/deep-dive-rebase-vs-backport/"&gt;paid sustaining engineering&lt;/a&gt;
+&lt;a href="https://crunchtools.com/deep-dive-rebase-vs-backport/"&gt;paid sustaining engineering&lt;/a&gt;
 that goes into Red Hat Enterprise Linux).&lt;/p&gt;</description><category>python</category><guid>https://www.curiousefficiency.org/posts/2015/04/stop-supporting-python26/</guid><pubDate>Sat, 04 Apr 2015 09:30:05 GMT</pubDate></item><item><title>Abusing Contributors is not OK</title><link>https://www.curiousefficiency.org/posts/2015/01/abuse-is-not-ok/</link><dc:creator>Alyssa Coghlan</dc:creator><description>&lt;p&gt;As reported in
-&lt;a href="http://arstechnica.com/business/2015/01/linus-torvalds-on-why-he-isnt-nice-i-dont-care-about-you/"&gt;Ars Technica&lt;/a&gt;,
+&lt;a href="https://arstechnica.com/business/2015/01/linus-torvalds-on-why-he-isnt-nice-i-dont-care-about-you/"&gt;Ars Technica&lt;/a&gt;,
 the ongoing efforts to promote diversity in open source communities came
 up once more during the plenary Q&amp;amp;A session with Linus Torvalds, Andrew Tridgell,
 Bdale Garbee and Rusty Russell.&lt;/p&gt;
@@ -2485,10 +2485,10 @@ between us and our respective communities.&lt;/p&gt;
 plenty of resources available for us to do so. For folks just beginning to
 explore questions of systemic bias and defaulting to exclusivity,
 gender-based bias is a good one to start with, by perusing resources like the
-&lt;a href="http://geekfeminism.wikia.com/wiki/Feminism_101"&gt;Feminism 101&lt;/a&gt; section on
+&lt;a href="https://geekfeminism.wikia.com/wiki/Feminism_101"&gt;Feminism 101&lt;/a&gt; section on
 the Geek Feminism wiki, or (if we have the opportunity) attending an
 Ada Initiative
-&lt;a href="http://adainitiative.org/what-we-do/workshops-and-training/"&gt;Ally Skills workshop&lt;/a&gt;.&lt;/p&gt;
+&lt;a href="https://adainitiative.org/what-we-do/workshops-and-training/"&gt;Ally Skills workshop&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;And if we &lt;em&gt;do&lt;/em&gt; acknowledge the importance of this work, then we can use our
 influence to help it continue, whether that's by sponsoring educational
 workshops, supporting financial assistance programs, ensuring suitable codes
@@ -2540,8 +2540,8 @@ when a wide array of systemic biases remain in place that work to reduce the
 depth, breadth, and hence quality, of our collective thinking.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Update 22 Jan, 2015: Minor typo and grammar fixes&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Update 19 Apr, 2016: This article is also available in
-&lt;a href="http://www.everycloudtech.com/abuse-is-not-ok"&gt;Russian&lt;/a&gt;,
-thanks to &lt;a href="http://www.everycloudtech.com/"&gt;Everycloud technologies&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;a href="https://www.everycloudtech.com/abuse-is-not-ok"&gt;Russian&lt;/a&gt;,
+thanks to &lt;a href="https://www.everycloudtech.com/"&gt;Everycloud technologies&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Update 1 Dec, 2016: This article is also available in
-&lt;a href="http://www.autoteileprofi.de/science/2016/12/01/kuritarvitamises-toetajad-ei-ole-ok/"&gt;Estonian&lt;/a&gt;,
+&lt;a href="https://www.autoteileprofi.de/science/2016/12/01/kuritarvitamises-toetajad-ei-ole-ok/"&gt;Estonian&lt;/a&gt;,
 thanks to Arija Liepkalnietis&lt;/em&gt;&lt;/p&gt;</description><category>python</category><category>tech</category><guid>https://www.curiousefficiency.org/posts/2015/01/abuse-is-not-ok/</guid><pubDate>Thu, 22 Jan 2015 05:57:26 GMT</pubDate></item></channel></rss>

@@ -116,7 +116,7 @@
 <span class="nl">losetup</span><span class="p">:</span><span class="w"> </span><span class="n">cannot</span><span class="w"> </span><span class="n">find</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">unused</span><span class="w"> </span><span class="n">loop</span><span class="w"> </span><span class="nl">device</span><span class="p">:</span><span class="w"> </span><span class="k">No</span><span class="w"> </span><span class="n">such</span><span class="w"> </span><span class="k">file</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">directory</span>
 </pre></div>
 
-<p>Searching on Google for "fedora create a loop device" brought me to <a href="http://unix.stackexchange.com/questions/98742/how-to-add-more-dev-loop-devices-on-fedora-19">this Unix &amp; Linux Stack Exchange question</a> as the first result, but the answer there struck me as being far too low level to be reasonable as a prerequisite for accessing encrypted files as volumes.</p>
+<p>Searching on Google for "fedora create a loop device" brought me to <a href="https://unix.stackexchange.com/questions/98742/how-to-add-more-dev-loop-devices-on-fedora-19">this Unix &amp; Linux Stack Exchange question</a> as the first result, but the answer there struck me as being far too low level to be reasonable as a prerequisite for accessing encrypted files as volumes.</p>
 <p>So I scanned further down through the list of search results, with <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1019440">this Fedora bug report</a> about difficulty accessing TrueCrypt volumes catching my eye. As with the Stack Overflow answer, most of the comments there seemed to be about reverting the effect of <a href="https://bugzilla.redhat.com/show_bug.cgi?id=896160">a change to Fedora's default behaviour</a> a change which meant that Fedora no longer came with any loop devices preconfigured.</p>
 <p>However, looking more closely at Kay's original request to trim back the list of default devices revealed an interesting statement: "Loop devices can and should be created on-demand, and only when needed, losetup has been updated since Fedora 17 to do that just fine."</p>
 <p>That didn't match my own experience with the <code>losetup</code> command, so I wondered what might be going on to explain the discrepancy, which is when it occurred to me that running <code>losetup</code> with root access might solve the problem. Generally speaking, ordinary users aren't going to have the permissions needed to create new devices, and I'd been running the <code>losetup</code> command using my normal user permissions rather than running it as <code>root</code>. That was a fairly straightforward theory to test, and sure enough, that worked:</p>
@@ -135,7 +135,7 @@
 <li>First, I filed <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1215370">a new issue</a> against <code>losetup</code>, suggesting that it nudge the user in the direction of running it with root privileges if they first run it as a normal user and don't find any devices</li>
 <li>Secondly, I followed up on the previous issue I had found in order to <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1019440#c22">explain my findings</a>
 </li>
-<li>Thirdly, I added a <a href="http://unix.stackexchange.com/a/198637/61794">new answer</a> to the Stack Exchange question I had found, suggesting the use of the higher level <code>losetup</code> command over the lower level <code>mknod</code> command</li>
+<li>Thirdly, I added a <a href="https://unix.stackexchange.com/a/198637/61794">new answer</a> to the Stack Exchange question I had found, suggesting the use of the higher level <code>losetup</code> command over the lower level <code>mknod</code> command</li>
 <li>Finally, I wrote this post recounting the tale of figuring this out from a combination of local system manual pages and online searches</li>
 </ul>
 <p>Adding a right-click option to Dolphin to be able to automatically mount TrueCrypt encrypted files as volumes and open them would be an even nicer solution, but also a whole lot more work. The only actual <em>change</em> suggested in my above set of additional steps is tweaking a particular error message in one particular situation, which should be far more attainable than a new Dolphin feature or addon.</p>
@@ -173,7 +173,7 @@
 
 
         </section></article><script>var disqus_shortname="boredomandlaziness";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><!--End of body content--><footer id="footer">
-            Contents © 2024 <a href="mailto:ncoghlan@gmail.com">Alyssa Coghlan</a> - <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, republish as you wish. - Powered by <a href="http://nikola.ralsina.com.ar">Nikola</a>
+            Contents © 2024 <a href="mailto:ncoghlan@gmail.com">Alyssa Coghlan</a> - <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, republish as you wish. - Powered by <a href="https://getnikola.com/">Nikola</a>
             
             
         </footer>

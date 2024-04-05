@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Curious Efficiency (Posts about tech)</title><link>https://www.curiousefficiency.org</link><description></description><atom:link href="https://www.curiousefficiency.org/categories/tech.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 05 Apr 2024 04:35:10 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Abusing Contributors is not OK</title><link>https://www.curiousefficiency.org/posts/2015/01/abuse-is-not-ok/</link><dc:creator>Alyssa Coghlan</dc:creator><description>&lt;p&gt;As reported in
-&lt;a href="http://arstechnica.com/business/2015/01/linus-torvalds-on-why-he-isnt-nice-i-dont-care-about-you/"&gt;Ars Technica&lt;/a&gt;,
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Curious Efficiency (Posts about tech)</title><link>https://www.curiousefficiency.org</link><description></description><atom:link href="https://www.curiousefficiency.org/categories/tech.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 05 Apr 2024 11:44:44 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Abusing Contributors is not OK</title><link>https://www.curiousefficiency.org/posts/2015/01/abuse-is-not-ok/</link><dc:creator>Alyssa Coghlan</dc:creator><description>&lt;p&gt;As reported in
+&lt;a href="https://arstechnica.com/business/2015/01/linus-torvalds-on-why-he-isnt-nice-i-dont-care-about-you/"&gt;Ars Technica&lt;/a&gt;,
 the ongoing efforts to promote diversity in open source communities came
 up once more during the plenary Q&amp;amp;A session with Linus Torvalds, Andrew Tridgell,
 Bdale Garbee and Rusty Russell.&lt;/p&gt;
@@ -200,10 +200,10 @@ between us and our respective communities.&lt;/p&gt;
 plenty of resources available for us to do so. For folks just beginning to
 explore questions of systemic bias and defaulting to exclusivity,
 gender-based bias is a good one to start with, by perusing resources like the
-&lt;a href="http://geekfeminism.wikia.com/wiki/Feminism_101"&gt;Feminism 101&lt;/a&gt; section on
+&lt;a href="https://geekfeminism.wikia.com/wiki/Feminism_101"&gt;Feminism 101&lt;/a&gt; section on
 the Geek Feminism wiki, or (if we have the opportunity) attending an
 Ada Initiative
-&lt;a href="http://adainitiative.org/what-we-do/workshops-and-training/"&gt;Ally Skills workshop&lt;/a&gt;.&lt;/p&gt;
+&lt;a href="https://adainitiative.org/what-we-do/workshops-and-training/"&gt;Ally Skills workshop&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;And if we &lt;em&gt;do&lt;/em&gt; acknowledge the importance of this work, then we can use our
 influence to help it continue, whether that's by sponsoring educational
 workshops, supporting financial assistance programs, ensuring suitable codes
@@ -255,10 +255,10 @@ when a wide array of systemic biases remain in place that work to reduce the
 depth, breadth, and hence quality, of our collective thinking.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Update 22 Jan, 2015: Minor typo and grammar fixes&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Update 19 Apr, 2016: This article is also available in
-&lt;a href="http://www.everycloudtech.com/abuse-is-not-ok"&gt;Russian&lt;/a&gt;,
-thanks to &lt;a href="http://www.everycloudtech.com/"&gt;Everycloud technologies&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;a href="https://www.everycloudtech.com/abuse-is-not-ok"&gt;Russian&lt;/a&gt;,
+thanks to &lt;a href="https://www.everycloudtech.com/"&gt;Everycloud technologies&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Update 1 Dec, 2016: This article is also available in
-&lt;a href="http://www.autoteileprofi.de/science/2016/12/01/kuritarvitamises-toetajad-ei-ole-ok/"&gt;Estonian&lt;/a&gt;,
+&lt;a href="https://www.autoteileprofi.de/science/2016/12/01/kuritarvitamises-toetajad-ei-ole-ok/"&gt;Estonian&lt;/a&gt;,
 thanks to Arija Liepkalnietis&lt;/em&gt;&lt;/p&gt;</description><category>python</category><category>tech</category><guid>https://www.curiousefficiency.org/posts/2015/01/abuse-is-not-ok/</guid><pubDate>Thu, 22 Jan 2015 05:57:26 GMT</pubDate></item><item><title>DTCA Public Consultation - Brisbane</title><link>https://www.curiousefficiency.org/posts/2015/01/dtca-public-consultation/</link><dc:creator>Alyssa Coghlan</dc:creator><description>&lt;p&gt;Over the weekend, Asher Wolf
 &lt;a href="https://twitter.com/Asher_Wolf/status/555909774596784129"&gt;alerted me&lt;/a&gt; (and
 many others in the open source and cryptographic communities) to the
@@ -276,7 +276,7 @@ research and development activities.&lt;/p&gt;
 &lt;p&gt;As a result, I've escalated this legislation for review by the legal teams
 at various open source companies and organisations, with a view to making
 formal submissions to the
-&lt;a href="http://www.defence.gov.au/deco/Consultation.asp"&gt;public consultation process&lt;/a&gt;
+&lt;a href="https://www.defence.gov.au/deco/Consultation.asp"&gt;public consultation process&lt;/a&gt;
 that is open until January 30th (ready for bills to be submitted for
 consideration to federal parliament on February 23rd).&lt;/p&gt;
 &lt;p&gt;However, I was also able to attend the first public consultation session
@@ -288,12 +288,12 @@ to the intent of the folks involved in moving this process forward.&lt;/p&gt;
 &lt;h2&gt;What &lt;em&gt;not&lt;/em&gt; to worry about&lt;/h2&gt;
 &lt;p&gt;To folks encountering this kind of legislation for the first time, the
 sheer scope of the
-&lt;a href="http://www.defence.gov.au/deco/DSGL.asp"&gt;Defence and Strategic Goods List&lt;/a&gt;
+&lt;a href="https://www.defence.gov.au/deco/DSGL.asp"&gt;Defence and Strategic Goods List&lt;/a&gt;
 can seem absolutely terrifying. This was very clear to me from some of the
 questions various academics in the room were asking.&lt;/p&gt;
 &lt;p&gt;On this particular point, I can only say: &lt;em&gt;"Don't panic"&lt;/em&gt;. This isn't a
 unique-to-Australia list, it's backed by a treaty called the
-&lt;a href="http://www.wassenaar.org/"&gt;Wassenaar Arrangement&lt;/a&gt; - the DSGL represents
+&lt;a href="https://www.wassenaar.org/"&gt;Wassenaar Arrangement&lt;/a&gt; - the DSGL represents
 part of the implementation of that arrangement into Australian law.&lt;/p&gt;
 &lt;p&gt;When the laws implementing that arrangement are well drafted, everyone outside
 the military industrial complex (and certain easily weaponised areas of
@@ -401,7 +401,7 @@ else.&lt;/p&gt;
 &lt;h2&gt;What industry and academia can do about it&lt;/h2&gt;
 &lt;p&gt;While it's very short notice, the main thing industry and academia can do
 is to file formal submissions with DECO as described in their overview of
-the &lt;a href="http://www.defence.gov.au/deco/Consultation.asp"&gt;public consultation process&lt;/a&gt;.&lt;/p&gt;
+the &lt;a href="https://www.defence.gov.au/deco/Consultation.asp"&gt;public consultation process&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;There are three main things to be addressed on that front:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;ensuring federal parliament are aware of the importance of amending the

@@ -3,7 +3,7 @@
 much of our economic activity is devoted to preventing boredom in the idle
 time created by increases in efficiency. To be human is to be a strange
 creature indeed :)
-</description><atom:link href="https://www.curiousefficiency.org/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 05 Apr 2024 10:55:12 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>What does "x = a + b" mean?</title><link>https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean/</link><dc:creator>Alyssa Coghlan</dc:creator><description>&lt;nav class="contents" id="making-sense-of-x-a-b" role="doc-toc"&gt;
+</description><atom:link href="https://www.curiousefficiency.org/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 05 Apr 2024 11:44:44 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>What does "x = a + b" mean?</title><link>https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean/</link><dc:creator>Alyssa Coghlan</dc:creator><description>&lt;nav class="contents" id="making-sense-of-x-a-b" role="doc-toc"&gt;
 &lt;p class="topic-title"&gt;Making sense of "x = a + b"&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;p&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean/#shorthand-notations-and-shared-context" id="toc-entry-1"&gt;Shorthand notations and shared context&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
@@ -328,7 +328,7 @@ updated accordingly.&lt;/p&gt;
 &lt;/ul&gt;
 &lt;/nav&gt;
 &lt;p&gt;Several years ago, I
-&lt;a class="reference external" href="http://www.curiousefficiency.org/posts/2011/04/musings-on-culture-of-python-dev/"&gt;highlighted&lt;/a&gt;
+&lt;a class="reference external" href="https://www.curiousefficiency.org/posts/2011/04/musings-on-culture-of-python-dev/"&gt;highlighted&lt;/a&gt;
 "CPython moves both too fast and too slowly" as one of the more common causes
 of conflict both within the python-dev mailing list, as well as between the
 active CPython core developers and folks that decide that participating in
@@ -338,7 +338,7 @@ of time reflecting on in the intervening years, as I wrote that original article
 while I was still working for Boeing Defence Australia. The following month,
 I left Boeing for Red Hat Asia-Pacific, and started gaining a redistributor
 level perspective on
-&lt;a class="reference external" href="http://community.redhat.com/blog/2015/02/the-quid-pro-quo-of-open-infrastructure/"&gt;open source supply chain management&lt;/a&gt;
+&lt;a class="reference external" href="https://community.redhat.com/blog/2015/02/the-quid-pro-quo-of-open-infrastructure/"&gt;open source supply chain management&lt;/a&gt;
 in large enterprises.&lt;/p&gt;
 &lt;section id="use-cases-for-python-s-reference-interpreter"&gt;
 &lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience/#toc-entry-1" role="doc-backlink"&gt;Use cases for Python's reference interpreter&lt;/a&gt;&lt;/h2&gt;
@@ -398,7 +398,7 @@ Google Cloud Functions, Azure Cloud Functions, etc)&lt;/p&gt;&lt;/li&gt;
 carry out routine upgrades to their core components, but those upgrades occur
 on a cycle measured in years, rather than weeks or months. Examples:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="http://www.vfxplatform.com/"&gt;VFX Platform&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://www.vfxplatform.com/"&gt;VFX Platform&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;LTS Linux distributions&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;CPython and the Python standard library&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Infrastructure management &amp;amp; orchestration tools (e.g. OpenStack, Ansible)&lt;/p&gt;&lt;/li&gt;
@@ -441,7 +441,7 @@ Hypothesis, vcrpy, behave, mypy)&lt;/p&gt;&lt;/li&gt;
 adapters)&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;the standard library itself represents the baseline "world according to
 Python" (and that's an
-&lt;a class="reference external" href="http://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#broadening-our-horizons"&gt;incredibly complex&lt;/a&gt;
+&lt;a class="reference external" href="https://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python.html#broadening-our-horizons"&gt;incredibly complex&lt;/a&gt;
 world view)&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
@@ -536,18 +536,18 @@ provisional APIs is a pain, then they should only be supported if the project
 developers themselves need that, or if somebody is paying them for the
 inconvenience. This is similar to my view on whether or not volunteer-driven
 projects should support older commercial LTS Python releases for free when it's
-a hassle for them to do: I &lt;a class="reference external" href="http://www.curiousefficiency.org/posts/2015/04/stop-supporting-python26/"&gt;don't think they should&lt;/a&gt;,
+a hassle for them to do: I &lt;a class="reference external" href="https://www.curiousefficiency.org/posts/2015/04/stop-supporting-python26/"&gt;don't think they should&lt;/a&gt;,
 as I expect most such demands to be stemming from poorly managed institutional
 inertia, rather than from genuine need (and if the need &lt;em&gt;is&lt;/em&gt; genuine, then it
 should instead be possible to find some means of paying to have it addressed).&lt;/p&gt;
 &lt;p&gt;However, my &lt;a class="reference external" href="https://twitter.com/ncoghlan_dev/status/917088410162012160"&gt;second reaction&lt;/a&gt;,
 was to realise that even though I've touched on this topic over the years (e.g.
 in the original 2011 article linked above, as well as in Python 3 Q &amp;amp; A answers
-&lt;a class="reference external" href="http://python-notes.curiousefficiency.org/en/latest/python3/questions_and_answers.html#wouldn-t-a-python-2-8-release-help-ease-the-transition"&gt;here&lt;/a&gt;,
-&lt;a class="reference external" href="http://python-notes.curiousefficiency.org/en/latest/python3/questions_and_answers.html#doesn-t-this-make-python-look-like-an-immature-and-unstable-platform"&gt;here&lt;/a&gt;,
-and &lt;a class="reference external" href="http://python-notes.curiousefficiency.org/en/latest/python3/questions_and_answers.html#what-about-insert-other-shiny-new-feature-here"&gt;here&lt;/a&gt;,
+&lt;a class="reference external" href="https://python-notes.curiousefficiency.org/en/latest/python3/questions_and_answers.html#wouldn-t-a-python-2-8-release-help-ease-the-transition"&gt;here&lt;/a&gt;,
+&lt;a class="reference external" href="https://python-notes.curiousefficiency.org/en/latest/python3/questions_and_answers.html#doesn-t-this-make-python-look-like-an-immature-and-unstable-platform"&gt;here&lt;/a&gt;,
+and &lt;a class="reference external" href="https://python-notes.curiousefficiency.org/en/latest/python3/questions_and_answers.html#what-about-insert-other-shiny-new-feature-here"&gt;here&lt;/a&gt;,
 and to a lesser degree in last year's article on the
-&lt;a class="reference external" href="http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem/"&gt;Python Packaging Ecosystem&lt;/a&gt;),
+&lt;a class="reference external" href="https://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem/"&gt;Python Packaging Ecosystem&lt;/a&gt;),
 I've never really attempted to directly explain the impact it has on the standard
 library design process.&lt;/p&gt;
 &lt;p&gt;And without that background, some aspects of the design process, such as the
@@ -771,7 +771,7 @@ integrating new Python level dependencies into Beaker's RPM based development
 and deployment model. Getting actively involved in tackling these problems on
 the Python upstream side of things then led to also getting more actively
 involved in addressing them on the
-&lt;a class="reference external" href="http://www.slideshare.net/ncoghlan_dev/developing-in-python-on-red-hat-platforms-devnation-2016"&gt;Red Hat downstream side&lt;/a&gt;.&lt;/p&gt;
+&lt;a class="reference external" href="https://www.slideshare.net/ncoghlan_dev/developing-in-python-on-red-hat-platforms-devnation-2016"&gt;Red Hat downstream side&lt;/a&gt;.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="the-key-conundrum"&gt;
 &lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem/#toc-entry-2" role="doc-backlink"&gt;The key conundrum&lt;/a&gt;&lt;/h2&gt;
@@ -1119,7 +1119,7 @@ but it becomes clear as soon as additional requirements like SSL/TLS,
 authentication, redirect handling, session management, and JSON request and
 response bodies enter the picture.&lt;/p&gt;
 &lt;p&gt;It's tempting, and entirely understandable, to want to
-&lt;a href="http://noamelf.com/2016/08/05/designing-pythonic-apis/"&gt;chalk this difference&lt;/a&gt;
+&lt;a href="https://noamelf.com/2016/08/05/designing-pythonic-apis/"&gt;chalk this difference&lt;/a&gt;
 in ease of use up to &lt;code&gt;requests&lt;/code&gt; being "Pythonic" (in 2016 terms), while &lt;code&gt;urllib&lt;/code&gt;
 has now become un-Pythonic (despite being included in the standard library).&lt;/p&gt;
 &lt;p&gt;While there are certainly a few elements of that (e.g. the &lt;code&gt;property&lt;/code&gt; builtin
@@ -1199,7 +1199,7 @@ progress in this area as long as most of the CPython and &lt;code&gt;requests&lt
 are pursuing their upstream contributions as a spare time activity, rather than
 as something they're specifically employed to do.&lt;/p&gt;</description><category>python</category><guid>https://www.curiousefficiency.org/posts/2016/08/what-problem-does-it-solve/</guid><pubDate>Sat, 06 Aug 2016 11:05:53 GMT</pubDate></item><item><title>Propose a talk for the PyCon Australia Education Seminar!</title><link>https://www.curiousefficiency.org/posts/2016/05/pycon-australia-education-cfp-2016/</link><dc:creator>Alyssa Coghlan</dc:creator><description>&lt;h3&gt;The pitch&lt;/h3&gt;
 &lt;div style="float: right"&gt;
-  &lt;a href="http://www.oreilly.com/programming/free/python-in-education.csp"&gt;
+  &lt;a href="https://www.oreilly.com/programming/free/python-in-education.csp"&gt;
     &lt;img src="https://www.curiousefficiency.org/files/python-in-education-cover.gif" alt="Python in Education cover"&gt;
    &lt;/a&gt;
 &lt;/div&gt;
@@ -1371,7 +1371,7 @@ and Swift programming languages, and I'm not familiar enough with art-focused
 environments like &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Processing_%28programming_language%29"&gt;Processing&lt;/a&gt; to even guess at what learning them might teach
 a Python developer). For a more complete list that takes into account factors
 beyond what a language might teach you as a developer, IEEE Spectrum's
-&lt;a class="reference external" href="http://spectrum.ieee.org/static/interactive-the-top-programming-languages-2015"&gt;annual ranking&lt;/a&gt; of programming language popularity and growth is well worth a
+&lt;a class="reference external" href="https://spectrum.ieee.org/static/interactive-the-top-programming-languages-2015"&gt;annual ranking&lt;/a&gt; of programming language popularity and growth is well worth a
 look.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="procedural-programming-c-rust-cython"&gt;
@@ -1440,7 +1440,7 @@ the IronPython implementation of Python (the core components of the original
 IronPython 1.0 implementation were extracted to create the language neutral
 .NET Dynamic Language Runtime). For a long time, .NET was a proprietary Windows
 specific technology, with &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Mono_%28software%29"&gt;mono&lt;/a&gt; as a cross-platform open source
-reimplementation, but Microsoft shifted to an &lt;a class="reference external" href="http://radar.oreilly.com/2015/06/net-open-source.html"&gt;open source ecosystem strategy&lt;/a&gt;
+reimplementation, but Microsoft shifted to an &lt;a class="reference external" href="https://radar.oreilly.com/2015/06/net-open-source.html"&gt;open source ecosystem strategy&lt;/a&gt;
 in early 2015.&lt;/p&gt;
 &lt;p&gt;Unlike most of the languages in this list, &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Eiffel_%28programming_language%29"&gt;Eiffel&lt;/a&gt; isn't one I'd recommend
 for practical day-to-day use. Rather, it's one I recommend because learning it
@@ -1510,7 +1510,7 @@ oriented programming and type-based function overloading.&lt;/p&gt;
 capabilities of the Scientific Python stack, as well as providing opportunities
 to explore hardware level parallel execution through technologies like OpenCL
 and Nvidia's CUDA, and distributed data processing through ecosystems like
-&lt;a class="reference external" href="https://spark.apache.org/"&gt;Apache Spark&lt;/a&gt; and the Python-specific &lt;a class="reference external" href="http://blaze.pydata.org/"&gt;Blaze&lt;/a&gt;.&lt;/p&gt;
+&lt;a class="reference external" href="https://spark.apache.org/"&gt;Apache Spark&lt;/a&gt; and the Python-specific &lt;a class="reference external" href="https://blaze.pydata.org/"&gt;Blaze&lt;/a&gt;.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="statistical-data-analysis-r"&gt;
 &lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python/#toc-entry-6" role="doc-backlink"&gt;Statistical data analysis: R&lt;/a&gt;&lt;/h2&gt;
@@ -1520,7 +1520,7 @@ the &lt;a class="reference external" href="https://en.wikipedia.org/wiki/R_%28pr
 analysis and visualisation.&lt;/p&gt;
 &lt;p&gt;Learning R is likely to provide insight into the statistical analysis
 capabilities of the Scientific Python stack, especially the &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Pandas_%28software%29"&gt;pandas&lt;/a&gt; data
-manipulation library and the &lt;a class="reference external" href="http://stanford.edu/~mwaskom/software/seaborn/"&gt;seaborn&lt;/a&gt; statistical visualisation library.&lt;/p&gt;
+manipulation library and the &lt;a class="reference external" href="https://stanford.edu/~mwaskom/software/seaborn/"&gt;seaborn&lt;/a&gt; statistical visualisation library.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="computational-pipeline-modelling-haskell-scala-clojure-f"&gt;
 &lt;h2&gt;&lt;a class="toc-backref" href="https://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python/#toc-entry-7" role="doc-backlink"&gt;Computational pipeline modelling: Haskell, Scala, Clojure, F#&lt;/a&gt;&lt;/h2&gt;
@@ -1591,7 +1591,7 @@ from other languages like Python, Java, or Ruby.&lt;/p&gt;
 concurrency and parallelism support, including native coroutines, generator
 based coroutines, the &lt;code class="docutils literal"&gt;concurrent.futures&lt;/code&gt; and &lt;code class="docutils literal"&gt;asyncio&lt;/code&gt; standard
 library modules, third party network service development frameworks like
-&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Twisted_%28software%29"&gt;Twisted&lt;/a&gt; and &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Tornado_%28web_server%29"&gt;Tornado&lt;/a&gt;, the &lt;a class="reference external" href="http://channels.readthedocs.org/en/latest/concepts.html"&gt;channels&lt;/a&gt; concept being introduced to Django,
+&lt;a class="reference external" href="https://en.wikipedia.org/wiki/Twisted_%28software%29"&gt;Twisted&lt;/a&gt; and &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Tornado_%28web_server%29"&gt;Tornado&lt;/a&gt;, the &lt;a class="reference external" href="https://channels.readthedocs.org/en/latest/concepts.html"&gt;channels&lt;/a&gt; concept being introduced to Django,
 and the event handling loops in GUI frameworks.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="gradual-typing-typescript"&gt;
@@ -1606,10 +1606,10 @@ controversy).&lt;/p&gt;
 applications provides a better illustration of the concept. TypeScript code
 compiles to JavaScript code (which then doesn't include any runtime type
 checking), and TypeScript annotations for popular JavaScript libraries are
-maintained in the dedicated &lt;a class="reference external" href="http://definitelytyped.org/"&gt;DefinitelyTyped&lt;/a&gt; repository.&lt;/p&gt;
+maintained in the dedicated &lt;a class="reference external" href="https://definitelytyped.org/"&gt;DefinitelyTyped&lt;/a&gt; repository.&lt;/p&gt;
 &lt;p&gt;As Chris Neugebauer pointed out in his &lt;a class="reference external" href="https://www.youtube.com/watch?v=_PPQLeimyOM"&gt;PyCon Australia presentation&lt;/a&gt;, this is
 very similar to the proposed relationship between Python, the &lt;a class="reference external" href="https://github.com/python/typeshed"&gt;typeshed&lt;/a&gt; type
-hint repository, and type inference and analysis tools like &lt;a class="reference external" href="http://mypy-lang.org/"&gt;mypy&lt;/a&gt;.&lt;/p&gt;
+hint repository, and type inference and analysis tools like &lt;a class="reference external" href="https://mypy-lang.org/"&gt;mypy&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;In essence, both TypeScript and type hinting in Python are ways of writing
 particular kinds of tests, either as separate files (just like normal tests),
 or inline with the main body of the code (just like type declarations in
@@ -1641,7 +1641,7 @@ implement core language constructs like iteration.&lt;/p&gt;
 &lt;p&gt;Learning one of these languages is likely to provide insight into Python's own
 dynamic metaprogramming support, including function and class decorators,
 &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Monkey_patch"&gt;monkeypatching&lt;/a&gt;, the &lt;code class="docutils literal"&gt;unittest.mock&lt;/code&gt; standard library module, and third
-party object proxying modules like &lt;a class="reference external" href="http://wrapt.readthedocs.org/en/latest/"&gt;wrapt&lt;/a&gt;. (I'm not aware of any languages to
+party object proxying modules like &lt;a class="reference external" href="https://wrapt.readthedocs.org/en/latest/"&gt;wrapt&lt;/a&gt;. (I'm not aware of any languages to
 learn that are likely to provide insight into Python's metaclass system, so if
 anyone has any suggestions on that front, please mention them in the comments.
 Metaclasses power features like the core type system, abstract base classes,
@@ -1685,7 +1685,7 @@ do with fortuitous opportunities, accidents of history and lowering barriers to
 adoption by working with redistributors to be made available by default, rather
 than the inherent capabilities of the languages themselves.&lt;/p&gt;
 &lt;p&gt;In particular, it may provide insight into the significance of projects like
-&lt;a class="reference external" href="http://ckan.org/instances/#"&gt;CKAN&lt;/a&gt;, &lt;a class="reference external" href="https://wiki.openstack.org/wiki/TelcoWorkingGroup"&gt;OpenStack NFV&lt;/a&gt;, &lt;a class="reference external" href="https://www.blender.org/"&gt;Blender&lt;/a&gt;, &lt;a class="reference external" href="http://www.scipy.org/"&gt;SciPy&lt;/a&gt;, &lt;a class="reference external" href="http://openmdao.org/"&gt;OpenMDAO&lt;/a&gt;, &lt;a class="reference external" href="http://esa.github.io/pygmo/"&gt;PyGMO&lt;/a&gt;,
+&lt;a class="reference external" href="https://ckan.org/instances/#"&gt;CKAN&lt;/a&gt;, &lt;a class="reference external" href="https://wiki.openstack.org/wiki/TelcoWorkingGroup"&gt;OpenStack NFV&lt;/a&gt;, &lt;a class="reference external" href="https://www.blender.org/"&gt;Blender&lt;/a&gt;, &lt;a class="reference external" href="https://www.scipy.org/"&gt;SciPy&lt;/a&gt;, &lt;a class="reference external" href="https://openmdao.org/"&gt;OpenMDAO&lt;/a&gt;, &lt;a class="reference external" href="https://esa.github.io/pygmo/"&gt;PyGMO&lt;/a&gt;,
 &lt;a class="reference external" href="https://developer.nvidia.com/pycuda"&gt;PyCUDA&lt;/a&gt;, the &lt;a class="reference external" href="https://www.raspberrypi.org/"&gt;Raspberry Pi Foundation&lt;/a&gt; and Python's adoption by a
 &lt;a class="reference external" href="https://us.pycon.org/2015/sponsors/"&gt;wide range of commercial organisations&lt;/a&gt;, for securing ongoing
 institutional investment in the Python ecosystem.&lt;/p&gt;
@@ -1733,7 +1733,7 @@ effectively with students and other newcomers, as we're more likely to
 remember to unpack our chains of logic, including the steps we'd otherwise take
 for granted.&lt;/p&gt;
 &lt;/section&gt;</description><category>python</category><guid>https://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python/</guid><pubDate>Sun, 11 Oct 2015 02:54:39 GMT</pubDate></item><item><title>TCP echo client and server in Python 3.5</title><link>https://www.curiousefficiency.org/posts/2015/07/asyncio-tcp-echo-server/</link><dc:creator>Alyssa Coghlan</dc:creator><description>&lt;p&gt;This is a follow-on from my
-&lt;a href="http://www.curiousefficiency.org/posts/2015/07/asyncio-background-calls.html"&gt;previous post&lt;/a&gt;
+&lt;a href="https://www.curiousefficiency.org/posts/2015/07/asyncio-background-calls.html"&gt;previous post&lt;/a&gt;
 on Python 3.5's new &lt;code&gt;async&lt;/code&gt;/&lt;code&gt;await&lt;/code&gt; syntax. Rather than the simple background
 timers used in the original post, this one will look at the impact native
 coroutine support has on the TCP echo client and server examples from the
@@ -2140,10 +2140,10 @@ to run the event loop:&lt;/p&gt;
 &lt;p&gt;That's both a strength (as you can run multiple blocking IO operations in
 parallel), but also a significant weakness - one of the benefits of explicit
 coroutines is their predictability, as you know &lt;em&gt;none&lt;/em&gt; of them will start
-doing anything until you start running the event loop.&lt;/p&gt;</description><category>python</category><guid>https://www.curiousefficiency.org/posts/2015/07/asyncio-background-calls/</guid><pubDate>Fri, 10 Jul 2015 08:17:53 GMT</pubDate></item><item><title>Inaugural PyCon Australia Education Miniconf</title><link>https://www.curiousefficiency.org/posts/2015/04/pycon-australia-education-miniconf/</link><dc:creator>Alyssa Coghlan</dc:creator><description>&lt;p&gt;PyCon Australia launched its &lt;a href="http://2015.pycon-au.org/cfp"&gt;Call for Papers&lt;/a&gt; just over a month ago, and it closes in a little over a week on Friday the 8th of May.&lt;/p&gt;
+doing anything until you start running the event loop.&lt;/p&gt;</description><category>python</category><guid>https://www.curiousefficiency.org/posts/2015/07/asyncio-background-calls/</guid><pubDate>Fri, 10 Jul 2015 08:17:53 GMT</pubDate></item><item><title>Inaugural PyCon Australia Education Miniconf</title><link>https://www.curiousefficiency.org/posts/2015/04/pycon-australia-education-miniconf/</link><dc:creator>Alyssa Coghlan</dc:creator><description>&lt;p&gt;PyCon Australia launched its &lt;a href="https://2015.pycon-au.org/cfp"&gt;Call for Papers&lt;/a&gt; just over a month ago, and it closes in a little over a week on Friday the 8th of May.&lt;/p&gt;
 &lt;p&gt;A new addition to PyCon Australia this year, and one I'm particularly excited about co-organising following Dr James Curran's &lt;a href="https://www.youtube.com/watch?v=iVv7fCwVbp4&amp;amp;list=PLs4CJRBY5F1JQV44fKjRwjnh3CSTyJvOH&amp;amp;index=2"&gt;"Python for Every Child in Australia"&lt;/a&gt; keynote last year, is the inaugural Python in Education miniconf as a 4th specialist track on the Friday of the conference, before we move into the main program over the weekend.&lt;/p&gt;
 &lt;p&gt;From the CFP announcement: &lt;em&gt;"The Python in Education Miniconf aims to bring together community workshop organisers, professional Python instructors and professional educators across primary, secondary and tertiary levels to share their experiences and requirements, and identify areas of potential collaboration with each other and also with the broader Python community."&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;If that sounds like you, then I'd love to invite you to head over to the conference website and make your submission to the &lt;a href="http://2015.pycon-au.org/cfp"&gt;Call for Papers&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;If that sounds like you, then I'd love to invite you to head over to the conference website and make your submission to the &lt;a href="https://2015.pycon-au.org/cfp"&gt;Call for Papers&lt;/a&gt;!&lt;/p&gt;
 &lt;p&gt;This year, all 4 miniconfs (Education, Science &amp;amp; Data Analysis, OpenStack and DjangoCon AU) are running our calls for proposals as part of the main conference CFP - every proposal submitted will be considered for both the main conference and the miniconfs.&lt;/p&gt;
 &lt;p&gt;I'm also pleased to announce two pre-arranged sessions at the Education Miniconf:&lt;/p&gt;
 &lt;ul&gt;
@@ -2151,7 +2151,7 @@ doing anything until you start running the event loop.&lt;/p&gt;</description><c
 &lt;p&gt;Carrie Anne Philbin, author of &lt;a href="https://www.raspberrypi.org/carrie-anne-philbins-adventures-in-raspberry-pi/"&gt;"Adventures in Raspberry Pi"&lt;/a&gt; and Education Pioneer at the Raspberry Pi Foundation will be speaking on the Foundation's &lt;a href="https://www.raspberrypi.org/picademy/"&gt;Picademy&lt;/a&gt; professional development program for primary and secondary teachers &lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Peter Whitehouse, author of &lt;a href="http://www.wonko.info/ipt/"&gt;IPT - a virtual approach&lt;/a&gt; (online since 1992!) and a longstanding board member of the &lt;a href="https://www.qsite.edu.au/home"&gt;Queensland Society for Information Technology in Education&lt;/a&gt; will provide insight into some of the challenges and opportunities of integrating Python and other open source software into Australian IT education&lt;/p&gt;
+&lt;p&gt;Peter Whitehouse, author of &lt;a href="https://www.wonko.info/ipt/"&gt;IPT - a virtual approach&lt;/a&gt; (online since 1992!) and a longstanding board member of the &lt;a href="https://www.qsite.edu.au/home"&gt;Queensland Society for Information Technology in Education&lt;/a&gt; will provide insight into some of the challenges and opportunities of integrating Python and other open source software into Australian IT education&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;I'm genuinely looking forward to chairing this event, as I see tremendous potential in forging stronger connections between Australian educators (both formal and informal) and the broader Python and open source communities.&lt;/p&gt;</description><guid>https://www.curiousefficiency.org/posts/2015/04/pycon-australia-education-miniconf/</guid><pubDate>Mon, 27 Apr 2015 10:43:14 GMT</pubDate></item><item><title>Accessing TrueCrypt Encrypted Files on Fedora 22</title><link>https://www.curiousefficiency.org/posts/2015/04/fedora-encrypted-volumes/</link><dc:creator>Alyssa Coghlan</dc:creator><description>&lt;p&gt;I recently got a new ultrabook (a HP Spectre 360), which means I finally have enough space to transfer my music files from the external drive where they've been stored for the past few years back to the laptop (there really wasn't enough space for them on my previous laptop, a first generation ASUS Zenbook, but even with the Windows partition still around, the extra storage space on the new device leaves plenty of room for my music collection).&lt;/p&gt;
@@ -2164,7 +2164,7 @@ doing anything until you start running the event loop.&lt;/p&gt;</description><c
 &lt;span class="nl"&gt;losetup&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;cannot&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;an&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;unused&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;loop&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nl"&gt;device&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;No&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;such&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;file&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;or&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;directory&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;Searching on Google for "fedora create a loop device" brought me to &lt;a href="http://unix.stackexchange.com/questions/98742/how-to-add-more-dev-loop-devices-on-fedora-19"&gt;this Unix &amp;amp; Linux Stack Exchange question&lt;/a&gt; as the first result, but the answer there struck me as being far too low level to be reasonable as a prerequisite for accessing encrypted files as volumes.&lt;/p&gt;
+&lt;p&gt;Searching on Google for "fedora create a loop device" brought me to &lt;a href="https://unix.stackexchange.com/questions/98742/how-to-add-more-dev-loop-devices-on-fedora-19"&gt;this Unix &amp;amp; Linux Stack Exchange question&lt;/a&gt; as the first result, but the answer there struck me as being far too low level to be reasonable as a prerequisite for accessing encrypted files as volumes.&lt;/p&gt;
 &lt;p&gt;So I scanned further down through the list of search results, with &lt;a href="https://bugzilla.redhat.com/show_bug.cgi?id=1019440"&gt;this Fedora bug report&lt;/a&gt; about difficulty accessing TrueCrypt volumes catching my eye. As with the Stack Overflow answer, most of the comments there seemed to be about reverting the effect of &lt;a href="https://bugzilla.redhat.com/show_bug.cgi?id=896160"&gt;a change to Fedora's default behaviour&lt;/a&gt; a change which meant that Fedora no longer came with any loop devices preconfigured.&lt;/p&gt;
 &lt;p&gt;However, looking more closely at Kay's original request to trim back the list of default devices revealed an interesting statement: "Loop devices can and should be created on-demand, and only when needed, losetup has been updated since Fedora 17 to do that just fine."&lt;/p&gt;
 &lt;p&gt;That didn't match my own experience with the &lt;code&gt;losetup&lt;/code&gt; command, so I wondered what might be going on to explain the discrepancy, which is when it occurred to me that running &lt;code&gt;losetup&lt;/code&gt; with root access might solve the problem. Generally speaking, ordinary users aren't going to have the permissions needed to create new devices, and I'd been running the &lt;code&gt;losetup&lt;/code&gt; command using my normal user permissions rather than running it as &lt;code&gt;root&lt;/code&gt;. That was a fairly straightforward theory to test, and sure enough, that worked:&lt;/p&gt;
@@ -2182,7 +2182,7 @@ doing anything until you start running the event loop.&lt;/p&gt;</description><c
 &lt;ul&gt;
 &lt;li&gt;First, I filed &lt;a href="https://bugzilla.redhat.com/show_bug.cgi?id=1215370"&gt;a new issue&lt;/a&gt; against &lt;code&gt;losetup&lt;/code&gt;, suggesting that it nudge the user in the direction of running it with root privileges if they first run it as a normal user and don't find any devices&lt;/li&gt;
 &lt;li&gt;Secondly, I followed up on the previous issue I had found in order to &lt;a href="https://bugzilla.redhat.com/show_bug.cgi?id=1019440#c22"&gt;explain my findings&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Thirdly, I added a &lt;a href="http://unix.stackexchange.com/a/198637/61794"&gt;new answer&lt;/a&gt; to the Stack Exchange question I had found, suggesting the use of the higher level &lt;code&gt;losetup&lt;/code&gt; command over the lower level &lt;code&gt;mknod&lt;/code&gt; command&lt;/li&gt;
+&lt;li&gt;Thirdly, I added a &lt;a href="https://unix.stackexchange.com/a/198637/61794"&gt;new answer&lt;/a&gt; to the Stack Exchange question I had found, suggesting the use of the higher level &lt;code&gt;losetup&lt;/code&gt; command over the lower level &lt;code&gt;mknod&lt;/code&gt; command&lt;/li&gt;
 &lt;li&gt;Finally, I wrote this post recounting the tale of figuring this out from a combination of local system manual pages and online searches&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Adding a right-click option to Dolphin to be able to automatically mount TrueCrypt encrypted files as volumes and open them would be an even nicer solution, but also a whole lot more work. The only actual &lt;em&gt;change&lt;/em&gt; suggested in my above set of additional steps is tweaking a particular error message in one particular situation, which should be far more attainable than a new Dolphin feature or addon.&lt;/p&gt;</description><category>fedora</category><guid>https://www.curiousefficiency.org/posts/2015/04/fedora-encrypted-volumes/</guid><pubDate>Sat, 25 Apr 2015 22:24:15 GMT</pubDate></item></channel></rss>

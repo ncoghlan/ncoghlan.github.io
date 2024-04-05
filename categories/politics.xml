@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Curious Efficiency (Posts about politics)</title><link>https://www.curiousefficiency.org</link><description></description><atom:link href="https://www.curiousefficiency.org/categories/politics.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 05 Apr 2024 04:35:10 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>DTCA Public Consultation - Brisbane</title><link>https://www.curiousefficiency.org/posts/2015/01/dtca-public-consultation/</link><dc:creator>Alyssa Coghlan</dc:creator><description>&lt;p&gt;Over the weekend, Asher Wolf
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Curious Efficiency (Posts about politics)</title><link>https://www.curiousefficiency.org</link><description></description><atom:link href="https://www.curiousefficiency.org/categories/politics.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 05 Apr 2024 11:44:43 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>DTCA Public Consultation - Brisbane</title><link>https://www.curiousefficiency.org/posts/2015/01/dtca-public-consultation/</link><dc:creator>Alyssa Coghlan</dc:creator><description>&lt;p&gt;Over the weekend, Asher Wolf
 &lt;a href="https://twitter.com/Asher_Wolf/status/555909774596784129"&gt;alerted me&lt;/a&gt; (and
 many others in the open source and cryptographic communities) to the
 Australian Defence Trade Controls Act 2012, and the current public
@@ -16,7 +16,7 @@ research and development activities.&lt;/p&gt;
 &lt;p&gt;As a result, I've escalated this legislation for review by the legal teams
 at various open source companies and organisations, with a view to making
 formal submissions to the
-&lt;a href="http://www.defence.gov.au/deco/Consultation.asp"&gt;public consultation process&lt;/a&gt;
+&lt;a href="https://www.defence.gov.au/deco/Consultation.asp"&gt;public consultation process&lt;/a&gt;
 that is open until January 30th (ready for bills to be submitted for
 consideration to federal parliament on February 23rd).&lt;/p&gt;
 &lt;p&gt;However, I was also able to attend the first public consultation session
@@ -28,12 +28,12 @@ to the intent of the folks involved in moving this process forward.&lt;/p&gt;
 &lt;h2&gt;What &lt;em&gt;not&lt;/em&gt; to worry about&lt;/h2&gt;
 &lt;p&gt;To folks encountering this kind of legislation for the first time, the
 sheer scope of the
-&lt;a href="http://www.defence.gov.au/deco/DSGL.asp"&gt;Defence and Strategic Goods List&lt;/a&gt;
+&lt;a href="https://www.defence.gov.au/deco/DSGL.asp"&gt;Defence and Strategic Goods List&lt;/a&gt;
 can seem absolutely terrifying. This was very clear to me from some of the
 questions various academics in the room were asking.&lt;/p&gt;
 &lt;p&gt;On this particular point, I can only say: &lt;em&gt;"Don't panic"&lt;/em&gt;. This isn't a
 unique-to-Australia list, it's backed by a treaty called the
-&lt;a href="http://www.wassenaar.org/"&gt;Wassenaar Arrangement&lt;/a&gt; - the DSGL represents
+&lt;a href="https://www.wassenaar.org/"&gt;Wassenaar Arrangement&lt;/a&gt; - the DSGL represents
 part of the implementation of that arrangement into Australian law.&lt;/p&gt;
 &lt;p&gt;When the laws implementing that arrangement are well drafted, everyone outside
 the military industrial complex (and certain easily weaponised areas of
@@ -141,7 +141,7 @@ else.&lt;/p&gt;
 &lt;h2&gt;What industry and academia can do about it&lt;/h2&gt;
 &lt;p&gt;While it's very short notice, the main thing industry and academia can do
 is to file formal submissions with DECO as described in their overview of
-the &lt;a href="http://www.defence.gov.au/deco/Consultation.asp"&gt;public consultation process&lt;/a&gt;.&lt;/p&gt;
+the &lt;a href="https://www.defence.gov.au/deco/Consultation.asp"&gt;public consultation process&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;There are three main things to be addressed on that front:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;ensuring federal parliament are aware of the importance of amending the
@@ -176,7 +176,7 @@ countries. With the way the 2012 Act was drafted, that's almost certainly
 currently not the case, but the proposed 2015 amendments &lt;em&gt;should&lt;/em&gt; fix it
 (assuming the amendments actually have the effects that DECO has indicated
 they're intended to).&lt;/p&gt;</description><category>politics</category><category>python</category><category>tech</category><guid>https://www.curiousefficiency.org/posts/2015/01/dtca-public-consultation/</guid><pubDate>Tue, 20 Jan 2015 12:41:51 GMT</pubDate></item><item><title>Seven billion seconds per second</title><link>https://www.curiousefficiency.org/posts/2014/09/seven-billion-seconds-per-second/</link><dc:creator>Alyssa Coghlan</dc:creator><description>&lt;p&gt;A couple of years ago, YouTube put together their
-&lt;a href="http://www.onehourpersecond.com/"&gt;"One hour per second"&lt;/a&gt; site, visualising
+&lt;a href="https://www.onehourpersecond.com/"&gt;"One hour per second"&lt;/a&gt; site, visualising
 the fact that for every second of time that elapses, an hour of video is
 uploaded to YouTube. Their
 &lt;a href="https://www.youtube.com/yt/press/statistics.html"&gt;current statistics page&lt;/a&gt;

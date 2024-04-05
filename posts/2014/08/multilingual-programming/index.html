@@ -116,7 +116,7 @@ on python-dev prompted
 the current state of the ongoing industry wide transition from bilingual to
 multilingual programming as it relates to Python's cross-platform support. It
 also relates to the reasons why Python 3 turned out to be
-<a href="http://www.curiousefficiency.org/posts/2014/08/python-4000.html">more disruptive</a>
+<a href="../python-4000.html">more disruptive</a>
 than the core development team initially expected.</p>
 <p>A good starting point for anyone interested in exploring this topic further
 is the <a href="https://en.wikipedia.org/wiki/Unicode#Origin_and_development">"Origin and development"</a>
@@ -282,7 +282,7 @@ limited to 8-bit ASCII compatible encodings for text processing.</p>
 <p>Python 2.x was still primarily a product of the bilingual era, but added
 multilingual support as an optional addon, in the form of the <code>unicode</code>
 type and support for a wide variety of text encodings.
-<a href="http://www.python.org/dev/peps/pep-0100/">PEP 100</a> goes into the many
+<a href="https://www.python.org/dev/peps/pep-0100/">PEP 100</a> goes into the many
 technical details that needed to be covered in order to incorporate that
 feature. With Python 2, you <em>can</em> make multilingual programming work, but
 it requires an active decision on the part of the application developer,
@@ -335,7 +335,7 @@ serious problems.</p>
 <p>Python 3 still needs to deal with improperly encoded data however, so it
 provides a mechanism for arbitrary binary data to be "smuggled" through
 text strings in the Unicode Private Use Area. This feature was added by
-<a href="http://www.python.org/dev/peps/pep-0383/">PEP 383</a> and is managed through
+<a href="https://www.python.org/dev/peps/pep-0383/">PEP 383</a> and is managed through
 the <code>surrogateescape</code> error handler, which is used by default on most
 operating system interfaces. This recreates the old Python 2 behaviour of
 passing improperly encoded data through unchanged when dealing solely with
@@ -344,7 +344,7 @@ encoded data is injected into another interface. The codec error handling
 system provides several tools to deal with these files, and we're looking
 at adding a few more relevant convenience functions for Python 3.5.</p>
 <p>The underlying Unicode changes in Python 3 also made
-<a href="http://www.python.org/dev/peps/pep-0393/">PEP 393</a> possible, which changed
+<a href="https://www.python.org/dev/peps/pep-0393/">PEP 393</a> possible, which changed
 the way the CPython interpreter stores text internally. In Python 2, even
 pure ASCII strings would consume four bytes per code point on Linux systems.
 Using the "narrow build" option (as the Python 2 Windows builds from
@@ -378,7 +378,7 @@ when exchanging data between different platforms.</p>
 <li>adding back some features for working entirely in the binary domain that
   were removed in the original Python 3 transition due to an initial
   assessment that they were operations that only made sense on text data
-  (<a href="http://www.python.org/dev/peps/pep-0361/">PEP 361</a> summary:
+  (<a href="https://www.python.org/dev/peps/pep-0361/">PEP 361</a> summary:
   <code>bytes.__mod__</code> is coming back in Python 3.5 as a valid binary domain
   operation, <code>bytes.format</code> stays gone as an operation that only makes sense
   when working with actual text data)</li>
@@ -462,7 +462,7 @@ on a mobile device).</p>
 
 
         </section></article><script>var disqus_shortname="boredomandlaziness";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><!--End of body content--><footer id="footer">
-            Contents © 2024 <a href="mailto:ncoghlan@gmail.com">Alyssa Coghlan</a> - <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, republish as you wish. - Powered by <a href="http://nikola.ralsina.com.ar">Nikola</a>
+            Contents © 2024 <a href="mailto:ncoghlan@gmail.com">Alyssa Coghlan</a> - <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, republish as you wish. - Powered by <a href="https://getnikola.com/">Nikola</a>
             
             
         </footer>
