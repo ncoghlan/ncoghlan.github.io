@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Curious Efficiency (Posts about python)</title><link>https://www.curiousefficiency.org</link><description></description><atom:link href="https://www.curiousefficiency.org/categories/cat_python.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 05 Apr 2024 04:35:10 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>What does "x = a + b" mean?</title><link>https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean/</link><dc:creator>Alyssa Coghlan</dc:creator><description>&lt;nav class="contents" id="making-sense-of-x-a-b" role="doc-toc"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Curious Efficiency (Posts about python)</title><link>https://www.curiousefficiency.org</link><description></description><atom:link href="https://www.curiousefficiency.org/categories/cat_python.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 05 Apr 2024 10:55:13 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>What does "x = a + b" mean?</title><link>https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean/</link><dc:creator>Alyssa Coghlan</dc:creator><description>&lt;nav class="contents" id="making-sense-of-x-a-b" role="doc-toc"&gt;
 &lt;p class="topic-title"&gt;Making sense of "x = a + b"&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;p&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean/#shorthand-notations-and-shared-context" id="toc-entry-1"&gt;Shorthand notations and shared context&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
@@ -324,7 +324,7 @@ updated accordingly.&lt;/p&gt;
 &lt;/ul&gt;
 &lt;/nav&gt;
 &lt;p&gt;Several years ago, I
-&lt;a class="reference external" href="http://www.curiousefficiency.org/posts/2011/04/musings-on-culture-of-python-dev.html"&gt;highlighted&lt;/a&gt;
+&lt;a class="reference external" href="http://www.curiousefficiency.org/posts/2011/04/musings-on-culture-of-python-dev/"&gt;highlighted&lt;/a&gt;
 "CPython moves both too fast and too slowly" as one of the more common causes
 of conflict both within the python-dev mailing list, as well as between the
 active CPython core developers and folks that decide that participating in
@@ -532,7 +532,7 @@ provisional APIs is a pain, then they should only be supported if the project
 developers themselves need that, or if somebody is paying them for the
 inconvenience. This is similar to my view on whether or not volunteer-driven
 projects should support older commercial LTS Python releases for free when it's
-a hassle for them to do: I &lt;a class="reference external" href="http://www.curiousefficiency.org/posts/2015/04/stop-supporting-python26.html"&gt;don't think they should&lt;/a&gt;,
+a hassle for them to do: I &lt;a class="reference external" href="http://www.curiousefficiency.org/posts/2015/04/stop-supporting-python26/"&gt;don't think they should&lt;/a&gt;,
 as I expect most such demands to be stemming from poorly managed institutional
 inertia, rather than from genuine need (and if the need &lt;em&gt;is&lt;/em&gt; genuine, then it
 should instead be possible to find some means of paying to have it addressed).&lt;/p&gt;
@@ -543,7 +543,7 @@ in the original 2011 article linked above, as well as in Python 3 Q &amp;amp; A 
 &lt;a class="reference external" href="http://python-notes.curiousefficiency.org/en/latest/python3/questions_and_answers.html#doesn-t-this-make-python-look-like-an-immature-and-unstable-platform"&gt;here&lt;/a&gt;,
 and &lt;a class="reference external" href="http://python-notes.curiousefficiency.org/en/latest/python3/questions_and_answers.html#what-about-insert-other-shiny-new-feature-here"&gt;here&lt;/a&gt;,
 and to a lesser degree in last year's article on the
-&lt;a class="reference external" href="http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html"&gt;Python Packaging Ecosystem&lt;/a&gt;),
+&lt;a class="reference external" href="http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem/"&gt;Python Packaging Ecosystem&lt;/a&gt;),
 I've never really attempted to directly explain the impact it has on the standard
 library design process.&lt;/p&gt;
 &lt;p&gt;And without that background, some aspects of the design process, such as the

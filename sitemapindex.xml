@@ -7,7 +7,7 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <sitemap>
   <loc>https://www.curiousefficiency.org/categories/cat_python.xml</loc>
-  <lastmod>2024-04-05T04:35:00Z</lastmod>
+  <lastmod>2024-04-05T10:55:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://www.curiousefficiency.org/categories/docker.xml</loc>
@@ -59,7 +59,7 @@
  </sitemap>
  <sitemap>
   <loc>https://www.curiousefficiency.org/categories/python.xml</loc>
-  <lastmod>2024-04-05T04:35:00Z</lastmod>
+  <lastmod>2024-04-05T10:55:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://www.curiousefficiency.org/categories/science.xml</loc>
@@ -75,10 +75,10 @@
  </sitemap>
  <sitemap>
   <loc>https://www.curiousefficiency.org/rss.xml</loc>
-  <lastmod>2024-04-05T04:35:00Z</lastmod>
+  <lastmod>2024-04-05T10:55:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://www.curiousefficiency.org/sitemap.xml</loc>
-  <lastmod>2024-04-05T04:35:00Z</lastmod>
+  <lastmod>2024-04-05T11:00:00Z</lastmod>
  </sitemap>
 </sitemapindex>
