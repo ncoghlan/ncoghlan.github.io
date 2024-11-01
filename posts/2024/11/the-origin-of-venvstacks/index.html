@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content='The story behind the creation of the "venvstacks" packaging utility'>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The origin of venvstacks | Curious Efficiency</title>
+<link href="../../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../../../rss.xml">
+<link rel="canonical" href="https://www.curiousefficiency.org/posts/2024/11/the-origin-of-venvstacks/">
+<!--[if lt IE 9]><script src="../../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Alyssa Coghlan">
+<link rel="prev" href="../../../2019/03/what-does-x-equals-a-plus-b-mean/" title='What does "x = a + b" mean?' type="text/html">
+<meta property="og:site_name" content="Curious Efficiency">
+<meta property="og:title" content="The origin of venvstacks">
+<meta property="og:url" content="https://www.curiousefficiency.org/posts/2024/11/the-origin-of-venvstacks/">
+<meta property="og:description" content='The story behind the creation of the "venvstacks" packaging utility'>
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2024-11-01T04:21:50Z">
+<meta property="article:tag" content="python">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Header and menu bar -->
+<div class="container">
+      <header class="blog-header py-3"><div class="row nbb-header align-items-center">
+          <div class="col-md-3 col-xs-2 col-sm-2" style="width: auto;">
+            <button class="navbar-toggler navbar-light bg-light nbb-navbar-toggler" type="button" data-toggle="collapse" data-target=".bs-nav-collapsible" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse bs-nav-collapsible bootblog4-search-form-holder">
+                
+            </div>
+        </div>
+          <div class="col-md-6 col-xs-10 col-sm-10 bootblog4-brand" style="width: auto;">
+            <a class="navbar-brand blog-header-logo text-dark" href="../../../../">
+
+            <span id="blog-title">Curious Efficiency</span>
+        </a>
+          </div>
+            <div class="col-md-3 justify-content-end align-items-center bs-nav-collapsible collapse flex-collapse bootblog4-right-nav">
+            <nav class="navbar navbar-light bg-white"><ul class="navbar-nav bootblog4-right-nav">
+<li class="nav-item">
+    <a href="index.md" id="sourcelink" class="nav-link">Source</a>
+    </li>
+
+
+                    
+            </ul></nav>
+</div>
+    </div>
+</header><nav class="navbar navbar-expand-md navbar-light bg-white static-top"><div class="collapse navbar-collapse bs-nav-collapsible" id="bs-navbar">
+            <ul class="navbar-nav nav-fill d-flex w-100">
+<li class="nav-item">
+<a href="../../../../pages/about/" class="nav-link">About</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../archive.html" class="nav-link">Archives</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../rss.xml" class="nav-link">RSS</a>
+                </li>
+<li class="nav-item">
+<a href="https://python-notes.curiousefficiency.org" class="nav-link">Python Notes</a>
+
+                
+            </li>
+</ul>
+</div>
+<!-- /.navbar-collapse -->
+</nav>
+</div>
+
+<div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">The origin of venvstacks</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    Alyssa Coghlan
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2024-11-01T04:21:50Z" itemprop="datePublished" title="2024-11-01 04:21">2024-11-01 04:21</time></a>
+            </p>
+                <p class="commentline">
+    
+    <a href="#disqus_thread" data-disqus-identifier="cache/posts/2024/11/the-origin-of-venvstacks.html">Comments</a>
+
+
+            
+        </p>
+<p class="sourceline"><a href="index.md" class="sourcelink">Source</a></p>
+
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <p>There has been a longstanding gap in the Python packaging ecosystem that has
+somewhat annoyed me,
+but not enough to do anything about it:
+we haven't really had a good way to compose <em>multiple</em> layers of Python
+virtual environments together,
+allowing large dependencies (like AI and machine learning libraries)
+to be shared across multiple different application environments without having
+to install them directly into the base runtime environment.</p>
+<p>Utilities for collecting up an entire Python runtime, an application, and all its
+dependencies into a single deployable artifact have existed since before the turn
+of the century.</p>
+<p>We've had standardised <a href="https://docs.python.org/3/library/venv.html">virtual environments</a>
+(allowing multiple applications to share a base Python runtime and its directly
+installed third party packages) for almost as long.</p>
+<p>We've had <a href="https://docs.python.org/3/library/zipapp.html">zip applications</a>
+for a long time as well (and other utilities which build on that feature).</p>
+<p>We've had tools like <a href="https://github.com/cloudify-cosmo/wagon"><code>wagon</code></a>
+which allow us to ship a bundle of prebuilt Python wheel archives and
+install them on a destination system without needing to download
+anything else from the internet at installation time.</p>
+<p>We've had tools like <a href="https://docs.conda.io/"><code>conda</code></a>
+(and more recently <a href="https://docs.astral.sh/uv/"><code>uv</code></a>),
+which make intelligent use of hard links on local systems to avoid
+making duplicate copies of completely identical versions of packages.</p>
+<p>We've technically had platform specific mechanisms like Linux container images,
+where the contents of an environment can be built up across multiple
+container image layers, with the lower layers being shared across multiple
+image definitions, but have lacked a convenient way to handle the dependency
+management complications involved in using these tools to share large Python
+libraries.</p>
+<p>But we've never had something which specifically took full advantage of the way
+Python's import system works to enable robust structural decomposition of Python
+applications into independently updatable subcomponents (with a granularity
+larger than single packages).</p>
+<p>All of this history meant that I was thoroughly intrigued when a mutual
+acquaintance introduced me to the creators of the <a href="https://lmstudio.ai/">LM Studio</a>
+personal AI desktop application to discuss a Python packaging problem they
+had looming on their technical road map: it was clear from user demand and the
+rate of evolution in the Python AI/ML ecosystem that they needed a way to ship
+Python AI/ML components directly to their users <em>without</em> having to wait for
+those capabilities to be made available through native interfaces in other
+languages (such as Swift, C++, or JavaScript), but it didn't seem obvious to them
+<em>how</em> they could readily integrate that capability into LM Studio without
+making the application installation process substantially more complicated
+for their users.</p>
+<p>What started as a consulting contract for a technical proof of concept,
+and has since turned into a permanent position with the organisation,
+proved fruitful,
+and the result is the <a href="https://lmstudio.ai/blog/venvstacks">recently published</a>
+open source <a href="https://pypi.org/project/venvstacks/"><code>venvstacks</code></a> utility,
+which is specifically designed to enable the kind of portable deterministic
+artifact publishing setup that LM Studio needed, including:</p>
+<ul>
+<li>Base runtime layers
+  (based on <a href="https://github.com/indygreg/python-build-standalone"><code>python-build-standalone</code></a>)</li>
+<li>Framework layers (for shipping large dependencies, such as Apple MLX or PyTorch)</li>
+<li>Application layers (including additional unpackaged "launch modules" for app execution)</li>
+</ul>
+<p>There are certainly still some technical limitations to be addressed (the
+<a href="https://github.com/lmstudio-ai/venvstacks/issues/38">dynamic linking problem</a>
+with layering virtual environments like this is notorious amongst Python packaging
+experts for a reason), but even in its current form, <code>venvstacks</code> is already capable
+enough to power the recent inclusion of
+<a href="https://lmstudio.ai/blog/lmstudio-v0.3.4#mlx-in-lm-studio-using-python">Apple MLX support</a>
+in LM Studio.</p>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../../../categories/python/" rel="tag">python</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../../../2019/03/what-does-x-equals-a-plus-b-mean/" rel="prev" title='What does "x = a + b" mean?'>Previous post</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
+        
+    
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="boredomandlaziness",
+            disqus_url="https://www.curiousefficiency.org/posts/2024/11/the-origin-of-venvstacks/",
+        disqus_title="The origin of venvstacks",
+        disqus_identifier="cache/posts/2024/11/the-origin-of-venvstacks.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section></article><script>var disqus_shortname="boredomandlaziness";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><!--End of body content--><footer id="footer">
+            Contents © 2024 <a href="mailto:ncoghlan@gmail.com">Alyssa Coghlan</a> - <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, republish as you wish. - Powered by <a href="https://getnikola.com/">Nikola</a>
+            
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="../../../../assets/js/all-nocdn.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>

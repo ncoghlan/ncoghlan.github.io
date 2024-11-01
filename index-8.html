@@ -80,7 +80,58 @@ creature indeed :)
     
         
     <div class="postindex">
-            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2015/04/stop-supporting-python26/" class="u-url">Stop Supporting Python 2.6 (For Free)</a></h1>
+            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2015/04/fedora-encrypted-volumes/" class="u-url">Accessing TrueCrypt Encrypted Files on Fedora 22</a></h1>
+                <div class="metadata">
+                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                        Alyssa Coghlan
+                    </span></p>
+            <p class="dateline">
+            <a href="posts/2015/04/fedora-encrypted-volumes/" rel="bookmark">
+            <time class="published dt-published" datetime="2015-04-25T22:24:15Z" itemprop="datePublished" title="2015-04-25 22:24">2015-04-25 22:24</time></a>
+            </p>
+                        <p class="commentline">
+    
+    <a href="posts/2015/04/fedora-encrypted-volumes/#disqus_thread" data-disqus-identifier="cache/posts/2015/04/fedora-encrypted-volumes.html">Comments</a>
+
+
+                </p>
+</div>
+            </header><div class="e-content entry-content">
+                    <p>I recently got a new ultrabook (a HP Spectre 360), which means I finally have enough space to transfer my music files from the external drive where they've been stored for the past few years back to the laptop (there really wasn't enough space for them on my previous laptop, a first generation ASUS Zenbook, but even with the Windows partition still around, the extra storage space on the new device leaves plenty of room for my music collection).</p>
+<p>Just one small problem: the bulk of the storage on that drive was in a TrueCrypt encrypted file, and the Dolphin file browser in KDE doesn't support mounting those as volumes through the GUI (at least, it doesn't as far as I could see).</p>
+<p>So, off to the command line we go. While TrueCrypt itself isn't readily available for Fedora due to problems with its licensing terms, the standard <code>cryptsetup</code> utility supports accessing existing TrueCrypt volumes, and the <code>tcplay</code> package also supports creation of new volumes.</p>
+<p>In my case, I just wanted to read the music files, so it turns out that <code>cryptsetup</code> was all I needed, but I didn't figure that out until after I'd already installed <code>tcplay</code> as well.</p>
+<p>For both <code>cryptsetup</code> and <code>tcplay</code>, one of the things you need to set up in order to access a TrueCrypt encrypted <em>file</em> (as opposed to a fully encrypted volume) is a loopback device - these let you map a filesystem block device back to a file living on another filesystem. The examples in the <code>tcplay</code> manual page (<code>man tcplay</code>) indicated the command I needed to set that up was <code>losetup</code>.</p>
+<p>However, the <code>losetup</code> instructions gave me trouble, as they appeared to be telling me I didn't have any loopback devices:</p>
+<div class="code"><pre class="code literal-block"><span class="o">[</span><span class="n">ncoghlan@thechalk ~</span><span class="o">]</span><span class="err">$</span><span class="w"> </span><span class="n">losetup</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="o">&lt;</span><span class="k">path</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">encrypted</span><span class="w"> </span><span class="k">file</span><span class="o">&gt;</span>
+<span class="nl">losetup</span><span class="p">:</span><span class="w"> </span><span class="n">cannot</span><span class="w"> </span><span class="n">find</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">unused</span><span class="w"> </span><span class="n">loop</span><span class="w"> </span><span class="nl">device</span><span class="p">:</span><span class="w"> </span><span class="k">No</span><span class="w"> </span><span class="n">such</span><span class="w"> </span><span class="k">file</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">directory</span>
+</pre></div>
+
+<p>Searching on Google for "fedora create a loop device" brought me to <a href="https://unix.stackexchange.com/questions/98742/how-to-add-more-dev-loop-devices-on-fedora-19">this Unix &amp; Linux Stack Exchange question</a> as the first result, but the answer there struck me as being far too low level to be reasonable as a prerequisite for accessing encrypted files as volumes.</p>
+<p>So I scanned further down through the list of search results, with <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1019440">this Fedora bug report</a> about difficulty accessing TrueCrypt volumes catching my eye. As with the Stack Overflow answer, most of the comments there seemed to be about reverting the effect of <a href="https://bugzilla.redhat.com/show_bug.cgi?id=896160">a change to Fedora's default behaviour</a> a change which meant that Fedora no longer came with any loop devices preconfigured.</p>
+<p>However, looking more closely at Kay's original request to trim back the list of default devices revealed an interesting statement: "Loop devices can and should be created on-demand, and only when needed, losetup has been updated since Fedora 17 to do that just fine."</p>
+<p>That didn't match my own experience with the <code>losetup</code> command, so I wondered what might be going on to explain the discrepancy, which is when it occurred to me that running <code>losetup</code> with root access might solve the problem. Generally speaking, ordinary users aren't going to have the permissions needed to create new devices, and I'd been running the <code>losetup</code> command using my normal user permissions rather than running it as <code>root</code>. That was a fairly straightforward theory to test, and sure enough, that worked:</p>
+<div class="code"><pre class="code literal-block"><span class="o">[</span><span class="n">ncoghlan@thechalk ~</span><span class="o">]</span><span class="err">$</span><span class="w"> </span><span class="n">sudo</span><span class="w"> </span><span class="n">losetup</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="o">&lt;</span><span class="k">path</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">encrypted</span><span class="w"> </span><span class="k">file</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">loop0</span>
+</pre></div>
+
+<p>Armed with my new loop device, I was then able to open the TrueCrypt encrypted file on the external GoFlex drive as a decrypted volume:</p>
+<div class="code"><pre class="code literal-block"><span class="p">[</span><span class="nx">ncoghlan</span><span class="err">@</span><span class="nx">thechalk</span><span class="w"> </span><span class="o">~</span><span class="p">]</span><span class="err">$</span><span class="w"> </span><span class="nx">sudo</span><span class="w"> </span><span class="nx">cryptsetup</span><span class="w"> </span><span class="nx">open</span><span class="w"> </span><span class="o">--</span><span class="k">type</span><span class="w"> </span><span class="nx">tcrypt</span><span class="w"> </span><span class="o">/</span><span class="nx">dev</span><span class="o">/</span><span class="nx">loop0</span><span class="w"> </span><span class="nx">flexdecrypted</span>
+</pre></div>
+
+<p>Actually supplying the password to decrypt the volume wasn't a problem, as I use a password manager to limit the number of passwords I need to actually <em>remember</em>, while still being able to use strong passwords for different services and devices.</p>
+<p>However, even with my music files in the process of copying over to my laptop, this all still seemed a bit cryptic to me, even for the Linux command line. It would have saved me a lot of time if I'd been nudged in the direction of "sudo losetup -f" much sooner, rather than having to decide to ignore some bad advice I found on the internet and instead figure out a better answer by way of the Fedora issue tracker.</p>
+<p>So I took four additional steps:</p>
+<ul>
+<li>First, I filed <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1215370">a new issue</a> against <code>losetup</code>, suggesting that it nudge the user in the direction of running it with root privileges if they first run it as a normal user and don't find any devices</li>
+<li>Secondly, I followed up on the previous issue I had found in order to <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1019440#c22">explain my findings</a>
+</li>
+<li>Thirdly, I added a <a href="https://unix.stackexchange.com/a/198637/61794">new answer</a> to the Stack Exchange question I had found, suggesting the use of the higher level <code>losetup</code> command over the lower level <code>mknod</code> command</li>
+<li>Finally, I wrote this post recounting the tale of figuring this out from a combination of local system manual pages and online searches</li>
+</ul>
+<p>Adding a right-click option to Dolphin to be able to automatically mount TrueCrypt encrypted files as volumes and open them would be an even nicer solution, but also a whole lot more work. The only actual <em>change</em> suggested in my above set of additional steps is tweaking a particular error message in one particular situation, which should be far more attainable than a new Dolphin feature or addon.</p>
+                </div>
+            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2015/04/stop-supporting-python26/" class="u-url">Stop Supporting Python 2.6 (For Free)</a></h1>
                 <div class="metadata">
                     <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                         Alyssa Coghlan

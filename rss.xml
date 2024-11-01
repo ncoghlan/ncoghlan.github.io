@@ -3,8 +3,72 @@
 much of our economic activity is devoted to preventing boredom in the idle
 time created by increases in efficiency. To be human is to be a strange
 creature indeed :)
-</description><atom:link href="https://www.curiousefficiency.org/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 05 Apr 2024 11:44:44 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>What does "x = a + b" mean?</title><link>https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean/</link><dc:creator>Alyssa Coghlan</dc:creator><description>&lt;nav class="contents" id="making-sense-of-x-a-b" role="doc-toc"&gt;
-&lt;p class="topic-title"&gt;Making sense of "x = a + b"&lt;/p&gt;
+</description><atom:link href="https://www.curiousefficiency.org/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 01 Nov 2024 05:47:24 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>The origin of venvstacks</title><link>https://www.curiousefficiency.org/posts/2024/11/the-origin-of-venvstacks/</link><dc:creator>Alyssa Coghlan</dc:creator><description>&lt;p&gt;There has been a longstanding gap in the Python packaging ecosystem that has
+somewhat annoyed me,
+but not enough to do anything about it:
+we haven't really had a good way to compose &lt;em&gt;multiple&lt;/em&gt; layers of Python
+virtual environments together,
+allowing large dependencies (like AI and machine learning libraries)
+to be shared across multiple different application environments without having
+to install them directly into the base runtime environment.&lt;/p&gt;
+&lt;p&gt;Utilities for collecting up an entire Python runtime, an application, and all its
+dependencies into a single deployable artifact have existed since before the turn
+of the century.&lt;/p&gt;
+&lt;p&gt;We've had standardised &lt;a href="https://docs.python.org/3/library/venv.html"&gt;virtual environments&lt;/a&gt;
+(allowing multiple applications to share a base Python runtime and its directly
+installed third party packages) for almost as long.&lt;/p&gt;
+&lt;p&gt;We've had &lt;a href="https://docs.python.org/3/library/zipapp.html"&gt;zip applications&lt;/a&gt;
+for a long time as well (and other utilities which build on that feature).&lt;/p&gt;
+&lt;p&gt;We've had tools like &lt;a href="https://github.com/cloudify-cosmo/wagon"&gt;&lt;code&gt;wagon&lt;/code&gt;&lt;/a&gt;
+which allow us to ship a bundle of prebuilt Python wheel archives and
+install them on a destination system without needing to download
+anything else from the internet at installation time.&lt;/p&gt;
+&lt;p&gt;We've had tools like &lt;a href="https://docs.conda.io/"&gt;&lt;code&gt;conda&lt;/code&gt;&lt;/a&gt;
+(and more recently &lt;a href="https://docs.astral.sh/uv/"&gt;&lt;code&gt;uv&lt;/code&gt;&lt;/a&gt;),
+which make intelligent use of hard links on local systems to avoid
+making duplicate copies of completely identical versions of packages.&lt;/p&gt;
+&lt;p&gt;We've technically had platform specific mechanisms like Linux container images,
+where the contents of an environment can be built up across multiple
+container image layers, with the lower layers being shared across multiple
+image definitions, but have lacked a convenient way to handle the dependency
+management complications involved in using these tools to share large Python
+libraries.&lt;/p&gt;
+&lt;p&gt;But we've never had something which specifically took full advantage of the way
+Python's import system works to enable robust structural decomposition of Python
+applications into independently updatable subcomponents (with a granularity
+larger than single packages).&lt;/p&gt;
+&lt;p&gt;All of this history meant that I was thoroughly intrigued when a mutual
+acquaintance introduced me to the creators of the &lt;a href="https://lmstudio.ai/"&gt;LM Studio&lt;/a&gt;
+personal AI desktop application to discuss a Python packaging problem they
+had looming on their technical road map: it was clear from user demand and the
+rate of evolution in the Python AI/ML ecosystem that they needed a way to ship
+Python AI/ML components directly to their users &lt;em&gt;without&lt;/em&gt; having to wait for
+those capabilities to be made available through native interfaces in other
+languages (such as Swift, C++, or JavaScript), but it didn't seem obvious to them
+&lt;em&gt;how&lt;/em&gt; they could readily integrate that capability into LM Studio without
+making the application installation process substantially more complicated
+for their users.&lt;/p&gt;
+&lt;p&gt;What started as a consulting contract for a technical proof of concept,
+and has since turned into a permanent position with the organisation,
+proved fruitful,
+and the result is the &lt;a href="https://lmstudio.ai/blog/venvstacks"&gt;recently published&lt;/a&gt;
+open source &lt;a href="https://pypi.org/project/venvstacks/"&gt;&lt;code&gt;venvstacks&lt;/code&gt;&lt;/a&gt; utility,
+which is specifically designed to enable the kind of portable deterministic
+artifact publishing setup that LM Studio needed, including:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Base runtime layers
+  (based on &lt;a href="https://github.com/indygreg/python-build-standalone"&gt;&lt;code&gt;python-build-standalone&lt;/code&gt;&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Framework layers (for shipping large dependencies, such as Apple MLX or PyTorch)&lt;/li&gt;
+&lt;li&gt;Application layers (including additional unpackaged "launch modules" for app execution)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There are certainly still some technical limitations to be addressed (the
+&lt;a href="https://github.com/lmstudio-ai/venvstacks/issues/38"&gt;dynamic linking problem&lt;/a&gt;
+with layering virtual environments like this is notorious amongst Python packaging
+experts for a reason), but even in its current form, &lt;code&gt;venvstacks&lt;/code&gt; is already capable
+enough to power the recent inclusion of
+&lt;a href="https://lmstudio.ai/blog/lmstudio-v0.3.4#mlx-in-lm-studio-using-python"&gt;Apple MLX support&lt;/a&gt;
+in LM Studio.&lt;/p&gt;</description><category>python</category><guid>https://www.curiousefficiency.org/posts/2024/11/the-origin-of-venvstacks/</guid><pubDate>Fri, 01 Nov 2024 04:21:50 GMT</pubDate></item><item><title>What does "x = a + b" mean?</title><link>https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean/</link><dc:creator>Alyssa Coghlan</dc:creator><description>&lt;nav class="contents" id="making-sense-of-x-a-b" role="doc-toc"&gt;
+&lt;p class="topic-title"&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean/#top"&gt;Making sense of "x = a + b"&lt;/a&gt;&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;p&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean/#shorthand-notations-and-shared-context" id="toc-entry-1"&gt;Shorthand notations and shared context&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean/#the-original-shared-context-algebra" id="toc-entry-2"&gt;The original shared context: Algebra&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
@@ -31,7 +95,7 @@ operation:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;x = a.copy()
 x.update(b)&lt;/pre&gt;
 &lt;p&gt;The PEP for that proposal is still in development, so I'm not going to link to
-it directly &lt;a class="footnote-reference brackets" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean/#footnote-1" id="footnote-reference-1" role="doc-noteref"&gt;&lt;span class="fn-bracket"&gt;[&lt;/span&gt;1&lt;span class="fn-bracket"&gt;]&lt;/span&gt;&lt;/a&gt;, but the paragraph above gives the gist of the idea. Guido's
+it directly &lt;a class="brackets" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean/#footnote-1" id="footnote-reference-1" role="doc-noteref"&gt;&lt;span class="fn-bracket"&gt;[&lt;/span&gt;1&lt;span class="fn-bracket"&gt;]&lt;/span&gt;&lt;/a&gt;, but the paragraph above gives the gist of the idea. Guido's
 article came in response to the assertion that infix operators don't improve
 readability, when we have plenty of empirical evidence to show that they do.&lt;/p&gt;
 &lt;p&gt;Where &lt;em&gt;this&lt;/em&gt; article comes from is a key point that Guido's article mentions,
@@ -250,7 +314,7 @@ Counter({'python': 10, 'maths': 4})&lt;/pre&gt;
 &lt;p&gt;Python's dictionaries are quite interesting mathematically, as in mathematical
 terms, they're not actually a container. Instead, they're a function mapping
 between a domain defined by the set of keys, and a range defined by a multiset
-of values &lt;a class="footnote-reference brackets" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean/#footnote-2" id="footnote-reference-2" role="doc-noteref"&gt;&lt;span class="fn-bracket"&gt;[&lt;/span&gt;2&lt;span class="fn-bracket"&gt;]&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+of values &lt;a class="brackets" href="https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean/#footnote-2" id="footnote-reference-2" role="doc-noteref"&gt;&lt;span class="fn-bracket"&gt;[&lt;/span&gt;2&lt;span class="fn-bracket"&gt;]&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This means that the mathematical context that would most closely correspond to
 defining addition on dictionaries is the algebraic combination of functions.
 That's defined such that &lt;code class="docutils literal"&gt;(f + &lt;span class="pre"&gt;g)(x)&lt;/span&gt;&lt;/code&gt; is equivalent to &lt;code class="docutils literal"&gt;f(x) + g(x)&lt;/code&gt;, so
@@ -314,7 +378,7 @@ updated accordingly.&lt;/p&gt;
 &lt;/aside&gt;
 &lt;/aside&gt;
 &lt;/section&gt;</description><category>python</category><guid>https://www.curiousefficiency.org/posts/2019/03/what-does-x-equals-a-plus-b-mean/</guid><pubDate>Sat, 16 Mar 2019 06:06:21 GMT</pubDate></item><item><title>Considering Python's Target Audience</title><link>https://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience/</link><dc:creator>Alyssa Coghlan</dc:creator><description>&lt;nav class="contents" id="who-is-python-being-designed-for" role="doc-toc"&gt;
-&lt;p class="topic-title"&gt;Who is Python being designed for?&lt;/p&gt;
+&lt;p class="topic-title"&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience/#top"&gt;Who is Python being designed for?&lt;/a&gt;&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;p&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience/#use-cases-for-python-s-reference-interpreter" id="toc-entry-1"&gt;Use cases for Python's reference interpreter&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience/#which-audience-does-cpython-primarily-serve" id="toc-entry-2"&gt;Which audience does CPython primarily serve?&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
@@ -704,7 +768,7 @@ standard library is going to be "I'm not part of the intended target audience
 for that addition" rather than "I have no interest in that, so it must be a
 useless and pointless addition of no value to anyone, added purely to annoy me".&lt;/p&gt;
 &lt;/section&gt;</description><category>python</category><guid>https://www.curiousefficiency.org/posts/2017/10/considering-pythons-target-audience/</guid><pubDate>Mon, 09 Oct 2017 01:33:41 GMT</pubDate></item><item><title>The Python Packaging Ecosystem</title><link>https://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem/</link><dc:creator>Alyssa Coghlan</dc:creator><description>&lt;nav class="contents" id="from-development-to-deployment" role="doc-toc"&gt;
-&lt;p class="topic-title"&gt;From Development to Deployment&lt;/p&gt;
+&lt;p class="topic-title"&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem/#top"&gt;From Development to Deployment&lt;/a&gt;&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;p&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem/#my-core-software-ecosystem-design-philosophy" id="toc-entry-1"&gt;My core software ecosystem design philosophy&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem/#the-key-conundrum" id="toc-entry-2"&gt;The key conundrum&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
@@ -1258,7 +1322,7 @@ additional collaboration throughout the year.&lt;/p&gt;
 &lt;p&gt;So, in addition to encouraging people to submit their own proposals, I'd also
 encourage folks to talk to their friends and peers that they'd like to see
 presenting, and see if they're interested in participating.&lt;/p&gt;</description><category>pycon-au</category><category>python</category><guid>https://www.curiousefficiency.org/posts/2016/05/pycon-australia-education-cfp-2016/</guid><pubDate>Mon, 02 May 2016 01:29:23 GMT</pubDate></item><item><title>27 languages to improve your Python</title><link>https://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python/</link><dc:creator>Alyssa Coghlan</dc:creator><description>&lt;nav class="contents" id="languages" role="doc-toc"&gt;
-&lt;p class="topic-title"&gt;27 Languages&lt;/p&gt;
+&lt;p class="topic-title"&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python/#top"&gt;27 Languages&lt;/a&gt;&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;p&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python/#broadening-our-horizons" id="toc-entry-1"&gt;Broadening our horizons&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;a class="reference internal" href="https://www.curiousefficiency.org/posts/2015/10/languages-to-improve-your-python/#procedural-programming-c-rust-cython" id="toc-entry-2"&gt;Procedural programming: C, Rust, Cython&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
@@ -2154,35 +2218,4 @@ doing anything until you start running the event loop.&lt;/p&gt;</description><c
 &lt;p&gt;Peter Whitehouse, author of &lt;a href="https://www.wonko.info/ipt/"&gt;IPT - a virtual approach&lt;/a&gt; (online since 1992!) and a longstanding board member of the &lt;a href="https://www.qsite.edu.au/home"&gt;Queensland Society for Information Technology in Education&lt;/a&gt; will provide insight into some of the challenges and opportunities of integrating Python and other open source software into Australian IT education&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;I'm genuinely looking forward to chairing this event, as I see tremendous potential in forging stronger connections between Australian educators (both formal and informal) and the broader Python and open source communities.&lt;/p&gt;</description><guid>https://www.curiousefficiency.org/posts/2015/04/pycon-australia-education-miniconf/</guid><pubDate>Mon, 27 Apr 2015 10:43:14 GMT</pubDate></item><item><title>Accessing TrueCrypt Encrypted Files on Fedora 22</title><link>https://www.curiousefficiency.org/posts/2015/04/fedora-encrypted-volumes/</link><dc:creator>Alyssa Coghlan</dc:creator><description>&lt;p&gt;I recently got a new ultrabook (a HP Spectre 360), which means I finally have enough space to transfer my music files from the external drive where they've been stored for the past few years back to the laptop (there really wasn't enough space for them on my previous laptop, a first generation ASUS Zenbook, but even with the Windows partition still around, the extra storage space on the new device leaves plenty of room for my music collection).&lt;/p&gt;
-&lt;p&gt;Just one small problem: the bulk of the storage on that drive was in a TrueCrypt encrypted file, and the Dolphin file browser in KDE doesn't support mounting those as volumes through the GUI (at least, it doesn't as far as I could see).&lt;/p&gt;
-&lt;p&gt;So, off to the command line we go. While TrueCrypt itself isn't readily available for Fedora due to problems with its licensing terms, the standard &lt;code&gt;cryptsetup&lt;/code&gt; utility supports accessing existing TrueCrypt volumes, and the &lt;code&gt;tcplay&lt;/code&gt; package also supports creation of new volumes.&lt;/p&gt;
-&lt;p&gt;In my case, I just wanted to read the music files, so it turns out that &lt;code&gt;cryptsetup&lt;/code&gt; was all I needed, but I didn't figure that out until after I'd already installed &lt;code&gt;tcplay&lt;/code&gt; as well.&lt;/p&gt;
-&lt;p&gt;For both &lt;code&gt;cryptsetup&lt;/code&gt; and &lt;code&gt;tcplay&lt;/code&gt;, one of the things you need to set up in order to access a TrueCrypt encrypted &lt;em&gt;file&lt;/em&gt; (as opposed to a fully encrypted volume) is a loopback device - these let you map a filesystem block device back to a file living on another filesystem. The examples in the &lt;code&gt;tcplay&lt;/code&gt; manual page (&lt;code&gt;man tcplay&lt;/code&gt;) indicated the command I needed to set that up was &lt;code&gt;losetup&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;However, the &lt;code&gt;losetup&lt;/code&gt; instructions gave me trouble, as they appeared to be telling me I didn't have any loopback devices:&lt;/p&gt;
-&lt;div class="code"&gt;&lt;pre class="code literal-block"&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;ncoghlan@thechalk ~&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;losetup&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="k"&gt;path&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;encrypted&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;file&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
-&lt;span class="nl"&gt;losetup&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;cannot&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;an&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;unused&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;loop&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nl"&gt;device&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;No&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;such&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;file&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;or&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;directory&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Searching on Google for "fedora create a loop device" brought me to &lt;a href="https://unix.stackexchange.com/questions/98742/how-to-add-more-dev-loop-devices-on-fedora-19"&gt;this Unix &amp;amp; Linux Stack Exchange question&lt;/a&gt; as the first result, but the answer there struck me as being far too low level to be reasonable as a prerequisite for accessing encrypted files as volumes.&lt;/p&gt;
-&lt;p&gt;So I scanned further down through the list of search results, with &lt;a href="https://bugzilla.redhat.com/show_bug.cgi?id=1019440"&gt;this Fedora bug report&lt;/a&gt; about difficulty accessing TrueCrypt volumes catching my eye. As with the Stack Overflow answer, most of the comments there seemed to be about reverting the effect of &lt;a href="https://bugzilla.redhat.com/show_bug.cgi?id=896160"&gt;a change to Fedora's default behaviour&lt;/a&gt; a change which meant that Fedora no longer came with any loop devices preconfigured.&lt;/p&gt;
-&lt;p&gt;However, looking more closely at Kay's original request to trim back the list of default devices revealed an interesting statement: "Loop devices can and should be created on-demand, and only when needed, losetup has been updated since Fedora 17 to do that just fine."&lt;/p&gt;
-&lt;p&gt;That didn't match my own experience with the &lt;code&gt;losetup&lt;/code&gt; command, so I wondered what might be going on to explain the discrepancy, which is when it occurred to me that running &lt;code&gt;losetup&lt;/code&gt; with root access might solve the problem. Generally speaking, ordinary users aren't going to have the permissions needed to create new devices, and I'd been running the &lt;code&gt;losetup&lt;/code&gt; command using my normal user permissions rather than running it as &lt;code&gt;root&lt;/code&gt;. That was a fairly straightforward theory to test, and sure enough, that worked:&lt;/p&gt;
-&lt;div class="code"&gt;&lt;pre class="code literal-block"&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;ncoghlan@thechalk ~&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;losetup&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="k"&gt;path&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;encrypted&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;file&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
-&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;loop0&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Armed with my new loop device, I was then able to open the TrueCrypt encrypted file on the external GoFlex drive as a decrypted volume:&lt;/p&gt;
-&lt;div class="code"&gt;&lt;pre class="code literal-block"&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;ncoghlan&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="nx"&gt;thechalk&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;sudo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;cryptsetup&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;open&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="k"&gt;type&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;tcrypt&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;loop0&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;flexdecrypted&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Actually supplying the password to decrypt the volume wasn't a problem, as I use a password manager to limit the number of passwords I need to actually &lt;em&gt;remember&lt;/em&gt;, while still being able to use strong passwords for different services and devices.&lt;/p&gt;
-&lt;p&gt;However, even with my music files in the process of copying over to my laptop, this all still seemed a bit cryptic to me, even for the Linux command line. It would have saved me a lot of time if I'd been nudged in the direction of "sudo losetup -f" much sooner, rather than having to decide to ignore some bad advice I found on the internet and instead figure out a better answer by way of the Fedora issue tracker.&lt;/p&gt;
-&lt;p&gt;So I took four additional steps:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;First, I filed &lt;a href="https://bugzilla.redhat.com/show_bug.cgi?id=1215370"&gt;a new issue&lt;/a&gt; against &lt;code&gt;losetup&lt;/code&gt;, suggesting that it nudge the user in the direction of running it with root privileges if they first run it as a normal user and don't find any devices&lt;/li&gt;
-&lt;li&gt;Secondly, I followed up on the previous issue I had found in order to &lt;a href="https://bugzilla.redhat.com/show_bug.cgi?id=1019440#c22"&gt;explain my findings&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Thirdly, I added a &lt;a href="https://unix.stackexchange.com/a/198637/61794"&gt;new answer&lt;/a&gt; to the Stack Exchange question I had found, suggesting the use of the higher level &lt;code&gt;losetup&lt;/code&gt; command over the lower level &lt;code&gt;mknod&lt;/code&gt; command&lt;/li&gt;
-&lt;li&gt;Finally, I wrote this post recounting the tale of figuring this out from a combination of local system manual pages and online searches&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Adding a right-click option to Dolphin to be able to automatically mount TrueCrypt encrypted files as volumes and open them would be an even nicer solution, but also a whole lot more work. The only actual &lt;em&gt;change&lt;/em&gt; suggested in my above set of additional steps is tweaking a particular error message in one particular situation, which should be far more attainable than a new Dolphin feature or addon.&lt;/p&gt;</description><category>fedora</category><guid>https://www.curiousefficiency.org/posts/2015/04/fedora-encrypted-volumes/</guid><pubDate>Sat, 25 Apr 2015 22:24:15 GMT</pubDate></item></channel></rss>
+&lt;p&gt;I'm genuinely looking forward to chairing this event, as I see tremendous potential in forging stronger connections between Australian educators (both formal and informal) and the broader Python and open source communities.&lt;/p&gt;</description><guid>https://www.curiousefficiency.org/posts/2015/04/pycon-australia-education-miniconf/</guid><pubDate>Mon, 27 Apr 2015 10:43:14 GMT</pubDate></item></channel></rss>
