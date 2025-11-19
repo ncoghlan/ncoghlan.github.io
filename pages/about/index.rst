@@ -89,23 +89,23 @@ BDFL-Delegates to approve PEPs that don't affect the language definition or
 the standard library directly on the relevant mailing lists (without needing
 to rehash the discussions on python-dev).
 
-She is now the project lead for the
+While working for `LM Studio <https://lmstudio.ai/>`_, she created the
 `venvstacks <https://pypi.org/project/venvstacks/>`_ Python environment
-packaging and deployment utility.
+packaging and deployment utility, and continued to develop & maintain it
+until the 0.8.0 release in late 2025.
 
 Beyond the Python open source world, Alyssa spent the first decade of her career
 with Boeing Defence Australia working on high frequency radio communication for
 the Australian Defence Force (including network contact and security protocols),
 several years working on hardware integration test automation and other projects
-for Red Hat and (most recently) several years with Tritium working to support
+for Red Hat and several years with Tritium working to support
 remote operation and management of Tritium's EV DC fast chargers using the Open
 Charge Point Protocol (OCPP). Her work at Tritium included being a leading
 member of the team that delivered 2020's world-first deployment of ISO15118's
 Plug-and-Charge payment protocol support to Ionity's high power EV charging
 network.
 
-Alyssa is currently working for the `LM Studio <https://lmstudio.ai/>`_ team
-maintaining ``venvstacks`` and working on other Python-related projects,
+Alyssa is currently working for Westpac as a Principal Python Engineer,
 while also pursuing her Masters of Cybersecurity as a part-time student.
 
 
