@@ -3,7 +3,7 @@
 much of our economic activity is devoted to preventing boredom in the idle
 time created by increases in efficiency. To be human is to be a strange
 creature indeed :)
-</description><atom:link href="https://www.curiousefficiency.org/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 01 Nov 2024 05:47:24 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>The origin of venvstacks</title><link>https://www.curiousefficiency.org/posts/2024/11/the-origin-of-venvstacks/</link><dc:creator>Alyssa Coghlan</dc:creator><description>&lt;p&gt;There has been a longstanding gap in the Python packaging ecosystem that has
+</description><atom:link href="https://www.curiousefficiency.org/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Wed, 14 Oct 2026 12:32:08 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>The origin of venvstacks</title><link>https://www.curiousefficiency.org/posts/2024/11/the-origin-of-venvstacks/</link><dc:creator>Alyssa Coghlan</dc:creator><description>&lt;p&gt;There has been a longstanding gap in the Python packaging ecosystem that has
 somewhat annoyed me,
 but not enough to do anything about it:
 we haven't really had a good way to compose &lt;em&gt;multiple&lt;/em&gt; layers of Python
